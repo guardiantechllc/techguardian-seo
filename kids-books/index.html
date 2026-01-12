@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Story Factory - Custom Children's Books</title>
+    <meta name="description" content="Create magical personalized children's books! Choose from dinosaurs, puppies, space adventures, and more. Instant digital delivery or print-ready books.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg: #FEFCE8;
+            --text: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero {
+            background: var(--gradient);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #764ba2;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #764ba2;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .how-it-works {
+            padding: 4rem 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 0 auto 1rem;
+        }
+
+        .step:nth-child(1) .step-number { background: var(--purple); }
+        .step:nth-child(2) .step-number { background: var(--pink); }
+        .step:nth-child(3) .step-number { background: var(--blue); }
+        .step:nth-child(4) .step-number { background: var(--green); }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-light);
+        }
+
+        .categories-preview {
+            padding: 4rem 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--purple);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .category-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .category-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .features {
+            padding: 4rem 0;
+            background: white;
+            margin: 2rem -2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .pricing {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .price-card.popular {
+            border: 3px solid var(--purple);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--purple);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .price-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--purple);
+            margin-bottom: 1rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .cta-section {
+            background: var(--gradient);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            border-radius: 30px;
+            margin: 2rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .price-card.popular {
+                transform: none;
+            }
+
+            main {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                Little Story Factory
+            </div>
+            <a href="categories.html" class="nav-btn">Create a Book</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Magic Stories Made Just for Your Little One</h1>
+            <p>Create personalized children's books in minutes! Choose a theme, customize the story, and watch your child's eyes light up with their very own adventure.</p>
+            <div class="hero-buttons">
+                <a href="categories.html" class="btn btn-primary">
+                    ✨ Start Creating
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary">
+                    See How It Works
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="how-it-works" id="how-it-works">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Create a magical book in just 4 simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">🎨</div>
+                    <h3>Pick a Theme</h3>
+                    <p>Choose from dinosaurs, puppies, space, unicorns, and more exciting themes!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">✏️</div>
+                    <h3>Personalize</h3>
+                    <p>Add your child's name and customize the story to make it uniquely theirs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">📖</div>
+                    <h3>Preview & Order</h3>
+                    <p>See a preview of your book and complete your order securely.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">🎁</div>
+                    <h3>Receive & Enjoy</h3>
+                    <p>Get instant digital delivery or a beautiful printed book in the mail!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-preview">
+            <div class="section-title">
+                <h2>Popular Themes</h2>
+                <p>What adventure will your child go on today?</p>
+            </div>
+            <div class="category-grid">
+                <a href="categories.html#dinosaurs" class="category-card">
+                    <span class="category-icon">🦕</span>
+                    <h3>Dinosaurs</h3>
+                    <p>Roaring adventures</p>
+                </a>
+                <a href="categories.html#puppies" class="category-card">
+                    <span class="category-icon">🐶</span>
+                    <h3>Puppies</h3>
+                    <p>Furry friends</p>
+                </a>
+                <a href="categories.html#space" class="category-card">
+                    <span class="category-icon">🚀</span>
+                    <h3>Space</h3>
+                    <p>Cosmic journeys</p>
+                </a>
+                <a href="categories.html#unicorns" class="category-card">
+                    <span class="category-icon">🦄</span>
+                    <h3>Unicorns</h3>
+                    <p>Magical tales</p>
+                </a>
+                <a href="categories.html#ocean" class="category-card">
+                    <span class="category-icon">🐠</span>
+                    <h3>Ocean</h3>
+                    <p>Under the sea</p>
+                </a>
+                <a href="categories.html#colors" class="category-card">
+                    <span class="category-icon">🌈</span>
+                    <h3>Colors</h3>
+                    <p>Learn & explore</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="section-title">
+                <h2>Why Parents Love Us</h2>
+                <p>Creating memories that last a lifetime</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature">
+                    <span class="feature-icon">⚡</span>
+                    <div>
+                        <h3>Instant Digital Delivery</h3>
+                        <p>Get your book as a PDF immediately after purchase. Perfect for last-minute gifts!</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🖨️</span>
+                    <div>
+                        <h3>Print-Ready Quality</h3>
+                        <p>High-resolution files ready to print at home or your local print shop.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📬</span>
+                    <div>
+                        <h3>Printed Books Available</h3>
+                        <p>Want a physical book? We'll print and ship a beautiful hardcover to your door.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💝</span>
+                    <div>
+                        <h3>Personalized Stories</h3>
+                        <p>Your child becomes the hero! Add their name and see them in the story.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🎨</span>
+                    <div>
+                        <h3>Beautiful Illustrations</h3>
+                        <p>Charming, colorful artwork that kids and parents adore.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🔒</span>
+                    <div>
+                        <h3>Secure Checkout</h3>
+                        <p>Safe and secure payment processing powered by Stripe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="section-title">
+                <h2>Simple Pricing</h2>
+                <p>Choose the perfect option for your family</p>
+            </div>
+            <div class="price-cards">
+                <div class="price-card">
+                    <h3>Digital Book</h3>
+                    <div class="price">$9.99</div>
+                    <ul class="price-features">
+                        <li>Instant PDF download</li>
+                        <li>Print-ready quality</li>
+                        <li>Personalized story</li>
+                        <li>Read on any device</li>
+                        <li>Print at home anytime</li>
+                    </ul>
+                    <a href="categories.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Get Digital Book</a>
+                </div>
+                <div class="price-card popular">
+                    <span class="popular-badge">Most Popular</span>
+                    <h3>Printed Book</h3>
+                    <div class="price">$24.99</div>
+                    <ul class="price-features">
+                        <li>Everything in Digital</li>
+                        <li>Beautiful hardcover book</li>
+                        <li>Premium paper quality</li>
+                        <li>Free shipping</li>
+                        <li>Gift-ready packaging</li>
+                    </ul>
+                    <a href="categories.html" class="btn btn-primary" style="width: 100%; justify-content: center; background: var(--gradient); color: white;">Get Printed Book</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to Create Magic?</h2>
+            <p>Start your child's personalized adventure today!</p>
+            <a href="categories.html" class="btn btn-primary">
+                ✨ Create Your Book Now
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="categories.html">Create a Book</a>
+                <a href="#pricing">Pricing</a>
+                <a href="mailto:support@littlestoryfactory.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2024 Little Story Factory. All rights reserved. Made with ❤️ for little readers everywhere.</p>
+        </div>
+    </footer>
+</body>
+</html>

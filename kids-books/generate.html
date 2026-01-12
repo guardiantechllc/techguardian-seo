@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Book - Little Story Factory</title>
+    <meta name="description" content="Personalize your children's book with your child's name and preview the magical story!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg: #FEFCE8;
+            --text: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .back-link {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--purple);
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 6px;
+        }
+
+        .progress-fill {
+            background: var(--gradient);
+            height: 100%;
+            width: 50%;
+            transition: width 0.3s;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .generator-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .customization-panel {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-badge {
+            font-size: 3rem;
+        }
+
+        .panel-header h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+        }
+
+        .panel-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .story-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .story-option {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .story-option:hover {
+            border-color: var(--purple);
+        }
+
+        .story-option.selected {
+            border-color: var(--purple);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .story-option input {
+            display: none;
+        }
+
+        .story-option-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .story-option-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .delivery-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .delivery-option {
+            padding: 1.25rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .delivery-option:hover {
+            border-color: var(--purple);
+        }
+
+        .delivery-option.selected {
+            border-color: var(--purple);
+            background: rgba(139, 92, 246, 0.05);
+        }
+
+        .delivery-option input {
+            display: none;
+        }
+
+        .delivery-icon {
+            font-size: 2.5rem;
+        }
+
+        .delivery-info {
+            flex: 1;
+        }
+
+        .delivery-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .delivery-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .delivery-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--purple);
+        }
+
+        .preview-panel {
+            position: sticky;
+            top: 100px;
+        }
+
+        .book-preview {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+        }
+
+        .preview-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-header h2 {
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+
+        .book-mockup {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 1.5rem;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .book-emoji {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-starring {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-starring span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .book-starring strong {
+            display: block;
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .preview-pages {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-page {
+            width: 40px;
+            height: 50px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--text-light);
+        }
+
+        .preview-page.active {
+            background: var(--purple);
+            color: white;
+        }
+
+        .preview-info {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .action-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f3f4f6;
+        }
+
+        .total-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .total-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .total-amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--purple);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .secure-note {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .copyright {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 968px) {
+            .generator-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-panel {
+                position: static;
+                order: -1;
+            }
+
+            .book-mockup {
+                min-height: 280px;
+                padding: 2rem 1.5rem;
+            }
+
+            .story-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            main {
+                padding: 1rem;
+            }
+
+            .customization-panel,
+            .book-preview {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                Little Story Factory
+            </a>
+            <a href="categories.html" class="back-link">
+                ← Choose Different Theme
+            </a>
+        </div>
+    </header>
+
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <main>
+        <div class="generator-layout">
+            <div class="customization-panel">
+                <div class="panel-header">
+                    <span class="category-badge" id="categoryEmoji">🦕</span>
+                    <div>
+                        <h1 id="categoryTitle">Dinosaur Adventure</h1>
+                        <p>Personalize your magical story book!</p>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>✏️ Personalization</h3>
+                    <div class="form-group">
+                        <label for="childName">Child's Name *</label>
+                        <input type="text" id="childName" placeholder="Enter your child's name" maxlength="30" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="childAge">Age (optional)</label>
+                        <select id="childAge">
+                            <option value="">Select age</option>
+                            <option value="2">2 years old</option>
+                            <option value="3">3 years old</option>
+                            <option value="4">4 years old</option>
+                            <option value="5">5 years old</option>
+                            <option value="6">6 years old</option>
+                            <option value="7">7 years old</option>
+                            <option value="8">8 years old</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>📖 Choose Your Story</h3>
+                    <div class="story-options" id="storyOptions">
+                        <label class="story-option selected">
+                            <input type="radio" name="story" value="adventure" checked>
+                            <div class="story-option-icon">🌟</div>
+                            <div class="story-option-title">The Big Adventure</div>
+                        </label>
+                        <label class="story-option">
+                            <input type="radio" name="story" value="friend">
+                            <div class="story-option-icon">🤝</div>
+                            <div class="story-option-title">Making Friends</div>
+                        </label>
+                        <label class="story-option">
+                            <input type="radio" name="story" value="discovery">
+                            <div class="story-option-icon">🔍</div>
+                            <div class="story-option-title">Amazing Discovery</div>
+                        </label>
+                        <label class="story-option">
+                            <input type="radio" name="story" value="hero">
+                            <div class="story-option-icon">🏆</div>
+                            <div class="story-option-title">The Little Hero</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>📦 Delivery Option</h3>
+                    <div class="delivery-options">
+                        <label class="delivery-option selected" data-price="9.99">
+                            <input type="radio" name="delivery" value="digital" checked>
+                            <span class="delivery-icon">📱</span>
+                            <div class="delivery-info">
+                                <h4>Digital Download</h4>
+                                <p>Instant PDF delivery to your email</p>
+                            </div>
+                            <span class="delivery-price">$9.99</span>
+                        </label>
+                        <label class="delivery-option" data-price="24.99">
+                            <input type="radio" name="delivery" value="printed">
+                            <span class="delivery-icon">📚</span>
+                            <div class="delivery-info">
+                                <h4>Printed Hardcover</h4>
+                                <p>Beautiful book shipped to your door</p>
+                            </div>
+                            <span class="delivery-price">$24.99</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-panel">
+                <div class="book-preview">
+                    <div class="preview-header">
+                        <h2>📖 Book Preview</h2>
+                    </div>
+
+                    <div class="book-mockup" id="bookMockup">
+                        <span class="book-emoji" id="bookEmoji">🦕</span>
+                        <h3 class="book-title" id="bookTitle">The Big Adventure</h3>
+                        <p class="book-subtitle" id="bookSubtitle">A Dinosaur Story</p>
+                        <div class="book-starring">
+                            <span>Starring</span>
+                            <strong id="starringName">Your Child</strong>
+                        </div>
+                    </div>
+
+                    <div class="preview-pages">
+                        <div class="preview-page active">Cover</div>
+                        <div class="preview-page">1</div>
+                        <div class="preview-page">2</div>
+                        <div class="preview-page">3</div>
+                        <div class="preview-page">...</div>
+                        <div class="preview-page">12</div>
+                    </div>
+
+                    <p class="preview-info">
+                        12 beautifully illustrated pages of adventure and wonder!
+                    </p>
+
+                    <div class="action-section">
+                        <div class="total-price">
+                            <span class="total-label">Total:</span>
+                            <span class="total-amount" id="totalPrice">$9.99</span>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="checkoutBtn" disabled>
+                            ✨ Continue to Checkout
+                        </button>
+                        <p class="secure-note">
+                            🔒 Secure checkout powered by Stripe
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2024 Little Story Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Category data
+        const categories = {
+            dinosaurs: { emoji: '🦕', title: 'Dinosaur Adventure', subtitle: 'A Dinosaur Story', gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)' },
+            puppies: { emoji: '🐶', title: 'Puppy Pals', subtitle: 'A Puppy Story', gradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)' },
+            kittens: { emoji: '🐱', title: 'Kitten Capers', subtitle: 'A Kitten Story', gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)' },
+            space: { emoji: '🚀', title: 'Space Explorer', subtitle: 'A Space Adventure', gradient: 'linear-gradient(135deg, #0c3483 0%, #a2b6df 100%)' },
+            unicorns: { emoji: '🦄', title: 'Unicorn Dreams', subtitle: 'A Magical Story', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+            ocean: { emoji: '🐠', title: 'Under the Sea', subtitle: 'An Ocean Adventure', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+            colors: { emoji: '🌈', title: 'Color Adventures', subtitle: 'A Colorful Story', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+            farm: { emoji: '🐮', title: 'Farm Friends', subtitle: 'A Farm Story', gradient: 'linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)' },
+            safari: { emoji: '🦁', title: 'Safari Journey', subtitle: 'A Safari Adventure', gradient: 'linear-gradient(135deg, #f5af19 0%, #f12711 100%)' },
+            dragons: { emoji: '🐉', title: 'Dragon Tales', subtitle: 'A Dragon Story', gradient: 'linear-gradient(135deg, #ee0979 0%, #ff6a00 100%)' },
+            princess: { emoji: '👸', title: 'Princess Adventures', subtitle: 'A Royal Story', gradient: 'linear-gradient(135deg, #f5576c 0%, #f093fb 100%)' },
+            superheroes: { emoji: '🦸', title: 'Super Hero', subtitle: 'A Hero Story', gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
+            pirates: { emoji: '🏴‍☠️', title: 'Pirate Voyage', subtitle: 'A Pirate Adventure', gradient: 'linear-gradient(135deg, #373B44 0%, #4286f4 100%)' },
+            fairies: { emoji: '🧚', title: 'Fairy Garden', subtitle: 'A Fairy Story', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
+            trucks: { emoji: '🚛', title: 'Tough Trucks', subtitle: 'A Truck Story', gradient: 'linear-gradient(135deg, #f7797d 0%, #FBD786 100%)' },
+            trains: { emoji: '🚂', title: 'Train Journeys', subtitle: 'A Train Adventure', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }
+        };
+
+        const storyTypes = {
+            adventure: 'The Big Adventure',
+            friend: 'Making Friends',
+            discovery: 'Amazing Discovery',
+            hero: 'The Little Hero'
+        };
+
+        // Get category from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category') || 'dinosaurs';
+        const categoryData = categories[category] || categories.dinosaurs;
+
+        // Initialize page with category data
+        document.getElementById('categoryEmoji').textContent = categoryData.emoji;
+        document.getElementById('categoryTitle').textContent = categoryData.title;
+        document.getElementById('bookEmoji').textContent = categoryData.emoji;
+        document.getElementById('bookTitle').textContent = 'The Big Adventure';
+        document.getElementById('bookSubtitle').textContent = categoryData.subtitle;
+        document.getElementById('bookMockup').style.background = categoryData.gradient;
+
+        // Elements
+        const childNameInput = document.getElementById('childName');
+        const starringName = document.getElementById('starringName');
+        const bookTitle = document.getElementById('bookTitle');
+        const totalPrice = document.getElementById('totalPrice');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const progressFill = document.getElementById('progressFill');
+        const storyOptions = document.querySelectorAll('.story-option');
+        const deliveryOptions = document.querySelectorAll('.delivery-option');
+
+        // Update starring name as user types
+        childNameInput.addEventListener('input', function() {
+            const name = this.value.trim();
+            starringName.textContent = name || 'Your Child';
+            updateCheckoutButton();
+            updateProgress();
+        });
+
+        // Story option selection
+        storyOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                storyOptions.forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                const storyValue = this.querySelector('input').value;
+                bookTitle.textContent = storyTypes[storyValue];
+            });
+        });
+
+        // Delivery option selection
+        deliveryOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                deliveryOptions.forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                const price = this.dataset.price;
+                totalPrice.textContent = '$' + price;
+            });
+        });
+
+        // Update checkout button state
+        function updateCheckoutButton() {
+            const name = childNameInput.value.trim();
+            checkoutBtn.disabled = name.length < 2;
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const name = childNameInput.value.trim();
+            let progress = 50; // Base progress for being on this page
+            if (name.length >= 2) progress = 75;
+            progressFill.style.width = progress + '%';
+        }
+
+        // Checkout button click
+        checkoutBtn.addEventListener('click', function() {
+            if (this.disabled) return;
+
+            const name = childNameInput.value.trim();
+            const age = document.getElementById('childAge').value;
+            const story = document.querySelector('input[name="story"]:checked').value;
+            const delivery = document.querySelector('input[name="delivery"]:checked').value;
+            const price = document.querySelector('.delivery-option.selected').dataset.price;
+
+            // Build checkout URL with all parameters
+            const params = new URLSearchParams({
+                category: category,
+                name: name,
+                age: age,
+                story: story,
+                delivery: delivery,
+                price: price
+            });
+
+            window.location.href = 'checkout.html?' + params.toString();
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

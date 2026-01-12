@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Adventure - Little Story Factory</title>
+    <meta name="description" content="Browse our collection of children's book themes. From dinosaurs to unicorns, find the perfect story for your little one.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg: #FEFCE8;
+            --text: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .back-link {
+            color: var(--text-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--purple);
+        }
+
+        .page-header {
+            background: var(--gradient);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            border-color: var(--purple);
+            background: var(--purple);
+            color: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card[data-category="dinosaurs"] .category-image {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .category-card[data-category="puppies"] .category-image {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+        }
+
+        .category-card[data-category="kittens"] .category-image {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .category-card[data-category="space"] .category-image {
+            background: linear-gradient(135deg, #0c3483 0%, #a2b6df 100%);
+        }
+
+        .category-card[data-category="unicorns"] .category-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .category-card[data-category="ocean"] .category-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .category-card[data-category="colors"] .category-image {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .category-card[data-category="farm"] .category-image {
+            background: linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%);
+        }
+
+        .category-card[data-category="safari"] .category-image {
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+        }
+
+        .category-card[data-category="dragons"] .category-image {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+
+        .category-card[data-category="princess"] .category-image {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        .category-card[data-category="superheroes"] .category-image {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        .category-card[data-category="pirates"] .category-image {
+            background: linear-gradient(135deg, #373B44 0%, #4286f4 100%);
+        }
+
+        .category-card[data-category="fairies"] .category-image {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .category-card[data-category="trucks"] .category-image {
+            background: linear-gradient(135deg, #f7797d 0%, #FBD786 100%);
+        }
+
+        .category-card[data-category="trains"] .category-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #f3f4f6;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .book-count {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .create-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-light);
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .filter-bar {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                Little Story Factory
+            </a>
+            <a href="index.html" class="back-link">
+                ← Back to Home
+            </a>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <h1>Choose Your Adventure</h1>
+        <p>Pick a theme and create a magical personalized book!</p>
+    </section>
+
+    <main>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Themes</button>
+            <button class="filter-btn" data-filter="animals">Animals</button>
+            <button class="filter-btn" data-filter="fantasy">Fantasy</button>
+            <button class="filter-btn" data-filter="adventure">Adventure</button>
+            <button class="filter-btn" data-filter="vehicles">Vehicles</button>
+            <button class="filter-btn" data-filter="learning">Learning</button>
+        </div>
+
+        <div class="categories-grid" id="categoriesGrid">
+            <!-- Dinosaurs -->
+            <a href="generate.html?category=dinosaurs" class="category-card" data-category="dinosaurs" data-tags="animals adventure">
+                <div class="category-image">🦕</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Dinosaur Adventure</h3>
+                    <p>Journey back in time to meet friendly dinosaurs and discover prehistoric wonders!</p>
+                    <div class="category-meta">
+                        <span class="book-count">5 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Puppies -->
+            <a href="generate.html?category=puppies" class="category-card" data-category="puppies" data-tags="animals">
+                <div class="category-image">🐶</div>
+                <div class="category-content">
+                    <span class="category-tag">Animals</span>
+                    <h3>Puppy Pals</h3>
+                    <p>Adorable puppy adventures filled with friendship, fun, and furry cuddles!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Kittens -->
+            <a href="generate.html?category=kittens" class="category-card" data-category="kittens" data-tags="animals">
+                <div class="category-image">🐱</div>
+                <div class="category-content">
+                    <span class="category-tag">Animals</span>
+                    <h3>Kitten Capers</h3>
+                    <p>Follow curious kittens on playful adventures and cozy naptime stories!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Space -->
+            <a href="generate.html?category=space" class="category-card" data-category="space" data-tags="adventure learning">
+                <div class="category-image">🚀</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Space Explorer</h3>
+                    <p>Blast off to the stars! Explore planets, meet aliens, and discover the cosmos!</p>
+                    <div class="category-meta">
+                        <span class="book-count">5 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Unicorns -->
+            <a href="generate.html?category=unicorns" class="category-card" data-category="unicorns" data-tags="fantasy">
+                <div class="category-image">🦄</div>
+                <div class="category-content">
+                    <span class="category-tag">Fantasy</span>
+                    <h3>Unicorn Dreams</h3>
+                    <p>Magical unicorn stories with rainbows, sparkles, and enchanted forests!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Ocean -->
+            <a href="generate.html?category=ocean" class="category-card" data-category="ocean" data-tags="animals adventure">
+                <div class="category-image">🐠</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Under the Sea</h3>
+                    <p>Dive deep into ocean adventures with dolphins, whales, and colorful fish!</p>
+                    <div class="category-meta">
+                        <span class="book-count">5 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Colors -->
+            <a href="generate.html?category=colors" class="category-card" data-category="colors" data-tags="learning">
+                <div class="category-image">🌈</div>
+                <div class="category-content">
+                    <span class="category-tag">Learning</span>
+                    <h3>Color Adventures</h3>
+                    <p>Learn colors through fun stories! Each page brings a new colorful surprise!</p>
+                    <div class="category-meta">
+                        <span class="book-count">3 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Farm -->
+            <a href="generate.html?category=farm" class="category-card" data-category="farm" data-tags="animals learning">
+                <div class="category-image">🐮</div>
+                <div class="category-content">
+                    <span class="category-tag">Animals</span>
+                    <h3>Farm Friends</h3>
+                    <p>Visit the farm and meet cows, pigs, chickens, and all their barnyard friends!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Safari -->
+            <a href="generate.html?category=safari" class="category-card" data-category="safari" data-tags="animals adventure">
+                <div class="category-image">🦁</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Safari Journey</h3>
+                    <p>Go on a wild safari! Meet lions, elephants, giraffes, and more amazing animals!</p>
+                    <div class="category-meta">
+                        <span class="book-count">5 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Dragons -->
+            <a href="generate.html?category=dragons" class="category-card" data-category="dragons" data-tags="fantasy adventure">
+                <div class="category-image">🐉</div>
+                <div class="category-content">
+                    <span class="category-tag">Fantasy</span>
+                    <h3>Dragon Tales</h3>
+                    <p>Befriend magical dragons and go on epic quests through enchanted lands!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Princess -->
+            <a href="generate.html?category=princess" class="category-card" data-category="princess" data-tags="fantasy">
+                <div class="category-image">👸</div>
+                <div class="category-content">
+                    <span class="category-tag">Fantasy</span>
+                    <h3>Princess Adventures</h3>
+                    <p>Join brave princesses on magical adventures in faraway kingdoms!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Superheroes -->
+            <a href="generate.html?category=superheroes" class="category-card" data-category="superheroes" data-tags="adventure fantasy">
+                <div class="category-image">🦸</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Super Hero</h3>
+                    <p>Become a superhero! Use amazing powers to help friends and save the day!</p>
+                    <div class="category-meta">
+                        <span class="book-count">5 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Pirates -->
+            <a href="generate.html?category=pirates" class="category-card" data-category="pirates" data-tags="adventure">
+                <div class="category-image">🏴‍☠️</div>
+                <div class="category-content">
+                    <span class="category-tag">Adventure</span>
+                    <h3>Pirate Voyage</h3>
+                    <p>Sail the seven seas, find treasure, and have swashbuckling adventures!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Fairies -->
+            <a href="generate.html?category=fairies" class="category-card" data-category="fairies" data-tags="fantasy">
+                <div class="category-image">🧚</div>
+                <div class="category-content">
+                    <span class="category-tag">Fantasy</span>
+                    <h3>Fairy Garden</h3>
+                    <p>Discover tiny fairy friends in magical gardens full of wonder and sparkle!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Trucks -->
+            <a href="generate.html?category=trucks" class="category-card" data-category="trucks" data-tags="vehicles">
+                <div class="category-image">🚛</div>
+                <div class="category-content">
+                    <span class="category-tag">Vehicles</span>
+                    <h3>Tough Trucks</h3>
+                    <p>Big trucks, dump trucks, fire trucks - all kinds of awesome vehicles!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Trains -->
+            <a href="generate.html?category=trains" class="category-card" data-category="trains" data-tags="vehicles adventure">
+                <div class="category-image">🚂</div>
+                <div class="category-content">
+                    <span class="category-tag">Vehicles</span>
+                    <h3>Train Journeys</h3>
+                    <p>All aboard! Chug along on exciting train adventures across the land!</p>
+                    <div class="category-meta">
+                        <span class="book-count">4 story variations</span>
+                        <span class="create-btn">Create →</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="no-results" id="noResults" style="display: none;">
+            <h3>No themes found</h3>
+            <p>Try selecting a different category filter.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="categories.html">Create a Book</a>
+                <a href="mailto:support@littlestoryfactory.com">Contact</a>
+            </div>
+            <p class="copyright">&copy; 2024 Little Story Factory. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const categoryCards = document.querySelectorAll('.category-card');
+        const noResults = document.getElementById('noResults');
+        const grid = document.getElementById('categoriesGrid');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+                let visibleCount = 0;
+
+                categoryCards.forEach(card => {
+                    const tags = card.dataset.tags || '';
+                    if (filter === 'all' || tags.includes(filter)) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+            });
+        });
+
+        // Handle hash links for direct category access
+        if (window.location.hash) {
+            const category = window.location.hash.substring(1);
+            const card = document.querySelector(`[data-category="${category}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.animation = 'pulse 0.5s ease-in-out 2';
+            }
+        }
+    </script>
+</body>
+</html>

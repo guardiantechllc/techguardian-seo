@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Complete! - Little Story Factory</title>
+    <meta name="description" content="Your personalized children's book is ready! Download your book now.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg: #FEFCE8;
+            --text: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .progress-bar {
+            background: var(--green);
+            height: 6px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .success-hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            margin: 0 auto 2rem;
+            animation: bounce 0.5s ease-out;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .success-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-hero p {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .order-number {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .order-number strong {
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .order-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #D1FAE5;
+            color: #065F46;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .book-showcase {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .book-cover {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: perspective(500px) rotateY(-5deg);
+        }
+
+        .book-cover .emoji {
+            font-size: 4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .book-cover h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .book-cover p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .book-details h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-details .starring {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-details .starring strong {
+            color: var(--purple);
+        }
+
+        .detail-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .detail-icon {
+            width: 36px;
+            height: 36px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-text {
+            flex: 1;
+        }
+
+        .detail-text span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .detail-text strong {
+            font-size: 1rem;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .download-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-section p {
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-white {
+            background: white;
+            color: #764ba2;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #764ba2;
+        }
+
+        .email-note {
+            background: #F0FDF4;
+            border: 2px solid #86EFAC;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-note-icon {
+            font-size: 2rem;
+        }
+
+        .email-note-content h3 {
+            font-size: 1.1rem;
+            color: #065F46;
+            margin-bottom: 0.25rem;
+        }
+
+        .email-note-content p {
+            color: #047857;
+            font-size: 0.95rem;
+        }
+
+        .shipping-info {
+            background: #EFF6FF;
+            border: 2px solid #93C5FD;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .shipping-info-icon {
+            font-size: 2rem;
+        }
+
+        .shipping-info-content h3 {
+            font-size: 1.1rem;
+            color: #1E40AF;
+            margin-bottom: 0.25rem;
+        }
+
+        .shipping-info-content p {
+            color: #1D4ED8;
+            font-size: 0.95rem;
+        }
+
+        .next-steps {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .next-steps h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .step-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 16px;
+        }
+
+        .step-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .copyright {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .book-showcase {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .book-cover {
+                max-width: 200px;
+                margin: 0 auto;
+                transform: none;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .success-hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s ease-out forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti" id="confetti"></div>
+
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                Little Story Factory
+            </a>
+        </div>
+    </header>
+
+    <div class="progress-bar"></div>
+
+    <main>
+        <div class="success-hero">
+            <div class="success-icon">✓</div>
+            <h1>Your Book is Ready!</h1>
+            <p>Thank you for your order! Your magical story awaits.</p>
+        </div>
+
+        <div class="order-card">
+            <div class="order-header">
+                <div class="order-number">
+                    Order Number: <strong id="orderId">ORD-12345678</strong>
+                </div>
+                <div class="order-status">
+                    ✓ Confirmed
+                </div>
+            </div>
+
+            <div class="book-showcase">
+                <div class="book-cover" id="bookCover">
+                    <div class="emoji" id="bookEmoji">🦕</div>
+                    <h3 id="bookTitle">The Big Adventure</h3>
+                    <p id="bookSubtitle">A Dinosaur Story</p>
+                </div>
+
+                <div class="book-details">
+                    <h2 id="storyTitle">The Big Adventure</h2>
+                    <p class="starring">Starring: <strong id="childName">Your Child</strong></p>
+
+                    <div class="detail-list">
+                        <div class="detail-item">
+                            <div class="detail-icon">📖</div>
+                            <div class="detail-text">
+                                <span>Theme</span>
+                                <strong id="themeName">Dinosaur Adventure</strong>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">📦</div>
+                            <div class="detail-text">
+                                <span>Format</span>
+                                <strong id="deliveryType">Digital Download</strong>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-icon">💰</div>
+                            <div class="detail-text">
+                                <span>Total Paid</span>
+                                <strong id="totalPaid">$9.99</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section" id="downloadSection">
+            <h2>Download Your Book</h2>
+            <p>Your personalized story is ready! Click below to download.</p>
+            <div class="download-buttons">
+                <button class="btn btn-white" onclick="downloadBook()">
+                    📥 Download PDF
+                </button>
+                <button class="btn btn-outline" onclick="previewBook()">
+                    👁️ Preview Online
+                </button>
+            </div>
+        </div>
+
+        <div class="email-note">
+            <div class="email-note-icon">📧</div>
+            <div class="email-note-content">
+                <h3>Check Your Email</h3>
+                <p>We've also sent a copy to <strong id="emailAddress">your email</strong> with download links and your receipt.</p>
+            </div>
+        </div>
+
+        <div class="shipping-info" id="shippingInfo" style="display: none;">
+            <div class="shipping-info-icon">🚚</div>
+            <div class="shipping-info-content">
+                <h3>Printed Book Shipping</h3>
+                <p>Your beautiful hardcover book will be printed and shipped within 3-5 business days. We'll send you a tracking number when it ships!</p>
+            </div>
+        </div>
+
+        <div class="next-steps">
+            <h2>What's Next?</h2>
+            <div class="step-cards">
+                <div class="step-card">
+                    <div class="step-card-icon">📖</div>
+                    <h3>Read Together</h3>
+                    <p>Enjoy reading your personalized story with your little one!</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card-icon">🖨️</div>
+                    <h3>Print at Home</h3>
+                    <p>Print your PDF on nice paper for a keepsake copy.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card-icon">🎁</div>
+                    <h3>Share the Magic</h3>
+                    <p>Create more books for siblings, friends, or as gifts!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Create Another Book?</h2>
+            <p>Explore more themes and create another magical story!</p>
+            <a href="categories.html" class="btn btn-primary">
+                ✨ Browse More Themes
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2024 Little Story Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Category data
+        const categories = {
+            dinosaurs: { emoji: '🦕', title: 'Dinosaur Adventure', subtitle: 'A Dinosaur Story', gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)' },
+            puppies: { emoji: '🐶', title: 'Puppy Pals', subtitle: 'A Puppy Story', gradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)' },
+            kittens: { emoji: '🐱', title: 'Kitten Capers', subtitle: 'A Kitten Story', gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)' },
+            space: { emoji: '🚀', title: 'Space Explorer', subtitle: 'A Space Adventure', gradient: 'linear-gradient(135deg, #0c3483 0%, #a2b6df 100%)' },
+            unicorns: { emoji: '🦄', title: 'Unicorn Dreams', subtitle: 'A Magical Story', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+            ocean: { emoji: '🐠', title: 'Under the Sea', subtitle: 'An Ocean Adventure', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+            colors: { emoji: '🌈', title: 'Color Adventures', subtitle: 'A Colorful Story', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+            farm: { emoji: '🐮', title: 'Farm Friends', subtitle: 'A Farm Story', gradient: 'linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)' },
+            safari: { emoji: '🦁', title: 'Safari Journey', subtitle: 'A Safari Adventure', gradient: 'linear-gradient(135deg, #f5af19 0%, #f12711 100%)' },
+            dragons: { emoji: '🐉', title: 'Dragon Tales', subtitle: 'A Dragon Story', gradient: 'linear-gradient(135deg, #ee0979 0%, #ff6a00 100%)' },
+            princess: { emoji: '👸', title: 'Princess Adventures', subtitle: 'A Royal Story', gradient: 'linear-gradient(135deg, #f5576c 0%, #f093fb 100%)' },
+            superheroes: { emoji: '🦸', title: 'Super Hero', subtitle: 'A Hero Story', gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
+            pirates: { emoji: '🏴‍☠️', title: 'Pirate Voyage', subtitle: 'A Pirate Adventure', gradient: 'linear-gradient(135deg, #373B44 0%, #4286f4 100%)' },
+            fairies: { emoji: '🧚', title: 'Fairy Garden', subtitle: 'A Fairy Story', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
+            trucks: { emoji: '🚛', title: 'Tough Trucks', subtitle: 'A Truck Story', gradient: 'linear-gradient(135deg, #f7797d 0%, #FBD786 100%)' },
+            trains: { emoji: '🚂', title: 'Train Journeys', subtitle: 'A Train Adventure', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }
+        };
+
+        const storyTypes = {
+            adventure: 'The Big Adventure',
+            friend: 'Making Friends',
+            discovery: 'Amazing Discovery',
+            hero: 'The Little Hero'
+        };
+
+        const deliveryTypes = {
+            digital: 'Digital Download',
+            printed: 'Printed Hardcover'
+        };
+
+        // Get order data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderData = {
+            category: urlParams.get('category') || 'dinosaurs',
+            name: urlParams.get('name') || 'Your Child',
+            story: urlParams.get('story') || 'adventure',
+            delivery: urlParams.get('delivery') || 'digital',
+            price: urlParams.get('price') || '9.99',
+            email: urlParams.get('email') || 'your email',
+            orderId: urlParams.get('orderId') || 'ORD-' + Date.now()
+        };
+
+        const categoryData = categories[orderData.category] || categories.dinosaurs;
+
+        // Update page content
+        document.getElementById('orderId').textContent = orderData.orderId;
+        document.getElementById('bookEmoji').textContent = categoryData.emoji;
+        document.getElementById('bookTitle').textContent = storyTypes[orderData.story];
+        document.getElementById('bookSubtitle').textContent = categoryData.subtitle;
+        document.getElementById('bookCover').style.background = categoryData.gradient;
+        document.getElementById('storyTitle').textContent = storyTypes[orderData.story];
+        document.getElementById('childName').textContent = orderData.name;
+        document.getElementById('themeName').textContent = categoryData.title;
+        document.getElementById('deliveryType').textContent = deliveryTypes[orderData.delivery];
+        document.getElementById('totalPaid').textContent = '$' + orderData.price;
+        document.getElementById('emailAddress').textContent = orderData.email;
+
+        // Show shipping info for printed books
+        if (orderData.delivery === 'printed') {
+            document.getElementById('shippingInfo').style.display = 'flex';
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            const colors = ['#8B5CF6', '#EC4899', '#3B82F6', '#10B981', '#F59E0B', '#EF4444'];
+
+            for (let i = 0; i < 50; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                confettiContainer.appendChild(piece);
+            }
+
+            // Remove confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        // Run confetti on page load
+        createConfetti();
+
+        // Download book function (demo)
+        function downloadBook() {
+            // In a real app, this would trigger actual PDF download
+            // For demo, show alert
+            alert('Demo Mode: In production, this would download your personalized PDF book!\n\nYour book "' + storyTypes[orderData.story] + '" starring ' + orderData.name + ' would be downloaded.');
+        }
+
+        // Preview book function (demo)
+        function previewBook() {
+            // In a real app, this would open a PDF viewer or book preview modal
+            alert('Demo Mode: In production, this would open an interactive preview of your book!\n\nYou would see all 12 pages of your personalized story.');
+        }
+    </script>
+</body>
+</html>

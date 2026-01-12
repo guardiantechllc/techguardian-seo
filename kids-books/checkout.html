@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Little Story Factory</title>
+    <meta name="description" content="Complete your order for your personalized children's book.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --blue: #3B82F6;
+            --green: #10B981;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg: #FEFCE8;
+            --text: #1F2937;
+            --text-light: #6B7280;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            background: #e5e7eb;
+            height: 6px;
+        }
+
+        .progress-fill {
+            background: var(--gradient);
+            height: 100%;
+            width: 90%;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .checkout-form {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-header {
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-light);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-element {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .card-element.StripeElement--focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-errors {
+            color: #EF4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .shipping-toggle {
+            display: none;
+        }
+
+        .shipping-section {
+            display: none;
+        }
+
+        .shipping-section.visible {
+            display: block;
+        }
+
+        .order-summary {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .summary-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-header h2 {
+            font-size: 1.25rem;
+        }
+
+        .book-preview-mini {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .book-preview-mini .emoji {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-preview-mini h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .book-preview-mini p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .summary-details {
+            margin-bottom: 1.5rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row.total {
+            font-size: 1.25rem;
+            font-weight: 800;
+            border-top: 2px solid #e5e7eb;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+        }
+
+        .summary-row.total .price {
+            color: var(--purple);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .btn.loading .spinner {
+            display: block;
+        }
+
+        .btn.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .guarantee {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #F0FDF4;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .guarantee-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .guarantee p {
+            font-size: 0.85rem;
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        footer {
+            background: #1F2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .copyright {
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        /* Demo mode banner */
+        .demo-banner {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .demo-banner h4 {
+            color: #92400E;
+            margin-bottom: 0.25rem;
+        }
+
+        .demo-banner p {
+            color: #A16207;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                order: -1;
+                position: static;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .checkout-form,
+            .summary-card {
+                padding: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📚</span>
+                Little Story Factory
+            </a>
+            <div class="secure-badge">
+                🔒 Secure Checkout
+            </div>
+        </div>
+    </header>
+
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+
+    <main>
+        <div class="checkout-layout">
+            <div class="checkout-form">
+                <div class="form-header">
+                    <h1>Complete Your Order</h1>
+                    <p>You're almost done! Fill in your details below.</p>
+                </div>
+
+                <div class="demo-banner">
+                    <h4>🎉 Demo Mode</h4>
+                    <p>This is a demo. Use card number 4242 4242 4242 4242 to test.</p>
+                </div>
+
+                <form id="payment-form">
+                    <div class="form-section">
+                        <h3>📧 Contact Information</h3>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section shipping-section" id="shippingSection">
+                        <h3>📦 Shipping Address</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" placeholder="Last name">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" placeholder="123 Main Street">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" placeholder="City">
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <input type="text" id="state" placeholder="State">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zip">ZIP Code *</label>
+                                <input type="text" id="zip" placeholder="12345">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <select id="country">
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>💳 Payment Details</h3>
+                        <div class="form-group">
+                            <label>Card Information</label>
+                            <div id="card-element" class="card-element"></div>
+                            <div id="card-errors" class="card-errors" role="alert"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-button">
+                        <span class="spinner"></span>
+                        <span class="btn-text">✨ Complete Purchase</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="order-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h2>Order Summary</h2>
+                    </div>
+
+                    <div class="book-preview-mini" id="bookPreview">
+                        <div class="emoji" id="previewEmoji">🦕</div>
+                        <h3 id="previewTitle">The Big Adventure</h3>
+                        <p>Starring: <strong id="previewName">Your Child</strong></p>
+                    </div>
+
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Book Type</span>
+                            <span id="summaryBookType">Dinosaur Adventure</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Story</span>
+                            <span id="summaryStory">The Big Adventure</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery</span>
+                            <span id="summaryDelivery">Digital Download</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span class="price" id="summaryTotal">$9.99</span>
+                        </div>
+                    </div>
+
+                    <div class="guarantee">
+                        <div class="guarantee-icon">✅</div>
+                        <p>100% Satisfaction Guarantee</p>
+                    </div>
+
+                    <div class="trust-badges">
+                        <span class="trust-badge">🔒 SSL Secured</span>
+                        <span class="trust-badge">💳 Stripe Payments</span>
+                        <span class="trust-badge">📧 Instant Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright">&copy; 2024 Little Story Factory. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Category data
+        const categories = {
+            dinosaurs: { emoji: '🦕', title: 'Dinosaur Adventure', gradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)' },
+            puppies: { emoji: '🐶', title: 'Puppy Pals', gradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)' },
+            kittens: { emoji: '🐱', title: 'Kitten Capers', gradient: 'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)' },
+            space: { emoji: '🚀', title: 'Space Explorer', gradient: 'linear-gradient(135deg, #0c3483 0%, #a2b6df 100%)' },
+            unicorns: { emoji: '🦄', title: 'Unicorn Dreams', gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)' },
+            ocean: { emoji: '🐠', title: 'Under the Sea', gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)' },
+            colors: { emoji: '🌈', title: 'Color Adventures', gradient: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)' },
+            farm: { emoji: '🐮', title: 'Farm Friends', gradient: 'linear-gradient(135deg, #c1dfc4 0%, #deecdd 100%)' },
+            safari: { emoji: '🦁', title: 'Safari Journey', gradient: 'linear-gradient(135deg, #f5af19 0%, #f12711 100%)' },
+            dragons: { emoji: '🐉', title: 'Dragon Tales', gradient: 'linear-gradient(135deg, #ee0979 0%, #ff6a00 100%)' },
+            princess: { emoji: '👸', title: 'Princess Adventures', gradient: 'linear-gradient(135deg, #f5576c 0%, #f093fb 100%)' },
+            superheroes: { emoji: '🦸', title: 'Super Hero', gradient: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' },
+            pirates: { emoji: '🏴‍☠️', title: 'Pirate Voyage', gradient: 'linear-gradient(135deg, #373B44 0%, #4286f4 100%)' },
+            fairies: { emoji: '🧚', title: 'Fairy Garden', gradient: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)' },
+            trucks: { emoji: '🚛', title: 'Tough Trucks', gradient: 'linear-gradient(135deg, #f7797d 0%, #FBD786 100%)' },
+            trains: { emoji: '🚂', title: 'Train Journeys', gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }
+        };
+
+        const storyTypes = {
+            adventure: 'The Big Adventure',
+            friend: 'Making Friends',
+            discovery: 'Amazing Discovery',
+            hero: 'The Little Hero'
+        };
+
+        const deliveryTypes = {
+            digital: 'Digital Download',
+            printed: 'Printed Hardcover'
+        };
+
+        // Get order data from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderData = {
+            category: urlParams.get('category') || 'dinosaurs',
+            name: urlParams.get('name') || 'Your Child',
+            age: urlParams.get('age') || '',
+            story: urlParams.get('story') || 'adventure',
+            delivery: urlParams.get('delivery') || 'digital',
+            price: urlParams.get('price') || '9.99'
+        };
+
+        const categoryData = categories[orderData.category] || categories.dinosaurs;
+
+        // Update summary
+        document.getElementById('previewEmoji').textContent = categoryData.emoji;
+        document.getElementById('previewTitle').textContent = storyTypes[orderData.story];
+        document.getElementById('previewName').textContent = orderData.name;
+        document.getElementById('bookPreview').style.background = categoryData.gradient;
+        document.getElementById('summaryBookType').textContent = categoryData.title;
+        document.getElementById('summaryStory').textContent = storyTypes[orderData.story];
+        document.getElementById('summaryDelivery').textContent = deliveryTypes[orderData.delivery];
+        document.getElementById('summaryTotal').textContent = '$' + orderData.price;
+
+        // Show shipping section for printed books
+        if (orderData.delivery === 'printed') {
+            document.getElementById('shippingSection').classList.add('visible');
+        }
+
+        // Initialize Stripe
+        // Note: Replace with your actual publishable key in production
+        // Using a test key for demo purposes
+        const stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+        const elements = stripe.elements();
+
+        const style = {
+            base: {
+                color: '#1F2937',
+                fontFamily: 'Nunito, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#9CA3AF'
+                }
+            },
+            invalid: {
+                color: '#EF4444',
+                iconColor: '#EF4444'
+            }
+        };
+
+        const card = elements.create('card', { style: style });
+        card.mount('#card-element');
+
+        // Handle card errors
+        card.on('change', function(event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            // Basic validation
+            const email = document.getElementById('email').value;
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+
+            // For printed books, validate shipping
+            if (orderData.delivery === 'printed') {
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const state = document.getElementById('state').value;
+                const zip = document.getElementById('zip').value;
+
+                if (!firstName || !lastName || !address || !city || !state || !zip) {
+                    alert('Please fill in all shipping fields.');
+                    return;
+                }
+            }
+
+            // Show loading state
+            submitButton.classList.add('loading');
+            submitButton.disabled = true;
+
+            // In a real app, you would:
+            // 1. Create a payment intent on your server
+            // 2. Confirm the payment with Stripe
+            // 3. Handle the result
+
+            // For demo purposes, simulate payment processing
+            setTimeout(async function() {
+                try {
+                    // Simulate Stripe token creation
+                    const { token, error } = await stripe.createToken(card);
+
+                    if (error) {
+                        const errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = error.message;
+                        submitButton.classList.remove('loading');
+                        submitButton.disabled = false;
+                    } else {
+                        // Success! Redirect to confirmation page
+                        const confirmParams = new URLSearchParams({
+                            ...Object.fromEntries(urlParams),
+                            email: email,
+                            orderId: 'ORD-' + Date.now()
+                        });
+                        window.location.href = 'success.html?' + confirmParams.toString();
+                    }
+                } catch (err) {
+                    // For demo, just redirect to success
+                    const confirmParams = new URLSearchParams({
+                        ...Object.fromEntries(urlParams),
+                        email: email,
+                        orderId: 'ORD-' + Date.now()
+                    });
+                    window.location.href = 'success.html?' + confirmParams.toString();
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
