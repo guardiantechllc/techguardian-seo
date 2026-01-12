@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Story Book - Create Your Own Adventure!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="floating-shapes">
+        <div class="shape star">★</div>
+        <div class="shape heart">♥</div>
+        <div class="shape moon">☽</div>
+        <div class="shape star">★</div>
+        <div class="shape heart">♥</div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">✨ Magic Story Book ✨</h1>
+            <p class="subtitle">Create a personalized story just for you!</p>
+        </header>
+
+        <!-- Story Creator Form -->
+        <section id="creator-section" class="creator-section">
+            <div class="form-card">
+                <h2>📖 Let's Make Your Story!</h2>
+
+                <form id="story-form">
+                    <div class="form-group">
+                        <label for="childName">
+                            <span class="label-icon">👶</span>
+                            What's the hero's name?
+                        </label>
+                        <input type="text" id="childName" name="childName" placeholder="Enter name..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="label-icon">🎂</span>
+                            How old is our hero?
+                        </label>
+                        <select id="age" name="age" required>
+                            <option value="">Select age...</option>
+                            <option value="2">2 years old</option>
+                            <option value="3">3 years old</option>
+                            <option value="4">4 years old</option>
+                            <option value="5">5 years old</option>
+                            <option value="6">6 years old</option>
+                            <option value="7">7 years old</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🎨</span>
+                            Pick a story theme:
+                        </label>
+                        <div class="theme-grid">
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="kindness" required>
+                                <span class="theme-card">
+                                    <span class="theme-emoji">💝</span>
+                                    <span class="theme-name">Kindness</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="bravery">
+                                <span class="theme-card">
+                                    <span class="theme-emoji">🦁</span>
+                                    <span class="theme-name">Bravery</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="friendship">
+                                <span class="theme-card">
+                                    <span class="theme-emoji">🤝</span>
+                                    <span class="theme-name">Friendship</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="sharing">
+                                <span class="theme-card">
+                                    <span class="theme-emoji">🎁</span>
+                                    <span class="theme-name">Sharing</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="curiosity">
+                                <span class="theme-card">
+                                    <span class="theme-emoji">🔍</span>
+                                    <span class="theme-name">Curiosity</span>
+                                </span>
+                            </label>
+                            <label class="theme-option">
+                                <input type="radio" name="theme" value="perseverance">
+                                <span class="theme-card">
+                                    <span class="theme-emoji">⭐</span>
+                                    <span class="theme-name">Never Give Up</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">🌍</span>
+                            Choose a setting:
+                        </label>
+                        <div class="setting-grid">
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="enchanted-forest" required>
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🌳</span>
+                                    <span class="setting-name">Enchanted Forest</span>
+                                </span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="underwater-kingdom">
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🐠</span>
+                                    <span class="setting-name">Underwater Kingdom</span>
+                                </span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="space-adventure">
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🚀</span>
+                                    <span class="setting-name">Space Adventure</span>
+                                </span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="magical-farm">
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🐄</span>
+                                    <span class="setting-name">Magical Farm</span>
+                                </span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="candy-land">
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🍭</span>
+                                    <span class="setting-name">Candy Land</span>
+                                </span>
+                            </label>
+                            <label class="setting-option">
+                                <input type="radio" name="setting" value="dinosaur-world">
+                                <span class="setting-card">
+                                    <span class="setting-emoji">🦕</span>
+                                    <span class="setting-name">Dinosaur World</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companion">
+                            <span class="label-icon">🐾</span>
+                            Pick a companion:
+                        </label>
+                        <select id="companion" name="companion" required>
+                            <option value="">Choose a friend...</option>
+                            <option value="bunny">🐰 Fluffy Bunny</option>
+                            <option value="puppy">🐕 Playful Puppy</option>
+                            <option value="kitten">🐱 Curious Kitten</option>
+                            <option value="dragon">🐲 Friendly Dragon</option>
+                            <option value="unicorn">🦄 Magical Unicorn</option>
+                            <option value="owl">🦉 Wise Owl</option>
+                            <option value="bear">🧸 Cuddly Bear</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="create-btn">
+                        <span class="btn-icon">✨</span>
+                        Create My Story!
+                        <span class="btn-icon">✨</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Loading Section -->
+        <section id="loading-section" class="loading-section hidden">
+            <div class="loading-card">
+                <div class="loading-animation">
+                    <div class="book-loading">
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                        <div class="book-page"></div>
+                    </div>
+                </div>
+                <h2>Creating Your Magical Story...</h2>
+                <p class="loading-message" id="loading-message">Gathering stardust and imagination...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Book Display Section -->
+        <section id="book-section" class="book-section hidden">
+            <div class="book-controls">
+                <button class="control-btn" id="new-story-btn">
+                    <span>📝</span> New Story
+                </button>
+                <button class="control-btn" id="download-btn">
+                    <span>📥</span> Download PDF
+                </button>
+            </div>
+
+            <div class="book-container">
+                <div class="book" id="book">
+                    <!-- Pages will be inserted here dynamically -->
+                </div>
+
+                <div class="book-navigation">
+                    <button class="nav-btn" id="prev-btn" disabled>
+                        <span>◀</span> Previous
+                    </button>
+                    <span class="page-indicator" id="page-indicator">Page 1 of 8</span>
+                    <button class="nav-btn" id="next-btn">
+                        Next <span>▶</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

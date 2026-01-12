@@ -1,0 +1,20 @@
+{
+  "name": "kids-book-generator",
+  "version": "1.0.0",
+  "description": "AI-powered children's book generator with illustrations",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "openai": "^4.20.0",
+    "puppeteer": "^21.6.0"
+  },
+  "keywords": ["kids", "book", "generator", "ai", "stories"],
+  "author": "Tech Guardian",
+  "license": "MIT"
+}
