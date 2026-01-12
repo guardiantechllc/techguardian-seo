@@ -1,9 +1,9 @@
-// Story Generator using OpenAI
-const OpenAI = require('openai');
+// Story Generator using Ollama (Open Source)
+const axios = require('axios');
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-});
+// Ollama API endpoint (default local installation)
+const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
+const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'llama3.2';
 
 // Theme messages/morals
 const themeMorals = {
@@ -46,7 +46,7 @@ async function generateStory({ childName, age, theme, setting, companion }) {
                        age <= 5 ? 'simple with short sentences (5-8 words each)' :
                        'easy to understand with slightly longer sentences (8-12 words each)';
 
-    const prompt = `Create a children's story for a ${age}-year-old child named ${childName}.
+    const prompt = `You are a children's book author. Create a story for a ${age}-year-old child named ${childName}.
 
 STORY REQUIREMENTS:
 - Setting: ${settingDesc}
@@ -64,81 +64,38 @@ IMPORTANT:
 - Build up to a gentle challenge that teaches the moral
 - End happily with the lesson learned
 - NO scary elements - keep it cozy and fun
-- Use lots of colorful, imaginative descriptions
 
-Return the story as a JSON object with this EXACT structure:
+Return ONLY a valid JSON object with this EXACT structure (no markdown, no explanation):
 {
     "title": "The story title",
     "pages": [
-        {
-            "type": "cover",
-            "title": "The story title",
-            "pageNumber": 0
-        },
-        {
-            "type": "story",
-            "text": "Page 1 text here",
-            "pageNumber": 1,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "story",
-            "text": "Page 2 text here",
-            "pageNumber": 2,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "story",
-            "text": "Page 3 text here",
-            "pageNumber": 3,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "story",
-            "text": "Page 4 text here",
-            "pageNumber": 4,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "story",
-            "text": "Page 5 text here",
-            "pageNumber": 5,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "story",
-            "text": "Page 6 text here",
-            "pageNumber": 6,
-            "sceneDescription": "Brief description of what to illustrate"
-        },
-        {
-            "type": "end",
-            "moral": "The lesson learned",
-            "pageNumber": 7
-        }
+        {"type": "cover", "title": "The story title", "pageNumber": 0},
+        {"type": "story", "text": "Page 1 text", "pageNumber": 1, "sceneDescription": "Brief scene description"},
+        {"type": "story", "text": "Page 2 text", "pageNumber": 2, "sceneDescription": "Brief scene description"},
+        {"type": "story", "text": "Page 3 text", "pageNumber": 3, "sceneDescription": "Brief scene description"},
+        {"type": "story", "text": "Page 4 text", "pageNumber": 4, "sceneDescription": "Brief scene description"},
+        {"type": "story", "text": "Page 5 text", "pageNumber": 5, "sceneDescription": "Brief scene description"},
+        {"type": "story", "text": "Page 6 text", "pageNumber": 6, "sceneDescription": "Brief scene description"},
+        {"type": "end", "moral": "The lesson learned", "pageNumber": 7}
     ]
-}
-
-Return ONLY the JSON object, no other text.`;
+}`;
 
     try {
-        const response = await openai.chat.completions.create({
-            model: 'gpt-4o',
-            messages: [
-                {
-                    role: 'system',
-                    content: 'You are a talented children\'s book author who creates magical, educational stories for young children. You always return valid JSON.'
-                },
-                {
-                    role: 'user',
-                    content: prompt
-                }
-            ],
-            temperature: 0.8,
-            max_tokens: 2000
+        console.log(`📝 Generating story with Ollama (${OLLAMA_MODEL})...`);
+
+        const response = await axios.post(`${OLLAMA_URL}/api/generate`, {
+            model: OLLAMA_MODEL,
+            prompt: prompt,
+            stream: false,
+            options: {
+                temperature: 0.8,
+                num_predict: 2000
+            }
+        }, {
+            timeout: 120000 // 2 minute timeout for generation
         });
 
-        const content = response.choices[0].message.content;
+        const content = response.data.response;
 
         // Parse JSON from response
         let story;
@@ -148,24 +105,37 @@ Return ONLY the JSON object, no other text.`;
             if (jsonMatch) {
                 story = JSON.parse(jsonMatch[1]);
             } else {
-                story = JSON.parse(content);
+                // Try to find JSON object in response
+                const jsonStart = content.indexOf('{');
+                const jsonEnd = content.lastIndexOf('}') + 1;
+                if (jsonStart !== -1 && jsonEnd > jsonStart) {
+                    story = JSON.parse(content.substring(jsonStart, jsonEnd));
+                } else {
+                    story = JSON.parse(content);
+                }
             }
         } catch (parseError) {
             console.error('Failed to parse story JSON:', parseError);
+            console.log('Raw response:', content);
             throw new Error('Failed to parse generated story');
         }
 
         return story;
 
     } catch (error) {
-        console.error('Story generation error:', error);
+        console.error('Story generation error:', error.message);
+
+        // Check if Ollama is running
+        if (error.code === 'ECONNREFUSED') {
+            console.error('❌ Ollama is not running! Start it with: ollama serve');
+        }
 
         // Return a fallback story if API fails
         return getFallbackStory(childName, theme, setting, companion);
     }
 }
 
-// Fallback story in case API fails
+// Fallback story in case Ollama fails
 function getFallbackStory(childName, theme, setting, companion) {
     const companionName = {
         bunny: 'Fluffy',
@@ -177,6 +147,15 @@ function getFallbackStory(childName, theme, setting, companion) {
         bear: 'Cuddles'
     }[companion] || 'Friend';
 
+    const settingName = {
+        'enchanted-forest': 'the magical forest',
+        'underwater-kingdom': 'the underwater kingdom',
+        'space-adventure': 'outer space',
+        'magical-farm': 'the magical farm',
+        'candy-land': 'Candy Land',
+        'dinosaur-world': 'Dinosaur World'
+    }[setting] || 'a magical place';
+
     return {
         title: `${childName} and ${companionName}'s Big Adventure`,
         pages: [
@@ -187,43 +166,43 @@ function getFallbackStory(childName, theme, setting, companion) {
             },
             {
                 type: 'story',
-                text: `One sunny day, ${childName} found a magical path. Their best friend ${companionName} was by their side, ready for adventure!`,
+                text: `One sunny day, ${childName} and their best friend ${companionName} discovered a path to ${settingName}. Everything sparkled with magic!`,
                 pageNumber: 1,
-                sceneDescription: `A child and ${companion} at the start of a magical path`
+                sceneDescription: `A child and ${companion} discovering a magical path`
             },
             {
                 type: 'story',
-                text: `"Let's explore!" said ${childName} with a big smile. The path sparkled with rainbow colors, leading somewhere wonderful.`,
+                text: `"Wow!" said ${childName}. "Let's explore!" ${companionName} bounced happily beside them, ready for adventure.`,
                 pageNumber: 2,
-                sceneDescription: `A sparkling rainbow path through a magical landscape`
+                sceneDescription: `Child and companion excitedly entering ${settingName}`
             },
             {
                 type: 'story',
-                text: `Along the way, they met a little creature who looked sad. "What's wrong?" asked ${childName} kindly.`,
+                text: `Along the way, they met a little creature who looked sad. "What's wrong?" asked ${childName} with a kind heart.`,
                 pageNumber: 3,
-                sceneDescription: `The child and companion meeting a sad small creature`
+                sceneDescription: `Child and companion meeting a sad small creature`
             },
             {
                 type: 'story',
-                text: `"I lost my way home," the creature said. ${childName} knew just what to do. "We'll help you find it!"`,
+                text: `"I can't find my way home," the creature sniffled. ${childName} smiled warmly. "Don't worry, we'll help you!"`,
                 pageNumber: 4,
                 sceneDescription: `The child offering to help the lost creature`
             },
             {
                 type: 'story',
-                text: `Working together, they found the creature's home. "Thank you!" it said happily. Everyone cheered!`,
+                text: `Together, they searched high and low. ${companionName} found a trail of sparkles that led right to the creature's home!`,
                 pageNumber: 5,
-                sceneDescription: `Everyone celebrating at the creature's home`
+                sceneDescription: `Everyone following a sparkly trail together`
             },
             {
                 type: 'story',
-                text: `${childName} and ${companionName} walked home under a beautiful sunset. What a wonderful day of helping others!`,
+                text: `"Thank you so much!" cheered the creature. ${childName} and ${companionName} felt warm and happy inside. Helping others felt wonderful!`,
                 pageNumber: 6,
-                sceneDescription: `Child and companion walking into a colorful sunset`
+                sceneDescription: `Happy reunion at the creature's home with everyone celebrating`
             },
             {
                 type: 'end',
-                moral: themeMorals[theme] || 'Being kind and helping others makes everyone happy!',
+                moral: themeMorals[theme] || 'Being kind and helping others makes everyone happy, including yourself!',
                 pageNumber: 7
             }
         ]

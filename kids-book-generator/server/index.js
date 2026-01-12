@@ -126,13 +126,16 @@ app.get('*', (req, res) => {
 // Start server
 app.listen(PORT, () => {
     console.log(`
-    🌟 ================================== 🌟
-    ✨  Kids Book Generator Server       ✨
-    🌟 ================================== 🌟
+    🌟 ======================================= 🌟
+    ✨  Kids Book Generator Server            ✨
+    ✨  100% Open Source - No API Costs!      ✨
+    🌟 ======================================= 🌟
 
     🚀 Server running at http://localhost:${PORT}
     📚 Ready to create magical stories!
 
-    Make sure OPENAI_API_KEY is set in .env
+    Prerequisites:
+    - Ollama running at ${process.env.OLLAMA_URL || 'http://localhost:11434'}
+    - Stable Diffusion at ${process.env.SD_URL || 'http://localhost:7860'}
     `);
 });
