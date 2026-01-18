@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3001;
 // Business Info - Tech Guardian
 const BUSINESS = {
     name: "Tech Guardian",
-    phone: "(816) 697-9268",
-    phoneLink: "tel:+18166979268",
+    phone: "(816) 583-0100",
+    phoneLink: "tel:+18165830100",
     location: "Lee's Summit, MO",
     website: "https://guardianrevives.com",
     services: [
