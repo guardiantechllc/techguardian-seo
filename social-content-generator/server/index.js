@@ -32,32 +32,37 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-// Post templates that convert
+// Post templates that convert - WITH WEBSITE LINKS
 const POST_TEMPLATES = {
     urgency: [
-        "🚨 {service} emergency? We fix it TODAY!\n\n⏰ Same-day repairs available\n📍 {location}\n📞 Call NOW: {phone}\n\nDon't wait - {problem}!\n\n#PhoneRepair #KansasCity #{hashtag}",
-        "⚡ SLOTS FILLING UP ⚡\n\nOnly {slots} same-day repair spots left!\n\n✅ {service}\n✅ Most repairs under 1 hour\n✅ Warranty included\n\n📞 {phone}\n📍 {location}\n\n#{hashtag} #TechRepair #KC",
-        "🔥 Your {device} broken?\n\nEvery hour you wait = more damage!\n\n💪 We fix it in {time}\n💰 Starting at ${price}\n📞 {phone}\n\nWalk-ins welcome! 📍 {location}"
+        "🚨 {service} emergency? We fix it TODAY!\n\n⏰ Same-day repairs available\n📍 {location}\n\n📞 {phone}\n🌐 {website}\n\nDon't wait - {problem} gets worse!\n\n#{hashtag} #KansasCity",
+        "⚡ SLOTS FILLING UP ⚡\n\nOnly {slots} same-day repair spots left!\n\n✅ {service}\n✅ Under 1 hour\n✅ Warranty included\n\n👉 Book now: {website}\n📞 {phone}\n\n#{hashtag} #KC",
+        "🔥 {device} broken?\n\nEvery hour = more damage!\n\n💪 Fixed in {time}\n💰 From ${price}\n\n🔗 {website}\n📞 {phone}\n📍 {location}\n\n#{hashtag}"
     ],
     social_proof: [
-        "✅ JUST FIXED: Another happy customer!\n\n\"{testimonial}\"\n\n{service} ➡️ Done in {time}!\n\nYour turn? 📞 {phone}\n📍 {location}\n\n#{hashtag} #5StarService",
-        "📱 Before ➡️ After\n\nAnother {device} saved! 🎉\n\nCustomer walked in with {problem}...\nWalked out {time} later with a perfect {device}!\n\n📞 Need yours fixed? {phone}\n\n#{hashtag} #RepairMagic",
-        "🏆 {number}+ repairs this month!\n\nWhy KC trusts Tech Guardian:\n✅ Same-day service\n✅ Fair prices\n✅ Real warranty\n✅ Local owned\n\n📞 {phone}\n📍 {location}"
+        "✅ JUST FIXED!\n\n\"{testimonial}\"\n\n{service} ➡️ {time}!\n\nYour turn?\n🌐 {website}\n📞 {phone}\n\n#{hashtag} #5StarReviews",
+        "📱 Before ➡️ After\n\n{device} saved! 🎉\n\nWalked in: {problem}\nWalked out: Perfect {device} in {time}!\n\n👉 {website}\n📞 {phone}\n\n#{hashtag}",
+        "🏆 {number}+ repairs this month!\n\nWhy KC trusts us:\n✅ Same-day\n✅ Fair prices\n✅ Warranty\n✅ Local owned\n\n🔗 {website}\n📞 {phone}\n\n#{hashtag}"
     ],
     offer: [
-        "💥 THIS WEEK ONLY 💥\n\n{service} - ${price}!\n(Regular ${regular_price})\n\n✅ {benefit1}\n✅ {benefit2}\n✅ {benefit3}\n\nMention this post! 📞 {phone}\n\n#{hashtag} #Deal #KCDeals",
-        "🎁 FREE with any repair this week:\n\n➡️ {freebie}!\n\nPlus:\n• {service} from ${price}\n• Done in {time}\n• Warranty included\n\n📞 {phone} | 📍 {location}\n\n#{hashtag}",
-        "⚡ FLASH SALE ⚡\n\nNext {hours} hours only!\n\n{service}: ${price}\n\nFirst come, first served.\n📞 Call NOW: {phone}\n\n#{hashtag} #FlashSale"
+        "💥 THIS WEEK ONLY 💥\n\n{service} - ${price}!\n(Was ${regular_price})\n\n✅ {benefit1}\n✅ {benefit2}\n\nMention this post!\n👉 {website}\n📞 {phone}\n\n#{hashtag} #KCDeals",
+        "🎁 FREE {freebie} with any repair!\n\n• {service} from ${price}\n• Done in {time}\n• Warranty included\n\n🔗 {website}\n📞 {phone}\n\n#{hashtag}",
+        "⚡ {hours}-HOUR FLASH SALE ⚡\n\n{service}: ${price}\n\nFirst come, first served!\n\n👉 {website}\n📞 {phone}\n\n#{hashtag} #FlashSale"
     ],
     problem_solution: [
-        "😫 {problem}?\n\nDon't panic. Don't buy new.\n\n✅ We fix {device} {solution}\n⏰ Usually {time}\n💰 Way cheaper than new\n\n📞 {phone}\n📍 {location}\n\nSave your {device} AND your money! 💪\n\n#{hashtag}",
-        "🤔 Is your {device}:\n\n❌ {symptom1}?\n❌ {symptom2}?\n❌ {symptom3}?\n\nThat's usually {diagnosis} - and we fix it FAST.\n\n📞 Free diagnostic: {phone}\n📍 {location}\n\n#{hashtag}",
-        "STOP! 🛑\n\nBefore you:\n❌ Buy a new {device}\n❌ Pay Apple/Samsung prices\n❌ Give up on your data\n\nCall us: {phone}\n\nWe've saved thousands of devices others said were \"dead.\"\n\n📍 {location}\n\n#{hashtag}"
+        "😫 {problem}?\n\nDON'T buy new!\n\n✅ We fix it in {time}\n💰 70% cheaper than new\n\n🌐 {website}\n📞 {phone}\n📍 {location}\n\n#{hashtag}",
+        "🤔 {device} acting weird?\n\n❌ {symptom1}?\n❌ {symptom2}?\n\nThat's fixable!\n\n👉 Free diagnostic: {website}\n📞 {phone}\n\n#{hashtag}",
+        "🛑 STOP!\n\nBefore you:\n❌ Buy new\n❌ Pay Apple prices\n❌ Lose your data\n\nTry us first:\n🔗 {website}\n📞 {phone}\n\n#{hashtag}"
     ],
     educational: [
-        "💡 PRO TIP: {tip}\n\nBut if it's too late... we're here!\n\n{service} ✅\nSame-day repairs ✅\nWarranty included ✅\n\n📞 {phone}\n📍 {location}\n\n#{hashtag} #TechTips",
-        "❓ Did you know?\n\n{fact}\n\nThat's why we always recommend {recommendation}.\n\nNeed help? 📞 {phone}\n📍 {location}\n\n#{hashtag} #TheMoreYouKnow",
-        "🔧 What really happens when {scenario}:\n\n1️⃣ {step1}\n2️⃣ {step2}\n3️⃣ {step3}\n\nDon't DIY - let the pros handle it.\n📞 {phone}\n\n#{hashtag}"
+        "💡 PRO TIP:\n\n{tip}\n\nToo late? We got you!\n\n🔗 {website}\n📞 {phone}\n📍 {location}\n\n#{hashtag} #TechTips",
+        "❓ Did you know?\n\n{fact}\n\nNeed help?\n👉 {website}\n📞 {phone}\n\n#{hashtag}",
+        "🔧 What happens when {scenario}:\n\n1️⃣ {step1}\n2️⃣ {step2}\n3️⃣ {step3}\n\nLet pros handle it!\n🔗 {website}\n📞 {phone}\n\n#{hashtag}"
+    ],
+    reels: [
+        "🎬 REEL SCRIPT:\n\n[HOOK - 0-3 sec]\n\"{hook}\"\n\n[SHOW THE PROBLEM - 3-7 sec]\nShow broken {device}\n\n[THE FIX - 7-15 sec]\nTime-lapse repair\n\n[REVEAL - 15-20 sec]\nPerfect {device}!\n\n[CTA - 20-30 sec]\n\"Link in bio or call {phone}\"\n\n---\nCAPTION:\n{device} {problem}? Fixed in {time}! 🔧\n\n👉 {website}\n📞 {phone}\n\n#{hashtag} #Repair #Satisfying",
+        "🎬 REEL SCRIPT:\n\n[HOOK]\n\"They said this {device} was DEAD...\"\n\n[BUILD UP]\nShow damage, look concerned\n\n[THE PROCESS]\nQuick repair clips\n\n[BIG REVEAL]\nPOW! Working perfectly!\n\n[CTA]\n\"Don't give up on yours!\"\n\n---\nCAPTION:\nAnother one saved! 💪\n\n🔗 {website}\n📞 {phone}\n📍 {location}\n\n#{hashtag} #BeforeAndAfter",
+        "🎬 REEL SCRIPT:\n\n[HOOK - show price tag]\n\"Apple wants ${apple_price} for this repair...\"\n\n[REVEAL our price]\n\"We do it for ${price}\"\n\n[SHOW the repair]\nQuick clips\n\n[HAPPY CUSTOMER]\nThumbs up!\n\n[CTA]\n\"Save money. Link in bio.\"\n\n---\nCAPTION:\nStop overpaying! 💰\n\n👉 {website}\n📞 {phone}\n\n#{hashtag} #SaveMoney #AppleRepair"
     ]
 };
 

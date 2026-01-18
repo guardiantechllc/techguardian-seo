@@ -378,6 +378,7 @@
                 <div><span>Business:</span> Tech Guardian</div>
                 <div><span>Phone:</span> (816) 697-9268</div>
                 <div><span>Location:</span> Lee's Summit, MO</div>
+                <div><span>Website:</span> guardianrevives.com</div>
             </div>
         </header>
 
@@ -400,6 +401,7 @@
                         <option value="Nintendo Switch Repair">Nintendo Switch Repair</option>
                         <option value="Data Recovery">Data Recovery</option>
                         <option value="Water Damage Repair">Water Damage Repair</option>
+                        <option value="HDMI Port Repair">HDMI Port Repair</option>
                     </select>
                 </div>
 
@@ -411,6 +413,7 @@
                         <button class="post-type" data-type="offer">Offer/Deal</button>
                         <button class="post-type" data-type="problem_solution">Problem/Solution</button>
                         <button class="post-type" data-type="educational">Educational</button>
+                        <button class="post-type" data-type="reels">Reels</button>
                         <button class="post-type" data-type="all">All Types</button>
                     </div>
                 </div>
@@ -520,7 +523,7 @@
             const count = parseInt(postCountSelect.value);
             const service = serviceSelect.value;
             const types = selectedType === 'all' ?
-                ['urgency', 'social_proof', 'offer', 'problem_solution', 'educational'] :
+                ['urgency', 'social_proof', 'offer', 'problem_solution', 'educational', 'reels'] :
                 [selectedType];
 
             postsContainer.innerHTML = `
