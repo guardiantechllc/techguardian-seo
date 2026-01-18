@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Content Generator - Tech Guardian</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .business-info {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .business-info span {
+            color: #00d4ff;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        .controls {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #aaa;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+
+        select option {
+            background: #1a1a2e;
+        }
+
+        .post-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .post-type {
+            padding: 0.8rem;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .post-type:hover {
+            border-color: #00d4ff;
+        }
+
+        .post-type.active {
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            border-color: transparent;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00c853, #00bfa5);
+            color: #fff;
+        }
+
+        .output-area {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .output-header h2 {
+            font-size: 1.3rem;
+        }
+
+        .post-count {
+            background: rgba(0, 212, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #00d4ff;
+        }
+
+        .posts-container {
+            display: grid;
+            gap: 1rem;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .post-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            transition: border-color 0.3s;
+        }
+
+        .post-card:hover {
+            border-color: #00d4ff;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .post-type-badge {
+            background: rgba(123, 44, 191, 0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            color: #c77dff;
+        }
+
+        .post-service {
+            color: #888;
+        }
+
+        .post-time {
+            color: #00d4ff;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .post-content {
+            white-space: pre-wrap;
+            line-height: 1.6;
+            color: #ddd;
+            font-size: 0.95rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 0.8rem 0;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .post-actions button {
+            flex: 1;
+            padding: 0.6rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 6px;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .post-actions button:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #00d4ff;
+        }
+
+        .post-actions .copy-btn.copied {
+            background: #00c853;
+            border-color: #00c853;
+        }
+
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .toggle {
+            width: 50px;
+            height: 26px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle.active {
+            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
+        }
+
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s;
+        }
+
+        .toggle.active::after {
+            transform: translateX(24px);
+        }
+
+        .toggle-label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #666;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Social Content Generator</h1>
+            <p class="subtitle">Create converting social media posts in seconds</p>
+            <div class="business-info">
+                <div><span>Business:</span> Tech Guardian</div>
+                <div><span>Phone:</span> (816) 697-9268</div>
+                <div><span>Location:</span> Lee's Summit, MO</div>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <div class="controls">
+                <div class="control-group">
+                    <label>Service</label>
+                    <select id="service-select">
+                        <option value="">All Services (Random)</option>
+                        <option value="iPhone Repair">iPhone Repair</option>
+                        <option value="Samsung Repair">Samsung Repair</option>
+                        <option value="iPad Repair">iPad Repair</option>
+                        <option value="MacBook Repair">MacBook Repair</option>
+                        <option value="Screen Repair">Screen Repair</option>
+                        <option value="Battery Replacement">Battery Replacement</option>
+                        <option value="Charging Port Repair">Charging Port Repair</option>
+                        <option value="PS5 Repair">PS5 Repair</option>
+                        <option value="PS4 Repair">PS4 Repair</option>
+                        <option value="Xbox Repair">Xbox Repair</option>
+                        <option value="Nintendo Switch Repair">Nintendo Switch Repair</option>
+                        <option value="Data Recovery">Data Recovery</option>
+                        <option value="Water Damage Repair">Water Damage Repair</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Post Type</label>
+                    <div class="post-types">
+                        <button class="post-type active" data-type="urgency">Urgency</button>
+                        <button class="post-type" data-type="social_proof">Social Proof</button>
+                        <button class="post-type" data-type="offer">Offer/Deal</button>
+                        <button class="post-type" data-type="problem_solution">Problem/Solution</button>
+                        <button class="post-type" data-type="educational">Educational</button>
+                        <button class="post-type" data-type="all">All Types</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Number of Posts</label>
+                    <select id="post-count">
+                        <option value="1">1 Post</option>
+                        <option value="3">3 Posts</option>
+                        <option value="5">5 Posts</option>
+                        <option value="7" selected>7 Posts (Week)</option>
+                        <option value="14">14 Posts (2 Weeks)</option>
+                        <option value="30">30 Posts (Month)</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" id="generate-btn">
+                    Generate Content
+                </button>
+                <button class="btn btn-success" id="generate-week-btn">
+                    Generate Week's Content
+                </button>
+
+                <div class="toggle-group">
+                    <div class="toggle" id="ai-toggle"></div>
+                    <span class="toggle-label">Use AI (Ollama) for unique posts</span>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-value" id="total-generated">0</div>
+                        <div class="stat-label">Generated</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="total-copied">0</div>
+                        <div class="stat-label">Copied</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="session-time">0m</div>
+                        <div class="stat-label">Session</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="output-area">
+                <div class="output-header">
+                    <h2>Generated Posts</h2>
+                    <span class="post-count" id="posts-count">0 posts</span>
+                </div>
+                <div class="posts-container" id="posts-container">
+                    <div class="empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <p>Click "Generate Content" to create posts</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Each post includes your phone number and CTA!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let selectedType = 'urgency';
+        let useAI = false;
+        let totalGenerated = 0;
+        let totalCopied = 0;
+        let sessionStart = Date.now();
+
+        // Elements
+        const serviceSelect = document.getElementById('service-select');
+        const postCountSelect = document.getElementById('post-count');
+        const generateBtn = document.getElementById('generate-btn');
+        const generateWeekBtn = document.getElementById('generate-week-btn');
+        const postsContainer = document.getElementById('posts-container');
+        const postsCount = document.getElementById('posts-count');
+        const aiToggle = document.getElementById('ai-toggle');
+        const postTypeButtons = document.querySelectorAll('.post-type');
+
+        // Post type selection
+        postTypeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                postTypeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedType = btn.dataset.type;
+            });
+        });
+
+        // AI toggle
+        aiToggle.addEventListener('click', () => {
+            useAI = !useAI;
+            aiToggle.classList.toggle('active', useAI);
+        });
+
+        // Generate posts
+        generateBtn.addEventListener('click', generatePosts);
+        generateWeekBtn.addEventListener('click', () => {
+            postCountSelect.value = '7';
+            selectedType = 'all';
+            postTypeButtons.forEach(b => b.classList.remove('active'));
+            document.querySelector('[data-type="all"]').classList.add('active');
+            generatePosts();
+        });
+
+        async function generatePosts() {
+            const count = parseInt(postCountSelect.value);
+            const service = serviceSelect.value;
+            const types = selectedType === 'all' ?
+                ['urgency', 'social_proof', 'offer', 'problem_solution', 'educational'] :
+                [selectedType];
+
+            postsContainer.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Generating ${count} posts...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch('/api/generate-batch', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        count,
+                        services: service ? [service] : null,
+                        types,
+                        useAI
+                    })
+                });
+
+                const data = await response.json();
+                displayPosts(data.posts);
+                totalGenerated += data.posts.length;
+                updateStats();
+            } catch (error) {
+                postsContainer.innerHTML = `
+                    <div class="empty-state">
+                        <p style="color: #ff6b6b;">Error generating posts. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function displayPosts(posts) {
+            postsCount.textContent = `${posts.length} posts`;
+
+            postsContainer.innerHTML = posts.map(post => `
+                <div class="post-card">
+                    <div class="post-meta">
+                        <span class="post-type-badge">${post.type.replace('_', ' ')}</span>
+                        <span class="post-service">${post.service}</span>
+                    </div>
+                    <div class="post-time">Suggested: ${post.suggestedTime}</div>
+                    <div class="post-content">${escapeHtml(post.post)}</div>
+                    <div class="post-actions">
+                        <button class="copy-btn" onclick="copyPost(this, \`${escapeForJs(post.post)}\`)">
+                            Copy Post
+                        </button>
+                        <button onclick="regeneratePost('${post.type}', '${post.service}', this)">
+                            Regenerate
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function copyPost(btn, text) {
+            navigator.clipboard.writeText(text.replace(/\\n/g, '\n'));
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            totalCopied++;
+            updateStats();
+            setTimeout(() => {
+                btn.textContent = 'Copy Post';
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+
+        async function regeneratePost(type, service, btn) {
+            btn.textContent = 'Generating...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type, service, useAI })
+                });
+
+                const data = await response.json();
+                const card = btn.closest('.post-card');
+                card.querySelector('.post-content').textContent = data.post;
+                totalGenerated++;
+                updateStats();
+            } catch (error) {
+                console.error(error);
+            }
+
+            btn.textContent = 'Regenerate';
+            btn.disabled = false;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function escapeForJs(text) {
+            return text.replace(/`/g, '\\`').replace(/\$/g, '\\$').replace(/\n/g, '\\n');
+        }
+
+        function updateStats() {
+            document.getElementById('total-generated').textContent = totalGenerated;
+            document.getElementById('total-copied').textContent = totalCopied;
+
+            const minutes = Math.floor((Date.now() - sessionStart) / 60000);
+            document.getElementById('session-time').textContent = `${minutes}m`;
+        }
+
+        // Update session time every minute
+        setInterval(updateStats, 60000);
+    </script>
+</body>
+</html>
