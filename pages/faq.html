@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | Tech Guardian | Kansas City Device Repair Questions Answered</title>
+    <meta name="description" content="Frequently asked questions about Tech Guardian device repair services. Warranty info, repair times, pricing, and more. Kansas City's trusted repair shop.">
+
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Lee's Summit">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #000510 0%, #001025 50%, #000a18 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #lightning-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-logo img {
+            height: 50px;
+            filter: drop-shadow(0 0 20px rgba(0, 162, 255, 0.8));
+        }
+        .nav-logo span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.8);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover { color: #00e5ff; }
+        .nav-cta {
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 160px 40px 60px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 0 60px rgba(0, 162, 255, 0.8);
+        }
+        .page-header h1 .highlight {
+            background: linear-gradient(135deg, #00a2ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header p {
+            font-size: 1.3rem;
+            color: #b0c4de;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            padding: 40px 40px 100px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-category {
+            margin-bottom: 50px;
+        }
+        .faq-category h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #00a2ff;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 162, 255, 0.3);
+            text-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
+        }
+        .faq-item {
+            background: linear-gradient(180deg, rgba(0, 30, 60, 0.4) 0%, rgba(0, 20, 40, 0.6) 100%);
+            border: 1px solid rgba(0, 162, 255, 0.2);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-item:hover {
+            border-color: rgba(0, 162, 255, 0.5);
+        }
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .faq-question h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        .faq-question svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00a2ff;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .faq-answer-content {
+            padding: 0 25px 25px;
+            color: #8899aa;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        .faq-answer-content a {
+            color: #00a2ff;
+            text-decoration: none;
+        }
+        .faq-answer-content a:hover {
+            color: #00e5ff;
+            text-decoration: underline;
+        }
+
+        /* STILL HAVE QUESTIONS */
+        .questions-cta {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 162, 255, 0.1) 50%, transparent 100%);
+        }
+        .questions-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+        .questions-cta p {
+            color: #8899aa;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 0 40px rgba(0, 162, 255, 0.5);
+            transition: all 0.3s;
+        }
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 60px rgba(0, 162, 255, 0.8);
+        }
+        .cta-primary svg { width: 24px; height: 24px; }
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        /* LOCATION BAR */
+        .location-bar {
+            background: rgba(0, 20, 40, 0.8);
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b0c4de;
+        }
+        .location-item svg { width: 24px; height: 24px; stroke: #00a2ff; }
+        .location-item a { color: #00a2ff; text-decoration: none; }
+        .location-item a:hover { color: #00e5ff; }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 15, 0.95) 10%, rgba(0, 5, 15, 0.98) 100%);
+            padding: 80px 40px 40px;
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .footer-brand p { color: #8899aa; line-height: 1.7; }
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #00a2ff;
+            margin-bottom: 20px;
+        }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { color: #8899aa; text-decoration: none; transition: all 0.3s; }
+        .footer-column a:hover { color: #00e5ff; padding-left: 8px; }
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #8899aa;
+            margin-bottom: 15px;
+        }
+        .footer-contact a { color: #00a2ff; text-decoration: none; }
+        .footer-contact a:hover { color: #00e5ff; }
+        .footer-contact svg { width: 20px; height: 20px; stroke: #00a2ff; flex-shrink: 0; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 162, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom p { color: #666; font-size: 0.9rem; }
+        .footer-legal { display: flex; gap: 25px; }
+        .footer-legal a { color: #666; text-decoration: none; font-size: 0.9rem; }
+        .footer-legal a:hover { color: #00a2ff; }
+
+        /* MOBILE */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 5, 15, 0.98);
+            padding: 15px 20px;
+            gap: 12px;
+            border-top: 2px solid rgba(0, 162, 255, 0.6);
+            z-index: 1000;
+        }
+        .mobile-cta a {
+            flex: 1;
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .mobile-call { background: rgba(0, 162, 255, 0.3); border: 1px solid rgba(0, 162, 255, 0.6); color: #fff; }
+        .mobile-book { background: linear-gradient(135deg, #00a2ff, #0066cc); color: #fff; }
+
+        @media (max-width: 900px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 15px 20px; }
+            .nav-logo span { display: none; }
+            .mobile-cta { display: flex; }
+            body { padding-bottom: 80px; }
+            .page-header { padding: 140px 20px 50px; }
+            .faq-section { padding: 30px 20px 80px; }
+            .faq-question h3 { font-size: 1.1rem; }
+            .questions-cta { padding: 50px 20px; }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .cta-primary, .cta-secondary { width: 100%; max-width: 300px; justify-content: center; }
+            .footer { padding: 60px 20px 100px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-contact p { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .location-bar { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="lightning-canvas"></canvas>
+
+    <div class="content-wrapper">
+        <nav class="nav">
+            <a href="https://guardianrevives.com/" class="nav-logo">
+                <img src="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png" alt="Tech Guardian">
+                <span>Tech Guardian</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://guardianrevives.com/">Home</a>
+                <a href="https://guardianrevives.com/services/">Services</a>
+                <a href="https://guardianrevives.com/specials/">Specials</a>
+                <a href="https://guardianrevives.com/faq/">FAQ</a>
+                <a href="https://guardianrevives.com/contact/">Contact</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="nav-cta">BOOK NOW</a>
+            </div>
+        </nav>
+
+        <header class="page-header">
+            <h1>Frequently Asked <span class="highlight">Questions</span></h1>
+            <p>Got questions? We've got answers. If you don't find what you need, just call us!</p>
+        </header>
+
+        <section class="faq-section">
+            <div class="faq-category">
+                <h2>General Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer free diagnostics?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We offer completely free diagnostics on all devices. Bring it in, we'll tell you exactly what's wrong and give you a fair quote. No obligation, no pressure.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need an appointment?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Walk-ins are always welcome! However, booking an appointment guarantees your spot and minimizes wait time. You can <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">book online here</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are your hours?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Monday - Friday: 10am - 7pm<br>
+                            Saturday: 10am - 4pm<br>
+                            Sunday: Closed
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Where are you located?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We're located at 1239 NE Douglas St, Suite B, Lee's Summit, MO 64086. Easy to find with plenty of parking! <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">Get directions on Google Maps</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2>Repairs & Pricing</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long do repairs take?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most repairs are completed same-day! iPhone screens typically take 30-60 minutes. More complex repairs like MacBook logic boards or water damage may take 1-3 days. We'll always give you an estimated timeline upfront.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What parts do you use?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We use high-quality OEM-equivalent parts that meet or exceed original specifications. For certain repairs, we can source genuine OEM parts upon request (may affect pricing and availability).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer a warranty?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! All repairs come with a 90-day warranty on parts and labor. If something goes wrong with our repair, bring it back and we'll make it right - no questions asked.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What if you can't fix it?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No fix, no fee. If we can't repair your device, you don't pay anything. Simple as that. We'll also give you honest advice about whether repair makes sense versus replacement.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How much does repair cost?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Pricing varies by device and repair type. Check our <a href="https://guardianrevives.com/specials/">Specials page</a> for current pricing. We're always transparent - you'll know the exact cost before we start any work.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2>Specific Devices</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can you fix water damaged devices?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We specialize in water damage recovery. The sooner you bring it in, the better the chances. Don't put it in rice - bring it to us! We use professional ultrasonic cleaning and board-level repair to maximize recovery chances.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you fix gaming consoles?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely! We repair PS5, Xbox Series X/S, Nintendo Switch, Steam Deck, and retro consoles. Common repairs include HDMI ports, disc drives, overheating issues, and controller drift.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can you recover data from a dead phone?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            In most cases, yes! We've recovered data from phones that other shops said were impossible. We use board-level techniques to access data even when the phone won't turn on. Bring it in for a free evaluation.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What MacBook repairs do you do?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We do board-level MacBook repairs including: logic board repair, liquid damage recovery, no power issues, charging problems, screen replacement, keyboard replacement, and more. We fix what Apple says is "unrepairable."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2>Payment & Policies</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We accept cash, all major credit/debit cards, Apple Pay, Google Pay, and Venmo. Payment is due when you pick up your repaired device.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Will repair void my warranty?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Third-party repair may affect your manufacturer warranty. However, if your device is already out of warranty or the damage isn't covered anyway, we're often a faster and more affordable option. We're happy to discuss your specific situation.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is my data safe during repair?</h3>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We respect your privacy. We never access, copy, or look at your personal data unless specifically needed for data recovery services you've requested. We recommend backing up before any repair when possible.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="questions-cta">
+            <h2>Still Have Questions?</h2>
+            <p>We're here to help! Give us a call or stop by the shop.</p>
+            <div class="cta-buttons">
+                <a href="tel:+18165830100" class="cta-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    (816) 583-0100
+                </a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="cta-secondary">Book Appointment</a>
+            </div>
+        </section>
+
+        <div class="location-bar">
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</a>
+            </div>
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Mon-Fri 10am-7pm • Sat 10am-4pm</span>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Tech Guardian</h3>
+                    <p>Kansas City's Premier Device Repair. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/services/iphone-repair/">iPhone Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/macbook-repair/">MacBook Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/gaming-consoles/">Gaming Consoles</a></li>
+                        <li><a href="https://guardianrevives.com/services/data-recovery/">Data Recovery</a></li>
+                        <li><a href="https://guardianrevives.com/services/pc-repair/">PC Repair</a></li>
+                        <li><a href="https://guardianrevives.com/ai-solutions/">AI & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/">Home</a></li>
+                        <li><a href="https://guardianrevives.com/specials/">Specials</a></li>
+                        <li><a href="https://guardianrevives.com/services/">Services</a></li>
+                        <li><a href="https://guardianrevives.com/faq/">FAQ</a></li>
+                        <li><a href="https://guardianrevives.com/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact</h4>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+18165830100">(816) 583-0100</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tech Guardian LLC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="https://guardianrevives.com/privacy-policy/">Privacy Policy</a>
+                    <a href="https://guardianrevives.com/terms/">Terms & Conditions</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="mobile-cta">
+        <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="mobile-book">BOOK</a>
+    </div>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Lightning
+        const canvas = document.getElementById('lightning-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+
+        class Lightning {
+            constructor() { this.reset(); }
+            reset() {
+                const startEdge = Math.floor(Math.random() * 4);
+                const endEdge = (startEdge + 2) % 4;
+                switch(startEdge) {
+                    case 0: this.x = Math.random() * canvas.width; this.y = 0; break;
+                    case 1: this.x = canvas.width; this.y = Math.random() * canvas.height; break;
+                    case 2: this.x = Math.random() * canvas.width; this.y = canvas.height; break;
+                    case 3: this.x = 0; this.y = Math.random() * canvas.height; break;
+                }
+                switch(endEdge) {
+                    case 0: this.targetX = Math.random() * canvas.width; this.targetY = 0; break;
+                    case 1: this.targetX = canvas.width; this.targetY = Math.random() * canvas.height; break;
+                    case 2: this.targetX = Math.random() * canvas.width; this.targetY = canvas.height; break;
+                    case 3: this.targetX = 0; this.targetY = Math.random() * canvas.height; break;
+                }
+                this.life = 0; this.maxLife = 8 + Math.random() * 15; this.thickness = 1 + Math.random() * 3;
+                this.segments = []; this.branches = []; this.generateBolt();
+            }
+            generateBolt() {
+                let x = this.x, y = this.y;
+                const steps = 12 + Math.floor(Math.random() * 12);
+                const dx = (this.targetX - this.x) / steps, dy = (this.targetY - this.y) / steps;
+                for (let i = 0; i < steps; i++) {
+                    const jitter = 80 * (1 - i/steps);
+                    const nextX = x + dx + (Math.random() - 0.5) * jitter;
+                    const nextY = y + dy + (Math.random() - 0.5) * jitter;
+                    this.segments.push({ x1: x, y1: y, x2: nextX, y2: nextY });
+                    if (Math.random() < 0.4) {
+                        const branchLen = 30 + Math.random() * 80;
+                        const branchAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI;
+                        this.branches.push({ x1: nextX, y1: nextY, x2: nextX + Math.cos(branchAngle) * branchLen, y2: nextY + Math.sin(branchAngle) * branchLen });
+                    }
+                    x = nextX; y = nextY;
+                }
+            }
+            update() { this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 30 * alpha;
+                ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`; ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                ctx.beginPath();
+                this.segments.forEach((seg, i) => { if (i === 0) ctx.moveTo(seg.x1, seg.y1); ctx.lineTo(seg.x2, seg.y2); });
+                ctx.stroke();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.9})`; ctx.lineWidth = this.thickness * 0.4; ctx.stroke();
+                ctx.strokeStyle = `rgba(0, 200, 255, ${alpha * 0.7})`; ctx.lineWidth = this.thickness * 0.5;
+                this.branches.forEach(b => { ctx.beginPath(); ctx.moveTo(b.x1, b.y1); ctx.lineTo(b.x2, b.y2); ctx.stroke(); });
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        class Spark {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 4; this.vy = (Math.random() - 0.5) * 4;
+                this.life = 0; this.maxLife = 40 + Math.random() * 80; this.size = 1 + Math.random() * 3;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.vx *= 0.98; this.vy *= 0.98; this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size * alpha, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        let lightnings = [], sparks = [];
+        for (let i = 0; i < 40; i++) sparks.push(new Spark());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (Math.random() < 0.04) lightnings.push(new Lightning());
+            if (Math.random() < 0.2) sparks.push(new Spark());
+            lightnings = lightnings.filter(l => { const alive = l.update(); if (alive) l.draw(); return alive; });
+            sparks = sparks.filter(s => { const alive = s.update(); if (alive) s.draw(); return alive; });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Tech Guardian | iPhone, MacBook, Gaming Console Repair KC</title>
+    <meta name="description" content="Expert device repair services in Kansas City. iPhone repair, MacBook repair, PS5/Xbox/Switch fix, PC repair, data recovery. Board-level micro soldering. Free diagnostics.">
+
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Lee's Summit">
+
+    <meta property="og:title" content="Tech Guardian Services | Expert Device Repair KC">
+    <meta property="og:description" content="iPhone, MacBook, gaming console, PC repair. Board-level micro soldering specialists.">
+    <meta property="og:image" content="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #000510 0%, #001025 50%, #000a18 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #lightning-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-logo img {
+            height: 50px;
+            filter: drop-shadow(0 0 20px rgba(0, 162, 255, 0.8));
+        }
+        .nav-logo span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.8);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover {
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 162, 255, 0.6);
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+        .nav-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(0, 162, 255, 0.8);
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 160px 40px 80px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 0 60px rgba(0, 162, 255, 0.8);
+        }
+        .page-header h1 .highlight {
+            background: linear-gradient(135deg, #00a2ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header p {
+            font-size: 1.3rem;
+            color: #b0c4de;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* SERVICES GRID */
+        .services-section {
+            padding: 60px 40px 100px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: linear-gradient(180deg, rgba(0, 30, 60, 0.6) 0%, rgba(0, 20, 40, 0.8) 100%);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+            text-decoration: none;
+            display: block;
+        }
+        .service-card:hover {
+            border-color: #00e5ff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 162, 255, 0.3), inset 0 0 30px rgba(0, 162, 255, 0.1);
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 162, 255, 0.15);
+            border: 2px solid rgba(0, 162, 255, 0.5);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: #00a2ff;
+        }
+        .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
+        }
+        .service-card p {
+            color: #8899aa;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .service-card li {
+            color: #b0c4de;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1rem;
+        }
+        .service-card li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+        }
+        .service-price {
+            display: inline-block;
+            background: rgba(68, 255, 136, 0.15);
+            border: 1px solid rgba(68, 255, 136, 0.5);
+            color: #44ff88;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            padding: 80px 40px;
+            text-align: center;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 162, 255, 0.1) 50%, transparent 100%);
+        }
+        .cta-section h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(0, 162, 255, 0.6);
+        }
+        .cta-section p {
+            color: #b0c4de;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff;
+            padding: 20px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 0 40px rgba(0, 162, 255, 0.5);
+            transition: all 0.3s;
+        }
+        .cta-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 80px rgba(0, 162, 255, 0.8);
+        }
+        .cta-primary svg { width: 28px; height: 28px; }
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 20px 45px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s;
+        }
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        /* LOCATION BAR */
+        .location-bar {
+            background: rgba(0, 20, 40, 0.8);
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b0c4de;
+        }
+        .location-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00a2ff;
+        }
+        .location-item a {
+            color: #00a2ff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .location-item a:hover {
+            color: #00e5ff;
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 15, 0.95) 10%, rgba(0, 5, 15, 0.98) 100%);
+            padding: 80px 40px 40px;
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+        .footer-brand p {
+            color: #8899aa;
+            line-height: 1.7;
+        }
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #00a2ff;
+            margin-bottom: 20px;
+        }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a {
+            color: #8899aa;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-column a:hover {
+            color: #00e5ff;
+            padding-left: 8px;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #8899aa;
+            margin-bottom: 15px;
+        }
+        .footer-contact a {
+            color: #00a2ff;
+            text-decoration: none;
+        }
+        .footer-contact a:hover { color: #00e5ff; }
+        .footer-contact svg {
+            width: 20px;
+            height: 20px;
+            stroke: #00a2ff;
+            flex-shrink: 0;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 162, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom p { color: #666; font-size: 0.9rem; }
+        .footer-legal {
+            display: flex;
+            gap: 25px;
+        }
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .footer-legal a:hover { color: #00a2ff; }
+
+        /* MOBILE */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 5, 15, 0.98);
+            padding: 15px 20px;
+            gap: 12px;
+            border-top: 2px solid rgba(0, 162, 255, 0.6);
+            z-index: 1000;
+        }
+        .mobile-cta a {
+            flex: 1;
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .mobile-call {
+            background: rgba(0, 162, 255, 0.3);
+            border: 1px solid rgba(0, 162, 255, 0.6);
+            color: #fff;
+        }
+        .mobile-book {
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 15px 20px; }
+            .nav-logo span { display: none; }
+            .mobile-cta { display: flex; }
+            body { padding-bottom: 80px; }
+            .page-header { padding: 140px 20px 60px; }
+            .services-section { padding: 40px 20px 80px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .footer { padding: 60px 20px 100px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-contact p { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .location-bar { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="lightning-canvas"></canvas>
+
+    <div class="content-wrapper">
+        <nav class="nav">
+            <a href="https://guardianrevives.com/" class="nav-logo">
+                <img src="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png" alt="Tech Guardian">
+                <span>Tech Guardian</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://guardianrevives.com/">Home</a>
+                <a href="https://guardianrevives.com/services/">Services</a>
+                <a href="https://guardianrevives.com/specials/">Specials</a>
+                <a href="https://guardianrevives.com/faq/">FAQ</a>
+                <a href="https://guardianrevives.com/contact/">Contact</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="nav-cta">BOOK NOW</a>
+            </div>
+        </nav>
+
+        <header class="page-header">
+            <h1>Our <span class="highlight">Services</span></h1>
+            <p>Board-level micro soldering specialists. We fix what others say is unfixable. Free diagnostics on everything.</p>
+        </header>
+
+        <section class="services-section">
+            <div class="services-grid">
+                <!-- iPhone Repair -->
+                <a href="https://guardianrevives.com/services/iphone-repair/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                    </div>
+                    <h3>iPhone Repair</h3>
+                    <p>Expert iPhone repairs from screen replacements to complex motherboard fixes.</p>
+                    <ul>
+                        <li>Screen Replacement (All Models)</li>
+                        <li>Battery Replacement</li>
+                        <li>Charging Port Repair</li>
+                        <li>Water Damage Recovery</li>
+                        <li>Face ID / Touch ID Repair</li>
+                    </ul>
+                    <span class="service-price">Starting at $79</span>
+                </a>
+
+                <!-- MacBook Repair -->
+                <a href="https://guardianrevives.com/services/macbook-repair/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg>
+                    </div>
+                    <h3>MacBook Repair</h3>
+                    <p>Board-level repairs for MacBooks. Logic board, liquid damage, no power issues.</p>
+                    <ul>
+                        <li>Logic Board Repair</li>
+                        <li>Liquid Damage Recovery</li>
+                        <li>Screen Replacement</li>
+                        <li>Keyboard Replacement</li>
+                        <li>Battery & Charging Issues</li>
+                    </ul>
+                    <span class="service-price">Starting at $149</span>
+                </a>
+
+                <!-- Gaming Consoles -->
+                <a href="https://guardianrevives.com/services/gaming-consoles/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"></rect><line x1="6" y1="12" x2="6.01" y2="12"></line><line x1="18" y1="12" x2="18.01" y2="12"></line></svg>
+                    </div>
+                    <h3>Gaming Consoles</h3>
+                    <p>PS5, Xbox, Switch, Steam Deck repairs. HDMI ports, disc drives, overheating.</p>
+                    <ul>
+                        <li>HDMI Port Replacement</li>
+                        <li>Disc Drive Repair</li>
+                        <li>Overheating / Thermal Paste</li>
+                        <li>Controller Drift Fix</li>
+                        <li>Power Supply Issues</li>
+                    </ul>
+                    <span class="service-price">HDMI: $100 (MLK Special!)</span>
+                </a>
+
+                <!-- Data Recovery -->
+                <a href="https://guardianrevives.com/services/data-recovery/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    </div>
+                    <h3>Data Recovery</h3>
+                    <p>Lost data? We recover from dead phones, crashed drives, water damage.</p>
+                    <ul>
+                        <li>Dead Phone Data Recovery</li>
+                        <li>Hard Drive Recovery</li>
+                        <li>SSD Recovery</li>
+                        <li>Water Damaged Devices</li>
+                        <li>Deleted File Recovery</li>
+                    </ul>
+                    <span class="service-price">Free Evaluation</span>
+                </a>
+
+                <!-- PC Repair -->
+                <a href="https://guardianrevives.com/services/pc-repair/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <h3>PC Repair</h3>
+                    <p>Desktop and laptop repairs. Hardware upgrades, virus removal, custom builds.</p>
+                    <ul>
+                        <li>Hardware Diagnostics</li>
+                        <li>RAM / SSD Upgrades</li>
+                        <li>Virus & Malware Removal</li>
+                        <li>OS Installation</li>
+                        <li>Custom PC Builds</li>
+                    </ul>
+                    <span class="service-price">Starting at $49</span>
+                </a>
+
+                <!-- AI & Automation -->
+                <a href="https://guardianrevives.com/ai-solutions/" class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path></svg>
+                    </div>
+                    <h3>AI & Automation</h3>
+                    <p>Business automation, AI chatbots, workflow optimization for local businesses.</p>
+                    <ul>
+                        <li>AI Chatbot Setup</li>
+                        <li>Workflow Automation</li>
+                        <li>Social Media Automation</li>
+                        <li>CRM Integration</li>
+                        <li>Custom AI Solutions</li>
+                    </ul>
+                    <span class="service-price">Free Consultation</span>
+                </a>
+            </div>
+        </section>
+
+        <div class="location-bar">
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</a>
+            </div>
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Mon-Fri 10am-7pm • Sat 10am-4pm</span>
+            </div>
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.88.37 1.74.7 2.55a2 2 0 0 1-.45 2.11L8.09 9.91"></path></svg>
+                <a href="tel:+18165830100">(816) 583-0100</a>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <h2>Ready to Get Your Device Fixed?</h2>
+            <p>Free diagnostics. No fix, no fee. Walk-ins welcome!</p>
+            <div class="cta-buttons">
+                <a href="tel:+18165830100" class="cta-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    (816) 583-0100
+                </a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="cta-secondary">Book Online</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Tech Guardian</h3>
+                    <p>Kansas City's Premier Device Repair. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/services/iphone-repair/">iPhone Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/macbook-repair/">MacBook Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/gaming-consoles/">Gaming Consoles</a></li>
+                        <li><a href="https://guardianrevives.com/services/data-recovery/">Data Recovery</a></li>
+                        <li><a href="https://guardianrevives.com/services/pc-repair/">PC Repair</a></li>
+                        <li><a href="https://guardianrevives.com/ai-solutions/">AI & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/">Home</a></li>
+                        <li><a href="https://guardianrevives.com/specials/">Specials</a></li>
+                        <li><a href="https://guardianrevives.com/services/">Services</a></li>
+                        <li><a href="https://guardianrevives.com/faq/">FAQ</a></li>
+                        <li><a href="https://guardianrevives.com/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact</h4>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+18165830100">(816) 583-0100</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tech Guardian LLC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="https://guardianrevives.com/privacy-policy/">Privacy Policy</a>
+                    <a href="https://guardianrevives.com/terms/">Terms & Conditions</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="mobile-cta">
+        <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="mobile-book">BOOK</a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('lightning-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+
+        class Lightning {
+            constructor() { this.reset(); }
+            reset() {
+                const startEdge = Math.floor(Math.random() * 4);
+                const endEdge = (startEdge + 2) % 4;
+                switch(startEdge) {
+                    case 0: this.x = Math.random() * canvas.width; this.y = 0; break;
+                    case 1: this.x = canvas.width; this.y = Math.random() * canvas.height; break;
+                    case 2: this.x = Math.random() * canvas.width; this.y = canvas.height; break;
+                    case 3: this.x = 0; this.y = Math.random() * canvas.height; break;
+                }
+                switch(endEdge) {
+                    case 0: this.targetX = Math.random() * canvas.width; this.targetY = 0; break;
+                    case 1: this.targetX = canvas.width; this.targetY = Math.random() * canvas.height; break;
+                    case 2: this.targetX = Math.random() * canvas.width; this.targetY = canvas.height; break;
+                    case 3: this.targetX = 0; this.targetY = Math.random() * canvas.height; break;
+                }
+                this.life = 0; this.maxLife = 8 + Math.random() * 15; this.thickness = 1 + Math.random() * 3;
+                this.segments = []; this.branches = []; this.generateBolt();
+            }
+            generateBolt() {
+                let x = this.x, y = this.y;
+                const steps = 12 + Math.floor(Math.random() * 12);
+                const dx = (this.targetX - this.x) / steps, dy = (this.targetY - this.y) / steps;
+                for (let i = 0; i < steps; i++) {
+                    const jitter = 80 * (1 - i/steps);
+                    const nextX = x + dx + (Math.random() - 0.5) * jitter;
+                    const nextY = y + dy + (Math.random() - 0.5) * jitter;
+                    this.segments.push({ x1: x, y1: y, x2: nextX, y2: nextY });
+                    if (Math.random() < 0.4) {
+                        const branchLen = 30 + Math.random() * 80;
+                        const branchAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI;
+                        this.branches.push({ x1: nextX, y1: nextY, x2: nextX + Math.cos(branchAngle) * branchLen, y2: nextY + Math.sin(branchAngle) * branchLen });
+                    }
+                    x = nextX; y = nextY;
+                }
+            }
+            update() { this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 30 * alpha;
+                ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`; ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                ctx.beginPath();
+                this.segments.forEach((seg, i) => { if (i === 0) ctx.moveTo(seg.x1, seg.y1); ctx.lineTo(seg.x2, seg.y2); });
+                ctx.stroke();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.9})`; ctx.lineWidth = this.thickness * 0.4; ctx.stroke();
+                ctx.strokeStyle = `rgba(0, 200, 255, ${alpha * 0.7})`; ctx.lineWidth = this.thickness * 0.5;
+                this.branches.forEach(b => { ctx.beginPath(); ctx.moveTo(b.x1, b.y1); ctx.lineTo(b.x2, b.y2); ctx.stroke(); });
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        class Spark {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 4; this.vy = (Math.random() - 0.5) * 4;
+                this.life = 0; this.maxLife = 40 + Math.random() * 80; this.size = 1 + Math.random() * 3;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.vx *= 0.98; this.vy *= 0.98; this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`; ctx.shadowColor = '#00e5ff'; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size * alpha, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        let lightnings = [], sparks = [];
+        for (let i = 0; i < 50; i++) sparks.push(new Spark());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (Math.random() < 0.06) lightnings.push(new Lightning());
+            if (Math.random() < 0.25) sparks.push(new Spark());
+            lightnings = lightnings.filter(l => { const alive = l.update(); if (alive) l.draw(); return alive; });
+            sparks = sparks.filter(s => { const alive = s.update(); if (alive) s.draw(); return alive; });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>

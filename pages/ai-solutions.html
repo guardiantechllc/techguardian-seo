@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Automation Solutions | Tech Guardian | Kansas City Business Automation</title>
+    <meta name="description" content="AI solutions for Kansas City businesses. Chatbots, workflow automation, social media automation, CRM integration. Free consultation. Tech Guardian.">
+
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Lee's Summit">
+
+    <meta property="og:title" content="AI & Automation Solutions | Tech Guardian KC">
+    <meta property="og:description" content="Transform your business with AI chatbots, workflow automation, and smart solutions.">
+    <meta property="og:image" content="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #000510 0%, #001025 50%, #000a18 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #lightning-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+            backdrop-filter: blur(10px);
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-logo img {
+            height: 50px;
+            filter: drop-shadow(0 0 20px rgba(0, 162, 255, 0.8));
+        }
+        .nav-logo span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.8);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #b0c4de;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links a:hover {
+            color: #00e5ff;
+            text-shadow: 0 0 20px rgba(0, 162, 255, 0.6);
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #00a2ff, #0066cc);
+            color: #fff !important;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+
+        /* HERO SECTION */
+        .ai-hero {
+            padding: 180px 40px 100px;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .ai-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 0 0 80px rgba(0, 162, 255, 0.8);
+            line-height: 1.1;
+        }
+        .ai-hero h1 .highlight {
+            background: linear-gradient(135deg, #00a2ff, #00ffff, #ff00ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: aiShimmer 3s linear infinite;
+        }
+        @keyframes aiShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        .ai-hero p {
+            font-size: 1.4rem;
+            color: #b0c4de;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .ai-hero .cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #9933ff, #6600cc);
+            color: #fff;
+            padding: 22px 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 0 50px rgba(153, 51, 255, 0.6);
+            transition: all 0.3s;
+            border: 2px solid rgba(153, 51, 255, 0.6);
+        }
+        .cta-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 80px rgba(153, 51, 255, 0.9);
+        }
+        .cta-primary svg { width: 26px; height: 26px; }
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 22px 50px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            transition: all 0.3s;
+        }
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+
+        /* FEATURES GRID */
+        .features-section {
+            padding: 80px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 40px rgba(0, 162, 255, 0.6);
+        }
+        .section-title p {
+            color: #8899aa;
+            font-size: 1.2rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: linear-gradient(180deg, rgba(153, 51, 255, 0.15) 0%, rgba(0, 20, 40, 0.8) 100%);
+            border: 1px solid rgba(153, 51, 255, 0.4);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+        }
+        .feature-card:hover {
+            border-color: #9933ff;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(153, 51, 255, 0.3);
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(153, 51, 255, 0.2);
+            border: 2px solid rgba(153, 51, 255, 0.5);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .feature-icon svg {
+            width: 35px;
+            height: 35px;
+            stroke: #9933ff;
+        }
+        .feature-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: #8899aa;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* USE CASES */
+        .use-cases {
+            padding: 80px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(153, 51, 255, 0.1) 50%, transparent 100%);
+        }
+        .use-cases-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .use-case {
+            background: rgba(0, 20, 40, 0.6);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .use-case:hover {
+            border-color: #00e5ff;
+            transform: translateY(-5px);
+        }
+        .use-case h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #00e5ff;
+            margin-bottom: 10px;
+        }
+        .use-case p {
+            color: #8899aa;
+            font-size: 1rem;
+        }
+
+        /* PRICING */
+        .pricing-section {
+            padding: 80px 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .pricing-box {
+            background: linear-gradient(180deg, rgba(0, 30, 60, 0.6) 0%, rgba(0, 20, 40, 0.8) 100%);
+            border: 2px solid rgba(153, 51, 255, 0.5);
+            border-radius: 24px;
+            padding: 50px;
+            margin-top: 40px;
+        }
+        .pricing-box h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #9933ff;
+            text-shadow: 0 0 30px rgba(153, 51, 255, 0.5);
+        }
+        .pricing-box p {
+            color: #b0c4de;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .pricing-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(68, 255, 136, 0.1);
+            border: 1px solid rgba(68, 255, 136, 0.4);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #44ff88;
+            font-weight: 600;
+        }
+        .pricing-feature svg {
+            width: 20px;
+            height: 20px;
+            stroke: #44ff88;
+        }
+
+        /* LOCATION BAR */
+        .location-bar {
+            background: rgba(0, 20, 40, 0.8);
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+            border-bottom: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #b0c4de;
+        }
+        .location-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00a2ff;
+        }
+        .location-item a {
+            color: #00a2ff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .location-item a:hover {
+            color: #00e5ff;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 15, 0.95) 10%, rgba(0, 5, 15, 0.98) 100%);
+            padding: 80px 40px 40px;
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .footer-brand p { color: #8899aa; line-height: 1.7; }
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #00a2ff;
+            margin-bottom: 20px;
+        }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { color: #8899aa; text-decoration: none; transition: all 0.3s; }
+        .footer-column a:hover { color: #00e5ff; padding-left: 8px; }
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #8899aa;
+            margin-bottom: 15px;
+        }
+        .footer-contact a { color: #00a2ff; text-decoration: none; }
+        .footer-contact a:hover { color: #00e5ff; }
+        .footer-contact svg { width: 20px; height: 20px; stroke: #00a2ff; flex-shrink: 0; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 162, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom p { color: #666; font-size: 0.9rem; }
+        .footer-legal { display: flex; gap: 25px; }
+        .footer-legal a { color: #666; text-decoration: none; font-size: 0.9rem; transition: all 0.3s; }
+        .footer-legal a:hover { color: #00a2ff; }
+
+        /* MOBILE */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 5, 15, 0.98);
+            padding: 15px 20px;
+            gap: 12px;
+            border-top: 2px solid rgba(153, 51, 255, 0.6);
+            z-index: 1000;
+        }
+        .mobile-cta a {
+            flex: 1;
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .mobile-call { background: rgba(153, 51, 255, 0.3); border: 1px solid rgba(153, 51, 255, 0.6); color: #fff; }
+        .mobile-book { background: linear-gradient(135deg, #9933ff, #6600cc); color: #fff; }
+
+        @media (max-width: 900px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+        }
+        @media (max-width: 768px) {
+            .nav { padding: 15px 20px; }
+            .nav-logo span { display: none; }
+            .mobile-cta { display: flex; }
+            body { padding-bottom: 80px; }
+            .ai-hero { padding: 150px 20px 80px; }
+            .ai-hero .cta-row { flex-direction: column; align-items: center; }
+            .cta-primary, .cta-secondary { width: 100%; max-width: 320px; justify-content: center; }
+            .features-section, .use-cases, .pricing-section { padding: 60px 20px; }
+            .footer { padding: 60px 20px 100px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-contact p { justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .location-bar { flex-direction: column; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="lightning-canvas"></canvas>
+
+    <div class="content-wrapper">
+        <nav class="nav">
+            <a href="https://guardianrevives.com/" class="nav-logo">
+                <img src="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png" alt="Tech Guardian">
+                <span>Tech Guardian</span>
+            </a>
+            <div class="nav-links">
+                <a href="https://guardianrevives.com/">Home</a>
+                <a href="https://guardianrevives.com/services/">Services</a>
+                <a href="https://guardianrevives.com/specials/">Specials</a>
+                <a href="https://guardianrevives.com/faq/">FAQ</a>
+                <a href="https://guardianrevives.com/contact/">Contact</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="nav-cta">BOOK NOW</a>
+            </div>
+        </nav>
+
+        <section class="ai-hero">
+            <h1><span class="highlight">AI & Automation</span><br>For Local Business</h1>
+            <p>Stop losing customers to slow response times. Let AI handle your leads 24/7 while you focus on what matters - running your business.</p>
+            <div class="cta-row">
+                <a href="tel:+18165830100" class="cta-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    Free Consultation
+                </a>
+                <a href="mailto:admin@guardianlabs.digital" class="cta-secondary">Email Us</a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+                <p>Cutting-edge AI solutions tailored for small businesses</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h3>AI Chatbots</h3>
+                    <p>Never miss a lead again. AI chatbots answer customer questions 24/7, book appointments, and qualify leads while you sleep.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Workflow Automation</h3>
+                    <p>Automate repetitive tasks. Invoice generation, appointment reminders, follow-up emails - all on autopilot.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                    <h3>Social Media Automation</h3>
+                    <p>Schedule posts, auto-respond to DMs, and grow your following without spending hours online.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>CRM Integration</h3>
+                    <p>Connect all your tools. Sync contacts, track leads, and never lose a customer in the shuffle.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <h3>Smart Reporting</h3>
+                    <p>AI-powered insights tell you what's working and what's not. Make data-driven decisions easily.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>Custom Solutions</h3>
+                    <p>Got a unique problem? We build custom AI solutions tailored specifically to your business needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <div class="section-title">
+                <h2>Perfect For</h2>
+                <p>Local businesses ready to level up</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                    <h4>Repair Shops</h4>
+                    <p>Auto-quote repairs, track jobs, notify customers automatically</p>
+                </div>
+                <div class="use-case">
+                    <h4>Service Businesses</h4>
+                    <p>HVAC, plumbing, electricians - schedule & dispatch smarter</p>
+                </div>
+                <div class="use-case">
+                    <h4>Restaurants</h4>
+                    <p>Take orders, handle reservations, manage reviews</p>
+                </div>
+                <div class="use-case">
+                    <h4>Retail Stores</h4>
+                    <p>Inventory alerts, customer follow-ups, loyalty programs</p>
+                </div>
+                <div class="use-case">
+                    <h4>Real Estate</h4>
+                    <p>Lead qualification, showing schedules, market updates</p>
+                </div>
+                <div class="use-case">
+                    <h4>Healthcare</h4>
+                    <p>Appointment reminders, intake forms, follow-up care</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="section-title">
+                <h2>Get Started</h2>
+                <p>No confusing packages. Just results.</p>
+            </div>
+            <div class="pricing-box">
+                <h3>Free Consultation</h3>
+                <p>Let's talk about your business and see how AI can help. No pressure, no commitment.</p>
+                <div class="pricing-features">
+                    <span class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        30-Minute Call
+                    </span>
+                    <span class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Custom Recommendations
+                    </span>
+                    <span class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        No Obligation
+                    </span>
+                    <span class="pricing-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        Local KC Support
+                    </span>
+                </div>
+                <a href="tel:+18165830100" class="cta-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    (816) 583-0100
+                </a>
+            </div>
+        </section>
+
+        <div class="location-bar">
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</a>
+            </div>
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Mon-Fri 10am-7pm • Sat 10am-4pm</span>
+            </div>
+            <div class="location-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"></path></svg>
+                <a href="tel:+18165830100">(816) 583-0100</a>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Tech Guardian</h3>
+                    <p>Kansas City's Premier Device Repair & AI Solutions. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/services/iphone-repair/">iPhone Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/macbook-repair/">MacBook Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/gaming-consoles/">Gaming Consoles</a></li>
+                        <li><a href="https://guardianrevives.com/services/data-recovery/">Data Recovery</a></li>
+                        <li><a href="https://guardianrevives.com/services/pc-repair/">PC Repair</a></li>
+                        <li><a href="https://guardianrevives.com/ai-solutions/">AI & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/">Home</a></li>
+                        <li><a href="https://guardianrevives.com/specials/">Specials</a></li>
+                        <li><a href="https://guardianrevives.com/services/">Services</a></li>
+                        <li><a href="https://guardianrevives.com/faq/">FAQ</a></li>
+                        <li><a href="https://guardianrevives.com/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact</h4>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+18165830100">(816) 583-0100</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tech Guardian LLC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="https://guardianrevives.com/privacy-policy/">Privacy Policy</a>
+                    <a href="https://guardianrevives.com/terms/">Terms & Conditions</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="mobile-cta">
+        <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
+        <a href="mailto:admin@guardianlabs.digital" class="mobile-book">EMAIL</a>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('lightning-canvas');
+        const ctx = canvas.getContext('2d');
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+
+        class Lightning {
+            constructor() { this.reset(); }
+            reset() {
+                const startEdge = Math.floor(Math.random() * 4);
+                const endEdge = (startEdge + 2) % 4;
+                switch(startEdge) {
+                    case 0: this.x = Math.random() * canvas.width; this.y = 0; break;
+                    case 1: this.x = canvas.width; this.y = Math.random() * canvas.height; break;
+                    case 2: this.x = Math.random() * canvas.width; this.y = canvas.height; break;
+                    case 3: this.x = 0; this.y = Math.random() * canvas.height; break;
+                }
+                switch(endEdge) {
+                    case 0: this.targetX = Math.random() * canvas.width; this.targetY = 0; break;
+                    case 1: this.targetX = canvas.width; this.targetY = Math.random() * canvas.height; break;
+                    case 2: this.targetX = Math.random() * canvas.width; this.targetY = canvas.height; break;
+                    case 3: this.targetX = 0; this.targetY = Math.random() * canvas.height; break;
+                }
+                this.life = 0; this.maxLife = 8 + Math.random() * 15; this.thickness = 1 + Math.random() * 3;
+                this.segments = []; this.branches = []; this.generateBolt();
+            }
+            generateBolt() {
+                let x = this.x, y = this.y;
+                const steps = 12 + Math.floor(Math.random() * 12);
+                const dx = (this.targetX - this.x) / steps, dy = (this.targetY - this.y) / steps;
+                for (let i = 0; i < steps; i++) {
+                    const jitter = 80 * (1 - i/steps);
+                    const nextX = x + dx + (Math.random() - 0.5) * jitter;
+                    const nextY = y + dy + (Math.random() - 0.5) * jitter;
+                    this.segments.push({ x1: x, y1: y, x2: nextX, y2: nextY });
+                    if (Math.random() < 0.4) {
+                        const branchLen = 30 + Math.random() * 80;
+                        const branchAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI;
+                        this.branches.push({ x1: nextX, y1: nextY, x2: nextX + Math.cos(branchAngle) * branchLen, y2: nextY + Math.sin(branchAngle) * branchLen });
+                    }
+                    x = nextX; y = nextY;
+                }
+            }
+            update() { this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                // Purple lightning for AI page
+                ctx.shadowColor = '#9933ff'; ctx.shadowBlur = 30 * alpha;
+                ctx.strokeStyle = `rgba(153, 51, 255, ${alpha})`; ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+                ctx.beginPath();
+                this.segments.forEach((seg, i) => { if (i === 0) ctx.moveTo(seg.x1, seg.y1); ctx.lineTo(seg.x2, seg.y2); });
+                ctx.stroke();
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.9})`; ctx.lineWidth = this.thickness * 0.4; ctx.stroke();
+                ctx.strokeStyle = `rgba(200, 100, 255, ${alpha * 0.7})`; ctx.lineWidth = this.thickness * 0.5;
+                this.branches.forEach(b => { ctx.beginPath(); ctx.moveTo(b.x1, b.y1); ctx.lineTo(b.x2, b.y2); ctx.stroke(); });
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        class Spark {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 4; this.vy = (Math.random() - 0.5) * 4;
+                this.life = 0; this.maxLife = 40 + Math.random() * 80; this.size = 1 + Math.random() * 3;
+            }
+            update() { this.x += this.vx; this.y += this.vy; this.vx *= 0.98; this.vy *= 0.98; this.life++; return this.life < this.maxLife; }
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                ctx.fillStyle = `rgba(153, 51, 255, ${alpha})`; ctx.shadowColor = '#9933ff'; ctx.shadowBlur = 15;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size * alpha, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+            }
+        }
+
+        let lightnings = [], sparks = [];
+        for (let i = 0; i < 50; i++) sparks.push(new Spark());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (Math.random() < 0.05) lightnings.push(new Lightning());
+            if (Math.random() < 0.2) sparks.push(new Spark());
+            lightnings = lightnings.filter(l => { const alive = l.update(); if (alive) l.draw(); return alive; });
+            sparks = sparks.filter(s => { const alive = s.update(); if (alive) s.draw(); return alive; });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
