@@ -1,0 +1,149 @@
+<!-- ============================================
+     TECH GUARDIAN - PASTE INTO SEPARATE HTML WIDGET
+     Place this at the BOTTOM of your page
+     ============================================ -->
+
+<script>
+// ELECTRIC LIGHTNING CANVAS ANIMATION
+const canvas = document.getElementById('lightning-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Lightning {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = 0;
+        this.segments = [];
+        this.alpha = 1;
+        this.lineWidth = Math.random() * 2 + 1;
+        this.generateSegments();
+    }
+    generateSegments() {
+        let x = this.x;
+        let y = this.y;
+        const targetY = canvas.height * (0.3 + Math.random() * 0.5);
+        while (y < targetY) {
+            const newX = x + (Math.random() - 0.5) * 100;
+            const newY = y + Math.random() * 30 + 10;
+            this.segments.push({ x1: x, y1: y, x2: newX, y2: newY });
+            if (Math.random() < 0.3 && this.segments.length > 2) {
+                const branchX = newX + (Math.random() - 0.5) * 60;
+                const branchY = newY + Math.random() * 40;
+                this.segments.push({ x1: newX, y1: newY, x2: branchX, y2: branchY, branch: true });
+            }
+            x = newX;
+            y = newY;
+        }
+    }
+    draw() {
+        ctx.strokeStyle = `rgba(0, 212, 255, ${this.alpha})`;
+        ctx.shadowColor = '#00d4ff';
+        ctx.shadowBlur = 20;
+        ctx.lineWidth = this.lineWidth;
+        ctx.beginPath();
+        this.segments.forEach(seg => {
+            ctx.moveTo(seg.x1, seg.y1);
+            ctx.lineTo(seg.x2, seg.y2);
+        });
+        ctx.stroke();
+        ctx.strokeStyle = `rgba(255, 255, 255, ${this.alpha * 0.8})`;
+        ctx.lineWidth = this.lineWidth * 0.3;
+        ctx.stroke();
+        this.alpha -= 0.03;
+    }
+}
+
+class Spark {
+    constructor(x, y) {
+        this.x = x || Math.random() * canvas.width;
+        this.y = y || Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 4;
+        this.vy = (Math.random() - 0.5) * 4;
+        this.life = 1;
+        this.size = Math.random() * 3 + 1;
+    }
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life -= 0.02;
+        this.vx *= 0.98;
+        this.vy *= 0.98;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 212, 255, ${this.life})`;
+        ctx.shadowColor = '#00d4ff';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+    }
+}
+
+let lightnings = [];
+let sparks = [];
+let lastLightning = 0;
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Random lightning strikes
+    if (Date.now() - lastLightning > 2000 + Math.random() * 4000) {
+        if (Math.random() < 0.4) {
+            lightnings.push(new Lightning());
+            // Add sparks at lightning end point
+            const lastSeg = lightnings[lightnings.length-1].segments;
+            if (lastSeg.length > 0) {
+                const end = lastSeg[lastSeg.length-1];
+                for (let i = 0; i < 10; i++) {
+                    sparks.push(new Spark(end.x2, end.y2));
+                }
+            }
+        }
+        lastLightning = Date.now();
+    }
+
+    // Random ambient sparks
+    if (Math.random() < 0.1) {
+        sparks.push(new Spark());
+    }
+
+    // Update and draw lightnings
+    lightnings = lightnings.filter(l => {
+        l.draw();
+        return l.alpha > 0;
+    });
+
+    // Update and draw sparks
+    sparks = sparks.filter(s => {
+        s.update();
+        s.draw();
+        return s.life > 0;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// SCROLL ANIMATIONS FOR CARDS
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate-card').forEach(card => {
+    observer.observe(card);
+});
+</script>
