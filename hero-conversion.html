@@ -71,16 +71,18 @@
             Free Diagnostics • No Fix, No Fee • Walk-ins Welcome
         </p>
 
-        <!-- Location -->
-        <div class="location-line">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+        <!-- Location Card - More Prominent -->
+        <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
             </svg>
-            <span>1239 NE Douglas St, Lee's Summit</span>
-            <span class="sep">•</span>
-            <span>Open Mon-Sat</span>
-        </div>
+            <div class="location-text">
+                <span class="location-address">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</span>
+                <span class="location-hours">Mon-Fri 10am-7pm • Sat 10am-4pm</span>
+            </div>
+            <span class="location-arrow">→</span>
+        </a>
     </div>
 </section>
 
@@ -303,23 +305,57 @@
     stroke: #66dd66;
 }
 
-/* Location */
-.location-line {
-    display: flex;
+/* Location Card */
+.location-card {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #8899aa;
-    font-size: 0.9rem;
-    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(0, 162, 255, 0.1);
+    border: 1px solid rgba(0, 162, 255, 0.3);
+    padding: 15px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.location-line svg {
+.location-card:hover {
+    background: rgba(0, 162, 255, 0.2);
+    border-color: #00a2ff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 162, 255, 0.2);
+}
+
+.location-card svg {
     stroke: #00a2ff;
+    flex-shrink: 0;
 }
 
-.location-line .sep {
-    opacity: 0.5;
+.location-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.location-address {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.location-hours {
+    color: #8899aa;
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+.location-arrow {
+    color: #00a2ff;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.location-card:hover .location-arrow {
+    transform: translateX(5px);
 }
 
 /* Mobile Responsive */
@@ -371,12 +407,17 @@
         text-align: center;
     }
 
-    .location-line {
+    .location-card {
         flex-direction: column;
-        gap: 5px;
+        text-align: center;
+        padding: 15px 20px;
     }
 
-    .location-line .sep {
+    .location-text {
+        text-align: center;
+    }
+
+    .location-arrow {
         display: none;
     }
 }
