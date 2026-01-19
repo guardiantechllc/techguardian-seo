@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Guardian | KC Metro's #1 Device Repair | Board-Level Micro Soldering</title>
+    <meta name="description" content="Kansas City Metro's top-rated device repair. 4.9★ Google. Board-level micro soldering - iPhones, MacBooks, PS5, Xbox, Switch. Same OEM parts, better prices. Free diagnostics. (816) 583-0100">
+
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Lee's Summit">
+    <meta name="geo.position" content="38.9108;-94.3822">
+
+    <meta property="og:title" content="Tech Guardian | #1 Device Repair Kansas City | 4.9★ Rated">
+    <meta property="og:description" content="Kansas City's premier device repair. Board-level micro soldering for iPhones, MacBooks, gaming consoles.">
+    <meta property="og:image" content="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Tech Guardian",
+        "description": "Kansas City's Premier Device Repair - Board-Level Micro Soldering Specialists.",
+        "url": "https://guardianrevives.com",
+        "telephone": "+1-816-583-0100",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1239 NE Douglas St Suite B",
+            "addressLocality": "Lee's Summit",
+            "addressRegion": "MO",
+            "postalCode": "64086"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "47"
+        }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* ========== FULL PAGE LIGHTNING CANVAS ========== */
+        #lightning-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* ========== VIDEO BACKGROUND - FULL SCREEN ========== */
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .video-bg video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
+        }
+
+        /* ========== MAIN CONTENT WRAPPER ========== */
+        .page-wrapper {
+            position: relative;
+            z-index: 50;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========== HERO SECTION - CENTERED ========== */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 40px;
+        }
+
+        /* MAIN HEADLINE */
+        .headline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 50px;
+            text-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+        }
+        .headline .line1 {
+            display: block;
+            color: #fff;
+        }
+        .headline .line2 {
+            display: block;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffcc 50%, #00d4ff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.6));
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* TRUST BADGES */
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .trust-badge {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 120px;
+        }
+        .trust-number {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .trust-number .star {
+            color: #ffd700;
+        }
+        .trust-label {
+            font-size: 0.75rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* CTA BUTTONS */
+        .cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .cta-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: 2px solid rgba(0, 212, 255, 0.5);
+            box-shadow: 0 0 40px rgba(0, 180, 216, 0.4);
+            transition: all 0.3s;
+        }
+        .cta-phone:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(0, 180, 216, 0.7);
+        }
+        .cta-phone svg {
+            width: 24px;
+            height: 24px;
+        }
+        .cta-book {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        .cta-book:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* LOCATION BAR */
+        .location-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 18px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .location-bar:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+        .location-bar svg {
+            width: 24px;
+            height: 24px;
+            stroke: #00d4ff;
+            flex-shrink: 0;
+        }
+        .location-text {
+            text-align: left;
+        }
+        .location-address {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .location-hours {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+        .location-arrow {
+            width: 24px;
+            height: 24px;
+            stroke: #fff;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            position: relative;
+            z-index: 50;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.95) 30%);
+            padding: 80px 40px 40px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .footer-brand p {
+            color: #888;
+            line-height: 1.7;
+        }
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        .footer-column a {
+            color: #888;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-column a:hover {
+            color: #00d4ff;
+            padding-left: 5px;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #888;
+            margin-bottom: 12px;
+        }
+        .footer-contact a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        .footer-contact a:hover {
+            color: #fff;
+        }
+        .footer-contact svg {
+            width: 18px;
+            height: 18px;
+            stroke: #00d4ff;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-bottom p {
+            color: #555;
+            font-size: 0.85rem;
+        }
+        .footer-legal {
+            display: flex;
+            gap: 25px;
+        }
+        .footer-legal a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .footer-legal a:hover {
+            color: #00d4ff;
+        }
+
+        /* ========== MOBILE BOTTOM CTA ========== */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 15px 20px;
+            gap: 12px;
+            border-top: 2px solid rgba(0, 212, 255, 0.5);
+            z-index: 1000;
+        }
+        .mobile-cta a {
+            flex: 1;
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+        .mobile-call {
+            background: rgba(0, 180, 216, 0.3);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            color: #fff;
+        }
+        .mobile-book {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .mobile-cta {
+                display: flex;
+            }
+            body {
+                padding-bottom: 75px;
+            }
+            .hero {
+                padding: 80px 12px 20px;
+                justify-content: flex-start;
+                padding-top: 15vh;
+            }
+            .headline {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
+            .trust-row {
+                gap: 6px;
+                margin-bottom: 18px;
+            }
+            .trust-badge {
+                padding: 10px 12px;
+                min-width: 70px;
+                border-radius: 8px;
+            }
+            .trust-number {
+                font-size: 1rem;
+            }
+            .trust-label {
+                font-size: 0.55rem;
+                letter-spacing: 0.5px;
+            }
+            .cta-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+            .cta-phone {
+                width: 90%;
+                max-width: 260px;
+                justify-content: center;
+                padding: 14px 20px;
+                font-size: 0.95rem;
+                border-radius: 30px;
+            }
+            .cta-phone svg {
+                width: 20px;
+                height: 20px;
+            }
+            .cta-book {
+                width: 90%;
+                max-width: 260px;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                border-radius: 30px;
+            }
+            .location-bar {
+                width: 90%;
+                max-width: 300px;
+                flex-direction: column;
+                text-align: center;
+                padding: 12px 18px;
+                border-radius: 15px;
+                gap: 8px;
+            }
+            .location-bar svg:first-child {
+                width: 20px;
+                height: 20px;
+            }
+            .location-text {
+                text-align: center;
+            }
+            .location-address {
+                font-size: 0.85rem;
+            }
+            .location-hours {
+                font-size: 0.75rem;
+            }
+            .location-arrow {
+                display: none;
+            }
+            .footer {
+                padding: 50px 15px 90px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+            .footer-brand h3 {
+                font-size: 1.2rem;
+            }
+            .footer-brand p {
+                font-size: 0.9rem;
+            }
+            .footer-column h4 {
+                font-size: 0.8rem;
+                margin-bottom: 12px;
+            }
+            .footer-column li {
+                margin-bottom: 8px;
+            }
+            .footer-column a {
+                font-size: 0.9rem;
+            }
+            .footer-contact p {
+                justify-content: center;
+                font-size: 0.85rem;
+            }
+            .footer-contact svg {
+                width: 16px;
+                height: 16px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .footer-bottom p {
+                font-size: 0.75rem;
+            }
+            .footer-legal {
+                gap: 15px;
+            }
+            .footer-legal a {
+                font-size: 0.75rem;
+            }
+            .mobile-cta a {
+                padding: 14px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* EXTRA SMALL PHONES */
+        @media (max-width: 380px) {
+            .hero {
+                padding-top: 12vh;
+            }
+            .headline {
+                font-size: 1.4rem;
+            }
+            .trust-badge {
+                padding: 8px 10px;
+                min-width: 60px;
+            }
+            .trust-number {
+                font-size: 0.9rem;
+            }
+            .trust-label {
+                font-size: 0.5rem;
+            }
+            .cta-phone, .cta-book {
+                padding: 12px 18px;
+                font-size: 0.85rem;
+            }
+            .location-bar {
+                padding: 10px 15px;
+            }
+            .location-address {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LIGHTNING CANVAS - WHOLE PAGE -->
+    <canvas id="lightning-canvas"></canvas>
+
+    <!-- VIDEO BACKGROUND -->
+    <div class="video-bg">
+        <video autoplay muted loop playsinline>
+            <source src="https://guardianrevives.com/wp-content/uploads/2026/01/kling-video-o-1_3d_realistic_Tech_Guardian_logo_metallic_blue_shield_floating_blue_lightning_all-0.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="page-wrapper">
+        <section class="hero">
+            <!-- HEADLINE - CENTERED -->
+            <h1 class="headline">
+                <span class="line1">Cracked Screen?</span>
+                <span class="line2">Fixed Same Day.</span>
+            </h1>
+
+            <!-- TRUST BADGES -->
+            <div class="trust-row">
+                <div class="trust-badge">
+                    <span class="trust-number">500+</span>
+                    <span class="trust-label">Devices Fixed</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">4.9<span class="star">★</span></span>
+                    <span class="trust-label">Google Rating</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">98%</span>
+                    <span class="trust-label">Success Rate</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">Same Day</span>
+                    <span class="trust-label">Most Repairs</span>
+                </div>
+            </div>
+
+            <!-- CTA BUTTONS -->
+            <div class="cta-row">
+                <a href="tel:+18165830100" class="cta-phone">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    (816) 583-0100
+                </a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="cta-book">Book Online Now</a>
+            </div>
+
+            <!-- LOCATION BAR -->
+            <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div class="location-text">
+                    <div class="location-address">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</div>
+                    <div class="location-hours">Mon-Fri 10am-7pm • Sat 10am-4pm</div>
+                </div>
+                <svg class="location-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </section>
+
+        <!-- FOOTER WITH ALL LINKS -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Tech Guardian</h3>
+                    <p>Kansas City's Premier Device Repair. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/services/iphone-repair/">iPhone Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/macbook-repair/">MacBook Repair</a></li>
+                        <li><a href="https://guardianrevives.com/services/gaming-consoles/">Gaming Consoles</a></li>
+                        <li><a href="https://guardianrevives.com/services/data-recovery/">Data Recovery</a></li>
+                        <li><a href="https://guardianrevives.com/services/pc-repair/">PC Repair</a></li>
+                        <li><a href="https://guardianrevives.com/ai-solutions/">AI & Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="https://guardianrevives.com/">Home</a></li>
+                        <li><a href="https://guardianrevives.com/services/">Services</a></li>
+                        <li><a href="https://guardianrevives.com/specials/">Specials</a></li>
+                        <li><a href="https://guardianrevives.com/faq/">FAQ</a></li>
+                        <li><a href="https://guardianrevives.com/contact/">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column footer-contact">
+                    <h4>Contact</h4>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <a href="tel:+18165830100">(816) 583-0100</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a>
+                    </p>
+                    <p>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</a>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tech Guardian LLC. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="https://guardianrevives.com/privacy-policy/">Privacy Policy</a>
+                    <a href="https://guardianrevives.com/terms/">Terms & Conditions</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- MOBILE CTA -->
+    <div class="mobile-cta">
+        <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="mobile-book">BOOK</a>
+    </div>
+
+    <!-- LIGHTNING - WHOLE PAGE, ALL EDGES -->
+    <script>
+        const canvas = document.getElementById('lightning-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // AGGRESSIVE LIGHTNING FROM ALL EDGES
+        class Lightning {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                // Pick random edge to start
+                const edge = Math.floor(Math.random() * 4);
+
+                switch(edge) {
+                    case 0: // TOP
+                        this.x = Math.random() * canvas.width;
+                        this.y = 0;
+                        this.targetX = this.x + (Math.random() - 0.5) * 400;
+                        this.targetY = Math.random() * canvas.height * 0.6;
+                        break;
+                    case 1: // RIGHT
+                        this.x = canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.targetX = canvas.width - Math.random() * canvas.width * 0.5;
+                        this.targetY = this.y + (Math.random() - 0.5) * 400;
+                        break;
+                    case 2: // BOTTOM
+                        this.x = Math.random() * canvas.width;
+                        this.y = canvas.height;
+                        this.targetX = this.x + (Math.random() - 0.5) * 400;
+                        this.targetY = canvas.height - Math.random() * canvas.height * 0.6;
+                        break;
+                    case 3: // LEFT
+                        this.x = 0;
+                        this.y = Math.random() * canvas.height;
+                        this.targetX = Math.random() * canvas.width * 0.5;
+                        this.targetY = this.y + (Math.random() - 0.5) * 400;
+                        break;
+                }
+
+                this.life = 0;
+                this.maxLife = 6 + Math.random() * 12;
+                this.thickness = 1.5 + Math.random() * 3;
+                this.segments = [];
+                this.branches = [];
+                this.generateBolt();
+            }
+
+            generateBolt() {
+                this.segments = [];
+                this.branches = [];
+
+                let x = this.x;
+                let y = this.y;
+                const steps = 10 + Math.floor(Math.random() * 15);
+                const dx = (this.targetX - this.x) / steps;
+                const dy = (this.targetY - this.y) / steps;
+
+                for (let i = 0; i < steps; i++) {
+                    const jitter = 60 * (1 - i/steps);
+                    const nextX = x + dx + (Math.random() - 0.5) * jitter;
+                    const nextY = y + dy + (Math.random() - 0.5) * jitter;
+                    this.segments.push({ x1: x, y1: y, x2: nextX, y2: nextY });
+
+                    // Add branches
+                    if (Math.random() < 0.35) {
+                        const branchLen = 20 + Math.random() * 60;
+                        const branchAngle = Math.atan2(dy, dx) + (Math.random() - 0.5) * Math.PI * 0.8;
+                        const bx = nextX + Math.cos(branchAngle) * branchLen;
+                        const by = nextY + Math.sin(branchAngle) * branchLen;
+                        this.branches.push({ x1: nextX, y1: nextY, x2: bx, y2: by });
+                    }
+
+                    x = nextX;
+                    y = nextY;
+                }
+            }
+
+            update() {
+                this.life++;
+                return this.life < this.maxLife;
+            }
+
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+
+                // Glow
+                ctx.shadowColor = '#00e5ff';
+                ctx.shadowBlur = 25 * alpha;
+
+                // Main bolt
+                ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
+                ctx.lineWidth = this.thickness;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+
+                ctx.beginPath();
+                this.segments.forEach((seg, i) => {
+                    if (i === 0) ctx.moveTo(seg.x1, seg.y1);
+                    ctx.lineTo(seg.x2, seg.y2);
+                });
+                ctx.stroke();
+
+                // White core
+                ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.8})`;
+                ctx.lineWidth = this.thickness * 0.3;
+                ctx.stroke();
+
+                // Branches
+                ctx.strokeStyle = `rgba(0, 200, 255, ${alpha * 0.6})`;
+                ctx.lineWidth = this.thickness * 0.4;
+                this.branches.forEach(b => {
+                    ctx.beginPath();
+                    ctx.moveTo(b.x1, b.y1);
+                    ctx.lineTo(b.x2, b.y2);
+                    ctx.stroke();
+                });
+
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        // FLOATING SPARKS
+        class Spark {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.life = 0;
+                this.maxLife = 60 + Math.random() * 120;
+                this.size = 1 + Math.random() * 2.5;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx *= 0.99;
+                this.vy *= 0.99;
+                this.life++;
+                return this.life < this.maxLife;
+            }
+
+            draw() {
+                const alpha = 1 - (this.life / this.maxLife);
+                const pulse = 0.5 + Math.sin(this.life * 0.2) * 0.5;
+
+                ctx.fillStyle = `rgba(0, 229, 255, ${alpha * pulse})`;
+                ctx.shadowColor = '#00e5ff';
+                ctx.shadowBlur = 10;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * alpha, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        let lightnings = [];
+        let sparks = [];
+
+        // Initial sparks
+        for (let i = 0; i < 80; i++) {
+            sparks.push(new Spark());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Spawn lightning - more frequent
+            if (Math.random() < 0.12) {
+                lightnings.push(new Lightning());
+            }
+
+            // Spawn sparks
+            if (Math.random() < 0.4) {
+                sparks.push(new Spark());
+            }
+
+            // Update and draw
+            lightnings = lightnings.filter(l => {
+                const alive = l.update();
+                if (alive) l.draw();
+                return alive;
+            });
+
+            sparks = sparks.filter(s => {
+                const alive = s.update();
+                if (alive) s.draw();
+                return alive;
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
