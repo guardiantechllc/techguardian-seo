@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- PRIMARY SEO -->
-    <title>Tech Guardian | #1 Device Repair Kansas City | iPhone, MacBook, PS5, Xbox Repair</title>
-    <meta name="description" content="Kansas City's top-rated device repair. 4.9★ Google rating. Board-level micro soldering for iPhones, MacBooks, PS5, Xbox, Switch. Same-day service. Free diagnostics. Call (816) 583-0100">
+    <title>Tech Guardian | KC Metro's #1 Device Repair | Board-Level Micro Soldering</title>
+    <meta name="description" content="Kansas City Metro's top-rated device repair. 4.9★ Google. Board-level micro soldering - iPhones, MacBooks, PS5, Xbox, Switch. Same OEM parts, better prices. More repairs, less corporate BS. Free diagnostics. (816) 583-0100">
     <meta name="keywords" content="iPhone repair Kansas City, MacBook repair Lee's Summit, PS5 HDMI repair Kansas City, Xbox repair, Nintendo Switch repair, phone repair near me, cracked screen repair Kansas City, micro soldering, data recovery Kansas City, Tech Guardian">
     <meta name="author" content="Tech Guardian LLC">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -246,22 +246,42 @@
             overflow: hidden;
             z-index: 2;
         }
-        .hero-video-bg {
+        /* VIDEO SHOWCASE - Make it POP */
+        .hero-video-showcase {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .video-frame {
+            position: relative;
+            display: inline-block;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 60px rgba(0, 162, 255, 0.5),
+                0 0 120px rgba(0, 162, 255, 0.3),
+                0 30px 80px rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 162, 255, 0.5);
+            animation: videoGlow 3s ease-in-out infinite;
+        }
+        .video-frame video {
+            display: block;
+            max-width: 500px;
+            max-height: 350px;
+            width: 90vw;
+            border-radius: 18px;
+        }
+        @keyframes videoGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(0, 162, 255, 0.5), 0 0 120px rgba(0, 162, 255, 0.3), 0 30px 80px rgba(0, 0, 0, 0.8); }
+            50% { box-shadow: 0 0 100px rgba(0, 162, 255, 0.7), 0 0 180px rgba(0, 162, 255, 0.4), 0 30px 80px rgba(0, 0, 0, 0.8); }
+        }
+
+        /* Background gradient only */
+        .hero-bg-gradient {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             z-index: 1;
-        }
-        .hero-video-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-        .hero-video-bg::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,5,20,0.5) 50%, rgba(0,0,0,0.8) 100%);
+            background: radial-gradient(ellipse at center top, rgba(0, 30, 80, 0.4) 0%, transparent 60%),
+                        linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,5,15,0.98) 100%);
         }
         .hero-content {
             position: relative;
@@ -372,8 +392,61 @@
         .hero-sub {
             font-size: clamp(1.2rem, 3vw, 1.6rem);
             color: var(--soft-blue);
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             line-height: 1.6;
+        }
+        .hero-sub strong {
+            color: #fff;
+            text-shadow: 0 0 20px var(--glow);
+        }
+
+        /* CERTIFICATION BADGES */
+        .cert-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(68, 255, 136, 0.1);
+            border: 1px solid rgba(68, 255, 136, 0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #44ff88;
+            font-weight: 600;
+        }
+        .cert-badge svg {
+            stroke: #44ff88;
+        }
+
+        /* DEVICE TAGS */
+        .device-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .device-tag {
+            background: rgba(0, 162, 255, 0.1);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: var(--soft-blue);
+            transition: all 0.3s;
+        }
+        .device-tag:hover {
+            background: rgba(0, 162, 255, 0.25);
+            border-color: var(--electric-blue);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 162, 255, 0.3);
         }
 
         /* TRUST ROW */
@@ -861,34 +934,67 @@
     </nav>
 
     <section class="hero">
-        <div class="hero-video-bg">
-            <video autoplay muted loop playsinline id="hero-video">
-                <source src="https://guardianrevives.com/wp-content/uploads/2026/01/kling-video-o-1_3d_realistic_Tech_Guardian_logo_metallic_blue_shield_floating_blue_lightning_all-0.mp4" type="video/mp4">
-            </video>
-        </div>
+        <div class="hero-bg-gradient"></div>
 
         <div class="hero-content">
-            <div class="urgency-banner drop-zap delay-1">
+            <!-- VIDEO SHOWCASE - FRONT AND CENTER -->
+            <div class="hero-video-showcase drop-zap delay-1">
+                <div class="video-frame">
+                    <video autoplay muted loop playsinline id="hero-video">
+                        <source src="https://guardianrevives.com/wp-content/uploads/2026/01/kling-video-o-1_3d_realistic_Tech_Guardian_logo_metallic_blue_shield_floating_blue_lightning_all-0.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="urgency-banner zap-in delay-2">
                 <span>MLK DAY SPECIAL: $100 HDMI Repair & $149 Screens</span>
                 <span class="urgency-tag">Ends Monday</span>
             </div>
 
-            <h1 class="hero-headline zap-in delay-2">
-                Cracked Screen?<br>
-                <span class="highlight">Fixed Same Day.</span>
+            <h1 class="hero-headline zap-in delay-3">
+                KC Metro's <span class="highlight">#1</span> Device Repair
             </h1>
 
-            <p class="hero-sub flash-in delay-3">
-                Kansas City's Board-Level Repair Experts<br>
-                iPhones • MacBooks • PS5 • Xbox • Switch
+            <p class="hero-sub flash-in delay-4">
+                <strong>Certified techs. Motherboard surgeons.</strong> Same OEM parts, better prices.<br>
+                More repairs than anyone. Less corporate BS. Built for you.
             </p>
 
+            <!-- CERTIFICATIONS -->
+            <div class="cert-row flash-in delay-4">
+                <div class="cert-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Apple Certified
+                </div>
+                <div class="cert-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Google Certified
+                </div>
+                <div class="cert-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    Samsung Certified
+                </div>
+            </div>
+
+            <!-- DEVICE SHOWCASE -->
+            <div class="device-row flash-in delay-4">
+                <span class="device-tag">iPhones</span>
+                <span class="device-tag">iPads</span>
+                <span class="device-tag">MacBooks</span>
+                <span class="device-tag">PS5</span>
+                <span class="device-tag">Xbox</span>
+                <span class="device-tag">Switch</span>
+                <span class="device-tag">Steam Deck</span>
+                <span class="device-tag">PCs</span>
+                <span class="device-tag">Data Recovery</span>
+            </div>
+
             <div class="trust-row">
-                <div class="trust-badge zap-left delay-3">
+                <div class="trust-badge zap-left delay-4">
                     <span class="trust-number">500+</span>
                     <span class="trust-label">Devices Fixed</span>
                 </div>
-                <div class="trust-badge drop-zap delay-4">
+                <div class="trust-badge drop-zap delay-5">
                     <span class="trust-number">4.9★</span>
                     <span class="trust-label">Google Rating</span>
                 </div>
@@ -903,19 +1009,19 @@
             </div>
 
             <div class="hero-cta-row">
-                <a href="tel:+18165830100" class="cta-primary zap-in delay-5">
+                <a href="tel:+18165830100" class="cta-primary zap-in delay-6">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     (816) 583-0100
                 </a>
                 <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="cta-secondary zap-in delay-6">Book Online Now</a>
             </div>
 
-            <p class="free-diag flash-in delay-6">
+            <p class="free-diag flash-in delay-7">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Free Diagnostics • No Fix, No Fee • Walk-ins Welcome
             </p>
 
-            <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-card zap-in delay-7">
+            <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-card zap-in delay-8">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 <div class="location-text">
                     <span class="location-address">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</span>
