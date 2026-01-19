@@ -658,16 +658,68 @@
         }
 
         @media (max-width: 768px) {
-            .nav { padding: 15px 20px; }
+            .nav { padding: 12px 15px; }
             .nav-logo span { display: none; }
+            .nav-logo img { height: 40px; }
+            .nav-cta { padding: 10px 20px; font-size: 0.85rem; }
             .mobile-cta { display: flex; }
-            body { padding-bottom: 90px; }
-            .cta-row { flex-direction: column; align-items: center; }
-            .cta-primary, .cta-secondary { width: 100%; max-width: 350px; justify-content: center; padding: 20px; font-size: 1.2rem; }
-            .location-info { flex-direction: column; text-align: center; }
+            body { padding-bottom: 80px; }
+
+            /* HERO MOBILE */
+            .hero { padding: 100px 15px 60px; align-items: center; }
+            .hero-inner { max-width: 100%; }
+
+            /* SMALLER TEXT */
+            .hero-headline { font-size: 2rem; margin-bottom: 15px; }
+            .hero-sub { font-size: 1rem; margin-bottom: 20px; line-height: 1.4; }
+
+            /* URGENCY BANNER */
+            .urgency-banner { padding: 10px 15px; font-size: 0.85rem; margin-bottom: 20px; flex-direction: column; gap: 8px; }
+            .urgency-tag { padding: 5px 12px; font-size: 0.7rem; }
+
+            /* CERTS */
+            .cert-row { gap: 8px; margin-bottom: 15px; }
+            .cert-badge { padding: 8px 12px; font-size: 0.75rem; }
+            .cert-badge svg { width: 14px; height: 14px; }
+
+            /* DEVICES */
+            .device-row { gap: 6px; margin-bottom: 20px; }
+            .device-tag { padding: 6px 12px; font-size: 0.8rem; }
+
+            /* TRUST BADGES */
+            .trust-row { gap: 10px; margin-bottom: 25px; }
+            .trust-badge { padding: 12px 15px; min-width: 70px; }
+            .trust-number { font-size: 1.2rem; }
+            .trust-label { font-size: 0.65rem; }
+
+            /* CTAs */
+            .cta-row { flex-direction: column; align-items: center; gap: 12px; margin-bottom: 20px; }
+            .cta-primary { width: 100%; max-width: 280px; padding: 15px 25px; font-size: 1rem; }
+            .cta-primary svg { width: 22px; height: 22px; }
+            .cta-secondary { width: 100%; max-width: 280px; padding: 12px 25px; font-size: 0.95rem; }
+
+            /* FREE DIAG */
+            .free-diag { font-size: 0.9rem; margin-bottom: 15px; }
+            .free-diag svg { width: 18px; height: 18px; }
+
+            /* BOOKING URGENCY */
+            .booking-urgency { padding: 12px 15px; margin-bottom: 20px; }
+            .urgency-text { font-size: 0.9rem; }
+
+            /* LOCATION */
+            .location-section { margin-bottom: 20px; }
+            .location-info { flex-direction: column; text-align: center; gap: 8px; margin-bottom: 12px; }
+            .location-info svg { width: 22px; height: 22px; }
             .location-text { text-align: center; }
-            .map-buttons { flex-direction: column; align-items: center; }
-            .map-btn { width: 100%; max-width: 250px; justify-content: center; }
+            .location-address { font-size: 1rem; }
+            .location-hours { font-size: 0.85rem; }
+            .map-buttons { flex-direction: column; align-items: center; gap: 10px; }
+            .map-btn { width: 100%; max-width: 220px; justify-content: center; padding: 12px 20px; font-size: 0.9rem; }
+
+            /* SOCIAL */
+            .social-row { gap: 10px; }
+            .social-link { padding: 10px 15px; font-size: 0.85rem; }
+            .social-link svg { width: 18px; height: 18px; }
         }
     </style>
 </head>
