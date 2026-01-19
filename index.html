@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tech Guardian | Kansas City's Premier Device Repair | Board-Level Micro Soldering</title>
+    <meta name="description" content="Expert device repair in Lee's Summit, MO. Board-level micro soldering for iPhones, MacBooks, PS5, Xbox, Nintendo Switch. Same-day service. Free diagnostics. Call (816) 583-0100">
+    <meta name="keywords" content="device repair Kansas City, iPhone repair Lee's Summit, MacBook repair, PS5 HDMI repair, Xbox repair, Nintendo Switch repair, micro soldering, data recovery">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://guardianrevives.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guardianrevives.com/">
+    <meta property="og:title" content="Tech Guardian | Kansas City's Premier Device Repair">
+    <meta property="og:description" content="Expert board-level micro soldering for iPhones, MacBooks, gaming consoles. Same-day repairs. Free diagnostics.">
+    <meta property="og:image" content="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Tech Guardian",
+        "description": "Kansas City's Premier Device Repair - Board-Level Micro Soldering Specialists",
+        "url": "https://guardianrevives.com",
+        "telephone": "+1-816-583-0100",
+        "email": "admin@guardianlabs.digital",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1239 NE Douglas St Suite B",
+            "addressLocality": "Lee's Summit",
+            "addressRegion": "MO",
+            "postalCode": "64086",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.9108,
+            "longitude": -94.3822
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "10:00",
+                "closes": "19:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "10:00",
+                "closes": "16:00"
+            }
+        ],
+        "priceRange": "$$",
+        "image": "https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --dark-bg: #050810;
+            --electric-blue: #00a2ff;
+            --deep-blue: #0066cc;
+            --cyan: #00d4ff;
+            --white: #ffffff;
+            --gray: #8899aa;
+            --soft-blue: #b0d4f1;
+            --glow: rgba(0, 162, 255, 0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            transition: all 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(0, 5, 15, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 162, 255, 0.2);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img { height: 45px; filter: drop-shadow(0 0 10px var(--glow)); }
+        .nav-logo span { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--soft-blue); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--white); }
+
+        .nav-cta-group { display: flex; align-items: center; gap: 15px; }
+        .nav-phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .nav-phone svg { stroke: var(--electric-blue); width: 18px; height: 18px; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            overflow: hidden;
+        }
+
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .hero-video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        .hero-video-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 5, 20, 0.6) 50%,
+                rgba(0, 0, 0, 0.85) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .urgency-banner {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(90deg, rgba(255, 80, 80, 0.25), rgba(255, 150, 50, 0.25));
+            border: 1px solid rgba(255, 100, 100, 0.5);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #fff;
+            animation: pulse-urgency 2s ease-in-out infinite;
+        }
+        .urgency-tag {
+            background: #ff4444;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        @keyframes pulse-urgency {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 100, 100, 0.3); }
+            50% { box-shadow: 0 0 35px rgba(255, 100, 100, 0.6); }
+        }
+
+        .hero-headline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 80px rgba(0, 162, 255, 0.6);
+        }
+        .hero-headline .highlight {
+            background: linear-gradient(135deg, #00a2ff 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: var(--soft-blue);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .trust-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .trust-badge {
+            background: rgba(0, 162, 255, 0.15);
+            border: 1px solid rgba(0, 162, 255, 0.4);
+            padding: 14px 22px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 110px;
+        }
+        .trust-number {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--electric-blue);
+            text-shadow: 0 0 25px var(--glow);
+        }
+        .trust-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 50px rgba(0, 162, 255, 0.5);
+            border: 1px solid rgba(0, 162, 255, 0.5);
+        }
+        .cta-primary svg { width: 26px; height: 26px; }
+        .cta-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 162, 255, 0.6);
+        }
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: #fff;
+            padding: 20px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        .free-diag {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #66dd66;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .free-diag svg { stroke: #66dd66; width: 20px; height: 20px; }
+
+        .location-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 162, 255, 0.12);
+            border: 1px solid rgba(0, 162, 255, 0.4);
+            padding: 18px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .location-card:hover {
+            background: rgba(0, 162, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 162, 255, 0.25);
+        }
+        .location-card svg { stroke: var(--electric-blue); width: 24px; height: 24px; flex-shrink: 0; }
+        .location-text { display: flex; flex-direction: column; text-align: left; }
+        .location-address { color: #fff; font-size: 1.05rem; font-weight: 600; }
+        .location-hours { color: var(--gray); font-size: 0.9rem; margin-top: 4px; }
+        .location-arrow { color: var(--electric-blue); font-size: 1.3rem; }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--electric-blue) 50%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-subtitle { font-size: 1.2rem; color: var(--gray); max-width: 600px; margin: 0 auto; }
+
+        /* SPECIALS */
+        .specials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .special-card {
+            background: linear-gradient(145deg, rgba(0, 30, 60, 0.9), rgba(0, 15, 35, 0.95));
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            border: 1px solid rgba(0, 162, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+        .special-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--electric-blue), var(--cyan), var(--electric-blue), transparent);
+        }
+        .special-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 162, 255, 0.2);
+            border-color: var(--electric-blue);
+        }
+        .special-badge {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .special-title { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .special-desc { color: var(--gray); margin-bottom: 1.5rem; }
+        .special-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+            text-shadow: 0 0 50px var(--glow);
+        }
+
+        /* SERVICES */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: linear-gradient(145deg, rgba(0, 30, 60, 0.8), rgba(0, 15, 35, 0.9));
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 162, 255, 0.15);
+            transition: all 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--electric-blue);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 162, 255, 0.15);
+        }
+        .service-icon {
+            width: 70px; height: 70px;
+            background: rgba(0, 162, 255, 0.15);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 162, 255, 0.3);
+        }
+        .service-icon svg { width: 35px; height: 35px; stroke: var(--electric-blue); stroke-width: 1.5; fill: none; }
+        .service-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; }
+        .service-desc { color: var(--gray); line-height: 1.7; }
+
+        /* WHY DIFFERENT */
+        .manifesto-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .manifesto-text h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .manifesto-text h2 span { color: var(--electric-blue); }
+        .manifesto-text p { font-size: 1.2rem; color: var(--soft-blue); margin-bottom: 2rem; line-height: 1.8; }
+        .feature-tags { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .feature-tag {
+            background: rgba(0, 162, 255, 0.1);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--electric-blue);
+        }
+        .manifesto-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .stat-card {
+            background: linear-gradient(145deg, rgba(0, 30, 60, 0.8), rgba(0, 15, 35, 0.9));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(0, 162, 255, 0.2);
+        }
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--electric-blue);
+        }
+        .stat-label { color: var(--gray); margin-top: 0.5rem; }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #000510 100%);
+            padding: 5rem 2rem 2rem;
+            border-top: 1px solid rgba(0, 162, 255, 0.1);
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+        }
+        .footer-brand h3 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; }
+        .footer-brand p { color: var(--gray); line-height: 1.7; }
+        .footer-column h4 { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 1.5rem; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 0.75rem; }
+        .footer-column a { color: var(--gray); text-decoration: none; transition: color 0.3s; }
+        .footer-column a:hover { color: var(--electric-blue); }
+        .footer-contact p { display: flex; align-items: flex-start; gap: 0.75rem; color: var(--gray); margin-bottom: 1rem; }
+        .footer-contact svg { width: 18px; height: 18px; stroke: var(--electric-blue); flex-shrink: 0; margin-top: 3px; }
+        .footer-contact a { color: var(--electric-blue); text-decoration: none; }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 162, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* MOBILE STICKY CTA */
+        .mobile-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 5, 15, 0.98);
+            padding: 12px 15px;
+            gap: 10px;
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        .mobile-cta a {
+            flex: 1;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+        .mobile-cta .mobile-call {
+            background: rgba(0, 162, 255, 0.15);
+            border: 1px solid rgba(0, 162, 255, 0.4);
+            color: #fff;
+        }
+        .mobile-cta .mobile-book {
+            background: linear-gradient(135deg, var(--electric-blue), var(--deep-blue));
+            color: #fff;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .nav-links, .nav-cta-group { display: none; }
+            .mobile-cta { display: flex; }
+            body { padding-bottom: 80px; }
+            .manifesto-content { grid-template-columns: 1fr; text-align: center; }
+            .feature-tags { justify-content: center; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .hero { padding: 100px 15px 40px; }
+            .urgency-banner { flex-wrap: wrap; justify-content: center; font-size: 0.9rem; }
+            .trust-row { gap: 10px; }
+            .trust-badge { padding: 12px 16px; min-width: 80px; }
+            .trust-number { font-size: 1.2rem; }
+            .hero-cta-row { flex-direction: column; }
+            .cta-primary, .cta-secondary { width: 100%; justify-content: center; padding: 18px; }
+            .location-card { flex-direction: column; text-align: center; }
+            .location-text { text-align: center; }
+            .location-arrow { display: none; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-logo">
+            <img src="https://guardianrevives.com/wp-content/uploads/2024/12/techguardianlogo.png" alt="Tech Guardian">
+            <span>Tech Guardian</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#specials">Specials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-cta-group">
+            <a href="tel:+18165830100" class="nav-phone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                (816) 583-0100
+            </a>
+            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="nav-cta">BOOK NOW</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-video-bg">
+            <video autoplay muted loop playsinline>
+                <source src="https://guardianrevives.com/wp-content/uploads/2026/01/kling-video-o-1_3d_realistic_Tech_Guardian_logo_metallic_blue_shield_floating_blue_lightning_all-0.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="hero-content">
+            <div class="urgency-banner">
+                <span>MLK DAY SPECIAL: $100 HDMI Repair & $149 Screens</span>
+                <span class="urgency-tag">Ends Monday</span>
+            </div>
+
+            <h1 class="hero-headline">
+                Cracked Screen?<br>
+                <span class="highlight">Fixed Same Day.</span>
+            </h1>
+
+            <p class="hero-sub">
+                Kansas City's Board-Level Repair Experts<br>
+                iPhones • MacBooks • PS5 • Xbox • Switch
+            </p>
+
+            <div class="trust-row">
+                <div class="trust-badge">
+                    <span class="trust-number">500+</span>
+                    <span class="trust-label">Devices Fixed</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">5★</span>
+                    <span class="trust-label">Google Rating</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">98%</span>
+                    <span class="trust-label">Success Rate</span>
+                </div>
+                <div class="trust-badge">
+                    <span class="trust-number">Same Day</span>
+                    <span class="trust-label">Most Repairs</span>
+                </div>
+            </div>
+
+            <div class="hero-cta-row">
+                <a href="tel:+18165830100" class="cta-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    (816) 583-0100
+                </a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="cta-secondary">Book Online Now</a>
+            </div>
+
+            <p class="free-diag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Free Diagnostics • No Fix, No Fee • Walk-ins Welcome
+            </p>
+
+            <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div class="location-text">
+                    <span class="location-address">1239 NE Douglas St, Suite B, Lee's Summit, MO 64086</span>
+                    <span class="location-hours">Mon-Fri 10am-7pm • Sat 10am-4pm</span>
+                </div>
+                <span class="location-arrow">→</span>
+            </a>
+        </div>
+    </section>
+
+    <main style="background: linear-gradient(180deg, transparent 0%, var(--dark-bg) 5%);">
+        <section class="section" id="specials">
+            <div class="section-header">
+                <h2 class="section-title">Current Specials</h2>
+                <p class="section-subtitle">Limited time offers on premium repair services</p>
+            </div>
+            <div class="specials-grid">
+                <div class="special-card">
+                    <span class="special-badge">MLK Day Special</span>
+                    <h3 class="special-title">HDMI Port Repair</h3>
+                    <p class="special-desc">Board-level micro soldering for PS5 & Xbox</p>
+                    <div class="special-price">$100</div>
+                </div>
+                <div class="special-card">
+                    <span class="special-badge">Popular</span>
+                    <h3 class="special-title">Screen Replacement</h3>
+                    <p class="special-desc">Premium OLED displays with warranty</p>
+                    <div class="special-price">$149</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Expert repairs for all your devices</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+                    <h3 class="service-title">Free Diagnostics</h3>
+                    <p class="service-desc">Not sure what's wrong? Bring it in for a free assessment. No obligation, just honest answers.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+                    <h3 class="service-title">iPhone & iPad</h3>
+                    <p class="service-desc">Screen replacement, battery service, and logic board micro soldering for all Apple devices.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
+                    <h3 class="service-title">MacBook Service</h3>
+                    <p class="service-desc">Keyboard replacement to complete logic board repair and data recovery.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="17" cy="12" r="2"></circle></svg></div>
+                    <h3 class="service-title">Gaming Consoles</h3>
+                    <p class="service-desc">PS5, Xbox, Switch repairs including HDMI port fixes and disc drive repairs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
+                    <h3 class="service-title">Data Recovery</h3>
+                    <p class="service-desc">Professional data recovery from damaged devices. We retrieve your precious files.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg></div>
+                    <h3 class="service-title">Board-Level Repair</h3>
+                    <p class="service-desc">Advanced micro soldering for component-level repairs others can't handle.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="manifesto-content">
+                <div class="manifesto-text">
+                    <h2>Built for <span>the People</span></h2>
+                    <p>We're not corporate. We're not here to upsell you. Tech Guardian was built to give Kansas City real, honest device repair at fair prices. Board-level expertise without the attitude.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag">No BS Pricing</span>
+                        <span class="feature-tag">Same-Day Service</span>
+                        <span class="feature-tag">Warranty Included</span>
+                        <span class="feature-tag">Locally Owned</span>
+                    </div>
+                </div>
+                <div class="manifesto-stats">
+                    <div class="stat-card"><div class="stat-number">500+</div><div class="stat-label">Devices Repaired</div></div>
+                    <div class="stat-card"><div class="stat-number">98%</div><div class="stat-label">Success Rate</div></div>
+                    <div class="stat-card"><div class="stat-number">24hr</div><div class="stat-label">Avg Turnaround</div></div>
+                    <div class="stat-card"><div class="stat-number">5★</div><div class="stat-label">Google Rating</div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Tech Guardian</h3>
+                <p>Kansas City's Premier Device Repair. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">iPhone Repair</a></li>
+                    <li><a href="#">MacBook Repair</a></li>
+                    <li><a href="#">PS5 Repair</a></li>
+                    <li><a href="#">Xbox Repair</a></li>
+                    <li><a href="#">Switch Repair</a></li>
+                    <li><a href="#">Data Recovery</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#specials">Specials</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><a href="tel:+18165830100">(816) 583-0100</a></p>
+                <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a></p>
+                <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</p>
+                <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>Mon-Fri: 10am-7pm<br>Sat: 10am-4pm</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Tech Guardian LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- MOBILE STICKY CTA BAR -->
+    <div class="mobile-cta">
+        <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="mobile-book">BOOK ONLINE</a>
+    </div>
+
+    <script>
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 100);
+        });
+    </script>
+</body>
+</html>
