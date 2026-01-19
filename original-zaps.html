@@ -511,6 +511,99 @@
         .social-link.google:hover { background: rgba(234, 67, 53, 0.3); border-color: #ea4335; }
         .social-link.yelp:hover { background: rgba(196, 18, 0, 0.3); border-color: #c41200; }
 
+        /* FOOTER */
+        .footer {
+            position: relative;
+            z-index: 50;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 5, 15, 0.95) 10%, rgba(0, 5, 15, 0.98) 100%);
+            padding: 80px 40px 120px;
+            border-top: 1px solid rgba(0, 162, 255, 0.3);
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+        }
+        .footer-brand h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 162, 255, 0.5);
+        }
+        .footer-brand p {
+            color: #8899aa;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .footer-column h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #00a2ff;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 162, 255, 0.4);
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+        .footer-column a {
+            color: #8899aa;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .footer-column a:hover {
+            color: #00e5ff;
+            padding-left: 8px;
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #8899aa;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .footer-contact a {
+            color: #00a2ff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .footer-contact a:hover {
+            color: #00e5ff;
+            text-shadow: 0 0 15px rgba(0, 162, 255, 0.5);
+        }
+        .footer-contact svg {
+            width: 20px;
+            height: 20px;
+            stroke: #00a2ff;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 162, 255, 0.2);
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 900px) {
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer { padding: 60px 20px 120px; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .footer-contact p { justify-content: center; }
+        }
+
         /* MOBILE CTA */
         .mobile-cta {
             display: none;
@@ -696,6 +789,59 @@
             </div>
         </section>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Tech Guardian</h3>
+                <p>Kansas City's Premier Device Repair. Board-Level Micro Soldering Specialists. Built for the people, not corporate profits.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="https://guardianrevives.com/services/iphone-repair/">iPhone Repair</a></li>
+                    <li><a href="https://guardianrevives.com/services/macbook-repair/">MacBook Repair</a></li>
+                    <li><a href="https://guardianrevives.com/services/gaming-consoles/">Gaming Consoles</a></li>
+                    <li><a href="https://guardianrevives.com/services/data-recovery/">Data Recovery</a></li>
+                    <li><a href="https://guardianrevives.com/services/pc-repair/">PC Repair</a></li>
+                    <li><a href="https://guardianrevives.com/ai-solutions/">AI & Automation</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="https://guardianrevives.com/">Home</a></li>
+                    <li><a href="https://guardianrevives.com/specials/">Specials</a></li>
+                    <li><a href="https://guardianrevives.com/services/">Services</a></li>
+                    <li><a href="https://guardianrevives.com/faq/">FAQ</a></li>
+                    <li><a href="https://guardianrevives.com/contact/">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column footer-contact">
+                <h4>Contact</h4>
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <a href="tel:+18165830100">(816) 583-0100</a>
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    <a href="mailto:admin@guardianlabs.digital">admin@guardianlabs.digital</a>
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank">1239 NE Douglas St, Suite B<br>Lee's Summit, MO 64086</a>
+                </p>
+                <p>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Mon-Fri: 10am-7pm<br>Sat: 10am-4pm</span>
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Tech Guardian LLC. All rights reserved.</p>
+        </div>
+    </footer>
 
     <div class="mobile-cta">
         <a href="tel:+18165830100" class="mobile-call">CALL NOW</a>
