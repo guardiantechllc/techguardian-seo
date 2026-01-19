@@ -597,6 +597,76 @@
         .location-text { display: flex; flex-direction: column; text-align: left; }
         .location-address { color: #fff; font-size: 1.1rem; font-weight: 600; }
         .location-hours { color: var(--gray); font-size: 0.95rem; margin-top: 4px; }
+
+        /* BOOKING URGENCY */
+        .booking-urgency {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(90deg, rgba(255, 80, 80, 0.15), rgba(255, 150, 50, 0.15));
+            border: 1px solid rgba(255, 100, 100, 0.4);
+            padding: 14px 24px;
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .urgency-pulse {
+            width: 12px;
+            height: 12px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: urgency-blink 1.2s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.8);
+        }
+        @keyframes urgency-blink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+        .urgency-text {
+            color: #ffcccc;
+            font-size: 1rem;
+        }
+        .urgency-text strong {
+            color: #ff6666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SOCIAL LINKS */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 162, 255, 0.1);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .social-link:hover {
+            background: rgba(0, 162, 255, 0.25);
+            border-color: var(--electric-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 162, 255, 0.3);
+        }
+        .social-link svg { width: 20px; height: 20px; }
+        .social-link.facebook { border-color: rgba(66, 103, 178, 0.5); }
+        .social-link.facebook:hover { background: rgba(66, 103, 178, 0.3); border-color: #4267b2; box-shadow: 0 8px 25px rgba(66, 103, 178, 0.3); }
+        .social-link.google { border-color: rgba(234, 67, 53, 0.5); }
+        .social-link.google:hover { background: rgba(234, 67, 53, 0.2); border-color: #ea4335; box-shadow: 0 8px 25px rgba(234, 67, 53, 0.3); }
+        .social-link.yelp { border-color: rgba(196, 18, 0, 0.5); }
+        .social-link.yelp:hover { background: rgba(196, 18, 0, 0.2); border-color: #c41200; box-shadow: 0 8px 25px rgba(196, 18, 0, 0.3); }
         .location-arrow { color: var(--zap-blue); font-size: 1.5rem; transition: transform 0.3s; }
         .location-card:hover .location-arrow { transform: translateX(8px); }
 
@@ -1021,6 +1091,12 @@
                 Free Diagnostics • No Fix, No Fee • Walk-ins Welcome
             </p>
 
+            <!-- URGENCY CALLOUT -->
+            <div class="booking-urgency flash-in delay-7">
+                <span class="urgency-pulse"></span>
+                <span class="urgency-text"><strong>We book FAST.</strong> One-on-one specialized jobs. Limited spots daily - get in while you can!</span>
+            </div>
+
             <a href="https://www.google.com/maps/search/?api=1&query=1239+NE+Douglas+St+Suite+B+Lee's+Summit+MO+64086" target="_blank" class="location-card zap-in delay-8">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
                 <div class="location-text">
@@ -1029,6 +1105,22 @@
                 </div>
                 <span class="location-arrow">→</span>
             </a>
+
+            <!-- SOCIAL PROOF LINKS -->
+            <div class="social-row flash-in delay-8">
+                <a href="https://www.facebook.com/techguardianllc" target="_blank" class="social-link facebook">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Follow Us
+                </a>
+                <a href="https://www.google.com/search?q=Tech+Guardian+LLC+Lee's+Summit+reviews" target="_blank" class="social-link google">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    4.9★ Reviews
+                </a>
+                <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank" class="social-link yelp">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.16 12.594l-4.995 1.433c-.96.276-1.74-.8-1.176-1.63l2.905-4.308a1.072 1.072 0 0 1 1.596-.206 9.194 9.194 0 0 1 2.364 3.252 1.073 1.073 0 0 1-.686 1.459zm-5.025 3.152l4.942 1.606a1.072 1.072 0 0 1 .636 1.48 9.316 9.316 0 0 1-2.47 3.169 1.073 1.073 0 0 1-1.592-.26l-2.76-4.409c-.534-.848.288-1.894 1.244-1.586zm-3.636.678l-.849 5.017c-.106.63-.9.958-1.449.615a9.2 9.2 0 0 1-3.29-3.057 1.073 1.073 0 0 1 .378-1.51l4.382-2.513c.863-.495 1.898.482 1.531 1.448h.297zm-1.25-4.905l-4.368-2.554a1.072 1.072 0 0 1-.414-1.502 9.255 9.255 0 0 1 3.252-3.11 1.072 1.072 0 0 1 1.463.57l.858 5.017c.367.962-.678 1.937-1.53 1.479h.739zM12 8.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"/></svg>
+                    Yelp Reviews
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1089,6 +1181,11 @@
                     <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg></div>
                     <h3 class="service-title">Board-Level Repair</h3>
                     <p class="service-desc">Advanced micro soldering for repairs others can't handle.</p>
+                </div>
+                <div class="service-card animate-card ai-card">
+                    <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A1.5 1.5 0 0 0 6 14.5a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 9 14.5 1.5 1.5 0 0 0 7.5 13m9 0a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5z"></path></svg></div>
+                    <h3 class="service-title">AI & Automation</h3>
+                    <p class="service-desc">Custom AI solutions & workflow automation tailored for small business. Work smarter, not harder.</p>
                 </div>
             </div>
         </section>
