@@ -240,9 +240,9 @@
             overflow-x: hidden;
         }
 
-        /* ==========================================
-           VIDEO HERO - CONTAINED AT TOP (NOT FIXED)
-           ========================================== */
+        a { color: var(--ice-blue); }
+        a:hover { color: var(--snow); }
+
         .video-hero {
             position: relative;
             width: 100%;
@@ -272,7 +272,6 @@
             z-index: 2;
         }
 
-        /* LIGHTNING FLASHES - Only on hero */
         .lightning-left, .lightning-right {
             position: absolute;
             top: 0;
@@ -311,7 +310,6 @@
             20% { opacity: 0; }
         }
 
-        /* Hero Content - Overlaid on video */
         .hero-content {
             position: absolute;
             top: 50%;
@@ -368,7 +366,6 @@
             text-shadow: 0 0 30px rgba(0,212,255,0.5), 0 2px 10px rgba(0,0,0,0.8);
         }
 
-        /* Snowfall - Only in hero area */
         .snowfall {
             position: absolute;
             top: 0;
@@ -416,9 +413,6 @@
         .snow:nth-child(19) { left: 95%; animation-duration: 9s; animation-delay: 3.5s; width: 5px; height: 5px; }
         .snow:nth-child(20) { left: 3%; animation-duration: 12s; animation-delay: 2.3s; width: 7px; height: 7px; }
 
-        /* ==========================================
-           MAIN CONTENT - SOLID READABLE BACKGROUND
-           ========================================== */
         .main-content {
             background: var(--midnight);
             position: relative;
@@ -427,7 +421,6 @@
 
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        /* Intro Section - Right after hero */
         .intro-section {
             padding: 80px 0;
             text-align: center;
@@ -446,7 +439,6 @@
             color: var(--snow);
         }
 
-        /* Trust Bar */
         .trust-bar {
             display: flex;
             justify-content: center;
@@ -459,7 +451,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            color: var(--frost);
+            color: var(--snow);
             font-size: 15px;
             font-weight: 600;
         }
@@ -473,11 +465,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
             box-shadow: 0 0 20px rgba(0,212,255,0.3);
         }
 
-        /* CTA Buttons */
         .cta-group {
             display: flex;
             gap: 20px;
@@ -511,6 +504,7 @@
 
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
+            color: var(--midnight);
         }
 
         .btn-secondary {
@@ -521,11 +515,11 @@
         }
 
         .btn-secondary:hover {
-            background: var(--ice-blue);
+            background: var(--snow);
             color: var(--midnight);
+            border-color: var(--snow);
         }
 
-        /* Brand Icons */
         .brand-icons {
             display: flex;
             justify-content: center;
@@ -537,16 +531,15 @@
         .brand-icons img {
             height: 36px;
             width: auto;
-            filter: invert(1) brightness(2);
+            filter: brightness(0) invert(1);
             transition: all 0.3s ease;
         }
 
         .brand-icons img:hover {
             opacity: 1;
-            filter: invert(1) brightness(2) drop-shadow(0 0 15px rgba(0,212,255,0.9));
+            filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.9));
         }
 
-        /* Last Resort Section */
         .last-resort {
             padding: 100px 0;
             background: linear-gradient(180deg, rgba(0,212,255,0.05), transparent);
@@ -603,7 +596,6 @@
             text-align: center;
         }
 
-        /* Services Section */
         .services-section {
             padding: 100px 0;
             background: linear-gradient(180deg, transparent, rgba(0,212,255,0.03), transparent);
@@ -644,14 +636,14 @@
 
         .service-card:hover {
             transform: translateY(-8px);
-            border-color: var(--ice-blue);
-            box-shadow: 0 20px 60px rgba(0,212,255,0.2);
+            border-color: var(--snow);
+            box-shadow: 0 20px 60px rgba(255,255,255,0.1);
         }
 
         .service-card img {
             height: 48px;
             margin-bottom: 24px;
-            filter: invert(1);
+            filter: brightness(0) invert(1);
             opacity: 0.8;
         }
 
@@ -659,6 +651,7 @@
             font-size: 22px;
             margin-bottom: 12px;
             font-weight: 700;
+            color: var(--snow);
         }
 
         .service-card p {
@@ -667,7 +660,6 @@
             line-height: 1.6;
         }
 
-        /* Mid CTA */
         .mid-cta {
             padding: 100px 0;
             text-align: center;
@@ -693,7 +685,6 @@
             margin-right: auto;
         }
 
-        /* Why Section */
         .why-section {
             padding: 100px 0;
         }
@@ -713,8 +704,8 @@
         }
 
         .why-card:hover {
-            border-color: rgba(0,212,255,0.4);
-            background: rgba(0,212,255,0.05);
+            border-color: var(--snow);
+            background: rgba(255,255,255,0.05);
         }
 
         .why-card h3 {
@@ -724,13 +715,16 @@
             font-weight: 700;
         }
 
+        .why-card:hover h3 {
+            color: var(--snow);
+        }
+
         .why-card p {
             color: var(--silver);
             font-size: 15px;
             line-height: 1.7;
         }
 
-        /* Process Section */
         .process-section {
             padding: 100px 0;
         }
@@ -777,7 +771,6 @@
             line-height: 1.6;
         }
 
-        /* Community Section */
         .community-section {
             padding: 100px 0;
             background: linear-gradient(180deg, rgba(0,212,255,0.05), transparent);
@@ -809,7 +802,7 @@
         }
 
         .community-content p strong {
-            color: var(--frost);
+            color: var(--snow);
         }
 
         .community-content .cta-text {
@@ -820,7 +813,6 @@
             margin-bottom: 0;
         }
 
-        /* Social Links */
         .social-section {
             padding: 80px 0;
             text-align: center;
@@ -862,15 +854,20 @@
         }
 
         .social-card:hover {
-            border-color: var(--ice-blue);
+            border-color: var(--snow);
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,212,255,0.2);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.1);
+            color: var(--snow);
         }
 
         .social-card img {
             height: 40px;
-            filter: invert(1);
+            filter: brightness(0) invert(1);
             opacity: 0.8;
+        }
+
+        .social-card:hover img {
+            opacity: 1;
         }
 
         .social-card span {
@@ -883,7 +880,6 @@
             font-size: 13px;
         }
 
-        /* NAP Section */
         .nap-section {
             padding: 100px 0;
         }
@@ -929,6 +925,10 @@
             text-shadow: 0 0 40px rgba(0,212,255,0.6);
         }
 
+        .nap-card .phone a:hover {
+            color: var(--snow);
+        }
+
         .nap-links {
             display: flex;
             gap: 15px;
@@ -949,11 +949,11 @@
         }
 
         .nap-links a:hover {
-            background: var(--ice-blue);
+            background: var(--snow);
             color: var(--midnight);
+            border-color: var(--snow);
         }
 
-        /* Areas Section */
         .areas-section {
             padding: 60px 0;
             text-align: center;
@@ -984,11 +984,10 @@
         }
 
         .areas-list span:hover {
-            border-color: var(--ice-blue);
-            color: var(--frost);
+            border-color: var(--snow);
+            color: var(--snow);
         }
 
-        /* Final CTA */
         .final-cta {
             padding: 100px 0;
             text-align: center;
@@ -1011,7 +1010,6 @@
             text-shadow: 0 0 30px rgba(0,212,255,0.5);
         }
 
-        /* Footer */
         footer {
             background: var(--midnight);
             padding: 50px 0;
@@ -1030,7 +1028,10 @@
             text-decoration: none;
         }
 
-        /* Responsive */
+        footer a:hover {
+            color: var(--snow);
+        }
+
         @media (max-width: 900px) {
             .services-grid, .why-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1062,31 +1063,191 @@
             .last-resort-content { padding: 35px 25px; }
             .community-content { padding: 40px 25px; }
         }
+
+        /* Chatbot Styles */
+        .chatbot-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 350px;
+            max-width: 90vw;
+            background: var(--deep-blue);
+            border: 2px solid var(--ice-blue);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,212,255,0.3);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-popup.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
+            color: var(--midnight);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: var(--midnight);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .chatbot-close:hover {
+            opacity: 1;
+        }
+
+        .chatbot-body {
+            display: flex;
+            flex-direction: column;
+            height: 350px;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bot-message, .user-message {
+            padding: 12px 16px;
+            border-radius: 16px;
+            max-width: 85%;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .bot-message {
+            background: rgba(0,212,255,0.15);
+            color: var(--snow);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .user-message {
+            background: var(--ice-blue);
+            color: var(--midnight);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            gap: 10px;
+            border-top: 1px solid rgba(0,212,255,0.2);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid rgba(0,212,255,0.3);
+            border-radius: 25px;
+            background: rgba(0,0,0,0.3);
+            color: var(--snow);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--snow);
+        }
+
+        .chatbot-input input::placeholder {
+            color: var(--silver);
+        }
+
+        .chatbot-input button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
+            color: var(--midnight);
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.05);
+        }
+
+        .chatbot-trigger {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
+            color: var(--midnight);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 30px rgba(0,212,255,0.5);
+            animation: pulse-chat 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-chat {
+            0%, 100% { box-shadow: 0 5px 30px rgba(0,212,255,0.5); }
+            50% { box-shadow: 0 5px 50px rgba(0,212,255,0.8); }
+        }
+
+        .chatbot-trigger:hover {
+            transform: scale(1.05);
+        }
+
+        .chatbot-trigger .chat-icon {
+            width: 22px;
+            height: 22px;
+        }
+
+        .chatbot-trigger.hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
-    <!-- ==========================================
-         VIDEO HERO SECTION - CONTAINED AT TOP
-         ========================================== -->
     <section class="video-hero">
         <video autoplay muted loop playsinline>
             <source src="https://guardianrevives.com/wp-content/uploads/2026/01/Electric-Guardian.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
-
-        <!-- Lightning Effects - Inside hero only -->
         <div class="lightning-left"></div>
         <div class="lightning-right"></div>
-
-        <!-- Snowfall - Inside hero only -->
         <div class="snowfall">
             <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
             <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
             <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
             <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
         </div>
-
-        <!-- Hero Content - Overlaid on video -->
         <div class="hero-content">
             <div class="hero-badge">The Ice Doesn't Stop Guardian</div>
             <h1><span class="gradient">Metro's</span><br>Guardian</h1>
@@ -1094,18 +1255,14 @@
         </div>
     </section>
 
-    <!-- ==========================================
-         MAIN CONTENT - SOLID READABLE BACKGROUND
-         ========================================== -->
     <main class="main-content">
-        <!-- Intro Section -->
         <section class="intro-section">
             <div class="container">
                 <p><strong>Every week we look for ways to save our customers money.</strong> Board-level micro soldering. Chip-level repairs. We're the last stop before the trash — and we turn "dead" devices into customers for life.</p>
 
                 <div class="trust-bar">
                     <div class="trust-item">
-                        <div class="trust-icon">✔</div>
+                        <div class="trust-icon">✓</div>
                         <span>Apple Certified</span>
                     </div>
                     <div class="trust-item">
@@ -1145,13 +1302,9 @@
 
                 <div class="last-resort-content">
                     <p><strong>You've heard it before:</strong> "Sorry, we can't fix that." "You need a new one." "It's not worth repairing."</p>
-
                     <p>We hear those stories every day. And then we fix the device anyway.</p>
-
                     <p><strong>Why? Because we work at the board level.</strong> While other shops swap entire components, we grab a microscope and a soldering iron and fix the actual problem — a blown capacitor, a burned trace, a failed chip. It's harder. It takes more skill. But it means we save devices (and your money) that everyone else writes off.</p>
-
                     <p>We've built our reputation on being the shop you come to AFTER you've been told no. <strong>That one more diagnostic? It's free.</strong> And it might just save your device.</p>
-
                     <p>Don't give up yet. Give us a call.</p>
                 </div>
             </div>
@@ -1283,11 +1436,8 @@
                 <div class="community-content">
                     <h2>Giving Back to KC</h2>
                     <p>We know times are tough. <strong>Not everyone can afford repairs right now</strong> — but that doesn't mean a student should go without their laptop or someone should lose their job because their phone died.</p>
-
                     <p>That's why we're launching a <strong>community outreach program</strong>. If you know someone who's down on their luck and needs their device for work or school but can't afford the repair, reach out. Let's see what we can do.</p>
-
                     <p><strong>Because this isn't just business. It's community.</strong></p>
-
                     <p class="cta-text">Know someone who needs help? Send them our way.</p>
                 </div>
             </div>
@@ -1345,7 +1495,7 @@
                     </div>
                     <div class="nap-links">
                         <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book Appointment</a>
-                        <a href="https://guardandrevive.com">Main Website</a>
+                        <a href="https://guardianrevives.com">Main Website</a>
                         <a href="https://maps.apple.com/place?place-id=IC74A016713E964AD" target="_blank">Apple Maps</a>
                         <a href="https://www.google.com/maps/place/Tech+Guardian+LLC/@38.9345739,-94.3777137,17z/" target="_blank">Google Maps</a>
                         <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank">Yelp</a>
@@ -1396,11 +1546,10 @@
         </div>
     </footer>
 
-    <!-- AI CHATBOT POPUP -->
     <div id="chatbot-popup" class="chatbot-popup">
         <div class="chatbot-header">
             <span>Need Help? Chat with us!</span>
-            <button class="chatbot-close" onclick="closeChatbot()">&times;</button>
+            <button class="chatbot-close" onclick="closeChatbot()">×</button>
         </div>
         <div class="chatbot-body">
             <div class="chatbot-messages" id="chatbot-messages">
@@ -1419,179 +1568,7 @@
         <span class="chat-text">Chat</span>
     </button>
 
-    <style>
-        /* Chatbot Popup Styles */
-        .chatbot-popup {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 350px;
-            max-width: 90vw;
-            background: var(--deep-blue);
-            border: 2px solid var(--ice-blue);
-            border-radius: 20px;
-            box-shadow: 0 10px 50px rgba(0,212,255,0.3);
-            z-index: 10000;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .chatbot-popup.active {
-            display: flex;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chatbot-header {
-            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
-            color: var(--midnight);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 700;
-        }
-
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: var(--midnight);
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-
-        .chatbot-close:hover {
-            opacity: 1;
-        }
-
-        .chatbot-body {
-            display: flex;
-            flex-direction: column;
-            height: 350px;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .bot-message, .user-message {
-            padding: 12px 16px;
-            border-radius: 16px;
-            max-width: 85%;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .bot-message {
-            background: rgba(0,212,255,0.15);
-            color: var(--frost);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
-
-        .user-message {
-            background: var(--ice-blue);
-            color: var(--midnight);
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            gap: 10px;
-            border-top: 1px solid rgba(0,212,255,0.2);
-        }
-
-        .chatbot-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid rgba(0,212,255,0.3);
-            border-radius: 25px;
-            background: rgba(0,0,0,0.3);
-            color: var(--snow);
-            font-size: 14px;
-            outline: none;
-        }
-
-        .chatbot-input input:focus {
-            border-color: var(--ice-blue);
-        }
-
-        .chatbot-input input::placeholder {
-            color: var(--silver);
-        }
-
-        .chatbot-input button {
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
-            color: var(--midnight);
-            border: none;
-            border-radius: 25px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .chatbot-input button:hover {
-            transform: scale(1.05);
-        }
-
-        .chatbot-trigger {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
-            color: var(--midnight);
-            border: none;
-            border-radius: 50px;
-            padding: 15px 25px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 5px 30px rgba(0,212,255,0.5);
-            animation: pulse-chat 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-chat {
-            0%, 100% { box-shadow: 0 5px 30px rgba(0,212,255,0.5); }
-            50% { box-shadow: 0 5px 50px rgba(0,212,255,0.8); }
-        }
-
-        .chatbot-trigger:hover {
-            transform: scale(1.05);
-        }
-
-        .chatbot-trigger .chat-icon {
-            width: 22px;
-            height: 22px;
-        }
-
-        .chatbot-trigger.hidden {
-            display: none;
-        }
-    </style>
-
     <script>
-        // Chatbot functions
         function openChatbot() {
             document.getElementById('chatbot-popup').classList.add('active');
             document.getElementById('chatbot-trigger').classList.add('hidden');
@@ -1615,18 +1592,14 @@
 
             const messagesDiv = document.getElementById('chatbot-messages');
 
-            // Add user message
             const userMsg = document.createElement('div');
             userMsg.className = 'user-message';
             userMsg.textContent = message;
             messagesDiv.appendChild(userMsg);
 
             input.value = '';
-
-            // Scroll to bottom
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
-            // Bot response after short delay
             setTimeout(() => {
                 const botMsg = document.createElement('div');
                 botMsg.className = 'bot-message';
@@ -1658,7 +1631,6 @@
             }
         }
 
-        // Show chatbot trigger after 3 seconds
         setTimeout(() => {
             document.getElementById('chatbot-trigger').style.display = 'flex';
         }, 3000);
