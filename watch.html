@@ -1,27 +1,26 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-    .tg-page { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; min-height: 100vh; padding: 0; margin: 0; }
+    .tg-page * { margin: 0; padding: 0; box-sizing: border-box; }
+    .tg-page { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; padding: 40px 20px; }
     .tg-page a { color: #a8d4ff; text-decoration: none; transition: all 0.3s ease; }
     .tg-page a:hover { color: #fff; }
-    .tg-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .tg-container { max-width: 1000px; margin: 0 auto; }
 
-    .tg-hero { padding: 80px 0 50px; text-align: center; }
-    .tg-hero h1 { font-size: clamp(32px, 6vw, 48px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; color: #fff; }
+    .tg-hero { text-align: center; margin-bottom: 50px; }
+    .tg-hero h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
     .tg-hero .tg-highlight { color: #a8d4ff; }
     .tg-hero p { font-size: 18px; color: #a8d4ff; max-width: 650px; margin: 0 auto; line-height: 1.7; }
 
-    .tg-video-section { margin: 40px 0; }
-    .tg-video-section h2 { font-size: 24px; margin-bottom: 20px; text-transform: uppercase; text-align: center; color: #fff; }
-    .tg-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .tg-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; }
     .tg-video-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
     .tg-video-card:hover { border-color: #fff; transform: translateY(-5px); }
-    .tg-video-placeholder { background: linear-gradient(135deg, rgba(168,212,255,0.1), rgba(0,0,0,0.3)); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+    .tg-video-card video, .tg-video-card img { width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block; background: #000; }
     .tg-video-card-content { padding: 20px; }
-    .tg-video-card h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+    .tg-video-card h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
     .tg-video-card p { font-size: 14px; color: #a8d4ff; line-height: 1.5; }
 
     .tg-social-section { margin: 60px 0; }
-    .tg-social-section h2 { font-size: 26px; margin-bottom: 30px; text-transform: uppercase; text-align: center; color: #fff; }
+    .tg-social-section h2 { font-size: 28px; margin-bottom: 30px; text-transform: uppercase; text-align: center; color: #fff; }
     .tg-social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
     .tg-social-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 30px; text-align: center; transition: all 0.3s ease; }
     .tg-social-card:hover { border-color: #fff; transform: translateY(-5px); }
@@ -37,7 +36,7 @@
     .tg-card p { color: #a8d4ff; font-size: 16px; line-height: 1.8; text-align: center; }
 
     .tg-cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
-    .tg-btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; }
+    .tg-btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; display: inline-block; }
     .tg-btn-primary { background: #a8d4ff; color: #0a0a0f; border-color: #a8d4ff; }
     .tg-btn-primary:hover { background: #fff; border-color: #fff; color: #0a0a0f; transform: translateY(-2px); }
     .tg-btn-outline { background: transparent; color: #fff; border: 2px solid #a8d4ff; }
@@ -83,39 +82,49 @@
             <p>See what real board-level repair looks like. No smoke and mirrors — just skilled technicians fixing what others can't.</p>
         </section>
 
-        <section class="tg-video-section">
-            <h2>Featured Repairs</h2>
-            <div class="tg-video-grid">
-                <div class="tg-video-card">
-                    <div class="tg-video-placeholder">🎬</div>
-                    <div class="tg-video-card-content">
-                        <h3>PS5 HDMI Port Repair</h3>
-                        <p>Watch us micro-solder a new HDMI port onto a PS5 that had no video output. This is what board-level repair looks like.</p>
-                    </div>
-                </div>
-                <div class="tg-video-card">
-                    <div class="tg-video-placeholder">🎬</div>
-                    <div class="tg-video-card-content">
-                        <h3>MacBook Liquid Damage</h3>
-                        <p>Coffee spill recovery. We clean the board, identify damaged components, and bring this MacBook back to life.</p>
-                    </div>
-                </div>
-                <div class="tg-video-card">
-                    <div class="tg-video-placeholder">🎬</div>
-                    <div class="tg-video-card-content">
-                        <h3>iPhone Screen Replacement</h3>
-                        <p>From shattered to perfect in under 30 minutes. See our screen replacement process.</p>
-                    </div>
-                </div>
-                <div class="tg-video-card">
-                    <div class="tg-video-placeholder">🎬</div>
-                    <div class="tg-video-card-content">
-                        <h3>Steam Deck Joystick Fix</h3>
-                        <p>Eliminating joystick drift on a Steam Deck. Complete module replacement and calibration.</p>
-                    </div>
+        <div class="tg-video-grid">
+            <!-- PS5 HDMI Repair - Sped Up -->
+            <div class="tg-video-card">
+                <img src="https://guardianrevives.com/wp-content/uploads/2026/01/1DEB1531-4714-4AEC-BD42-28AD7AB3C1E0_1_206_a.jpeg" alt="PS5 HDMI Port Repair">
+                <div class="tg-video-card-content">
+                    <h3>PS5 HDMI Port Repair</h3>
+                    <p>Sped up, over the top look at a PS5 HDMI port replacement. This is board-level micro-soldering at its finest.</p>
                 </div>
             </div>
-        </section>
+
+            <!-- Smashing Devices Commercial -->
+            <div class="tg-video-card">
+                <video autoplay muted loop playsinline>
+                    <source src="https://guardianrevives.com/wp-content/uploads/2026/01/Smashing-devices.mp4" type="video/mp4">
+                </video>
+                <div class="tg-video-card-content">
+                    <h3>Broken to Repaired</h3>
+                    <p>Our highlight reel — smashing phones and showing the transformation from completely broken to fully restored. This is what we do.</p>
+                </div>
+            </div>
+
+            <!-- Devices Showcase -->
+            <div class="tg-video-card">
+                <video autoplay muted loop playsinline>
+                    <source src="https://guardianrevives.com/wp-content/uploads/2025/12/copy_05EBBC84-51FC-418B-BD97-3730957F499E.mp4" type="video/mp4">
+                </video>
+                <div class="tg-video-card-content">
+                    <h3>What We Work On</h3>
+                    <p>Controllers, iPads, Nintendo Switch, and more. If it's got a circuit board, we can fix it.</p>
+                </div>
+            </div>
+
+            <!-- iPhone Glass Repair -->
+            <div class="tg-video-card">
+                <video autoplay muted loop playsinline>
+                    <source src="https://guardianrevives.com/wp-content/uploads/2025/12/AQOAumBtenQYBALIH2TiouiP_0mVNKneqprqjd8LsZlVt2xfFsK1sqEFW2pM5cOcsKvZ6rrzsSnyT_TCWBd8NkOxMVTqgYlLVIuJ2pSMkiOJ9g-1.mp4" type="video/mp4">
+                </video>
+                <div class="tg-video-card-content">
+                    <h3>iPhone Glass Repair</h3>
+                    <p>Watch the transformation — from shattered screen to flawless glass. Gloves on, glass off, perfection delivered.</p>
+                </div>
+            </div>
+        </div>
 
         <section class="tg-social-section">
             <h2>Follow Our Work</h2>
@@ -207,10 +216,11 @@
         }, 500);
     }
     function getTgBotResponse(text) {
-        if (text.includes('youtube') || text.includes('video')) return "Check out our YouTube channel for full repair videos! We post new content regularly.";
-        if (text.includes('instagram') || text.includes('tiktok')) return "We post daily on Instagram and TikTok! Follow us for repair stories and satisfying fixes.";
-        if (text.includes('micro solder') || text.includes('board')) return "Board-level repair is our specialty! Watch our videos to see micro soldering in action.";
-        return "Follow us on social media to see our repairs! Or call (816) 583-0100 with questions.";
+        if (text.includes('ps5') || text.includes('playstation') || text.includes('hdmi')) return "Our PS5 HDMI repairs are legendary! Watch the video above to see micro-soldering in action. Call (816) 583-0100 for a quote!";
+        if (text.includes('iphone') || text.includes('screen') || text.includes('glass')) return "iPhone screen repairs are our specialty! We can fix shattered screens in under an hour. Book online or call us!";
+        if (text.includes('switch') || text.includes('controller') || text.includes('ipad')) return "We fix all gaming devices and tablets! Controllers, Switch consoles, iPads - you name it. Check out our showcase video!";
+        if (text.includes('youtube') || text.includes('video')) return "We post repair videos regularly! Follow us on social media to see more of our work.";
+        return "Check out our videos above to see what we can do! Call (816) 583-0100 or book online for your repair.";
     }
     setTimeout(() => { document.getElementById('tgChatPopup').classList.add('active'); }, 3000);
 </script>
