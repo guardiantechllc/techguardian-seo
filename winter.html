@@ -217,19 +217,20 @@
     }
     </script>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --ice-blue: #00d4ff;
+            --electric-blue: #0066ff;
             --frost: #a8e6ff;
             --deep-blue: #0a1628;
             --midnight: #050d18;
             --snow: #ffffff;
             --silver: #c0c8d4;
-            --urgent-orange: #ff6b35;
         }
 
         body {
@@ -240,6 +241,78 @@
             overflow-x: hidden;
         }
 
+        /* VIDEO HERO - FULL SCREEN */
+        .video-hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .video-hero video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+            z-index: 2;
+        }
+
+        /* LIGHTNING FLASHES */
+        .lightning-left, .lightning-right {
+            position: fixed;
+            top: 0;
+            width: 200px;
+            height: 100vh;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        .lightning-left {
+            left: 0;
+            background: linear-gradient(90deg, rgba(0,212,255,0.3), transparent);
+            animation: lightning-flash-left 4s ease-in-out infinite;
+        }
+
+        .lightning-right {
+            right: 0;
+            background: linear-gradient(-90deg, rgba(0,212,255,0.3), transparent);
+            animation: lightning-flash-right 4s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        @keyframes lightning-flash-left {
+            0%, 100% { opacity: 0; }
+            5% { opacity: 1; }
+            10% { opacity: 0; }
+            15% { opacity: 0.8; }
+            20% { opacity: 0; }
+        }
+
+        @keyframes lightning-flash-right {
+            0%, 100% { opacity: 0; }
+            5% { opacity: 1; }
+            10% { opacity: 0; }
+            15% { opacity: 0.8; }
+            20% { opacity: 0; }
+        }
+
         /* Snowfall Animation */
         .snowfall {
             position: fixed;
@@ -248,7 +321,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 100;
             overflow: hidden;
         }
 
@@ -287,45 +360,40 @@
         .snow:nth-child(18) { left: 90%; animation-duration: 15s; animation-delay: 1.9s; width: 8px; height: 8px; }
         .snow:nth-child(19) { left: 95%; animation-duration: 9s; animation-delay: 3.5s; width: 5px; height: 5px; }
         .snow:nth-child(20) { left: 3%; animation-duration: 12s; animation-delay: 2.3s; width: 7px; height: 7px; }
-        .snow:nth-child(21) { left: 8%; animation-duration: 11s; animation-delay: 0.9s; width: 4px; height: 4px; }
-        .snow:nth-child(22) { left: 13%; animation-duration: 14s; animation-delay: 1.7s; width: 6px; height: 6px; }
-        .snow:nth-child(23) { left: 18%; animation-duration: 8s; animation-delay: 2.9s; width: 8px; height: 8px; }
-        .snow:nth-child(24) { left: 23%; animation-duration: 10s; animation-delay: 0.4s; width: 5px; height: 5px; }
-        .snow:nth-child(25) { left: 28%; animation-duration: 13s; animation-delay: 3.1s; width: 7px; height: 7px; }
-        .snow:nth-child(26) { left: 33%; animation-duration: 9s; animation-delay: 1.3s; width: 4px; height: 4px; }
-        .snow:nth-child(27) { left: 38%; animation-duration: 15s; animation-delay: 2.6s; width: 6px; height: 6px; }
-        .snow:nth-child(28) { left: 43%; animation-duration: 11s; animation-delay: 0.2s; width: 8px; height: 8px; }
-        .snow:nth-child(29) { left: 48%; animation-duration: 12s; animation-delay: 1.6s; width: 5px; height: 5px; }
-        .snow:nth-child(30) { left: 53%; animation-duration: 8s; animation-delay: 3.3s; width: 7px; height: 7px; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+        /* CONTENT WRAPPER - ON TOP OF VIDEO */
+        .content-wrapper {
+            position: relative;
+            z-index: 200;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         /* Header */
         header {
-            background: linear-gradient(180deg, rgba(10,22,40,0.98) 0%, rgba(5,13,24,0.95) 100%);
-            padding: 18px 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,212,255,0.15);
         }
 
         header .container { display: flex; justify-content: space-between; align-items: center; }
 
         .logo {
+            font-family: 'Orbitron', sans-serif;
             font-size: 24px;
             font-weight: 900;
             color: var(--snow);
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0,212,255,0.5);
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(0,212,255,0.8);
         }
 
         .header-cta {
-            background: linear-gradient(135deg, var(--ice-blue), #0099cc);
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
             color: var(--midnight);
             padding: 14px 32px;
             border-radius: 50px;
@@ -334,55 +402,63 @@
             font-size: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            box-shadow: 0 0 30px rgba(0,212,255,0.4);
+            box-shadow: 0 0 40px rgba(0,212,255,0.5);
             transition: all 0.3s ease;
             animation: pulse-btn 2s ease-in-out infinite;
         }
 
         @keyframes pulse-btn {
-            0%, 100% { box-shadow: 0 0 30px rgba(0,212,255,0.4); }
-            50% { box-shadow: 0 0 50px rgba(0,212,255,0.7); }
+            0%, 100% { box-shadow: 0 0 40px rgba(0,212,255,0.5); }
+            50% { box-shadow: 0 0 70px rgba(0,212,255,0.8); }
         }
 
         .header-cta:hover {
             transform: scale(1.05);
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 60%);
-            position: relative;
+            padding: 120px 0 80px;
         }
 
-        .urgent-banner {
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--urgent-orange), #ff4444);
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
             padding: 12px 30px;
             border-radius: 50px;
             font-size: 14px;
             font-weight: 800;
-            color: white;
+            color: var(--midnight);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 30px;
-            animation: shake 3s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(0,212,255,0.5);
+            animation: glow-pulse 2s ease-in-out infinite;
         }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
-            20%, 40%, 60%, 80% { transform: translateX(2px); }
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(0,212,255,0.5); }
+            50% { box-shadow: 0 0 80px rgba(0,212,255,0.8); }
         }
 
         .hero h1 {
-            font-size: clamp(38px, 8vw, 68px);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(50px, 10vw, 90px);
             font-weight: 900;
-            line-height: 1.05;
+            line-height: 1.0;
             margin-bottom: 25px;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 60px rgba(0,212,255,0.5);
         }
 
         .hero h1 .gradient {
@@ -393,10 +469,11 @@
         }
 
         .hero .subhead {
-            font-size: 24px;
+            font-size: 26px;
             color: var(--ice-blue);
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0,212,255,0.5);
         }
 
         .hero p {
@@ -432,13 +509,14 @@
         .trust-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,212,255,0.05));
-            border: 1px solid rgba(0,212,255,0.3);
+            background: linear-gradient(135deg, rgba(0,212,255,0.3), rgba(0,102,255,0.2));
+            border: 1px solid rgba(0,212,255,0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
+            box-shadow: 0 0 20px rgba(0,212,255,0.3);
         }
 
         /* CTA Buttons */
@@ -459,38 +537,29 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--ice-blue), #0099cc);
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
             color: var(--midnight);
-            box-shadow: 0 10px 40px rgba(0,212,255,0.4);
+            box-shadow: 0 10px 50px rgba(0,212,255,0.5);
+            animation: btn-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes btn-glow {
+            0%, 100% { box-shadow: 0 10px 50px rgba(0,212,255,0.5); }
+            50% { box-shadow: 0 15px 70px rgba(0,212,255,0.7); }
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(0,212,255,0.5);
-        }
-
-        .btn-urgent {
-            background: linear-gradient(135deg, var(--urgent-orange), #ff4444);
-            color: white;
-            box-shadow: 0 10px 40px rgba(255,107,53,0.4);
-            animation: pulse-urgent 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse-urgent {
-            0%, 100% { box-shadow: 0 10px 40px rgba(255,107,53,0.4); }
-            50% { box-shadow: 0 15px 60px rgba(255,107,53,0.6); }
+            transform: translateY(-3px) scale(1.02);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--snow);
             border: 2px solid var(--ice-blue);
-            box-shadow: 0 0 30px rgba(0,212,255,0.2);
+            box-shadow: 0 0 30px rgba(0,212,255,0.3);
         }
 
         .btn-secondary:hover {
@@ -504,7 +573,7 @@
             justify-content: center;
             gap: 35px;
             flex-wrap: wrap;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         .brand-icons img {
@@ -516,17 +585,25 @@
 
         .brand-icons img:hover {
             opacity: 1;
-            filter: invert(1) brightness(2) drop-shadow(0 0 10px rgba(0,212,255,0.8));
+            filter: invert(1) brightness(2) drop-shadow(0 0 15px rgba(0,212,255,0.9));
+        }
+
+        /* Sections below the fold - solid background */
+        .content-sections {
+            background: var(--midnight);
+            position: relative;
+            z-index: 200;
         }
 
         /* Last Resort Section */
         .last-resort {
             padding: 100px 0;
-            background: linear-gradient(180deg, rgba(255,107,53,0.05), transparent);
+            background: linear-gradient(180deg, rgba(0,212,255,0.05), transparent);
             text-align: center;
         }
 
         .last-resort h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 42px;
             font-weight: 900;
             margin-bottom: 20px;
@@ -534,7 +611,8 @@
         }
 
         .last-resort h2 span {
-            color: var(--urgent-orange);
+            color: var(--ice-blue);
+            text-shadow: 0 0 30px rgba(0,212,255,0.5);
         }
 
         .last-resort .lead {
@@ -547,11 +625,12 @@
         .last-resort-content {
             max-width: 800px;
             margin: 0 auto;
-            background: linear-gradient(145deg, rgba(255,107,53,0.1), rgba(10,22,40,0.9));
-            border: 2px solid var(--urgent-orange);
+            background: linear-gradient(145deg, rgba(0,212,255,0.1), rgba(10,22,40,0.9));
+            border: 2px solid var(--ice-blue);
             border-radius: 24px;
             padding: 50px 40px;
             text-align: left;
+            box-shadow: 0 0 60px rgba(0,212,255,0.15);
         }
 
         .last-resort-content p {
@@ -585,6 +664,7 @@
         }
 
         .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 40px;
             font-weight: 900;
             margin-bottom: 15px;
@@ -604,35 +684,17 @@
 
         .service-card {
             background: linear-gradient(145deg, rgba(10,22,40,0.8), rgba(5,13,24,0.9));
-            border: 1px solid rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.2);
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--ice-blue), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-8px);
             border-color: var(--ice-blue);
-            box-shadow: 0 20px 60px rgba(0,212,255,0.15);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 20px 60px rgba(0,212,255,0.2);
         }
 
         .service-card img {
@@ -654,6 +716,32 @@
             line-height: 1.6;
         }
 
+        /* Mid CTA */
+        .mid-cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,102,255,0.05));
+            border-top: 1px solid rgba(0,212,255,0.2);
+            border-bottom: 1px solid rgba(0,212,255,0.2);
+        }
+
+        .mid-cta h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .mid-cta p {
+            color: var(--silver);
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Why Section */
         .why-section {
             padding: 100px 0;
@@ -667,14 +755,14 @@
 
         .why-card {
             background: rgba(10,22,40,0.6);
-            border: 1px solid rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.15);
             border-radius: 16px;
             padding: 35px;
             transition: all 0.3s ease;
         }
 
         .why-card:hover {
-            border-color: rgba(0,212,255,0.3);
+            border-color: rgba(0,212,255,0.4);
             background: rgba(0,212,255,0.05);
         }
 
@@ -689,31 +777,6 @@
             color: var(--silver);
             font-size: 15px;
             line-height: 1.7;
-        }
-
-        /* Mid CTA */
-        .mid-cta {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,153,204,0.05));
-            border-top: 1px solid rgba(0,212,255,0.1);
-            border-bottom: 1px solid rgba(0,212,255,0.1);
-        }
-
-        .mid-cta h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-
-        .mid-cta p {
-            color: var(--silver);
-            font-size: 20px;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* Process Section */
@@ -739,7 +802,7 @@
         .step-num {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--ice-blue), #0099cc);
+            background: linear-gradient(135deg, var(--ice-blue), var(--electric-blue));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -748,7 +811,7 @@
             font-weight: 900;
             color: var(--midnight);
             margin: 0 auto 20px;
-            box-shadow: 0 10px 40px rgba(0,212,255,0.3);
+            box-shadow: 0 10px 40px rgba(0,212,255,0.4);
         }
 
         .step h3 {
@@ -777,9 +840,11 @@
             border: 2px solid var(--ice-blue);
             border-radius: 24px;
             padding: 60px 50px;
+            box-shadow: 0 0 60px rgba(0,212,255,0.15);
         }
 
         .community-content h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 36px;
             margin-bottom: 25px;
             text-transform: uppercase;
@@ -811,6 +876,7 @@
         }
 
         .social-section h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 28px;
             margin-bottom: 15px;
             text-transform: uppercase;
@@ -832,7 +898,7 @@
 
         .social-card {
             background: rgba(10,22,40,0.8);
-            border: 1px solid rgba(0,212,255,0.15);
+            border: 1px solid rgba(0,212,255,0.2);
             border-radius: 16px;
             padding: 30px 20px;
             text-decoration: none;
@@ -847,7 +913,7 @@
         .social-card:hover {
             border-color: var(--ice-blue);
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,212,255,0.15);
+            box-shadow: 0 15px 40px rgba(0,212,255,0.2);
         }
 
         .social-card img {
@@ -877,10 +943,11 @@
             border-radius: 24px;
             padding: 60px 40px;
             text-align: center;
-            box-shadow: 0 20px 80px rgba(0,212,255,0.15);
+            box-shadow: 0 20px 80px rgba(0,212,255,0.2);
         }
 
         .nap-card h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 36px;
             margin-bottom: 30px;
             text-transform: uppercase;
@@ -908,7 +975,7 @@
         .nap-card .phone a {
             color: var(--ice-blue);
             text-decoration: none;
-            text-shadow: 0 0 30px rgba(0,212,255,0.5);
+            text-shadow: 0 0 40px rgba(0,212,255,0.6);
         }
 
         .nap-links {
@@ -922,7 +989,7 @@
             padding: 14px 28px;
             border-radius: 50px;
             background: rgba(0,212,255,0.1);
-            border: 1px solid rgba(0,212,255,0.3);
+            border: 1px solid rgba(0,212,255,0.4);
             color: var(--snow);
             text-decoration: none;
             font-weight: 600;
@@ -942,6 +1009,7 @@
         }
 
         .areas-section h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 24px;
             margin-bottom: 30px;
             text-transform: uppercase;
@@ -959,7 +1027,7 @@
             font-size: 15px;
             padding: 10px 22px;
             background: rgba(0,212,255,0.05);
-            border: 1px solid rgba(0,212,255,0.1);
+            border: 1px solid rgba(0,212,255,0.15);
             border-radius: 30px;
             transition: all 0.3s ease;
         }
@@ -977,6 +1045,7 @@
         }
 
         .final-cta h2 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 44px;
             font-weight: 900;
             margin-bottom: 20px;
@@ -988,13 +1057,14 @@
             color: var(--ice-blue);
             margin-bottom: 40px;
             font-weight: 700;
+            text-shadow: 0 0 30px rgba(0,212,255,0.5);
         }
 
         /* Footer */
         footer {
             background: var(--midnight);
             padding: 50px 0;
-            border-top: 1px solid rgba(0,212,255,0.1);
+            border-top: 1px solid rgba(0,212,255,0.15);
             text-align: center;
         }
 
@@ -1017,16 +1087,17 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 34px; }
+            .hero h1 { font-size: 40px; letter-spacing: 2px; }
             .trust-bar { gap: 20px; }
             .trust-item { font-size: 13px; }
             .section-header h2 { font-size: 30px; }
             .nap-card .phone { font-size: 32px; }
             .last-resort h2 { font-size: 32px; }
+            .lightning-left, .lightning-right { width: 100px; }
         }
 
         @media (max-width: 600px) {
-            .hero { padding: 140px 0 80px; }
+            .hero { padding: 100px 0 60px; }
             .services-grid, .why-grid {
                 grid-template-columns: 1fr;
             }
@@ -1037,321 +1108,338 @@
             .process-steps { flex-direction: column; align-items: center; }
             .last-resort-content { padding: 35px 25px; }
             .community-content { padding: 40px 25px; }
+            .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
 <body>
+    <!-- VIDEO HERO BACKGROUND -->
+    <div class="video-hero">
+        <video autoplay muted loop playsinline>
+            <source src="https://guardianrevives.com/wp-content/uploads/2026/01/Electric-Guardian.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- LIGHTNING EFFECTS -->
+    <div class="lightning-left"></div>
+    <div class="lightning-right"></div>
+
     <!-- Snowfall Effect -->
     <div class="snowfall">
         <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
         <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
         <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
         <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
-        <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
-        <div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div><div class="snow"></div>
     </div>
 
-    <header>
-        <div class="container">
-            <a href="/" class="logo">Tech Guardian</a>
-            <a href="tel:+18166979268" class="header-cta">Call Now - Free Quote</a>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
+    <div class="content-wrapper">
+        <header>
             <div class="container">
-                <div class="urgent-banner">Told It's Unrepairable? Think Again.</div>
-                <h1>We Fix What<br><span class="gradient">Others Can't</span></h1>
-                <p class="subhead">Kansas City's Board-Level Micro Soldering Experts</p>
-                <p><strong>Other shops gave up on your device?</strong> We specialize in the repairs everyone else says are impossible. Board-level work. Chip-level fixes. We're the last stop before the trash — and we turn "dead" devices into loyal customers for life.</p>
-
-                <div class="trust-bar">
-                    <div class="trust-item">
-                        <div class="trust-icon">✓</div>
-                        <span>Apple Certified</span>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">⚡</div>
-                        <span>Same-Day Repairs</span>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">🛡</div>
-                        <span>45-Day Warranty</span>
-                    </div>
-                    <div class="trust-item">
-                        <div class="trust-icon">💰</div>
-                        <span>Better Prices</span>
-                    </div>
-                </div>
-
-                <div class="cta-group">
-                    <a href="tel:+18166979268" class="btn btn-urgent">Get One More Opinion</a>
-                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Free Diagnostic</a>
-                </div>
-
-                <div class="brand-icons">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xbox.svg" alt="Xbox">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nintendo.svg" alt="Nintendo">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
-                </div>
+                <a href="/" class="logo">Tech Guardian</a>
+                <a href="tel:+18166979268" class="header-cta">Call Now</a>
             </div>
-        </section>
+        </header>
 
-        <section class="last-resort">
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="hero-badge">The Ice Doesn't Stop Guardian</div>
+                        <h1><span class="gradient">Metro's</span><br>Guardian</h1>
+                        <p class="subhead">We Bring The Heat Every Week</p>
+                        <p><strong>Every week we look for ways to save our customers money.</strong> Board-level micro soldering. Chip-level repairs. We're the last stop before the trash — and we turn "dead" devices into customers for life.</p>
+
+                        <div class="trust-bar">
+                            <div class="trust-item">
+                                <div class="trust-icon">✓</div>
+                                <span>Apple Certified</span>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-icon">⚡</div>
+                                <span>Same-Day Repairs</span>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-icon">🛡</div>
+                                <span>45-Day Warranty</span>
+                            </div>
+                            <div class="trust-item">
+                                <div class="trust-icon">💰</div>
+                                <span>Better Prices</span>
+                            </div>
+                        </div>
+
+                        <div class="cta-group">
+                            <a href="tel:+18166979268" class="btn btn-primary">Get One More Opinion</a>
+                            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Free Diagnostic</a>
+                        </div>
+
+                        <div class="brand-icons">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xbox.svg" alt="Xbox">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nintendo.svg" alt="Nintendo">
+                            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="content-sections">
+                <section class="last-resort">
+                    <div class="container">
+                        <h2>The <span>Last Resort</span> That Saves The Day</h2>
+                        <p class="lead">This is where we make customers for life.</p>
+
+                        <div class="last-resort-content">
+                            <p><strong>You've heard it before:</strong> "Sorry, we can't fix that." "You need a new one." "It's not worth repairing."</p>
+
+                            <p>We hear those stories every day. And then we fix the device anyway.</p>
+
+                            <p><strong>Why? Because we work at the board level.</strong> While other shops swap entire components, we grab a microscope and a soldering iron and fix the actual problem — a blown capacitor, a burned trace, a failed chip. It's harder. It takes more skill. But it means we save devices (and your money) that everyone else writes off.</p>
+
+                            <p>We've built our reputation on being the shop you come to AFTER you've been told no. <strong>That one more diagnostic? It's free.</strong> And it might just save your device.</p>
+
+                            <p>Don't give up yet. Give us a call.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="services-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>What We Repair</h2>
+                            <p>Faster turnarounds. Better prices. Board-level expertise.</p>
+                        </div>
+
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="iPhone">
+                                <h3>iPhone & iPad</h3>
+                                <p>Screens, batteries, charging ports, water damage, no power. All models. Most same-day.</p>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung">
+                                <h3>Samsung & Android</h3>
+                                <p>Galaxy, Pixel, OnePlus. Screen repairs, motherboard issues, charging problems.</p>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="MacBook">
+                                <h3>MacBook & Laptop</h3>
+                                <p>Liquid damage specialists. No power, keyboard, screen. All brands welcome.</p>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
+                                <h3>PlayStation</h3>
+                                <p>PS5, PS4, PS3. HDMI ports, disc drives, overheating, BLOD. We fix them all.</p>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xbox.svg" alt="Xbox">
+                                <h3>Xbox</h3>
+                                <p>Series X/S, One, 360. HDMI repair, power issues, disc drives, thermal fixes.</p>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
+                                <h3>Steam Deck & Handhelds</h3>
+                                <p>Joystick drift, screen swap, battery replacement, SSD upgrades, charging issues.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mid-cta">
+                    <div class="container">
+                        <h2>Stop Paying For Replacements</h2>
+                        <p>Other shops replace entire boards for $400+. We fix the $2 chip that actually failed. Same result. Fraction of the price. That's the Tech Guardian difference.</p>
+                        <div class="cta-group">
+                            <a href="tel:+18166979268" class="btn btn-primary">Call For Free Quote</a>
+                            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Appointment</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="why-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>Why Kansas City Chooses Us</h2>
+                            <p>More repairs. Better prices. Faster turnarounds.</p>
+                        </div>
+
+                        <div class="why-grid">
+                            <div class="why-card">
+                                <h3>Board-Level Micro Soldering</h3>
+                                <p>We fix at the chip level. Repairs other shops call "impossible" are our specialty.</p>
+                            </div>
+                            <div class="why-card">
+                                <h3>Better Prices, Period</h3>
+                                <p>We repair, not replace. That means you pay for a fix, not a whole new part.</p>
+                            </div>
+                            <div class="why-card">
+                                <h3>Fastest Turnarounds</h3>
+                                <p>Most repairs same-day. We know you need your device back yesterday.</p>
+                            </div>
+                            <div class="why-card">
+                                <h3>Apple-Certified Techs</h3>
+                                <p>Trained professionals who know your device inside and out. No guesswork.</p>
+                            </div>
+                            <div class="why-card">
+                                <h3>45-Day Warranty</h3>
+                                <p>Every repair backed by our comprehensive warranty. We stand behind our work.</p>
+                            </div>
+                            <div class="why-card">
+                                <h3>No BS. No Upsells.</h3>
+                                <p>Honest quotes. No hidden fees. No pressure. Just quality repair work.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="process-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2>How It Works</h2>
+                            <p>Simple. Fast. Honest. The way repair should be.</p>
+                        </div>
+
+                        <div class="process-steps">
+                            <div class="step">
+                                <div class="step-num">1</div>
+                                <h3>Call or Walk In</h3>
+                                <p>Bring your "dead" device or give us a call</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">2</div>
+                                <h3>Free Diagnosis</h3>
+                                <p>We find the real problem — even if others missed it</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">3</div>
+                                <h3>Expert Repair</h3>
+                                <p>Board-level fix by certified techs. Most same-day.</p>
+                            </div>
+                            <div class="step">
+                                <div class="step-num">4</div>
+                                <h3>Device Revived</h3>
+                                <p>Pick up your working device. Join the family.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="community-section">
+                    <div class="container">
+                        <div class="community-content">
+                            <h2>Giving Back to KC</h2>
+                            <p>We know times are tough. <strong>Not everyone can afford repairs right now</strong> — but that doesn't mean a student should go without their laptop or someone should lose their job because their phone died.</p>
+
+                            <p>That's why we're launching a <strong>community outreach program</strong>. If you know someone who's down on their luck and needs their device for work or school but can't afford the repair, reach out. Let's see what we can do.</p>
+
+                            <p><strong>Because this isn't just business. It's community.</strong></p>
+
+                            <p class="cta-text">Know someone who needs help? Send them our way.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="social-section">
+                    <div class="container">
+                        <h2>Connect With Us</h2>
+                        <p>Watch our work. Read our reviews. Join the community.</p>
+
+                        <div class="social-grid">
+                            <a href="https://www.google.com/maps/place/Tech+Guardian+LLC/@38.9345739,-94.3777137,17z/" target="_blank" class="social-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Google">
+                                <span>Google Reviews</span>
+                                <small>See what customers say</small>
+                            </a>
+                            <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank" class="social-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/yelp.svg" alt="Yelp">
+                                <span>Yelp Reviews</span>
+                                <small>5-star rated</small>
+                            </a>
+                            <a href="https://www.facebook.com/techguardianllc" target="_blank" class="social-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
+                                <span>Facebook</span>
+                                <small>Follow for updates</small>
+                            </a>
+                            <a href="https://www.youtube.com/@techguardianllc" target="_blank" class="social-card">
+                                <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
+                                <span>Watch Our Work</span>
+                                <small>See repairs in action</small>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="nap-section">
+                    <div class="container">
+                        <div class="nap-card">
+                            <h2>Visit Tech Guardian</h2>
+                            <div class="address">
+                                <strong>Tech Guardian LLC</strong><br>
+                                1239 NE Douglas St, Suite D<br>
+                                Lee's Summit, MO 64086
+                            </div>
+                            <div class="hours">
+                                Monday – Saturday: 10:00 AM – 6:00 PM
+                            </div>
+                            <div class="phone">
+                                <a href="tel:+18166979268">(816) 697-9268</a>
+                            </div>
+                            <div class="nap-links">
+                                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book Appointment</a>
+                                <a href="https://guardandrevive.com">Main Website</a>
+                                <a href="https://maps.apple.com/place?place-id=IC74A016713E964AD" target="_blank">Apple Maps</a>
+                                <a href="https://www.google.com/maps/place/Tech+Guardian+LLC/@38.9345739,-94.3777137,17z/" target="_blank">Google Maps</a>
+                                <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank">Yelp</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="areas-section">
+                    <div class="container">
+                        <h2>Serving the Kansas City Metro</h2>
+                        <div class="areas-list">
+                            <span>Kansas City</span>
+                            <span>Lee's Summit</span>
+                            <span>Independence</span>
+                            <span>Overland Park</span>
+                            <span>Olathe</span>
+                            <span>Blue Springs</span>
+                            <span>Grandview</span>
+                            <span>Raytown</span>
+                            <span>Liberty</span>
+                            <span>Shawnee</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="final-cta">
+                    <div class="container">
+                        <h2>Don't Replace It. Revive It.</h2>
+                        <p class="tagline">Built for the people. Customers for life.</p>
+                        <div class="cta-group">
+                            <a href="tel:+18166979268" class="btn btn-primary">Call (816) 697-9268 Now</a>
+                            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Free Diagnostic</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
             <div class="container">
-                <h2>The <span>Last Resort</span> That Saves The Day</h2>
-                <p class="lead">This is where we make customers for life.</p>
-
-                <div class="last-resort-content">
-                    <p><strong>You've heard it before:</strong> "Sorry, we can't fix that." "You need a new one." "It's not worth repairing."</p>
-
-                    <p>We hear those stories every day. And then we fix the device anyway.</p>
-
-                    <p><strong>Why? Because we work at the board level.</strong> While other shops swap entire components, we grab a microscope and a soldering iron and fix the actual problem — a blown capacitor, a burned trace, a failed chip. It's harder. It takes more skill. But it means we save devices (and your money) that everyone else writes off.</p>
-
-                    <p>We've built our reputation on being the shop you come to AFTER you've been told no. <strong>That one more diagnostic? It's free.</strong> And it might just save your device.</p>
-
-                    <p>Don't give up yet. Give us a call.</p>
-                </div>
+                <p>
+                    <strong>Tech Guardian LLC</strong> — Kansas City's Last Resort Device Repair<br>
+                    1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
+                    <a href="tel:+18166979268">(816) 697-9268</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
+                    <a href="https://www.facebook.com/techguardianllc">Facebook</a> · <a href="https://www.youtube.com/@techguardianllc">YouTube</a> · <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit">Yelp</a> · <a href="https://www.google.com/maps/place/Tech+Guardian+LLC">Google</a><br>
+                    © 2025 Tech Guardian LLC. All rights reserved.
+                </p>
             </div>
-        </section>
-
-        <section class="services-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>What We Repair</h2>
-                    <p>Faster turnarounds. Better prices. Board-level expertise.</p>
-                </div>
-
-                <div class="services-grid">
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="iPhone">
-                        <h3>iPhone & iPad</h3>
-                        <p>Screens, batteries, charging ports, water damage, no power. All models. Most same-day.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung">
-                        <h3>Samsung & Android</h3>
-                        <p>Galaxy, Pixel, OnePlus. Screen repairs, motherboard issues, charging problems.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="MacBook">
-                        <h3>MacBook & Laptop</h3>
-                        <p>Liquid damage specialists. No power, keyboard, screen. All brands welcome.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
-                        <h3>PlayStation</h3>
-                        <p>PS5, PS4, PS3. HDMI ports, disc drives, overheating, BLOD. We fix them all.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xbox.svg" alt="Xbox">
-                        <h3>Xbox</h3>
-                        <p>Series X/S, One, 360. HDMI repair, power issues, disc drives, thermal fixes.</p>
-                    </div>
-                    <div class="service-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
-                        <h3>Steam Deck & Handhelds</h3>
-                        <p>Joystick drift, screen swap, battery replacement, SSD upgrades, charging issues.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mid-cta">
-            <div class="container">
-                <h2>Stop Paying For Replacements</h2>
-                <p>Other shops replace entire boards for $400+. We fix the $2 chip that actually failed. Same result. Fraction of the price. That's the Tech Guardian difference.</p>
-                <div class="cta-group">
-                    <a href="tel:+18166979268" class="btn btn-urgent">Call For Free Quote</a>
-                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Appointment</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="why-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Kansas City Chooses Us</h2>
-                    <p>More repairs. Better prices. Faster turnarounds.</p>
-                </div>
-
-                <div class="why-grid">
-                    <div class="why-card">
-                        <h3>Board-Level Micro Soldering</h3>
-                        <p>We fix at the chip level. Repairs other shops call "impossible" are our specialty.</p>
-                    </div>
-                    <div class="why-card">
-                        <h3>Better Prices, Period</h3>
-                        <p>We repair, not replace. That means you pay for a fix, not a whole new part.</p>
-                    </div>
-                    <div class="why-card">
-                        <h3>Fastest Turnarounds</h3>
-                        <p>Most repairs same-day. We know you need your device back yesterday.</p>
-                    </div>
-                    <div class="why-card">
-                        <h3>Apple-Certified Techs</h3>
-                        <p>Trained professionals who know your device inside and out. No guesswork.</p>
-                    </div>
-                    <div class="why-card">
-                        <h3>45-Day Warranty</h3>
-                        <p>Every repair backed by our comprehensive warranty. We stand behind our work.</p>
-                    </div>
-                    <div class="why-card">
-                        <h3>No BS. No Upsells.</h3>
-                        <p>Honest quotes. No hidden fees. No pressure. Just quality repair work.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="process-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>How It Works</h2>
-                    <p>Simple. Fast. Honest. The way repair should be.</p>
-                </div>
-
-                <div class="process-steps">
-                    <div class="step">
-                        <div class="step-num">1</div>
-                        <h3>Call or Walk In</h3>
-                        <p>Bring your "dead" device or give us a call</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">2</div>
-                        <h3>Free Diagnosis</h3>
-                        <p>We find the real problem — even if others missed it</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">3</div>
-                        <h3>Expert Repair</h3>
-                        <p>Board-level fix by certified techs. Most same-day.</p>
-                    </div>
-                    <div class="step">
-                        <div class="step-num">4</div>
-                        <h3>Device Revived</h3>
-                        <p>Pick up your working device. Join the family.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="community-section">
-            <div class="container">
-                <div class="community-content">
-                    <h2>Giving Back to KC</h2>
-                    <p>We know times are tough. <strong>Not everyone can afford repairs right now</strong> — but that doesn't mean a student should go without their laptop or someone should lose their job because their phone died.</p>
-
-                    <p>That's why we're launching a <strong>community outreach program</strong>. If you know someone who's down on their luck and needs their device for work or school but can't afford the repair, reach out. Let's see what we can do.</p>
-
-                    <p><strong>Because this isn't just business. It's community.</strong></p>
-
-                    <p class="cta-text">Know someone who needs help? Send them our way.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="social-section">
-            <div class="container">
-                <h2>Connect With Us</h2>
-                <p>Watch our work. Read our reviews. Join the community.</p>
-
-                <div class="social-grid">
-                    <a href="https://www.google.com/maps/place/Tech+Guardian+LLC/@38.9345739,-94.3777137,17z/" target="_blank" class="social-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/google.svg" alt="Google">
-                        <span>Google Reviews</span>
-                        <small>See what customers say</small>
-                    </a>
-                    <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank" class="social-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/yelp.svg" alt="Yelp">
-                        <span>Yelp Reviews</span>
-                        <small>5-star rated</small>
-                    </a>
-                    <a href="https://www.facebook.com/techguardianllc" target="_blank" class="social-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
-                        <span>Facebook</span>
-                        <small>Follow for updates</small>
-                    </a>
-                    <a href="https://www.youtube.com/@techguardianllc" target="_blank" class="social-card">
-                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg" alt="YouTube">
-                        <span>Watch Our Work</span>
-                        <small>See repairs in action</small>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="nap-section">
-            <div class="container">
-                <div class="nap-card">
-                    <h2>Visit Tech Guardian</h2>
-                    <div class="address">
-                        <strong>Tech Guardian LLC</strong><br>
-                        1239 NE Douglas St, Suite D<br>
-                        Lee's Summit, MO 64086
-                    </div>
-                    <div class="hours">
-                        Monday – Saturday: 10:00 AM – 6:00 PM
-                    </div>
-                    <div class="phone">
-                        <a href="tel:+18166979268">(816) 697-9268</a>
-                    </div>
-                    <div class="nap-links">
-                        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book Appointment</a>
-                        <a href="https://guardandrevive.com">Main Website</a>
-                        <a href="https://maps.apple.com/place?place-id=IC74A016713E964AD" target="_blank">Apple Maps</a>
-                        <a href="https://www.google.com/maps/place/Tech+Guardian+LLC/@38.9345739,-94.3777137,17z/" target="_blank">Google Maps</a>
-                        <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank">Yelp</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="areas-section">
-            <div class="container">
-                <h2>Serving the Kansas City Metro</h2>
-                <div class="areas-list">
-                    <span>Kansas City</span>
-                    <span>Lee's Summit</span>
-                    <span>Independence</span>
-                    <span>Overland Park</span>
-                    <span>Olathe</span>
-                    <span>Blue Springs</span>
-                    <span>Grandview</span>
-                    <span>Raytown</span>
-                    <span>Liberty</span>
-                    <span>Shawnee</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="final-cta">
-            <div class="container">
-                <h2>Don't Replace It. Revive It.</h2>
-                <p class="tagline">Built for the people. Customers for life.</p>
-                <div class="cta-group">
-                    <a href="tel:+18166979268" class="btn btn-urgent">Call (816) 697-9268 Now</a>
-                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-secondary">Book Free Diagnostic</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>
-                <strong>Tech Guardian LLC</strong> — Kansas City's Last Resort Device Repair<br>
-                1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
-                <a href="tel:+18166979268">(816) 697-9268</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
-                <a href="https://www.facebook.com/techguardianllc">Facebook</a> · <a href="https://www.youtube.com/@techguardianllc">YouTube</a> · <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit">Yelp</a> · <a href="https://www.google.com/maps/place/Tech+Guardian+LLC">Google</a><br>
-                © 2025 Tech Guardian LLC. All rights reserved.
-            </p>
-        </div>
-    </footer>
+        </footer>
+    </div>
 </body>
 </html>
