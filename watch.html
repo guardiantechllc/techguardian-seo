@@ -1,128 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch | Tech Guardian Repairs in Action | Kansas City</title>
-    <meta name="description" content="Watch Tech Guardian repairs in action. See our board-level micro soldering, console repairs, phone fixes, and more. Real repairs, real results.">
-    <meta name="keywords" content="Tech Guardian videos, repair videos, micro soldering, board repair, console repair videos, phone repair Kansas City">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://guardianrevives.com/watch">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+    .tg-page { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; min-height: 100vh; padding: 0; margin: 0; }
+    .tg-page a { color: #a8d4ff; text-decoration: none; transition: all 0.3s ease; }
+    .tg-page a:hover { color: #fff; }
+    .tg-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --ice-blue: #a8d4ff; --snow: #ffffff; --midnight: #0a0a0f; --frost: rgba(255,255,255,0.1); }
-        body { font-family: 'Inter', sans-serif; background: var(--midnight); color: var(--snow); min-height: 100vh; }
-        a { color: var(--ice-blue); text-decoration: none; transition: all 0.3s ease; }
-        a:hover { color: var(--snow); }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    .tg-hero { padding: 80px 0 50px; text-align: center; }
+    .tg-hero h1 { font-size: clamp(32px, 6vw, 48px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; color: #fff; }
+    .tg-hero .tg-highlight { color: #a8d4ff; }
+    .tg-hero p { font-size: 18px; color: #a8d4ff; max-width: 650px; margin: 0 auto; line-height: 1.7; }
 
-        .hero { padding: 80px 0 50px; text-align: center; }
-        .hero h1 { font-size: clamp(32px, 6vw, 48px); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; }
-        .hero h1 .highlight { color: var(--ice-blue); }
-        .hero p { font-size: 18px; color: var(--ice-blue); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+    .tg-video-section { margin: 40px 0; }
+    .tg-video-section h2 { font-size: 24px; margin-bottom: 20px; text-transform: uppercase; text-align: center; color: #fff; }
+    .tg-video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .tg-video-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
+    .tg-video-card:hover { border-color: #fff; transform: translateY(-5px); }
+    .tg-video-placeholder { background: linear-gradient(135deg, rgba(168,212,255,0.1), rgba(0,0,0,0.3)); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+    .tg-video-card-content { padding: 20px; }
+    .tg-video-card h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+    .tg-video-card p { font-size: 14px; color: #a8d4ff; line-height: 1.5; }
 
-        .video-section { margin: 40px 0; }
-        .video-section h2 { font-size: 24px; margin-bottom: 20px; text-transform: uppercase; text-align: center; }
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .video-card { background: rgba(255,255,255,0.03); border: 1px solid var(--frost); border-radius: 16px; overflow: hidden; transition: all 0.3s ease; }
-        .video-card:hover { border-color: var(--snow); transform: translateY(-5px); }
-        .video-placeholder { background: linear-gradient(135deg, rgba(168,212,255,0.1), rgba(0,0,0,0.3)); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 48px; }
-        .video-card-content { padding: 20px; }
-        .video-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--snow); }
-        .video-card p { font-size: 14px; color: var(--ice-blue); line-height: 1.5; }
+    .tg-social-section { margin: 60px 0; }
+    .tg-social-section h2 { font-size: 26px; margin-bottom: 30px; text-transform: uppercase; text-align: center; color: #fff; }
+    .tg-social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .tg-social-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 30px; text-align: center; transition: all 0.3s ease; }
+    .tg-social-card:hover { border-color: #fff; transform: translateY(-5px); }
+    .tg-social-card .tg-icon { font-size: 40px; margin-bottom: 15px; }
+    .tg-social-card h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+    .tg-social-card p { font-size: 14px; color: #a8d4ff; margin-bottom: 15px; }
+    .tg-social-card a { display: inline-block; padding: 10px 20px; background: #a8d4ff; color: #0a0a0f; border-radius: 8px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
+    .tg-social-card a:hover { background: #fff; }
 
-        .social-section { margin: 60px 0; }
-        .social-section h2 { font-size: 26px; margin-bottom: 30px; text-transform: uppercase; text-align: center; }
-        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .social-card { background: rgba(255,255,255,0.03); border: 1px solid var(--frost); border-radius: 16px; padding: 30px; text-align: center; transition: all 0.3s ease; }
-        .social-card:hover { border-color: var(--snow); transform: translateY(-5px); }
-        .social-card .icon { font-size: 40px; margin-bottom: 15px; }
-        .social-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--snow); }
-        .social-card p { font-size: 14px; color: var(--ice-blue); margin-bottom: 15px; }
-        .social-card a { display: inline-block; padding: 10px 20px; background: var(--ice-blue); color: var(--midnight); border-radius: 8px; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
-        .social-card a:hover { background: var(--snow); }
+    .tg-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 45px 35px; margin: 40px 0; transition: all 0.3s ease; }
+    .tg-card:hover { border-color: #fff; }
+    .tg-card h2 { font-size: 26px; margin-bottom: 20px; text-transform: uppercase; color: #fff; text-align: center; }
+    .tg-card p { color: #a8d4ff; font-size: 16px; line-height: 1.8; text-align: center; }
 
-        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--frost); border-radius: 16px; padding: 45px 35px; margin: 40px 0; transition: all 0.3s ease; }
-        .card:hover { border-color: var(--snow); }
-        .card h2 { font-size: 26px; margin-bottom: 20px; text-transform: uppercase; color: var(--snow); text-align: center; }
-        .card p { color: var(--ice-blue); font-size: 16px; line-height: 1.8; text-align: center; }
+    .tg-cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
+    .tg-btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; }
+    .tg-btn-primary { background: #a8d4ff; color: #0a0a0f; border-color: #a8d4ff; }
+    .tg-btn-primary:hover { background: #fff; border-color: #fff; color: #0a0a0f; transform: translateY(-2px); }
+    .tg-btn-outline { background: transparent; color: #fff; border: 2px solid #a8d4ff; }
+    .tg-btn-outline:hover { background: #fff; color: #0a0a0f; border-color: #fff; }
 
-        .cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
-        .btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; }
-        .btn-primary { background: var(--ice-blue); color: var(--midnight); border-color: var(--ice-blue); }
-        .btn-primary:hover { background: var(--snow); border-color: var(--snow); transform: translateY(-2px); }
-        .btn-outline { background: transparent; color: var(--snow); border: 2px solid var(--ice-blue); }
-        .btn-outline:hover { background: var(--snow); color: var(--midnight); border-color: var(--snow); }
+    .tg-nav-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 30px 0; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+    .tg-nav-links a { padding: 10px 20px; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid transparent; }
+    .tg-nav-links a:hover { background: #fff; color: #0a0a0f; border-color: #fff; }
 
-        .nav-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; padding: 30px 0; border-top: 1px solid var(--frost); margin-top: 40px; }
-        .nav-links a { padding: 10px 20px; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid transparent; }
-        .nav-links a:hover { background: var(--snow); color: var(--midnight); border-color: var(--snow); }
+    .tg-footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+    .tg-footer p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 2; }
+    .tg-footer a { color: #a8d4ff; }
+    .tg-footer a:hover { color: #fff; }
 
-        footer { padding: 40px 0; text-align: center; border-top: 1px solid var(--frost); margin-top: 40px; }
-        footer p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 2; }
-        footer a { color: var(--ice-blue); }
-        footer a:hover { color: var(--snow); }
+    .tg-chat-trigger { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #a8d4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 25px rgba(168,212,255,0.4); z-index: 1000; border: none; color: #0a0a0f; font-size: 24px; transition: all 0.3s ease; }
+    .tg-chat-trigger:hover { transform: scale(1.1); }
+    .tg-chat-popup { position: fixed; bottom: 100px; right: 25px; width: 350px; max-width: calc(100vw - 50px); background: #0a0a0f; border: 2px solid #a8d4ff; border-radius: 16px; z-index: 1001; display: none; overflow: hidden; }
+    .tg-chat-popup.active { display: block; }
+    .tg-chat-header { background: #a8d4ff; color: #0a0a0f; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .tg-chat-header h4 { font-size: 16px; font-weight: 700; margin: 0; }
+    .tg-chat-close { background: none; border: none; color: #0a0a0f; font-size: 24px; cursor: pointer; }
+    .tg-chat-messages { height: 280px; overflow-y: auto; padding: 20px; }
+    .tg-chat-message { margin-bottom: 15px; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+    .tg-chat-message.bot { background: rgba(168,212,255,0.1); color: #fff; border: 1px solid rgba(168,212,255,0.2); }
+    .tg-chat-message.user { background: #a8d4ff; color: #0a0a0f; margin-left: 30px; }
+    .tg-chat-input { display: flex; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); gap: 10px; }
+    .tg-chat-input input { flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff; font-size: 14px; }
+    .tg-chat-input input:focus { outline: none; border-color: #a8d4ff; }
+    .tg-chat-input button { padding: 12px 20px; background: #a8d4ff; color: #0a0a0f; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .tg-chat-input button:hover { background: #fff; }
 
-        .chatbot-trigger { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: var(--ice-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 25px rgba(168,212,255,0.4); z-index: 1000; border: none; color: var(--midnight); font-size: 24px; transition: all 0.3s ease; }
-        .chatbot-trigger:hover { transform: scale(1.1); }
-        .chatbot-popup { position: fixed; bottom: 100px; right: 25px; width: 350px; max-width: calc(100vw - 50px); background: var(--midnight); border: 2px solid var(--ice-blue); border-radius: 16px; z-index: 1001; display: none; overflow: hidden; }
-        .chatbot-popup.active { display: block; }
-        .chatbot-header { background: var(--ice-blue); color: var(--midnight); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .chatbot-header h4 { font-size: 16px; font-weight: 700; }
-        .chatbot-close { background: none; border: none; color: var(--midnight); font-size: 24px; cursor: pointer; }
-        .chatbot-messages { height: 280px; overflow-y: auto; padding: 20px; }
-        .chat-message { margin-bottom: 15px; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
-        .chat-message.bot { background: rgba(168,212,255,0.1); color: var(--snow); border: 1px solid rgba(168,212,255,0.2); }
-        .chat-message.user { background: var(--ice-blue); color: var(--midnight); margin-left: 30px; }
-        .chatbot-input { display: flex; padding: 15px; border-top: 1px solid var(--frost); gap: 10px; }
-        .chatbot-input input { flex: 1; padding: 12px 16px; border: 1px solid var(--frost); border-radius: 8px; background: rgba(255,255,255,0.05); color: var(--snow); font-size: 14px; }
-        .chatbot-input input:focus { outline: none; border-color: var(--ice-blue); }
-        .chatbot-input button { padding: 12px 20px; background: var(--ice-blue); color: var(--midnight); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
-        .chatbot-input button:hover { background: var(--snow); }
+    @media (max-width: 600px) {
+        .tg-btn { width: 100%; text-align: center; }
+        .tg-cta-row, .tg-nav-links { flex-direction: column; }
+        .tg-nav-links a { text-align: center; }
+    }
+</style>
 
-        @media (max-width: 600px) {
-            .btn { width: 100%; text-align: center; }
-            .cta-row, .nav-links { flex-direction: column; }
-            .nav-links a { text-align: center; }
-        }
-    </style>
-</head>
-<body>
-    <main class="container">
-        <section class="hero">
-            <h1><span class="highlight">Watch</span> Us Work</h1>
+<div class="tg-page">
+    <div class="tg-container">
+        <section class="tg-hero">
+            <h1><span class="tg-highlight">Watch</span> Us Work</h1>
             <p>See what real board-level repair looks like. No smoke and mirrors — just skilled technicians fixing what others can't.</p>
         </section>
 
-        <section class="video-section">
+        <section class="tg-video-section">
             <h2>Featured Repairs</h2>
-            <div class="video-grid">
-                <div class="video-card">
-                    <div class="video-placeholder">🎬</div>
-                    <div class="video-card-content">
+            <div class="tg-video-grid">
+                <div class="tg-video-card">
+                    <div class="tg-video-placeholder">🎬</div>
+                    <div class="tg-video-card-content">
                         <h3>PS5 HDMI Port Repair</h3>
                         <p>Watch us micro-solder a new HDMI port onto a PS5 that had no video output. This is what board-level repair looks like.</p>
                     </div>
                 </div>
-                <div class="video-card">
-                    <div class="video-placeholder">🎬</div>
-                    <div class="video-card-content">
+                <div class="tg-video-card">
+                    <div class="tg-video-placeholder">🎬</div>
+                    <div class="tg-video-card-content">
                         <h3>MacBook Liquid Damage</h3>
                         <p>Coffee spill recovery. We clean the board, identify damaged components, and bring this MacBook back to life.</p>
                     </div>
                 </div>
-                <div class="video-card">
-                    <div class="video-placeholder">🎬</div>
-                    <div class="video-card-content">
+                <div class="tg-video-card">
+                    <div class="tg-video-placeholder">🎬</div>
+                    <div class="tg-video-card-content">
                         <h3>iPhone Screen Replacement</h3>
                         <p>From shattered to perfect in under 30 minutes. See our screen replacement process.</p>
                     </div>
                 </div>
-                <div class="video-card">
-                    <div class="video-placeholder">🎬</div>
-                    <div class="video-card-content">
+                <div class="tg-video-card">
+                    <div class="tg-video-placeholder">🎬</div>
+                    <div class="tg-video-card-content">
                         <h3>Steam Deck Joystick Fix</h3>
                         <p>Eliminating joystick drift on a Steam Deck. Complete module replacement and calibration.</p>
                     </div>
@@ -130,29 +117,29 @@
             </div>
         </section>
 
-        <section class="social-section">
+        <section class="tg-social-section">
             <h2>Follow Our Work</h2>
-            <div class="social-grid">
-                <div class="social-card">
-                    <div class="icon">📺</div>
+            <div class="tg-social-grid">
+                <div class="tg-social-card">
+                    <div class="tg-icon">📺</div>
                     <h3>YouTube</h3>
                     <p>Full repair videos, tutorials, and behind-the-scenes content.</p>
                     <a href="#">Subscribe</a>
                 </div>
-                <div class="social-card">
-                    <div class="icon">📸</div>
+                <div class="tg-social-card">
+                    <div class="tg-icon">📸</div>
                     <h3>Instagram</h3>
                     <p>Daily repair stories, before/after shots, and shop life.</p>
                     <a href="#">Follow</a>
                 </div>
-                <div class="social-card">
-                    <div class="icon">🎵</div>
+                <div class="tg-social-card">
+                    <div class="tg-icon">🎵</div>
                     <h3>TikTok</h3>
                     <p>Quick repair clips and satisfying fixes. 60 seconds of tech magic.</p>
                     <a href="#">Watch</a>
                 </div>
-                <div class="social-card">
-                    <div class="icon">📘</div>
+                <div class="tg-social-card">
+                    <div class="tg-icon">📘</div>
                     <h3>Facebook</h3>
                     <p>Updates, promotions, and community interaction.</p>
                     <a href="#">Like</a>
@@ -160,17 +147,17 @@
             </div>
         </section>
 
-        <div class="card">
+        <div class="tg-card">
             <h2>Why We Share Our Work</h2>
             <p>Transparency builds trust. We want you to see exactly what we do and how we do it. No hidden tricks, no mysterious "repair magic" — just skilled technicians with the right tools doing excellent work. When you watch us work, you'll understand why we can fix things others can't.</p>
         </div>
 
-        <div class="cta-row">
-            <a href="tel:+18165830100" class="btn btn-primary">Call (816) 583-0100</a>
-            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-outline">Book Appointment</a>
+        <div class="tg-cta-row">
+            <a href="tel:+18165830100" class="tg-btn tg-btn-primary">Call (816) 583-0100</a>
+            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="tg-btn tg-btn-outline">Book Appointment</a>
         </div>
 
-        <nav class="nav-links">
+        <nav class="tg-nav-links">
             <a href="https://guardianrevives.com">Home</a>
             <a href="https://guardianrevives.com/about">About</a>
             <a href="https://guardianrevives.com/phone-restoration">Phone Repair</a>
@@ -178,53 +165,52 @@
             <a href="https://guardianrevives.com/mac-laptop-repair">Mac & Laptop</a>
             <a href="https://guardianrevives.com/contact">Contact</a>
         </nav>
-    </main>
+    </div>
 
-    <footer>
+    <footer class="tg-footer">
         <p>
             <strong>Tech Guardian LLC</strong><br>
             1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
             <a href="tel:+18165830100">(816) 583-0100</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a>
         </p>
     </footer>
+</div>
 
-    <button class="chatbot-trigger" onclick="toggleChatbot()">💬</button>
-    <div class="chatbot-popup" id="chatbotPopup">
-        <div class="chatbot-header">
-            <h4>Guardian AI</h4>
-            <button class="chatbot-close" onclick="toggleChatbot()">×</button>
-        </div>
-        <div class="chatbot-messages" id="chatMessages">
-            <div class="chat-message bot">Hey! Want to see a specific type of repair or have questions about our work?</div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatInput" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendMessage()">
-            <button onclick="sendMessage()">Send</button>
-        </div>
+<button class="tg-chat-trigger" onclick="toggleTgChat()">💬</button>
+<div class="tg-chat-popup" id="tgChatPopup">
+    <div class="tg-chat-header">
+        <h4>Guardian AI</h4>
+        <button class="tg-chat-close" onclick="toggleTgChat()">×</button>
     </div>
+    <div class="tg-chat-messages" id="tgChatMessages">
+        <div class="tg-chat-message bot">Hey! Want to see a specific type of repair or have questions about our work?</div>
+    </div>
+    <div class="tg-chat-input">
+        <input type="text" id="tgChatInput" placeholder="Ask anything..." onkeypress="if(event.key==='Enter')sendTgMsg()">
+        <button onclick="sendTgMsg()">Send</button>
+    </div>
+</div>
 
-    <script>
-        function toggleChatbot() { document.getElementById('chatbotPopup').classList.toggle('active'); }
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            const text = input.value.trim();
-            if (!text) return;
-            messages.innerHTML += '<div class="chat-message user">' + text + '</div>';
-            input.value = '';
-            setTimeout(() => {
-                const response = getBotResponse(text.toLowerCase());
-                messages.innerHTML += '<div class="chat-message bot">' + response + '</div>';
-                messages.scrollTop = messages.scrollHeight;
-            }, 500);
-        }
-        function getBotResponse(text) {
-            if (text.includes('youtube') || text.includes('video')) return "Check out our YouTube channel for full repair videos! We post new content regularly.";
-            if (text.includes('instagram') || text.includes('tiktok')) return "We post daily on Instagram and TikTok! Follow us for repair stories and satisfying fixes.";
-            if (text.includes('micro solder') || text.includes('board')) return "Board-level repair is our specialty! Watch our videos to see micro soldering in action.";
-            return "Follow us on social media to see our repairs! Or call (816) 583-0100 with questions.";
-        }
-        setTimeout(() => { document.getElementById('chatbotPopup').classList.add('active'); }, 3000);
-    </script>
-</body>
-</html>
+<script>
+    function toggleTgChat() { document.getElementById('tgChatPopup').classList.toggle('active'); }
+    function sendTgMsg() {
+        const input = document.getElementById('tgChatInput');
+        const messages = document.getElementById('tgChatMessages');
+        const text = input.value.trim();
+        if (!text) return;
+        messages.innerHTML += '<div class="tg-chat-message user">' + text + '</div>';
+        input.value = '';
+        setTimeout(() => {
+            const response = getTgBotResponse(text.toLowerCase());
+            messages.innerHTML += '<div class="tg-chat-message bot">' + response + '</div>';
+            messages.scrollTop = messages.scrollHeight;
+        }, 500);
+    }
+    function getTgBotResponse(text) {
+        if (text.includes('youtube') || text.includes('video')) return "Check out our YouTube channel for full repair videos! We post new content regularly.";
+        if (text.includes('instagram') || text.includes('tiktok')) return "We post daily on Instagram and TikTok! Follow us for repair stories and satisfying fixes.";
+        if (text.includes('micro solder') || text.includes('board')) return "Board-level repair is our specialty! Watch our videos to see micro soldering in action.";
+        return "Follow us on social media to see our repairs! Or call (816) 583-0100 with questions.";
+    }
+    setTimeout(() => { document.getElementById('tgChatPopup').classList.add('active'); }, 3000);
+</script>

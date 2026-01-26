@@ -1,487 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Guardian | KC Metro's #1 Device Repair | Board-Level Micro Soldering | We Fix The Unfixable</title>
-    <meta name="description" content="Kansas City Metro's top-rated device repair. 4.9★ Google. Board-level micro soldering - iPhones, MacBooks, PS5, Xbox, Switch, Steam Deck. Same OEM parts, better prices. Free diagnostics. Same-day service. 45-day warranty. (816) 583-0100">
-    <meta name="keywords" content="board level repair Kansas City, micro soldering Kansas City, iPhone repair Kansas City, MacBook repair Kansas City, PS5 repair, Xbox repair, Steam Deck repair, computer repair Lee's Summit, Tech Guardian, device repair near me, screen repair Kansas City, console repair Kansas City, HDMI port repair, liquid damage repair">
-    <meta name="robots" content="index, follow">
-    <meta name="geo.region" content="US-MO">
-    <meta name="geo.placename" content="Kansas City">
-    <meta name="author" content="Tech Guardian LLC">
-    <link rel="canonical" href="https://guardianrevives.com/">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+    .tg-page * { margin: 0; padding: 0; box-sizing: border-box; }
+    .tg-page { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #fff; padding: 40px 20px; }
+    .tg-page a { color: #a8d4ff; text-decoration: none; transition: all 0.3s ease; }
+    .tg-page a:hover { color: #fff; }
+    .tg-container { max-width: 900px; margin: 0 auto; }
 
-    <meta property="og:title" content="Tech Guardian | KC Metro's #1 Device Repair Experts">
-    <meta property="og:description" content="Kansas City Metro's top-rated device repair. Board-level micro soldering - iPhones, MacBooks, PS5, Xbox, Switch, Steam Deck. Same OEM parts, better prices.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://guardianrevives.com/">
+    .tg-hero { padding: 60px 0 40px; text-align: center; }
+    .tg-hero h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 900; line-height: 1.1; margin-bottom: 25px; text-transform: uppercase; color: #fff; }
+    .tg-hero h1 span { color: #a8d4ff; }
+    .tg-hero .tg-subtitle { font-size: 20px; color: #fff; font-weight: 600; margin-bottom: 15px; }
+    .tg-hero p { font-size: 17px; color: #a8d4ff; max-width: 650px; margin: 0 auto 40px; line-height: 1.7; }
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Tech Guardian LLC",
-        "description": "Kansas City Metro's top-rated device repair experts. Board-level micro soldering specialists. iPhone, MacBook, PS5, Xbox, Steam Deck, PC repairs. Same OEM parts, better prices. Free diagnostics. Same-day service. 45-day warranty.",
-        "telephone": "+1-816-583-0100",
-        "email": "tech@guardianlabs.digital",
-        "url": "https://guardianrevives.com",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "1239 NE Douglas St Suite D",
-            "addressLocality": "Lee's Summit",
-            "addressRegion": "MO",
-            "postalCode": "64086",
-            "addressCountry": "US"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "38.9345739",
-            "longitude": "-94.3777137"
-        },
-        "areaServed": [
-            {"@type": "City", "name": "Kansas City"},
-            {"@type": "City", "name": "Lee's Summit"},
-            {"@type": "City", "name": "Overland Park"},
-            {"@type": "City", "name": "Independence"},
-            {"@type": "City", "name": "Blue Springs"},
-            {"@type": "City", "name": "Grandview"},
-            {"@type": "City", "name": "Raytown"},
-            {"@type": "City", "name": "Belton"},
-            {"@type": "City", "name": "Olathe"},
-            {"@type": "City", "name": "Shawnee"},
-            {"@type": "City", "name": "Prairie Village"}
-        ],
-        "priceRange": "$$",
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "10:00",
-            "closes": "18:00"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "127"
-        }
+    .tg-badges { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 40px; }
+    .tg-badge { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 14px; font-weight: 600; }
+    .tg-badge-icon { width: 24px; height: 24px; background: #a8d4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #0a0a0f; font-weight: 700; }
+
+    .tg-brands { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 45px; opacity: 0.7; }
+    .tg-brands img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+
+    .tg-cta { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin: 40px 0; }
+    .tg-btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 2px solid transparent; display: inline-block; }
+    .tg-btn-primary { background: #a8d4ff; color: #0a0a0f; border-color: #a8d4ff; }
+    .tg-btn-primary:hover { background: #fff; border-color: #fff; color: #0a0a0f; transform: translateY(-2px); }
+    .tg-btn-outline { background: transparent; color: #fff; border: 2px solid #a8d4ff; }
+    .tg-btn-outline:hover { background: #fff; color: #0a0a0f; border-color: #fff; }
+
+    .tg-section-title { text-align: center; font-size: 28px; margin-bottom: 12px; text-transform: uppercase; color: #fff; }
+    .tg-section-subtitle { text-align: center; color: #a8d4ff; font-size: 17px; margin-bottom: 45px; }
+
+    .tg-services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin: 40px 0; }
+    .tg-service { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 30px 22px; text-align: center; transition: all 0.3s ease; }
+    .tg-service:hover { border-color: #fff; transform: translateY(-5px); }
+    .tg-service img { height: 36px; margin-bottom: 18px; filter: brightness(0) invert(1); opacity: 0.9; }
+    .tg-service h3 { font-size: 18px; margin-bottom: 10px; color: #fff; }
+    .tg-service p { font-size: 14px; color: #a8d4ff; line-height: 1.6; }
+
+    .tg-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 45px 35px; margin-bottom: 25px; text-align: center; transition: all 0.3s ease; }
+    .tg-card:hover { border-color: #fff; }
+    .tg-card h2 { font-size: 26px; margin-bottom: 22px; text-transform: uppercase; color: #fff; }
+    .tg-card p { color: #a8d4ff; font-size: 16px; line-height: 1.8; max-width: 700px; margin: 0 auto; }
+    .tg-card ul { list-style: none; text-align: left; max-width: 600px; margin: 22px auto 0; }
+    .tg-card li { padding: 14px 0; color: #a8d4ff; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-left: 22px; position: relative; }
+    .tg-card li:last-child { border-bottom: none; }
+    .tg-card li::before { content: ""; width: 8px; height: 8px; background: #a8d4ff; border-radius: 50%; position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+    .tg-card li strong { color: #fff; }
+
+    .tg-why-card { background: linear-gradient(135deg, rgba(168,212,255,0.1), rgba(0,0,0,0.3)); border: 1px solid rgba(168,212,255,0.2); }
+    .tg-why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+    .tg-why-item { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 25px; text-align: center; transition: all 0.3s ease; border: 1px solid transparent; }
+    .tg-why-item:hover { background: rgba(255,255,255,0.06); border-color: #fff; }
+    .tg-why-item h3 { font-size: 18px; margin-bottom: 10px; color: #a8d4ff; }
+    .tg-why-item p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+    .tg-process { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; margin: 35px 0; }
+    .tg-step { flex: 1; min-width: 160px; max-width: 220px; text-align: center; }
+    .tg-step-num { width: 55px; height: 55px; background: #a8d4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; margin: 0 auto 18px; color: #0a0a0f; }
+    .tg-step h3 { font-size: 17px; margin-bottom: 8px; color: #fff; }
+    .tg-step p { font-size: 14px; color: #a8d4ff; line-height: 1.5; }
+
+    .tg-tagline { text-align: center; padding: 50px 0; }
+    .tg-tagline p { font-size: 24px; color: #fff; font-weight: 700; }
+    .tg-tagline span { color: #a8d4ff; }
+
+    .tg-nap { background: linear-gradient(135deg, rgba(168,212,255,0.15), rgba(168,212,255,0.03)); border: 2px solid #a8d4ff; border-radius: 20px; padding: 55px 35px; text-align: center; margin: 45px 0; }
+    .tg-nap h2 { font-size: 28px; margin-bottom: 25px; text-transform: uppercase; color: #fff; }
+    .tg-nap .tg-address { font-size: 17px; color: #a8d4ff; margin-bottom: 22px; line-height: 1.9; }
+    .tg-nap .tg-hours { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 22px; }
+    .tg-nap .tg-phone { font-size: 34px; font-weight: 900; margin-bottom: 28px; }
+    .tg-nap .tg-phone a { color: #fff; text-decoration: none; transition: all 0.3s ease; }
+    .tg-nap .tg-phone a:hover { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    .tg-nap-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .tg-nap-links a { padding: 12px 24px; border-radius: 8px; background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease; border: 1px solid transparent; }
+    .tg-nap-links a:hover { background: #fff; color: #0a0a0f; border-color: #fff; transform: translateY(-2px); }
+
+    .tg-areas { padding: 45px 0; text-align: center; }
+    .tg-areas h2 { font-size: 22px; margin-bottom: 22px; text-transform: uppercase; color: #fff; }
+    .tg-areas-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .tg-areas-list span { color: #a8d4ff; font-size: 15px; padding: 8px 18px; background: rgba(255,255,255,0.03); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s ease; }
+    .tg-areas-list span:hover { border-color: #fff; color: #fff; }
+
+    .tg-footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; }
+    .tg-footer p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 2.2; }
+    .tg-footer a { color: #a8d4ff; }
+    .tg-footer a:hover { color: #fff; }
+
+    .tg-chat-trigger { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: #a8d4ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 25px rgba(168,212,255,0.4); z-index: 1000; border: none; color: #0a0a0f; font-size: 24px; transition: all 0.3s ease; }
+    .tg-chat-trigger:hover { transform: scale(1.1); }
+    .tg-chat-popup { position: fixed; bottom: 100px; right: 25px; width: 350px; max-width: calc(100vw - 50px); background: #0a0a0f; border: 2px solid #a8d4ff; border-radius: 16px; z-index: 1001; display: none; overflow: hidden; }
+    .tg-chat-popup.active { display: block; }
+    .tg-chat-header { background: #a8d4ff; color: #0a0a0f; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .tg-chat-header h4 { font-size: 16px; font-weight: 700; margin: 0; }
+    .tg-chat-close { background: none; border: none; color: #0a0a0f; font-size: 24px; cursor: pointer; }
+    .tg-chat-messages { height: 280px; overflow-y: auto; padding: 20px; }
+    .tg-chat-msg { margin-bottom: 15px; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+    .tg-chat-msg.bot { background: rgba(168,212,255,0.1); color: #fff; border: 1px solid rgba(168,212,255,0.2); }
+    .tg-chat-msg.user { background: #a8d4ff; color: #0a0a0f; margin-left: 30px; }
+    .tg-chat-input { display: flex; padding: 15px; border-top: 1px solid rgba(255,255,255,0.1); gap: 10px; }
+    .tg-chat-input input { flex: 1; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; background: rgba(255,255,255,0.05); color: #fff; font-size: 14px; }
+    .tg-chat-input input:focus { outline: none; border-color: #a8d4ff; }
+    .tg-chat-input button { padding: 12px 20px; background: #a8d4ff; color: #0a0a0f; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .tg-chat-input button:hover { background: #fff; }
+
+    @media (max-width: 768px) {
+        .tg-hero h1 { font-size: 28px; }
+        .tg-hero .tg-subtitle { font-size: 17px; }
+        .tg-section-title { font-size: 24px; }
+        .tg-badges { gap: 12px; }
+        .tg-badge { font-size: 12px; }
     }
-    </script>
+    @media (max-width: 600px) {
+        .tg-btn { padding: 14px 28px; font-size: 14px; width: 100%; text-align: center; }
+        .tg-cta { flex-direction: column; align-items: stretch; }
+        .tg-nap .tg-phone { font-size: 26px; }
+        .tg-nap { padding: 35px 22px; }
+        .tg-card { padding: 30px 22px; }
+        .tg-nap-links { flex-direction: column; align-items: stretch; }
+        .tg-nap-links a { text-align: center; }
+        .tg-process { flex-direction: column; align-items: center; }
+        .tg-areas-list { flex-direction: column; }
+    }
+</style>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --ice-blue: #a8d4ff;
-            --snow: #ffffff;
-            --midnight: #0a0a0f;
-            --frost: rgba(255,255,255,0.1);
-            --accent: #00d4ff;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--midnight);
-            color: var(--snow);
-            min-height: 100vh;
-        }
-
-        a {
-            color: var(--ice-blue);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--snow);
-        }
-
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
-
-        .hero { padding: 80px 0 60px; text-align: center; }
-        .hero h1 {
-            font-size: clamp(32px, 6vw, 52px);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            color: var(--snow);
-        }
-        .hero h1 .highlight { color: var(--ice-blue); }
-        .hero .subtitle { font-size: 20px; color: var(--snow); font-weight: 600; margin-bottom: 15px; }
-        .hero p { font-size: 17px; color: var(--ice-blue); max-width: 650px; margin: 0 auto 40px; line-height: 1.7; }
-
-        .trust-badges { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 40px; }
-        .badge { display: flex; align-items: center; gap: 10px; color: var(--snow); font-size: 14px; font-weight: 600; }
-        .badge-icon {
-            width: 24px;
-            height: 24px;
-            background: var(--ice-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: var(--midnight);
-            font-weight: 700;
-        }
-
-        .brand-icons { display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 45px; opacity: 0.7; }
-        .brand-icons img { height: 28px; width: auto; filter: brightness(0) invert(1); }
-
-        .cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px; }
-        .btn {
-            padding: 16px 36px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        .btn-primary {
-            background: var(--ice-blue);
-            color: var(--midnight);
-            border-color: var(--ice-blue);
-        }
-        .btn-primary:hover {
-            background: var(--snow);
-            border-color: var(--snow);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--snow);
-            border: 2px solid var(--ice-blue);
-        }
-        .btn-outline:hover {
-            background: var(--snow);
-            color: var(--midnight);
-            border-color: var(--snow);
-        }
-
-        .services-section { padding: 70px 0; }
-        .section-title { text-align: center; font-size: 28px; margin-bottom: 12px; text-transform: uppercase; color: var(--snow); }
-        .section-subtitle { text-align: center; color: var(--ice-blue); font-size: 17px; margin-bottom: 45px; }
-
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
-        .service-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--frost);
-            border-radius: 16px;
-            padding: 30px 22px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .service-card:hover {
-            border-color: var(--snow);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255,255,255,0.1);
-        }
-        .service-card img { height: 36px; margin-bottom: 18px; filter: brightness(0) invert(1); opacity: 0.9; }
-        .service-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--snow); }
-        .service-card p { font-size: 14px; color: var(--ice-blue); line-height: 1.6; }
-
-        .card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--frost);
-            border-radius: 16px;
-            padding: 45px 35px;
-            margin-bottom: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .card:hover {
-            border-color: var(--snow);
-        }
-        .card h2 { font-size: 26px; margin-bottom: 22px; text-transform: uppercase; color: var(--snow); }
-        .card p { color: var(--ice-blue); font-size: 16px; line-height: 1.8; max-width: 700px; margin: 0 auto; }
-        .card ul { list-style: none; text-align: left; max-width: 600px; margin: 22px auto 0; }
-        .card li {
-            padding: 14px 0;
-            color: var(--ice-blue);
-            font-size: 16px;
-            border-bottom: 1px solid var(--frost);
-            padding-left: 22px;
-            position: relative;
-        }
-        .card li:last-child { border-bottom: none; }
-        .card li::before {
-            content: "";
-            width: 8px;
-            height: 8px;
-            background: var(--ice-blue);
-            border-radius: 50%;
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .card li strong { color: var(--snow); }
-
-        .why-card {
-            background: linear-gradient(135deg, rgba(168,212,255,0.1), rgba(0,0,0,0.3));
-            border: 1px solid rgba(168,212,255,0.2);
-        }
-        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
-        .why-item {
-            background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        .why-item:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: var(--snow);
-        }
-        .why-item h3 { font-size: 18px; margin-bottom: 10px; color: var(--ice-blue); }
-        .why-item p { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-
-        .process-section { padding: 50px 0; }
-        .process-steps { display: flex; justify-content: center; gap: 35px; flex-wrap: wrap; margin-top: 35px; }
-        .step { flex: 1; min-width: 160px; max-width: 220px; text-align: center; }
-        .step-num {
-            width: 55px;
-            height: 55px;
-            background: var(--ice-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 900;
-            margin: 0 auto 18px;
-            color: var(--midnight);
-        }
-        .step h3 { font-size: 17px; margin-bottom: 8px; color: var(--snow); }
-        .step p { font-size: 14px; color: var(--ice-blue); line-height: 1.5; }
-
-        .tagline { text-align: center; padding: 50px 0; }
-        .tagline p { font-size: 24px; color: var(--snow); font-weight: 700; }
-        .tagline span { color: var(--ice-blue); }
-
-        .nap {
-            background: linear-gradient(135deg, rgba(168,212,255,0.15), rgba(168,212,255,0.03));
-            border: 2px solid var(--ice-blue);
-            border-radius: 20px;
-            padding: 55px 35px;
-            text-align: center;
-            margin: 45px 0;
-        }
-        .nap h2 { font-size: 28px; margin-bottom: 25px; text-transform: uppercase; color: var(--snow); }
-        .nap .address { font-size: 17px; color: var(--ice-blue); margin-bottom: 22px; line-height: 1.9; }
-        .nap .hours { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 22px; }
-        .nap .phone { font-size: 34px; font-weight: 900; margin-bottom: 28px; }
-        .nap .phone a { color: var(--snow); text-decoration: none; transition: all 0.3s ease; }
-        .nap .phone a:hover { color: var(--snow); text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-
-        .nap-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-        .nap-links a {
-            padding: 12px 24px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.08);
-            color: var(--snow);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        .nap-links a:hover {
-            background: var(--snow);
-            color: var(--midnight);
-            border-color: var(--snow);
-            transform: translateY(-2px);
-        }
-
-        .areas-section { padding: 45px 0; text-align: center; }
-        .areas-section h2 { font-size: 22px; margin-bottom: 22px; text-transform: uppercase; color: var(--snow); }
-        .areas-list { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .areas-list span {
-            color: var(--ice-blue);
-            font-size: 15px;
-            padding: 8px 18px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 20px;
-            border: 1px solid var(--frost);
-            transition: all 0.3s ease;
-        }
-        .areas-list span:hover {
-            border-color: var(--snow);
-            color: var(--snow);
-        }
-
-        footer {
-            background: var(--midnight);
-            padding: 45px 0;
-            margin-top: 50px;
-            border-top: 1px solid var(--frost);
-            text-align: center;
-        }
-        footer p { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 2.2; }
-        footer a { color: var(--ice-blue); text-decoration: none; }
-        footer a:hover { color: var(--snow); }
-
-        /* AI Chatbot */
-        .chatbot-trigger {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            background: var(--ice-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 25px rgba(168,212,255,0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border: none;
-            color: var(--midnight);
-            font-size: 24px;
-        }
-        .chatbot-trigger:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 35px rgba(168,212,255,0.6);
-        }
-
-        .chatbot-popup {
-            position: fixed;
-            bottom: 100px;
-            right: 25px;
-            width: 350px;
-            max-width: calc(100vw - 50px);
-            background: var(--midnight);
-            border: 2px solid var(--ice-blue);
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            z-index: 1001;
-            display: none;
-            overflow: hidden;
-        }
-        .chatbot-popup.active { display: block; }
-
-        .chatbot-header {
-            background: var(--ice-blue);
-            color: var(--midnight);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chatbot-header h4 { font-size: 16px; font-weight: 700; }
-        .chatbot-close {
-            background: none;
-            border: none;
-            color: var(--midnight);
-            font-size: 24px;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .chatbot-messages {
-            height: 280px;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .chat-message {
-            margin-bottom: 15px;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        .chat-message.bot {
-            background: rgba(168,212,255,0.1);
-            color: var(--snow);
-            border: 1px solid rgba(168,212,255,0.2);
-        }
-        .chat-message.user {
-            background: var(--ice-blue);
-            color: var(--midnight);
-            margin-left: 30px;
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 15px;
-            border-top: 1px solid var(--frost);
-            gap: 10px;
-        }
-        .chatbot-input input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--frost);
-            border-radius: 8px;
-            background: rgba(255,255,255,0.05);
-            color: var(--snow);
-            font-size: 14px;
-        }
-        .chatbot-input input:focus {
-            outline: none;
-            border-color: var(--ice-blue);
-        }
-        .chatbot-input button {
-            padding: 12px 20px;
-            background: var(--ice-blue);
-            color: var(--midnight);
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .chatbot-input button:hover {
-            background: var(--snow);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 28px; }
-            .hero .subtitle { font-size: 17px; }
-            .section-title { font-size: 24px; }
-            .trust-badges { gap: 12px; }
-            .badge { font-size: 12px; }
-            .chatbot-popup { width: calc(100vw - 40px); right: 20px; }
-        }
-
-        @media (max-width: 600px) {
-            .hero { padding: 50px 0 40px; }
-            .hero h1 { font-size: 26px; }
-            .btn { padding: 14px 28px; font-size: 14px; width: 100%; text-align: center; }
-            .cta-row { flex-direction: column; align-items: stretch; }
-            .nap .phone { font-size: 26px; }
-            .nap { padding: 35px 22px; }
-            .card { padding: 30px 22px; }
-            .nap-links { flex-direction: column; align-items: stretch; }
-            .nap-links a { text-align: center; }
-            .process-steps { flex-direction: column; align-items: center; }
-            .areas-list { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-    <main class="container">
-        <section class="hero">
-            <h1>We Fix What <span class="highlight">Others Replace</span></h1>
-            <p class="subtitle">Kansas City Metro's Board-Level Repair Experts</p>
+<div class="tg-page">
+    <div class="tg-container">
+        <section class="tg-hero">
+            <h1>We Fix What <span>Others Replace</span></h1>
+            <p class="tg-subtitle">Kansas City Metro's Board-Level Repair Experts</p>
             <p>Phones, laptops, consoles, handhelds, PCs — if it has a circuit board, we repair it. No BS. No upsells. Just honest technicians doing exceptional work with a 45-day warranty on everything.</p>
 
-            <div class="trust-badges">
-                <div class="badge"><span class="badge-icon">✓</span> 4.9★ Google Rating</div>
-                <div class="badge"><span class="badge-icon">✓</span> Same-Day Service</div>
-                <div class="badge"><span class="badge-icon">✓</span> 45-Day Warranty</div>
-                <div class="badge"><span class="badge-icon">✓</span> Free Diagnostics</div>
+            <div class="tg-badges">
+                <div class="tg-badge"><span class="tg-badge-icon">✓</span> 4.9★ Google Rating</div>
+                <div class="tg-badge"><span class="tg-badge-icon">✓</span> Same-Day Service</div>
+                <div class="tg-badge"><span class="tg-badge-icon">✓</span> 45-Day Warranty</div>
+                <div class="tg-badge"><span class="tg-badge-icon">✓</span> Free Diagnostics</div>
             </div>
 
-            <div class="brand-icons">
+            <div class="tg-brands">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
@@ -490,58 +145,58 @@
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
             </div>
 
-            <div class="cta-row">
-                <a href="tel:+18165830100" class="btn btn-primary">Call (816) 583-0100</a>
-                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-outline">Book Appointment</a>
+            <div class="tg-cta">
+                <a href="tel:+18165830100" class="tg-btn tg-btn-primary">Call (816) 583-0100</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="tg-btn tg-btn-outline">Book Appointment</a>
             </div>
         </section>
 
-        <section class="services-section">
-            <h2 class="section-title">What We Repair</h2>
-            <p class="section-subtitle">If it's broken, bring it. We've seen it all.</p>
+        <section>
+            <h2 class="tg-section-title">What We Repair</h2>
+            <p class="tg-section-subtitle">If it's broken, bring it. We've seen it all.</p>
 
-            <div class="services-grid">
-                <div class="service-card">
+            <div class="tg-services">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="iPhone & iPad">
                     <h3>iPhone & iPad</h3>
                     <p>Screens, batteries, charging ports, cameras, water damage. All models supported.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/samsung.svg" alt="Samsung & Android">
                     <h3>Samsung & Android</h3>
                     <p>Galaxy, Pixel, OnePlus and more. Screen repairs, battery swaps, board-level fixes.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="MacBook">
                     <h3>MacBook & Laptops</h3>
                     <p>Liquid damage, no power, keyboard issues, screen replacement. All brands welcome.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
                     <h3>PlayStation</h3>
                     <p>PS5, PS4, PS3. HDMI ports, disc drives, overheating, no power issues.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/xbox.svg" alt="Xbox">
                     <h3>Xbox</h3>
                     <p>Series X/S, One, 360. HDMI repair, disc drive, thermal paste, power issues.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nintendo.svg" alt="Nintendo">
                     <h3>Nintendo Switch</h3>
                     <p>Joy-Con drift, charging issues, screen replacement, dock repair, water damage.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam Deck">
                     <h3>Steam Deck</h3>
                     <p>Screen replacement, joystick drift, battery swap, SSD upgrades, charging issues.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nvidia.svg" alt="PC">
                     <h3>PC & Desktop</h3>
                     <p>Custom builds, upgrades, diagnostics, virus removal, data transfer, no power fixes.</p>
                 </div>
-                <div class="service-card">
+                <div class="tg-service">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/intel.svg" alt="Data Recovery">
                     <h3>Data Recovery</h3>
                     <p>Dead drives, corrupted storage, accidental deletion. We recover what matters most.</p>
@@ -549,26 +204,26 @@
             </div>
         </section>
 
-        <div class="card why-card">
+        <div class="tg-card tg-why-card">
             <h2>Why Kansas City Chooses Us</h2>
             <p>More repairs. Better prices. Faster turnarounds.</p>
-            <div class="why-grid">
-                <div class="why-item">
+            <div class="tg-why-grid">
+                <div class="tg-why-item">
                     <h3>Board-Level Micro Soldering</h3>
                     <p>We fix at the chip level. Repairs other shops call "impossible" are our specialty.</p>
                 </div>
-                <div class="why-item">
+                <div class="tg-why-item">
                     <h3>Better Prices, Period</h3>
                     <p>We repair, not replace. That means you pay for a fix, not a whole new part.</p>
                 </div>
-                <div class="why-item">
+                <div class="tg-why-item">
                     <h3>Fastest Turnarounds</h3>
                     <p>Most repairs same-day. We know you need your device back yesterday.</p>
                 </div>
             </div>
         </div>
 
-        <div class="card">
+        <div class="tg-card">
             <h2>The Tech Guardian Difference</h2>
             <ul>
                 <li><strong>Board-level micro soldering</strong> — we fix what others tell you to replace</li>
@@ -580,52 +235,52 @@
             </ul>
         </div>
 
-        <section class="process-section">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Simple. Fast. Honest.</p>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-num">1</div>
+        <section>
+            <h2 class="tg-section-title">How It Works</h2>
+            <p class="tg-section-subtitle">Simple. Fast. Honest.</p>
+            <div class="tg-process">
+                <div class="tg-step">
+                    <div class="tg-step-num">1</div>
                     <h3>Call or Walk In</h3>
                     <p>Bring your device or call to discuss the issue</p>
                 </div>
-                <div class="step">
-                    <div class="step-num">2</div>
+                <div class="tg-step">
+                    <div class="tg-step-num">2</div>
                     <h3>Free Diagnosis</h3>
                     <p>We tell you exactly what's wrong and the cost</p>
                 </div>
-                <div class="step">
-                    <div class="step-num">3</div>
+                <div class="tg-step">
+                    <div class="tg-step-num">3</div>
                     <h3>Quick Repair</h3>
                     <p>Most repairs done same-day while you wait</p>
                 </div>
-                <div class="step">
-                    <div class="step-num">4</div>
+                <div class="tg-step">
+                    <div class="tg-step-num">4</div>
                     <h3>Pick Up Happy</h3>
                     <p>Device fixed, wallet intact. That's the Guardian way.</p>
                 </div>
             </div>
         </section>
 
-        <div class="tagline">
+        <div class="tg-tagline">
             <p>Other shops said no. <span>We said watch this.</span></p>
         </div>
 
-        <div class="nap">
+        <div class="tg-nap">
             <h2>Visit Tech Guardian</h2>
-            <div class="address">
+            <div class="tg-address">
                 <strong>Tech Guardian LLC</strong><br>
                 1239 NE Douglas St, Suite D<br>
                 Lee's Summit, MO 64086
             </div>
-            <div class="hours">
+            <div class="tg-hours">
                 Monday – Saturday: 10:00 AM – 6:00 PM<br>
                 Sunday: Closed
             </div>
-            <div class="phone">
+            <div class="tg-phone">
                 <a href="tel:+18165830100">(816) 583-0100</a>
             </div>
-            <div class="nap-links">
+            <div class="tg-nap-links">
                 <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book Appointment</a>
                 <a href="https://guardianrevives.com">Home</a>
                 <a href="https://guardianrevives.com/watch">Watch</a>
@@ -635,9 +290,9 @@
             </div>
         </div>
 
-        <section class="areas-section">
+        <section class="tg-areas">
             <h2>Serving the Kansas City Metro</h2>
-            <div class="areas-list">
+            <div class="tg-areas-list">
                 <span>Kansas City</span>
                 <span>Lee's Summit</span>
                 <span>Independence</span>
@@ -651,94 +306,60 @@
             </div>
         </section>
 
-        <div class="cta-row">
-            <a href="tel:+18165830100" class="btn btn-primary">Call (816) 583-0100</a>
-            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-outline">Book Appointment</a>
+        <div class="tg-cta">
+            <a href="tel:+18165830100" class="tg-btn tg-btn-primary">Call (816) 583-0100</a>
+            <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="tg-btn tg-btn-outline">Book Appointment</a>
         </div>
-    </main>
 
-    <footer>
-        <p>
-            <strong>Tech Guardian LLC</strong> — Kansas City Metro's Trusted Device Repair Experts<br>
-            1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
-            <a href="tel:+18165830100">(816) 583-0100</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
-            © 2025 Tech Guardian LLC. All rights reserved.
-        </p>
-    </footer>
-
-    <!-- AI Chatbot -->
-    <button class="chatbot-trigger" onclick="toggleChatbot()">💬</button>
-
-    <div class="chatbot-popup" id="chatbotPopup">
-        <div class="chatbot-header">
-            <h4>Guardian AI</h4>
-            <button class="chatbot-close" onclick="toggleChatbot()">×</button>
-        </div>
-        <div class="chatbot-messages" id="chatMessages">
-            <div class="chat-message bot">Hey! I'm here to help. Ask me about repairs, pricing, hours, or anything else!</div>
-        </div>
-        <div class="chatbot-input">
-            <input type="text" id="chatInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendMessage()">
-            <button onclick="sendMessage()">Send</button>
+        <div class="tg-footer">
+            <p>
+                <strong>Tech Guardian LLC</strong> — Kansas City Metro's Trusted Device Repair Experts<br>
+                1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
+                <a href="tel:+18165830100">(816) 583-0100</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
+                © 2025 Tech Guardian LLC. All rights reserved.
+            </p>
         </div>
     </div>
+</div>
 
-    <script>
-        function toggleChatbot() {
-            document.getElementById('chatbotPopup').classList.toggle('active');
-        }
+<button class="tg-chat-trigger" onclick="toggleTgChat()">💬</button>
+<div class="tg-chat-popup" id="tgChatPopup">
+    <div class="tg-chat-header">
+        <h4>Guardian AI</h4>
+        <button class="tg-chat-close" onclick="toggleTgChat()">×</button>
+    </div>
+    <div class="tg-chat-messages" id="tgChatMessages">
+        <div class="tg-chat-msg bot">Hey! I'm here to help. Ask me about repairs, pricing, hours, or anything else!</div>
+    </div>
+    <div class="tg-chat-input">
+        <input type="text" id="tgChatInput" placeholder="Type your question..." onkeypress="if(event.key==='Enter')sendTgMsg()">
+        <button onclick="sendTgMsg()">Send</button>
+    </div>
+</div>
 
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messages = document.getElementById('chatMessages');
-            const text = input.value.trim();
-
-            if (!text) return;
-
-            // Add user message
-            messages.innerHTML += '<div class="chat-message user">' + text + '</div>';
-            input.value = '';
-
-            // Bot response
-            setTimeout(() => {
-                const response = getBotResponse(text.toLowerCase());
-                messages.innerHTML += '<div class="chat-message bot">' + response + '</div>';
-                messages.scrollTop = messages.scrollHeight;
-            }, 500);
-        }
-
-        function getBotResponse(text) {
-            if (text.includes('hour') || text.includes('open') || text.includes('close')) {
-                return "We're open Monday-Saturday, 10 AM to 6 PM. Closed Sundays. Walk-ins welcome!";
-            }
-            if (text.includes('price') || text.includes('cost') || text.includes('how much')) {
-                return "Pricing depends on the device and repair needed. We offer FREE diagnostics so you know the exact cost before we start. Call (816) 583-0100 for a quick quote!";
-            }
-            if (text.includes('iphone') || text.includes('apple') || text.includes('screen')) {
-                return "We repair all iPhone models! Screens, batteries, charging ports, cameras, water damage - you name it. Most iPhone repairs are same-day. Bring it in or call (816) 583-0100!";
-            }
-            if (text.includes('ps5') || text.includes('playstation') || text.includes('xbox') || text.includes('console')) {
-                return "We're console repair specialists! PS5, Xbox Series X, Switch - HDMI ports, disc drives, overheating, no power issues. We fix what others can't with board-level micro soldering.";
-            }
-            if (text.includes('warranty')) {
-                return "Every repair comes with our 45-day warranty on parts and labor. No questions asked. If something's not right, we make it right.";
-            }
-            if (text.includes('location') || text.includes('address') || text.includes('where')) {
-                return "We're at 1239 NE Douglas St, Suite D, Lee's Summit, MO 64086. Easy to find with plenty of parking!";
-            }
-            if (text.includes('book') || text.includes('appointment')) {
-                return "You can book online at our Square booking page, or just walk in! We also take same-day appointments when available. Call (816) 583-0100.";
-            }
-            if (text.includes('steam deck') || text.includes('handheld')) {
-                return "Steam Deck repairs? We got you! Screen replacement, joystick drift, battery swaps, SSD upgrades, charging issues. Board-level repairs available.";
-            }
-            return "Great question! For the fastest answer, give us a call at (816) 583-0100 or stop by the shop. We're here to help with any device repair needs!";
-        }
-
-        // Auto-open chatbot after 3 seconds
-        setTimeout(() => {
-            document.getElementById('chatbotPopup').classList.add('active');
-        }, 3000);
-    </script>
-</body>
-</html>
+<script>
+function toggleTgChat() { document.getElementById('tgChatPopup').classList.toggle('active'); }
+function sendTgMsg() {
+    const input = document.getElementById('tgChatInput');
+    const messages = document.getElementById('tgChatMessages');
+    const text = input.value.trim();
+    if (!text) return;
+    messages.innerHTML += '<div class="tg-chat-msg user">' + text + '</div>';
+    input.value = '';
+    setTimeout(() => {
+        let response = "Great question! Call us at (816) 583-0100 for the fastest answer.";
+        const t = text.toLowerCase();
+        if (t.includes('hour') || t.includes('open') || t.includes('close')) response = "We're open Monday-Saturday, 10 AM to 6 PM. Closed Sundays. Walk-ins welcome!";
+        else if (t.includes('price') || t.includes('cost') || t.includes('how much')) response = "Pricing depends on the device and repair needed. We offer FREE diagnostics so you know the exact cost before we start. Call (816) 583-0100 for a quick quote!";
+        else if (t.includes('iphone') || t.includes('apple') || t.includes('screen')) response = "We repair all iPhone models! Screens, batteries, charging ports, cameras, water damage - you name it. Most iPhone repairs are same-day. Bring it in or call (816) 583-0100!";
+        else if (t.includes('ps5') || t.includes('playstation') || t.includes('xbox') || t.includes('console')) response = "We're console repair specialists! PS5, Xbox Series X, Switch - HDMI ports, disc drives, overheating, no power issues. We fix what others can't with board-level micro soldering.";
+        else if (t.includes('warranty')) response = "Every repair comes with our 45-day warranty on parts and labor. No questions asked. If something's not right, we make it right.";
+        else if (t.includes('location') || t.includes('address') || t.includes('where')) response = "We're at 1239 NE Douglas St, Suite D, Lee's Summit, MO 64086. Easy to find with plenty of parking!";
+        else if (t.includes('book') || t.includes('appointment')) response = "You can book online at our Square booking page, or just walk in! We also take same-day appointments when available. Call (816) 583-0100.";
+        else if (t.includes('steam deck') || t.includes('handheld')) response = "Steam Deck repairs? We got you! Screen replacement, joystick drift, battery swaps, SSD upgrades, charging issues. Board-level repairs available.";
+        messages.innerHTML += '<div class="tg-chat-msg bot">' + response + '</div>';
+        messages.scrollTop = messages.scrollHeight;
+    }, 500);
+}
+setTimeout(() => { document.getElementById('tgChatPopup').classList.add('active'); }, 3000);
+</script>
