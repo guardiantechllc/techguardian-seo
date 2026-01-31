@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Tech Guardian - Kansas City Device Repair</title>
+    <meta name="description" content="Full-service electronics repair in Kansas City. iPhone, iPad, Samsung, MacBook, PlayStation, Xbox, Nintendo Switch, Steam Deck, PC builds, data recovery. Same-day service. 45-day warranty.">
+    <meta name="keywords" content="device repair Kansas City, iPhone repair, MacBook repair, PS5 repair, Xbox repair, Nintendo Switch repair, Steam Deck repair, PC repair, data recovery, Tech Guardian">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="US-MO">
+    <meta name="geo.placename" content="Kansas City">
+    <link rel="canonical" href="https://guardianrevives.com/services/">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Tech Guardian LLC",
+        "description": "Full-service electronics repair serving the Kansas City metro. Phones, tablets, consoles, laptops, PCs, and data recovery.",
+        "telephone": "+1-816-697-9268",
+        "email": "tech@guardianlabs.digital",
+        "url": "https://guardianrevives.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1239 NE Douglas St Suite D",
+            "addressLocality": "Lee's Summit",
+            "addressRegion": "MO",
+            "postalCode": "64086",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "38.9345739",
+            "longitude": "-94.3777137"
+        },
+        "areaServed": [
+            {"@type": "City", "name": "Kansas City"},
+            {"@type": "City", "name": "Lee's Summit"},
+            {"@type": "City", "name": "Overland Park"},
+            {"@type": "City", "name": "Independence"},
+            {"@type": "City", "name": "Blue Springs"},
+            {"@type": "City", "name": "Grandview"},
+            {"@type": "City", "name": "Raytown"}
+        ],
+        "priceRange": "$$",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "10:00",
+            "closes": "18:00"
+        },
+        "sameAs": [
+            "https://www.yelp.com/biz/tech-guardian-llc-lees-summit"
+        ]
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; min-height: 100vh; }
+        :root { --blue: #180EC0; --blue-glow: rgba(24,14,192,0.4); }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* === HEADER === */
+        header { background: #000; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { color: #aaa; text-decoration: none; font-weight: 600; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a.active { color: var(--blue); }
+        .header-cta { background: var(--blue); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; }
+        .header-cta:hover { box-shadow: 0 0 20px var(--blue-glow); }
+
+        /* Mobile nav */
+        .mobile-toggle { display: none; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+        /* === PAGE HERO === */
+        .page-hero { padding: 70px 0 50px; text-align: center; }
+        .page-hero h1 { font-size: clamp(32px, 6vw, 52px); font-weight: 900; text-transform: uppercase; margin-bottom: 15px; }
+        .page-hero h1 span { color: var(--blue); }
+        .page-hero p { font-size: 18px; color: #aaa; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+        /* === SERVICE CATEGORIES === */
+        .service-section { margin-bottom: 60px; }
+        .service-section h2 {
+            font-size: 24px; font-weight: 900; text-transform: uppercase;
+            margin-bottom: 30px; padding-bottom: 15px;
+            border-bottom: 2px solid var(--blue);
+            display: inline-block;
+        }
+
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+        .service-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        .service-item:hover {
+            border-color: var(--blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(24,14,192,0.15);
+        }
+        .service-item .icon { font-size: 36px; margin-bottom: 15px; }
+        .service-item h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .service-item p { font-size: 14px; color: #999; line-height: 1.7; margin-bottom: 15px; }
+        .service-item ul { list-style: none; margin-bottom: 20px; }
+        .service-item li {
+            font-size: 13px; color: #bbb; padding: 6px 0; padding-left: 18px; position: relative;
+        }
+        .service-item li::before {
+            content: ''; width: 5px; height: 5px; background: var(--blue);
+            border-radius: 50%; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+        }
+        .service-item .price-note { font-size: 13px; color: var(--blue); font-weight: 600; }
+        .service-item .book-link {
+            display: inline-block; margin-top: 10px; padding: 10px 24px;
+            background: var(--blue); color: #fff; text-decoration: none;
+            border-radius: 6px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px;
+            transition: box-shadow 0.3s;
+        }
+        .service-item .book-link:hover { box-shadow: 0 0 20px var(--blue-glow); }
+
+        /* === WHY US STRIP === */
+        .why-us {
+            background: linear-gradient(135deg, rgba(24,14,192,0.1), rgba(0,0,0,0.5));
+            border: 1px solid rgba(24,14,192,0.3);
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        .why-us h2 { font-size: 26px; font-weight: 900; text-transform: uppercase; margin-bottom: 30px; }
+        .why-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; }
+        .why-us-item h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--blue); }
+        .why-us-item p { font-size: 13px; color: #aaa; line-height: 1.6; }
+
+        /* === CTA SECTION === */
+        .bottom-cta {
+            background: linear-gradient(135deg, rgba(24,14,192,0.15), rgba(24,14,192,0.05));
+            border: 2px solid var(--blue);
+            border-radius: 16px;
+            padding: 50px 30px;
+            text-align: center;
+            margin: 50px 0;
+        }
+        .bottom-cta h2 { font-size: 28px; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; }
+        .bottom-cta p { font-size: 16px; color: #ccc; margin-bottom: 30px; }
+        .bottom-cta .phone { font-size: 32px; font-weight: 900; margin-bottom: 25px; }
+        .bottom-cta .phone a { color: #fff; text-decoration: none; }
+        .bottom-cta .phone a:hover { color: var(--blue); }
+        .cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-primary:hover { box-shadow: 0 0 25px var(--blue-glow); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: #fff; color: #000; }
+
+        /* === FOOTER === */
+        footer { background: #000; padding: 40px 0; margin-top: 60px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; color: var(--blue); }
+        .footer-col a { display: block; color: #888; text-decoration: none; font-size: 13px; line-height: 2; transition: color 0.2s; }
+        .footer-col a:hover { color: #fff; }
+        .footer-col p { color: #888; font-size: 13px; line-height: 1.8; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-bottom p { color: #555; font-size: 12px; }
+        .footer-bottom a { color: var(--blue); text-decoration: none; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; right: 0; background: #000; padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); gap: 15px; }
+            .nav-links.open { display: flex; }
+            .mobile-toggle { display: block; }
+            .page-hero h1 { font-size: 28px; }
+            .btn { padding: 14px 28px; font-size: 14px; width: 100%; text-align: center; }
+            .cta-row { flex-direction: column; align-items: stretch; }
+            .bottom-cta .phone { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <a href="https://guardianrevives.com" class="logo">TECH GUARDIAN</a>
+            <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+            <nav class="nav-links">
+                <a href="https://guardianrevives.com">Home</a>
+                <a href="#" class="active">Services</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="header-cta">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- PAGE HERO -->
+        <section class="page-hero">
+            <h1>All <span>Services</span></h1>
+            <p>From cracked screens to dead consoles, we fix it all. Apple-certified techs. Board-level micro soldering. Same-day service on most repairs. No BS.</p>
+        </section>
+
+        <!-- PHONE & TABLET -->
+        <section class="service-section">
+            <h2>Phone & Tablet Repair</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#128241;</div>
+                    <h3>iPhone Repair</h3>
+                    <p>All models from iPhone 6 through iPhone 16 Pro Max. OEM and quality aftermarket parts available.</p>
+                    <ul>
+                        <li>Screen replacement (OLED & LCD)</li>
+                        <li>Battery replacement</li>
+                        <li>Charging port repair</li>
+                        <li>Camera replacement</li>
+                        <li>Back glass repair</li>
+                        <li>Water damage recovery</li>
+                    </ul>
+                    <p class="price-note">Free diagnostics. 45-day warranty.</p>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book iPhone Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#128242;</div>
+                    <h3>iPad & Tablet</h3>
+                    <p>iPad Air, Pro, Mini, and Samsung Galaxy Tab repairs done right.</p>
+                    <ul>
+                        <li>Screen & digitizer replacement</li>
+                        <li>Battery replacement</li>
+                        <li>Charging port repair</li>
+                        <li>Button repair</li>
+                    </ul>
+                    <p class="price-note">Free diagnostics. 45-day warranty.</p>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Tablet Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#128241;</div>
+                    <h3>Samsung & Android</h3>
+                    <p>Galaxy S series, Note, Z Fold, Z Flip, and other Android flagships.</p>
+                    <ul>
+                        <li>AMOLED screen replacement</li>
+                        <li>Battery swap</li>
+                        <li>Charging port / USB-C</li>
+                        <li>Water damage treatment</li>
+                    </ul>
+                    <p class="price-note">Free diagnostics. 45-day warranty.</p>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Android Repair</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAME CONSOLES -->
+        <section class="service-section">
+            <h2>Game Console Repair</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#127918;</div>
+                    <h3>PlayStation</h3>
+                    <p>PS5, PS4, PS3 repairs. Disc drive, HDMI, overheating, and more.</p>
+                    <ul>
+                        <li>HDMI port replacement</li>
+                        <li>Disc drive repair</li>
+                        <li>Overheating / thermal paste</li>
+                        <li>Power supply repair</li>
+                        <li>Controller repair</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book PS Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#127918;</div>
+                    <h3>Xbox</h3>
+                    <p>Xbox Series X/S, One X/S, and Xbox 360 repairs.</p>
+                    <ul>
+                        <li>HDMI port replacement</li>
+                        <li>Disc drive repair</li>
+                        <li>Overheating fixes</li>
+                        <li>Power issues</li>
+                        <li>Controller repair</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Xbox Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#127918;</div>
+                    <h3>Nintendo</h3>
+                    <p>Switch, Switch OLED, Switch Lite, and classic console repairs.</p>
+                    <ul>
+                        <li>Joy-Con drift fix</li>
+                        <li>Screen replacement</li>
+                        <li>Charging port repair</li>
+                        <li>Rail replacement</li>
+                        <li>Game card reader</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Nintendo Repair</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- LAPTOP & MACBOOK -->
+        <section class="service-section">
+            <h2>MacBook & Laptop Repair</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#128187;</div>
+                    <h3>MacBook Repair</h3>
+                    <p>MacBook Air, MacBook Pro — all models. Board-level micro soldering available.</p>
+                    <ul>
+                        <li>Screen replacement</li>
+                        <li>Battery replacement</li>
+                        <li>Keyboard repair</li>
+                        <li>Logic board repair (micro solder)</li>
+                        <li>Liquid damage recovery</li>
+                        <li>SSD upgrade</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book MacBook Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#128187;</div>
+                    <h3>Windows Laptop</h3>
+                    <p>Dell, HP, Lenovo, ASUS, Acer — all brands.</p>
+                    <ul>
+                        <li>Screen replacement</li>
+                        <li>Battery replacement</li>
+                        <li>Keyboard / trackpad</li>
+                        <li>Motherboard repair</li>
+                        <li>Fan / cooling repair</li>
+                        <li>SSD / RAM upgrade</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Laptop Repair</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HANDHELD GAMING -->
+        <section class="service-section">
+            <h2>Handheld Gaming</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#128377;</div>
+                    <h3>Steam Deck</h3>
+                    <p>Screen, joystick, battery, and SSD upgrades for your Steam Deck.</p>
+                    <ul>
+                        <li>Screen replacement</li>
+                        <li>Joystick replacement</li>
+                        <li>Battery swap</li>
+                        <li>SSD upgrade</li>
+                        <li>Button / trigger repair</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Steam Deck Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#128377;</div>
+                    <h3>PSP / PS Vita / Retro Handhelds</h3>
+                    <p>Still rocking a handheld? We fix those too.</p>
+                    <ul>
+                        <li>Screen replacement</li>
+                        <li>Battery replacement</li>
+                        <li>Button / joystick repair</li>
+                        <li>Shell replacement</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Handheld Repair</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PC REPAIR & BUILDS -->
+        <section class="service-section">
+            <h2>PC Repair & Custom Builds</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#128421;</div>
+                    <h3>PC Repair</h3>
+                    <p>Desktop diagnostics, hardware swaps, OS issues, virus removal.</p>
+                    <ul>
+                        <li>Hardware diagnostics</li>
+                        <li>GPU / CPU / RAM replacement</li>
+                        <li>Power supply replacement</li>
+                        <li>OS reinstall / troubleshooting</li>
+                        <li>Virus / malware removal</li>
+                        <li>Performance optimization</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book PC Repair</a>
+                </div>
+                <div class="service-item">
+                    <div class="icon">&#128421;</div>
+                    <h3>Custom PC Builds</h3>
+                    <p>Tell us your budget and what you need it for. We'll build it right.</p>
+                    <ul>
+                        <li>Gaming builds</li>
+                        <li>Workstation builds</li>
+                        <li>Budget builds</li>
+                        <li>Part sourcing & consultation</li>
+                    </ul>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Get a Build Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA RECOVERY -->
+        <section class="service-section">
+            <h2>Data Recovery</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <div class="icon">&#128190;</div>
+                    <h3>Data Recovery</h3>
+                    <p>Lost files? Dead drive? We do secure data extraction from phones, laptops, desktops, and external drives.</p>
+                    <ul>
+                        <li>Phone data recovery</li>
+                        <li>Hard drive / SSD recovery</li>
+                        <li>External drive recovery</li>
+                        <li>RAID recovery</li>
+                        <li>Secure data wipe available</li>
+                    </ul>
+                    <p class="price-note">Free assessment. No data, no charge.</p>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="book-link">Book Data Recovery</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY US -->
+        <section class="why-us">
+            <h2>Why Kansas City Trusts Tech Guardian</h2>
+            <div class="why-us-grid">
+                <div class="why-us-item">
+                    <h3>Board-Level Repair</h3>
+                    <p>Micro soldering capabilities. We fix what other shops replace.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Apple-Certified Techs</h3>
+                    <p>Real training, real certifications. Not just YouTube tutorials.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Free Diagnostics</h3>
+                    <p>Know exactly what's wrong and what it costs before we start.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Same-Day Service</h3>
+                    <p>Most repairs done while you wait. No shipping it off for weeks.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>45-Day Warranty</h3>
+                    <p>Every repair backed. If something goes wrong, we make it right.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>Full Transparency</h3>
+                    <p>Watch your repair happen. No hidden fees. No surprises.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTTOM CTA -->
+        <section class="bottom-cta">
+            <h2>Ready to Get It Fixed?</h2>
+            <p>Text, call, or book online. Walk-ins always welcome.</p>
+            <div class="phone">
+                <a href="tel:+18166979268">(816) 697-9268</a>
+            </div>
+            <div class="cta-row">
+                <a href="tel:+18166979268" class="btn btn-primary">Call Now</a>
+                <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-outline">Book Online</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tech Guardian</h4>
+                    <p>
+                        1239 NE Douglas St, Suite D<br>
+                        Lee's Summit, MO 64086<br>
+                        Mon-Sat: 10am - 6pm
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="https://guardianrevives.com">Home</a>
+                    <a href="#">Services</a>
+                    <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book Online</a>
+                    <a href="tel:+18166979268">Call (816) 697-9268</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Find Us</h4>
+                    <a href="https://maps.apple.com/place?place-id=IC74A016713E964AD&address=1239+NE+Douglas+St%2C+Ste+D%2C+Lee%27s+Summit%2C+MO++64086%2C+United+States&coordinate=38.9345739%2C-94.3777137&name=Tech+Guardian&_provider=9902" target="_blank">Apple Maps</a>
+                    <a href="https://www.google.com/maps?q=38.9345739,-94.3777137" target="_blank">Google Maps</a>
+                    <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit" target="_blank">Yelp</a>
+                    <a href="mailto:tech@guardianlabs.digital">Email Us</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Service Areas</h4>
+                    <p>Kansas City &middot; Lee's Summit &middot; Overland Park &middot; Independence &middot; Blue Springs &middot; Grandview &middot; Raytown</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tech Guardian LLC &middot; <a href="https://guardianrevives.com">guardianrevives.com</a> &middot; Built for the people. Customers for life.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

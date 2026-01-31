@@ -1,0 +1,251 @@
+/* ============================================
+   TECH GUARDIAN - HOMEPAGE CUSTOM CSS
+   Deploy to: WordPress > Appearance > Customize > Additional CSS
+   OR add to child theme style.css
+   ============================================ */
+
+/* --- 1. REMOVE HERO VIDEO TEXT OVERLAY --- */
+.elementor-widget-video .elementor-custom-embed-image-overlay,
+.elementor-widget-video .elementor-widget-container > .elementor-custom-embed-play,
+.elementor-background-video-container + .elementor-background-overlay,
+.hero-video-overlay,
+.elementor-section[data-id] > .elementor-background-overlay {
+    display: none !important;
+}
+
+/* Remove any text that sits on top of the hero video */
+.elementor-section.hero-section .elementor-widget-heading,
+.elementor-section.hero-section .elementor-widget-text-editor,
+.elementor-section:first-child .elementor-widget-heading,
+.elementor-section:first-child .elementor-widget-text-editor {
+    display: none !important;
+}
+
+/* Keep the video clean and full-width */
+.elementor-section:first-child .elementor-background-video-container {
+    opacity: 1 !important;
+}
+
+/* --- 2. METRO'S GUARDIAN SECTION --- */
+.metros-guardian {
+    text-align: center;
+    padding: 50px 20px 40px;
+    background: #000;
+}
+
+.metros-guardian h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 2px;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.metros-guardian h2 span {
+    color: #180EC0;
+}
+
+/* --- 3. HOW IT WORKS SECTION --- */
+.how-it-works {
+    background: #000;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.how-it-works .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 50px;
+}
+
+.how-it-works-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.how-it-works-step {
+    flex: 1;
+    min-width: 200px;
+    max-width: 220px;
+    text-align: center;
+}
+
+.how-it-works-step .step-number {
+    width: 60px;
+    height: 60px;
+    background: #180EC0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 auto 18px;
+    box-shadow: 0 0 20px rgba(24, 14, 192, 0.4);
+}
+
+.how-it-works-step h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.how-it-works-step p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+}
+
+/* Connector lines between steps */
+@media (min-width: 768px) {
+    .how-it-works-step {
+        position: relative;
+    }
+    .how-it-works-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 30px;
+        right: -25px;
+        width: 20px;
+        height: 2px;
+        background: rgba(24, 14, 192, 0.5);
+    }
+}
+
+@media (max-width: 767px) {
+    .how-it-works-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+/* --- 4. VALENTINE'S DAY PROMO --- */
+.valentines-promo {
+    background: linear-gradient(135deg, #1a0015 0%, #0a0020 50%, #1a0015 100%);
+    border: 2px solid rgba(255, 20, 60, 0.3);
+    border-radius: 20px;
+    padding: 60px 30px;
+    text-align: center;
+    margin: 40px auto;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+}
+
+.valentines-promo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 20, 60, 0.08), transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(24, 14, 192, 0.08), transparent 50%);
+    pointer-events: none;
+}
+
+.valentines-hearts {
+    font-size: 40px;
+    margin-bottom: 20px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.valentines-promo h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.valentines-promo h2 .heart-accent {
+    color: #ff143c;
+}
+
+.valentines-promo .promo-tagline {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.valentines-promo .promo-deal {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ff143c;
+    margin-bottom: 30px;
+}
+
+.valentines-promo .promo-cta {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #ff143c, #180EC0);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.valentines-promo .promo-cta:hover {
+    box-shadow: 0 0 30px rgba(255, 20, 60, 0.4), 0 0 30px rgba(24, 14, 192, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Floating hearts decoration */
+.floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-hearts span {
+    position: absolute;
+    font-size: 18px;
+    animation: floatHeart 6s ease-in-out infinite;
+    opacity: 0.15;
+}
+
+.floating-hearts span:nth-child(1) { left: 5%; animation-delay: 0s; top: 20%; }
+.floating-hearts span:nth-child(2) { left: 15%; animation-delay: 1s; top: 60%; }
+.floating-hearts span:nth-child(3) { left: 85%; animation-delay: 2s; top: 30%; }
+.floating-hearts span:nth-child(4) { left: 90%; animation-delay: 0.5s; top: 70%; }
+.floating-hearts span:nth-child(5) { left: 50%; animation-delay: 3s; top: 10%; }
+.floating-hearts span:nth-child(6) { left: 70%; animation-delay: 1.5s; top: 80%; }
+
+@keyframes floatHeart {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(10deg); }
+}
