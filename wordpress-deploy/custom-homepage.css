@@ -4,51 +4,11 @@
    OR add to child theme style.css
    ============================================ */
 
-/* --- 1. REMOVE HERO VIDEO TEXT OVERLAY --- */
-.elementor-widget-video .elementor-custom-embed-image-overlay,
-.elementor-widget-video .elementor-widget-container > .elementor-custom-embed-play,
-.elementor-background-video-container + .elementor-background-overlay,
-.hero-video-overlay,
-.elementor-section[data-id] > .elementor-background-overlay {
-    display: none !important;
-}
+/* --- 1. HERO VIDEO --- */
+/* KEEP the hero video + text overlay as-is. No hiding. */
+/* Everything below the hero flows naturally underneath. */
 
-/* Remove any text that sits on top of the hero video */
-.elementor-section.hero-section .elementor-widget-heading,
-.elementor-section.hero-section .elementor-widget-text-editor,
-.elementor-section:first-child .elementor-widget-heading,
-.elementor-section:first-child .elementor-widget-text-editor {
-    display: none !important;
-}
-
-/* Keep the video clean and full-width */
-.elementor-section:first-child .elementor-background-video-container {
-    opacity: 1 !important;
-}
-
-/* --- 2. METRO'S GUARDIAN SECTION --- */
-.metros-guardian {
-    text-align: center;
-    padding: 50px 20px 40px;
-    background: #000;
-}
-
-.metros-guardian h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(36px, 7vw, 64px);
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: 2px;
-    margin: 0;
-    line-height: 1.1;
-}
-
-.metros-guardian h2 span {
-    color: #180EC0;
-}
-
-/* --- 3. HOW IT WORKS SECTION --- */
+/* --- 2. HOW IT WORKS SECTION --- */
 .how-it-works {
     background: #000;
     padding: 60px 20px;
