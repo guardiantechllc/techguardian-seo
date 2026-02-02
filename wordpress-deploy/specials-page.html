@@ -1,0 +1,176 @@
+<div style="background:#050510;color:#fff;font-family:'Inter',sans-serif;padding:0;margin:-30px -30px 0 -30px;">
+
+<style>
+.sp-hero{background:linear-gradient(135deg,#0a0515,#050510);padding:80px 20px;text-align:center;border-bottom:2px solid rgba(255,45,107,0.3)}
+.sp-hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:15px;letter-spacing:3px}
+.sp-hero h1 span{color:#ff2d6b;text-shadow:0 0 30px rgba(255,45,107,0.4)}
+.sp-hero p{font-size:20px;color:#c0c8d4;max-width:700px;margin:0 auto 30px}
+.sp-hero .sp-tag{display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#ff2d6b,#8b5cf6);border-radius:50px;font-size:14px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:2px}
+.sp-container{max-width:1100px;margin:0 auto;padding:0 24px}
+.sp-section{padding:80px 0}
+.sp-deals{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:50px}
+.sp-card{background:linear-gradient(145deg,rgba(10,5,21,0.85),rgba(5,5,16,0.95));border:2px solid rgba(255,45,107,0.25);border-radius:24px;padding:50px 35px;text-align:center;transition:all 0.4s ease;position:relative;overflow:hidden}
+.sp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ff2d6b,#8b5cf6)}
+.sp-card:hover{transform:translateY(-6px);border-color:#ff2d6b;box-shadow:0 20px 60px rgba(255,45,107,0.2)}
+.sp-price{font-family:'Orbitron',sans-serif;font-size:56px;font-weight:900;color:#ff2d6b;text-shadow:0 0 30px rgba(255,45,107,0.4);margin-bottom:10px}
+.sp-name{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:800;color:#fff;text-transform:uppercase;margin-bottom:15px}
+.sp-desc{font-size:16px;color:#c0c8d4;line-height:1.7;margin-bottom:20px}
+.sp-badge{display:inline-block;padding:8px 20px;background:rgba(255,45,107,0.15);border:1px solid rgba(255,45,107,0.4);border-radius:20px;font-size:13px;font-weight:700;color:#ff2d6b;text-transform:uppercase;letter-spacing:1px}
+.sp-compare{padding:80px 0;background:linear-gradient(180deg,rgba(255,45,107,0.04),transparent)}
+.sp-compare h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;text-align:center;margin-bottom:20px;color:#fff}
+.sp-compare .sp-sub{text-align:center;font-size:20px;color:#c0c8d4;margin-bottom:50px}
+.sp-table{max-width:800px;margin:0 auto;border:2px solid rgba(255,45,107,0.3);border-radius:20px;overflow:hidden}
+.sp-row{display:flex;border-bottom:1px solid rgba(255,45,107,0.15);align-items:center}
+.sp-row:last-child{border-bottom:none}
+.sp-row-header{background:linear-gradient(135deg,rgba(255,45,107,0.15),rgba(139,92,246,0.1))}
+.sp-row-header .sp-col{font-weight:800;color:#fff;font-size:16px;text-transform:uppercase}
+.sp-col{flex:1;padding:20px 25px;font-size:15px;color:#c0c8d4}
+.sp-col:first-child{color:#fff;font-weight:600}
+.sp-col-us{color:#ff2d6b !important;font-weight:700 !important}
+.sp-promise{padding:80px 0;text-align:center}
+.sp-promise h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:20px;color:#fff}
+.sp-promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.sp-pcard{background:rgba(10,5,21,0.6);border:1px solid rgba(255,45,107,0.15);border-radius:16px;padding:35px;text-align:center;transition:all 0.3s ease}
+.sp-pcard:hover{border-color:#fff;background:rgba(255,255,255,0.05)}
+.sp-pcard h3{font-size:20px;color:#ff2d6b;font-weight:700;margin-bottom:12px}
+.sp-pcard:hover h3{color:#fff}
+.sp-pcard p{color:#c0c8d4;font-size:15px;line-height:1.7}
+.sp-cta{padding:80px 0;text-align:center;background:radial-gradient(ellipse at 50% 100%,rgba(255,45,107,0.12) 0%,transparent 60%)}
+.sp-cta h2{font-family:'Orbitron',sans-serif;font-size:40px;font-weight:900;text-transform:uppercase;margin-bottom:20px;color:#fff}
+.sp-cta p{font-size:20px;color:#ff2d6b;font-weight:700;margin-bottom:35px;text-shadow:0 0 20px rgba(255,45,107,0.4)}
+.sp-btn{display:inline-block;padding:20px 48px;border-radius:60px;font-weight:800;font-size:16px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;margin:0 10px 15px}
+.sp-btn-primary{background:linear-gradient(135deg,#ff2d6b,#8b5cf6);color:#fff;box-shadow:0 10px 50px rgba(255,45,107,0.4)}
+.sp-btn-primary:hover{transform:translateY(-3px);color:#fff}
+.sp-btn-secondary{background:transparent;color:#fff;border:2px solid #ff2d6b;box-shadow:0 0 30px rgba(255,45,107,0.2)}
+.sp-btn-secondary:hover{background:#fff;color:#050510;border-color:#fff}
+@media(max-width:768px){.sp-deals{grid-template-columns:1fr}.sp-promise-grid{grid-template-columns:1fr}.sp-price{font-size:42px}.sp-row{flex-direction:column;text-align:center}.sp-col{padding:12px 20px}.sp-btn{width:90%;margin:0 auto 15px;display:block;text-align:center}}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<div class="sp-hero">
+    <div class="sp-container">
+        <div class="sp-tag">Limited Time Deals</div>
+        <h1>Tech Guardian <span>Specials</span></h1>
+        <p>Same OEM parts the big chains use. Same quality repairs. 25%+ less. No games, no hidden fees, no upsells.</p>
+    </div>
+</div>
+
+<div class="sp-section">
+    <div class="sp-container">
+        <div class="sp-deals">
+            <div class="sp-card">
+                <div class="sp-price">$120</div>
+                <div class="sp-name">HDMI Port Repair</div>
+                <p class="sp-desc">PS5, Xbox Series X/S, Nintendo Switch. Board-level micro soldering by certified techs. Same OEM-spec ports the manufacturer uses. Most repairs completed same-day while you wait.</p>
+                <span class="sp-badge">Most Popular</span>
+            </div>
+            <div class="sp-card">
+                <div class="sp-price">CALL</div>
+                <div class="sp-name">Screen Repairs</div>
+                <p class="sp-desc">iPhone, Samsung Galaxy, iPad, MacBook. Every screen repair uses OEM-quality parts -- the same specs as uBreakiFix and Geek Squad. We just charge 25%+ less. Call for your exact model price.</p>
+                <span class="sp-badge">25%+ Less Than Chains</span>
+            </div>
+            <div class="sp-card">
+                <div class="sp-price">FREE</div>
+                <div class="sp-name">Diagnostics</div>
+                <p class="sp-desc">Don't know what's wrong? Bring it in. We'll run full diagnostics, tell you exactly what failed, give you an honest quote, and let you decide. Zero pressure. Zero charge.</p>
+                <span class="sp-badge">Walk-Ins Welcome</span>
+            </div>
+            <div class="sp-card">
+                <div class="sp-price">10% OFF</div>
+                <div class="sp-name">Valentine's Screen Special</div>
+                <p class="sp-desc">Valentine's Day deal: 10% off all screen repairs through February. Fix your partner's cracked phone, your kid's smashed tablet, or that screen you've been ignoring for months.</p>
+                <span class="sp-badge">Valentine's Special</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sp-compare">
+    <div class="sp-container">
+        <h2>How We Compare</h2>
+        <p class="sp-sub">Same parts. Same quality. Way better prices.</p>
+        <div class="sp-table">
+            <div class="sp-row sp-row-header">
+                <div class="sp-col">Repair</div>
+                <div class="sp-col">uBreakiFix / Geek Squad</div>
+                <div class="sp-col sp-col-us">Tech Guardian</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">PS5 HDMI Port</div>
+                <div class="sp-col">$150 - $200+</div>
+                <div class="sp-col sp-col-us">$120</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">iPhone Screen</div>
+                <div class="sp-col">$200 - $350+</div>
+                <div class="sp-col sp-col-us">25%+ Less - Call</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">MacBook Screen</div>
+                <div class="sp-col">$400 - $700+</div>
+                <div class="sp-col sp-col-us">25%+ Less - Call</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">Diagnostics</div>
+                <div class="sp-col">$30 - $85</div>
+                <div class="sp-col sp-col-us">FREE</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">Parts Quality</div>
+                <div class="sp-col">OEM / OEM-Spec</div>
+                <div class="sp-col sp-col-us">Same OEM Parts</div>
+            </div>
+            <div class="sp-row">
+                <div class="sp-col">Warranty</div>
+                <div class="sp-col">30-90 days</div>
+                <div class="sp-col sp-col-us">45-Day Warranty</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sp-promise">
+    <div class="sp-container">
+        <h2>The Tech Guardian Promise</h2>
+        <div class="sp-promise-grid">
+            <div class="sp-pcard">
+                <h3>Same OEM Parts</h3>
+                <p>We use the exact same OEM-spec parts that uBreakiFix, Geek Squad, and the authorized repair centers use. No cheap knockoffs. No corner-cutting.</p>
+            </div>
+            <div class="sp-pcard">
+                <h3>Board-Level Repair</h3>
+                <p>Other shops replace entire boards for $400+. We fix the individual chip that actually failed. Same result. Fraction of the cost. That's micro soldering expertise.</p>
+            </div>
+            <div class="sp-pcard">
+                <h3>No Hidden Fees</h3>
+                <p>The price we quote is the price you pay. No diagnostic fees. No "discovery" charges. No surprise add-ons at pickup. Straight up honest pricing.</p>
+            </div>
+            <div class="sp-pcard">
+                <h3>Same-Day Service</h3>
+                <p>Most repairs completed same-day while you wait. HDMI ports, screen swaps, battery replacements -- in and out. Complex board work may take 24-48 hours.</p>
+            </div>
+            <div class="sp-pcard">
+                <h3>45-Day Warranty</h3>
+                <p>Every repair backed by our 45-day warranty. Parts and labor. If something goes wrong with our repair, we fix it free. Period.</p>
+            </div>
+            <div class="sp-pcard">
+                <h3>Transparent Process</h3>
+                <p>Watch your repair happen. We don't hide behind a counter. Ask questions. See the work. Know exactly what you're paying for.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sp-cta">
+    <div class="sp-container">
+        <h2>Ready To Save?</h2>
+        <p>Stop overpaying the big chains. Same parts. Better price. Better service.</p>
+        <a href="tel:+18165830100" class="sp-btn sp-btn-primary">Call (816) 583-0100</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="sp-btn sp-btn-secondary">Book Online</a>
+        <p style="color:#c0c8d4;margin-top:25px;font-size:15px;">1239 NE Douglas St, Suite D, Lee's Summit, MO 64086 · Mon-Sat 10AM-6PM</p>
+    </div>
+</div>
+
+</div>

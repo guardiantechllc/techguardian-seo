@@ -1,0 +1,176 @@
+<div style="background:#050510;color:#fff;font-family:'Inter',sans-serif;padding:0;margin:-30px -30px 0 -30px;">
+
+<style>
+.faq-hero{background:linear-gradient(135deg,#0a0515,#050510);padding:80px 20px;text-align:center;border-bottom:2px solid rgba(255,45,107,0.3)}
+.faq-hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:15px;letter-spacing:3px}
+.faq-hero h1 span{color:#ff2d6b;text-shadow:0 0 30px rgba(255,45,107,0.4)}
+.faq-hero p{font-size:20px;color:#c0c8d4;max-width:700px;margin:0 auto}
+.faq-container{max-width:900px;margin:0 auto;padding:0 24px}
+.faq-section{padding:80px 0}
+.faq-item{border:1px solid rgba(255,45,107,0.2);border-radius:16px;margin-bottom:16px;overflow:hidden;transition:all 0.3s ease;background:rgba(10,5,21,0.6)}
+.faq-item:hover{border-color:rgba(255,45,107,0.5)}
+.faq-q{padding:25px 30px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:18px;font-weight:700;color:#fff;transition:all 0.3s ease}
+.faq-q:hover{color:#ff2d6b}
+.faq-q .faq-toggle{font-size:24px;color:#ff2d6b;transition:transform 0.3s ease;flex-shrink:0;margin-left:20px}
+.faq-a{padding:0 30px 25px;font-size:16px;color:#c0c8d4;line-height:1.8;display:none}
+.faq-item.active .faq-a{display:block}
+.faq-item.active .faq-toggle{transform:rotate(45deg)}
+.faq-item.active{border-color:#ff2d6b;box-shadow:0 5px 30px rgba(255,45,107,0.1)}
+.faq-cat{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:800;text-transform:uppercase;color:#ff2d6b;margin:50px 0 25px;padding-bottom:15px;border-bottom:1px solid rgba(255,45,107,0.2)}
+.faq-cat:first-child{margin-top:0}
+.faq-cta{padding:80px 0;text-align:center;background:radial-gradient(ellipse at 50% 100%,rgba(255,45,107,0.12) 0%,transparent 60%)}
+.faq-cta h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:20px;color:#fff}
+.faq-cta p{font-size:18px;color:#c0c8d4;margin-bottom:35px}
+.faq-btn{display:inline-block;padding:20px 48px;border-radius:60px;font-weight:800;font-size:16px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;margin:0 10px 15px}
+.faq-btn-primary{background:linear-gradient(135deg,#ff2d6b,#8b5cf6);color:#fff;box-shadow:0 10px 50px rgba(255,45,107,0.4)}
+.faq-btn-primary:hover{transform:translateY(-3px);color:#fff}
+.faq-btn-secondary{background:transparent;color:#fff;border:2px solid #ff2d6b}
+.faq-btn-secondary:hover{background:#fff;color:#050510;border-color:#fff}
+@media(max-width:600px){.faq-q{font-size:16px;padding:20px}.faq-a{padding:0 20px 20px}.faq-btn{width:90%;margin:0 auto 15px;display:block;text-align:center}}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<div class="faq-hero">
+    <div class="faq-container">
+        <h1>Frequently Asked <span>Questions</span></h1>
+        <p>Straight answers. No BS. If your question isn't here, call us at (816) 583-0100.</p>
+    </div>
+</div>
+
+<div class="faq-section">
+    <div class="faq-container">
+
+        <div class="faq-cat">General</div>
+
+        <div class="faq-item active">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                What do you repair?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">iPhones, Samsung, iPads, MacBooks, laptops, PS5, PS4, Xbox, Nintendo Switch, Steam Deck, and more. If it has a circuit board, we can probably fix it. We specialize in board-level micro soldering -- repairs that other shops say are impossible.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Where are you located?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">1239 NE Douglas St, Suite D, Lee's Summit, MO 64086. We serve the entire Kansas City metro area including Independence, Blue Springs, Overland Park, Olathe, Raytown, Grandview, and more.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                What are your hours?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Monday through Saturday, 10 AM to 6 PM. Closed Sundays. Walk-ins welcome, but appointments guarantee your spot. Book online or call (816) 583-0100.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Do I need an appointment?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Nope! Walk-ins are always welcome. But if you want to guarantee your time slot, you can book online at our Square booking page or call ahead. Either way, we'll take care of you.</div>
+        </div>
+
+        <div class="faq-cat">Pricing &amp; Parts</div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                How much do repairs cost?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">It depends on the repair. HDMI port repairs (PS5, Xbox, Switch) are $120 flat. Screen repair prices vary by device model -- call us for your exact price. Diagnostics are always FREE. We're consistently 25%+ cheaper than uBreakiFix and Geek Squad.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Do you use real OEM parts?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Yes. We use the same OEM-spec parts that uBreakiFix, Geek Squad, and authorized repair centers use. Same quality. Same specs. We just charge less because we don't have corporate overhead eating into pricing. No cheap knockoffs.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                How are you cheaper than the big chains?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Two reasons: First, we don't have massive corporate overhead, franchise fees, or marketing budgets inflating our prices. Second, we do board-level micro soldering -- we repair the actual failed component instead of replacing entire boards. That's a $120 fix instead of a $400 board swap.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Are diagnostics really free?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">100% free. No strings attached. Bring your device in, we'll tell you exactly what's wrong, give you an honest quote, and let you decide. If you don't want to proceed, you walk out with zero charge. Other shops charge $30-$85 just to look at your device.</div>
+        </div>
+
+        <div class="faq-cat">Repairs &amp; Turnaround</div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                What is board-level micro soldering?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Board-level micro soldering is a specialized repair technique where we fix individual components on your device's circuit board under a microscope. Instead of replacing a $400 logic board, we fix the $2 chip that actually failed. This lets us repair devices that other shops say are "unrepairable" -- saving you hundreds of dollars.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                How long do repairs take?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Most standard repairs (screen replacements, HDMI ports, battery swaps) are completed same-day, often while you wait. Complex board-level repairs may take 24-48 hours depending on the diagnosis. We'll always give you an honest timeline upfront.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Do you offer a warranty?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Every repair comes with a 45-day warranty covering parts and labor. If anything goes wrong with our repair within that period, bring it back and we'll fix it free of charge. We stand behind our work.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Can I watch my repair being done?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Yes! We believe in full transparency. We don't hide behind a counter. You're welcome to watch the entire repair process. Ask questions, see exactly what we're doing and why. That's the Tech Guardian difference.</div>
+        </div>
+
+        <div class="faq-cat">AI Solutions</div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                What AI solutions do you offer?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">We build custom AI automations and workflows for businesses: AI chatbots, lead generation systems, email/SMS automation, workflow automation, business intelligence dashboards, and custom integrations. If you're doing something manually that a computer could handle, we can automate it.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="this.parentElement.classList.toggle('active')">
+                Who are AI solutions for?
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-a">Startups, small businesses, entrepreneurs -- anyone who wants their business running smoother and more efficiently. If you're wearing too many hats and spending time on repetitive tasks, AI automation gives you that time back. We build systems for businesses of all sizes.</div>
+        </div>
+
+    </div>
+</div>
+
+<div class="faq-cta">
+    <div class="faq-container">
+        <h2>Still Have Questions?</h2>
+        <p>We're real people who give straight answers. Hit us up.</p>
+        <a href="tel:+18165830100" class="faq-btn faq-btn-primary">Call (816) 583-0100</a>
+        <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="faq-btn faq-btn-secondary">Book Online</a>
+    </div>
+</div>
+
+</div>

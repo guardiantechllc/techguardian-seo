@@ -1,0 +1,169 @@
+<div style="background:#050510;color:#fff;font-family:'Inter',sans-serif;padding:0;margin:-30px -30px 0 -30px;">
+
+<style>
+.ai-hero{background:linear-gradient(135deg,#0a0515,#050510);padding:80px 20px;text-align:center;border-bottom:2px solid rgba(139,92,246,0.3)}
+.ai-hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:15px;letter-spacing:3px}
+.ai-hero h1 span{color:#8b5cf6;text-shadow:0 0 30px rgba(139,92,246,0.4)}
+.ai-hero p{font-size:20px;color:#c0c8d4;max-width:700px;margin:0 auto 30px}
+.ai-hero .ai-tag{display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#8b5cf6,#ff2d6b);border-radius:50px;font-size:14px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:2px;margin-bottom:20px}
+.ai-container{max-width:1100px;margin:0 auto;padding:0 24px}
+.ai-intro{padding:80px 0;text-align:center}
+.ai-intro p{font-size:20px;color:#c0c8d4;max-width:800px;margin:0 auto 30px;line-height:1.8}
+.ai-intro p strong{color:#fff}
+.ai-services{padding:80px 0;background:linear-gradient(180deg,rgba(139,92,246,0.04),transparent)}
+.ai-services h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;text-align:center;margin-bottom:15px;color:#fff}
+.ai-services .ai-sub{text-align:center;font-size:18px;color:#c0c8d4;margin-bottom:50px}
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ai-card{background:linear-gradient(145deg,rgba(10,5,21,0.8),rgba(5,5,16,0.9));border:1px solid rgba(139,92,246,0.2);border-radius:20px;padding:40px 30px;text-align:center;transition:all 0.4s ease}
+.ai-card:hover{transform:translateY(-8px);border-color:#fff;box-shadow:0 20px 60px rgba(139,92,246,0.15)}
+.ai-card .ai-icon{font-size:40px;margin-bottom:20px}
+.ai-card h3{font-size:22px;font-weight:700;color:#8b5cf6;margin-bottom:12px}
+.ai-card:hover h3{color:#fff}
+.ai-card p{color:#c0c8d4;font-size:15px;line-height:1.7}
+.ai-who{padding:80px 0;text-align:center}
+.ai-who h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;margin-bottom:15px;color:#fff}
+.ai-who .ai-sub{font-size:18px;color:#c0c8d4;margin-bottom:50px}
+.ai-who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ai-who-card{background:rgba(10,5,21,0.6);border:2px solid rgba(139,92,246,0.2);border-radius:20px;padding:40px;text-align:center;transition:all 0.3s ease}
+.ai-who-card:hover{border-color:#8b5cf6;box-shadow:0 15px 40px rgba(139,92,246,0.15)}
+.ai-who-card h3{font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;color:#8b5cf6;margin-bottom:8px}
+.ai-who-card .ai-who-type{font-size:20px;font-weight:700;color:#fff;margin-bottom:15px}
+.ai-who-card p{color:#c0c8d4;font-size:15px;line-height:1.7}
+.ai-process{padding:80px 0;background:linear-gradient(180deg,rgba(139,92,246,0.04),transparent)}
+.ai-process h2{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;text-transform:uppercase;text-align:center;margin-bottom:50px;color:#fff}
+.ai-steps{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
+.ai-step{text-align:center;flex:1;min-width:200px;max-width:250px}
+.ai-step-num{width:70px;height:70px;background:linear-gradient(135deg,#8b5cf6,#ff2d6b);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;margin:0 auto 20px;box-shadow:0 10px 40px rgba(139,92,246,0.4)}
+.ai-step h3{font-size:18px;margin-bottom:10px;font-weight:700;color:#fff}
+.ai-step p{color:#c0c8d4;font-size:14px;line-height:1.6}
+.ai-cta{padding:80px 0;text-align:center;background:radial-gradient(ellipse at 50% 100%,rgba(139,92,246,0.12) 0%,transparent 60%)}
+.ai-cta h2{font-family:'Orbitron',sans-serif;font-size:40px;font-weight:900;text-transform:uppercase;margin-bottom:20px;color:#fff}
+.ai-cta p{font-size:20px;color:#8b5cf6;font-weight:700;margin-bottom:35px;text-shadow:0 0 20px rgba(139,92,246,0.4)}
+.ai-btn{display:inline-block;padding:20px 48px;border-radius:60px;font-weight:800;font-size:16px;text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.3s ease;margin:0 10px 15px}
+.ai-btn-primary{background:linear-gradient(135deg,#8b5cf6,#ff2d6b);color:#fff;box-shadow:0 10px 50px rgba(139,92,246,0.4)}
+.ai-btn-primary:hover{transform:translateY(-3px);color:#fff}
+.ai-btn-secondary{background:transparent;color:#fff;border:2px solid #8b5cf6;box-shadow:0 0 30px rgba(139,92,246,0.2)}
+.ai-btn-secondary:hover{background:#fff;color:#050510;border-color:#fff}
+@media(max-width:900px){.ai-grid,.ai-who-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.ai-grid,.ai-who-grid{grid-template-columns:1fr}.ai-steps{flex-direction:column;align-items:center}.ai-btn{width:90%;margin:0 auto 15px;display:block;text-align:center}}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<div class="ai-hero">
+    <div class="ai-container">
+        <div class="ai-tag">AI-Powered Growth</div>
+        <h1>AI <span>Solutions</span></h1>
+        <p>Custom AI automations and workflows that save you time, make you money, and keep your business running while you sleep.</p>
+    </div>
+</div>
+
+<div class="ai-intro">
+    <div class="ai-container">
+        <p><strong>We don't just fix devices.</strong> Tech Guardian builds AI-powered systems that automate the boring stuff so you can focus on growing your business. From lead generation to customer follow-ups to full workflow automation -- we build it, deploy it, and make sure it works.</p>
+        <p><strong>No coding required on your end.</strong> We handle everything. You just watch your business run smoother than ever.</p>
+    </div>
+</div>
+
+<div class="ai-services">
+    <div class="ai-container">
+        <h2>What We Build</h2>
+        <p class="ai-sub">Custom AI solutions tailored to your business</p>
+        <div class="ai-grid">
+            <div class="ai-card">
+                <div class="ai-icon">&#9889;</div>
+                <h3>Workflow Automation</h3>
+                <p>Automate repetitive tasks. Invoicing, scheduling, data entry, follow-ups -- set it and forget it. We build custom workflows using n8n, Make, and Zapier that run 24/7.</p>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon">&#128172;</div>
+                <h3>AI Chatbots</h3>
+                <p>Custom AI chatbots for your website that answer questions, book appointments, qualify leads, and handle customer support -- even at 3 AM. Trained on YOUR business.</p>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon">&#127919;</div>
+                <h3>Lead Generation</h3>
+                <p>Automated lead capture, scoring, and nurturing. Connect your forms, ads, and social media into one system that turns visitors into paying customers on autopilot.</p>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon">&#128200;</div>
+                <h3>Business Intelligence</h3>
+                <p>Real-time dashboards that show you what's working and what's not. Sales, customers, marketing ROI -- all in one place. Make decisions with data, not guesses.</p>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon">&#128231;</div>
+                <h3>Email &amp; SMS Automation</h3>
+                <p>Automated email sequences, SMS campaigns, appointment reminders, review requests. Keep your customers engaged without lifting a finger.</p>
+            </div>
+            <div class="ai-card">
+                <div class="ai-icon">&#128268;</div>
+                <h3>Custom Integrations</h3>
+                <p>Connect all your tools together. CRM, booking system, payment processor, social media, inventory -- one unified system that talks to itself.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ai-who">
+    <div class="ai-container">
+        <h2>Built For</h2>
+        <p class="ai-sub">Whether you're just starting out or scaling up</p>
+        <div class="ai-who-grid">
+            <div class="ai-who-card">
+                <h3>01</h3>
+                <div class="ai-who-type">Startups</div>
+                <p>Launch with systems that scale. Automate from day one so you can focus on building your product and growing your customer base. Don't waste time on manual processes.</p>
+            </div>
+            <div class="ai-who-card">
+                <h3>02</h3>
+                <div class="ai-who-type">Small Business</div>
+                <p>You're wearing 10 hats. Let AI handle the admin. Automated booking, invoicing, follow-ups, marketing -- get your time back and focus on what makes you money.</p>
+            </div>
+            <div class="ai-who-card">
+                <h3>03</h3>
+                <div class="ai-who-type">Entrepreneurs</div>
+                <p>Want a structured life? Automate your workflows, track your goals, manage your projects, and build systems that work while you sleep. AI-powered productivity.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ai-process">
+    <div class="ai-container">
+        <h2>How It Works</h2>
+        <div class="ai-steps">
+            <div class="ai-step">
+                <div class="ai-step-num">1</div>
+                <h3>Discovery Call</h3>
+                <p>We learn about your business, your pain points, and what you want to automate. Free consultation. No obligation.</p>
+            </div>
+            <div class="ai-step">
+                <div class="ai-step-num">2</div>
+                <h3>Custom Plan</h3>
+                <p>We design a custom automation strategy. Clear deliverables, transparent pricing, realistic timeline.</p>
+            </div>
+            <div class="ai-step">
+                <div class="ai-step-num">3</div>
+                <h3>We Build It</h3>
+                <p>Our team builds, tests, and deploys your automations. You get updates every step of the way.</p>
+            </div>
+            <div class="ai-step">
+                <div class="ai-step-num">4</div>
+                <h3>You Grow</h3>
+                <p>Your systems run 24/7. We provide ongoing support and optimization to keep everything performing.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ai-cta">
+    <div class="ai-container">
+        <h2>Automate Your Business</h2>
+        <p>Free consultation. Let's build something that works while you sleep.</p>
+        <a href="tel:+18165830100" class="ai-btn ai-btn-primary">Call (816) 583-0100</a>
+        <a href="mailto:tech@guardianlabs.digital" class="ai-btn ai-btn-secondary">Email Us</a>
+        <p style="color:#c0c8d4;margin-top:25px;font-size:15px;">Tech Guardian LLC · AI Solutions Division · Lee's Summit, MO</p>
+    </div>
+</div>
+
+</div>

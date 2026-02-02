@@ -647,6 +647,88 @@
             line-height: 1.6;
         }
 
+        /* === SPECIALS === */
+        .specials-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, rgba(255,45,107,0.06), var(--midnight), rgba(139,92,246,0.04));
+            position: relative;
+        }
+
+        .specials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 50px;
+        }
+
+        .deal-card {
+            background: linear-gradient(145deg, rgba(10,5,21,0.85), rgba(5,5,16,0.95));
+            border: 2px solid rgba(255,45,107,0.25);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--love-pink), var(--electric-blue));
+        }
+
+        .deal-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--love-pink);
+            box-shadow: 0 20px 60px rgba(255,45,107,0.2);
+        }
+
+        .deal-card .deal-price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--love-pink);
+            text-shadow: 0 0 30px var(--love-glow);
+            margin-bottom: 10px;
+        }
+
+        .deal-card .deal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--snow);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .deal-card .deal-desc {
+            font-size: 15px;
+            color: var(--silver);
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .deal-card .deal-tag {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(255,45,107,0.15);
+            border: 1px solid rgba(255,45,107,0.4);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--love-pink);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .specials-cta {
+            text-align: center;
+            margin-top: 50px;
+        }
+
         /* === MID CTA === */
         .mid-cta {
             padding: 100px 0;
@@ -963,6 +1045,7 @@
         /* === RESPONSIVE === */
         @media (max-width: 900px) {
             .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .specials-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
@@ -979,7 +1062,7 @@
             .video-hero { height: 60vh; min-height: 400px; }
             .hero-content h1 { font-size: 36px; }
             .hero-content .subhead { font-size: 18px; }
-            .services-grid, .why-grid { grid-template-columns: 1fr; }
+            .services-grid, .why-grid, .specials-grid { grid-template-columns: 1fr; }
             .btn { padding: 18px 36px; width: 100%; text-align: center; }
             .cta-group { flex-direction: column; align-items: stretch; }
             .nap-links { flex-direction: column; }
@@ -1221,6 +1304,46 @@
             </div>
         </section>
 
+        <!-- SPECIALS -->
+        <section class="specials-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Current Specials</h2>
+                    <p>Same OEM parts as the big chains. 25%+ less. No games.</p>
+                </div>
+                <div class="specials-grid">
+                    <div class="deal-card">
+                        <div class="deal-price">$120</div>
+                        <div class="deal-title">HDMI Port Repair</div>
+                        <p class="deal-desc">PS5, Xbox, Nintendo Switch. Board-level micro soldering. Same OEM parts the big shops use -- at a fraction of the price. Most done same-day.</p>
+                        <span class="deal-tag">Most Popular</span>
+                    </div>
+                    <div class="deal-card">
+                        <div class="deal-price">CALL</div>
+                        <div class="deal-title">Screen Repairs</div>
+                        <p class="deal-desc">iPhone, Samsung, iPad, MacBook. OEM-quality screens. We beat uBreakiFix and the chains by 25%+ every time. Call for your exact model price.</p>
+                        <span class="deal-tag">25%+ Less Than Chains</span>
+                    </div>
+                    <div class="deal-card">
+                        <div class="deal-price">FREE</div>
+                        <div class="deal-title">Diagnostics</div>
+                        <p class="deal-desc">Don't know what's wrong? Bring it in. We'll tell you exactly what's broken, what it costs, and how long it takes. No charge. No obligation.</p>
+                        <span class="deal-tag">Walk-Ins Welcome</span>
+                    </div>
+                    <div class="deal-card">
+                        <div class="deal-price">10% OFF</div>
+                        <div class="deal-title">Valentine's Screen Special</div>
+                        <p class="deal-desc">Valentine's Day deal: 10% off all screen repairs. Fix your partner's cracked phone, your kid's tablet, or your own device. Limited time.</p>
+                        <span class="deal-tag">Valentine's Special</span>
+                    </div>
+                </div>
+                <div class="specials-cta">
+                    <a href="/specials/" class="btn btn-primary">View All Specials</a>
+                    <p style="color: var(--silver); margin-top: 20px; font-size: 15px;">Same OEM parts as uBreakiFix. Same quality. Way better prices.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- MID CTA -->
         <section class="mid-cta">
             <div class="container">
@@ -1364,7 +1487,7 @@
                 <strong>Tech Guardian LLC</strong> -- Kansas City's Last Resort Device Repair<br>
                 1239 NE Douglas St, Suite D, Lee's Summit, MO 64086<br>
                 <a href="tel:+18165830100">(816) 583-0100</a> · <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
-                <a href="https://guardianrevives.com">Home</a> · <a href="https://guardianrevives.com/services/">Services</a> · <a href="https://guardianrevives.com/watch">Watch</a> · <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book</a> · <a href="https://www.facebook.com/techguardianllc">Facebook</a> · <a href="https://www.youtube.com/@techguardianllc">YouTube</a> · <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit">Yelp</a> · <a href="https://www.google.com/maps/place/Tech+Guardian+LLC">Google</a><br>
+                <a href="https://guardianrevives.com">Home</a> · <a href="/services/">Services</a> · <a href="/specials/">Specials</a> · <a href="/ai-solutions/">AI Solutions</a> · <a href="/faq/">FAQ</a> · <a href="/watch">Watch</a> · <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services">Book</a> · <a href="https://www.facebook.com/techguardianllc">Facebook</a> · <a href="https://www.youtube.com/@techguardianllc">YouTube</a> · <a href="https://www.yelp.com/biz/tech-guardian-llc-lees-summit">Yelp</a> · <a href="https://www.google.com/maps/place/Tech+Guardian+LLC">Google</a><br>
                 &copy; 2026 Tech Guardian LLC. All rights reserved.
             </p>
         </div>
@@ -1431,7 +1554,7 @@
             if (msg.indexOf('hour') !== -1 || msg.indexOf('open') !== -1 || msg.indexOf('close') !== -1) {
                 return "We're open Monday-Saturday, 10 AM to 6 PM. Closed Sundays. Come on by!";
             } else if (msg.indexOf('price') !== -1 || msg.indexOf('cost') !== -1 || msg.indexOf('how much') !== -1) {
-                return "Pricing depends on the repair. Good news: diagnostics are FREE! Call us at (816) 583-0100 or book online for a quote.";
+                return "HDMI repairs are $120 flat. Screen repairs vary by model but we're 25%+ cheaper than uBreakiFix - same OEM parts. Diagnostics are FREE! Call (816) 583-0100 for your exact price.";
             } else if (msg.indexOf('location') !== -1 || msg.indexOf('address') !== -1 || msg.indexOf('where') !== -1) {
                 return "We're at 1239 NE Douglas St, Suite D, Lee's Summit, MO 64086. Easy to find!";
             } else if (msg.indexOf('iphone') !== -1 || msg.indexOf('apple') !== -1 || msg.indexOf('phone') !== -1) {
@@ -1440,8 +1563,10 @@
                 return "MacBooks and laptops are our specialty! Liquid damage, no power, keyboards - we do board-level repairs others can't.";
             } else if (msg.indexOf('ps5') !== -1 || msg.indexOf('playstation') !== -1 || msg.indexOf('xbox') !== -1 || msg.indexOf('console') !== -1) {
                 return "Gaming console repairs? Absolutely! PS5, Xbox, Switch - HDMI ports, disc drives, overheating. We got you.";
+            } else if (msg.indexOf('hdmi') !== -1) {
+                return "HDMI port repairs are $120 flat - PS5, Xbox, Switch. Board-level micro soldering with OEM parts. Most done same-day!";
             } else if (msg.indexOf('valentine') !== -1 || msg.indexOf('special') !== -1 || msg.indexOf('deal') !== -1) {
-                return "Valentine's Special: 10% off all screen repairs! Give your loved one's device some love. Book online or call (816) 583-0100!";
+                return "Valentine's Special: 10% off all screen repairs! Plus $120 HDMI repairs and 25%+ less than uBreakiFix on everything. Check guardianrevives.com/specials for all deals!";
             } else if (msg.indexOf('warranty') !== -1) {
                 return "All our repairs come with a 45-day warranty. If something goes wrong with our repair, we'll fix it free!";
             } else if (msg.indexOf('book') !== -1 || msg.indexOf('appointment') !== -1) {
