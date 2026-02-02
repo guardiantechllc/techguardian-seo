@@ -1,0 +1,452 @@
+{
+  "name": "01 - Electronics Lead Scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 4
+            }
+          ]
+        }
+      },
+      "id": "b1000001-0001-4000-8000-000000000001",
+      "name": "Run Every 4 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// === CONFIGURATION ===\n// Update these values for your setup\n\nconst config = {\n  apify_token: 'YOUR_APIFY_API_TOKEN',\n  location: 'Lee\\'s Summit, Missouri',\n  search_radius_miles: 30,\n\n  // Apify actor IDs - replace with your preferred actors\n  marketplace_actor: 'apify/facebook-marketplace-scraper',\n  groups_actor: 'apify/facebook-groups-scraper',\n\n  // Search queries for broken electronics\n  marketplace_searches: [\n    'broken PS5',\n    'broken PlayStation 5',\n    'PS5 for parts',\n    'PS5 not working',\n    'broken Xbox Series X',\n    'broken Xbox Series S',\n    'Xbox for parts',\n    'Xbox not working',\n    'broken Nintendo Switch',\n    'Switch for parts',\n    'Switch not working',\n    'broken MacBook',\n    'MacBook for parts',\n    'MacBook not working',\n    'broken laptop',\n    'laptop for parts',\n    'laptop not working',\n    'broken gaming console',\n    'console for parts'\n  ],\n\n  // Facebook group URLs to monitor\n  group_urls: [\n    'https://www.facebook.com/groups/YOUR_LOCAL_MARKETPLACE_GROUP_1',\n    'https://www.facebook.com/groups/YOUR_LOCAL_MARKETPLACE_GROUP_2',\n    'https://www.facebook.com/groups/YOUR_LOCAL_ELECTRONICS_GROUP'\n  ],\n\n  // Keywords to look for in group posts\n  group_keywords: [\n    'broken', 'not working', 'for parts', 'cracked screen',\n    'won\\'t turn on', 'dead', 'damaged', 'repair',\n    'doesn\\'t work', 'needs repair', 'as-is', 'as is',\n    'defective', 'faulty', 'water damage', 'bricked'\n  ]\n};\n\nreturn { json: config };"
+      },
+      "id": "b1000001-0001-4000-8000-000000000002",
+      "name": "Search Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/{{ $json.marketplace_actor }}/run-sync-get-dataset-items?token={{ $json.apify_token }}&timeout=300",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"searchQueries\": {{ JSON.stringify($json.marketplace_searches) }},\n  \"location\": \"{{ $json.location }}\",\n  \"maxItems\": 100,\n  \"radius\": {{ $json.search_radius_miles }}\n}",
+        "options": {
+          "timeout": 310000
+        }
+      },
+      "id": "b1000001-0001-4000-8000-000000000003",
+      "name": "Scrape Marketplace (Apify)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [740, 100],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/{{ $json.groups_actor }}/run-sync-get-dataset-items?token={{ $json.apify_token }}&timeout=300",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"groupUrls\": {{ JSON.stringify($json.group_urls) }},\n  \"maxPosts\": 200,\n  \"searchKeywords\": {{ JSON.stringify($json.group_keywords) }}\n}",
+        "options": {
+          "timeout": 310000
+        }
+      },
+      "id": "b1000001-0001-4000-8000-000000000004",
+      "name": "Scrape Groups (Apify)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [740, 500],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Process marketplace results into normalized lead format\nconst items = $input.all();\nconst leads = [];\n\nfor (const item of items) {\n  const data = item.json;\n  if (!data || data.error) continue;\n\n  // Handle array results from Apify\n  const results = Array.isArray(data) ? data : [data];\n\n  for (const listing of results) {\n    const title = (listing.title || listing.name || '').toLowerCase();\n    const description = (listing.description || listing.text || '').toLowerCase();\n    const combined = title + ' ' + description;\n\n    // Classify device type\n    let deviceType = 'Other';\n    if (combined.includes('ps5') || combined.includes('playstation 5') || combined.includes('playstation5')) {\n      deviceType = 'PS5';\n    } else if (combined.includes('xbox series x')) {\n      deviceType = 'Xbox Series X';\n    } else if (combined.includes('xbox series s')) {\n      deviceType = 'Xbox Series S';\n    } else if (combined.includes('xbox')) {\n      deviceType = 'Xbox Series X';\n    } else if (combined.includes('switch') || combined.includes('nintendo')) {\n      deviceType = 'Nintendo Switch';\n    } else if (combined.includes('macbook') || combined.includes('mac book')) {\n      deviceType = 'MacBook';\n    } else if (combined.includes('laptop') || combined.includes('notebook')) {\n      deviceType = 'Laptop';\n    }\n\n    // Extract condition keywords found\n    const conditionTerms = ['broken', 'not working', 'for parts', 'cracked', 'dead',\n      'damaged', 'won\\'t turn on', 'defective', 'faulty', 'water damage',\n      'as-is', 'as is', 'needs repair', 'bricked', 'doesnt work', 'doesn\\'t work'];\n    const foundConditions = conditionTerms.filter(term => combined.includes(term));\n\n    if (foundConditions.length === 0 && deviceType === 'Other') continue;\n\n    leads.push({\n      json: {\n        lead_id: 'MKT-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6),\n        source: 'marketplace',\n        platform_post_id: listing.id || listing.postId || listing.url || '',\n        seller_name: listing.sellerName || listing.author || listing.userName || '',\n        seller_profile_url: listing.sellerUrl || listing.authorUrl || listing.userProfileUrl || '',\n        device_type: deviceType,\n        listing_title: listing.title || listing.name || '',\n        listing_description: listing.description || listing.text || '',\n        listing_price: parseFloat(String(listing.price || '0').replace(/[^0-9.]/g, '')) || 0,\n        listing_url: listing.url || listing.postUrl || '',\n        listing_images: JSON.stringify(listing.images || listing.photos || []),\n        location: listing.location || listing.city || '',\n        condition_keywords: foundConditions.join(', '),\n        status: 'new',\n        scraped_at: new Date().toISOString()\n      }\n    });\n  }\n}\n\nreturn leads.length > 0 ? leads : [{ json: { _empty: true, source: 'marketplace' } }];"
+      },
+      "id": "b1000001-0001-4000-8000-000000000005",
+      "name": "Process Marketplace Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 100]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Process group post results into normalized lead format\nconst items = $input.all();\nconst leads = [];\n\nconst devicePatterns = [\n  { pattern: /ps5|playstation\\s*5/i, type: 'PS5' },\n  { pattern: /xbox\\s*series\\s*x/i, type: 'Xbox Series X' },\n  { pattern: /xbox\\s*series\\s*s/i, type: 'Xbox Series S' },\n  { pattern: /xbox/i, type: 'Xbox Series X' },\n  { pattern: /switch|nintendo/i, type: 'Nintendo Switch' },\n  { pattern: /macbook|mac\\s*book/i, type: 'MacBook' },\n  { pattern: /laptop|notebook/i, type: 'Laptop' }\n];\n\nconst conditionTerms = ['broken', 'not working', 'for parts', 'cracked', 'dead',\n  'damaged', 'won\\'t turn on', 'defective', 'faulty', 'water damage',\n  'as-is', 'as is', 'needs repair', 'bricked', 'doesnt work', 'doesn\\'t work',\n  'selling for parts', 'parts only'];\n\nfor (const item of items) {\n  const data = item.json;\n  if (!data || data.error) continue;\n\n  const results = Array.isArray(data) ? data : [data];\n\n  for (const post of results) {\n    const text = (post.text || post.message || post.content || '').toLowerCase();\n    const title = (post.title || '').toLowerCase();\n    const combined = title + ' ' + text;\n\n    // Check if post mentions broken electronics\n    const foundConditions = conditionTerms.filter(term => combined.includes(term));\n    if (foundConditions.length === 0) continue;\n\n    // Classify device\n    let deviceType = 'Other';\n    for (const dp of devicePatterns) {\n      if (dp.pattern.test(combined)) {\n        deviceType = dp.type;\n        break;\n      }\n    }\n\n    // Only include if we found a recognizable device\n    if (deviceType === 'Other') continue;\n\n    // Try to extract price from text\n    const priceMatch = combined.match(/\\$\\s*(\\d+(?:\\.\\d{2})?)|\\b(\\d+)\\s*(?:dollars|obo|firm)/i);\n    const price = priceMatch ? parseFloat(priceMatch[1] || priceMatch[2]) : 0;\n\n    leads.push({\n      json: {\n        lead_id: 'GRP-' + Date.now() + '-' + Math.random().toString(36).substr(2, 6),\n        source: 'group',\n        platform_post_id: post.id || post.postId || post.url || '',\n        seller_name: post.authorName || post.userName || post.author || '',\n        seller_profile_url: post.authorUrl || post.userProfileUrl || '',\n        device_type: deviceType,\n        listing_title: post.title || text.substring(0, 80) + '...',\n        listing_description: post.text || post.message || post.content || '',\n        listing_price: price,\n        listing_url: post.url || post.postUrl || '',\n        listing_images: JSON.stringify(post.images || post.photos || []),\n        location: post.location || '',\n        condition_keywords: foundConditions.join(', '),\n        status: 'new',\n        scraped_at: new Date().toISOString()\n      }\n    });\n  }\n}\n\nreturn leads.length > 0 ? leads : [{ json: { _empty: true, source: 'group' } }];"
+      },
+      "id": "b1000001-0001-4000-8000-000000000006",
+      "name": "Process Group Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 500]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000007",
+      "name": "Merge All Leads",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1260, 300]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Filter out empty results and deduplicate by platform_post_id\nconst items = $input.all();\nconst seen = new Set();\nconst leads = [];\n\nfor (const item of items) {\n  if (item.json._empty) continue;\n  \n  const postId = item.json.platform_post_id;\n  if (postId && seen.has(postId)) continue;\n  if (postId) seen.add(postId);\n  \n  leads.push(item);\n}\n\nreturn leads.length > 0 ? leads : [{ json: { _no_new_leads: true } }];"
+      },
+      "id": "b1000001-0001-4000-8000-000000000008",
+      "name": "Deduplicate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1500, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-not-empty",
+              "leftValue": "={{ $json._no_new_leads }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notTrue"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000009",
+      "name": "Has New Leads?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1740, 300]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "documentId": {
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo/edit"
+        },
+        "sheetName": {
+          "mode": "name",
+          "value": "Electronics Leads"
+        },
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000010",
+      "name": "Read Existing Leads",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [1980, 200],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "// Compare new leads against existing Google Sheet data\nconst existingRows = $input.all();\nconst deduplicatedLeads = $('Deduplicate').all().filter(item => !item.json._no_new_leads);\n\nif (deduplicatedLeads.length === 0) {\n  return [{ json: { _all_exist: true } }];\n}\n\n// Build set of existing platform post IDs\nconst existingPostIds = new Set();\nfor (const row of existingRows) {\n  if (row.json.platform_post_id) {\n    existingPostIds.add(row.json.platform_post_id);\n  }\n}\n\n// Return only leads not already in the sheet\nconst newOnly = deduplicatedLeads.filter(lead =>\n  !existingPostIds.has(lead.json.platform_post_id)\n);\n\nreturn newOnly.length > 0 ? newOnly : [{ json: { _all_exist: true } }];"
+      },
+      "id": "b1000001-0001-4000-8000-000000000016",
+      "name": "Filter New Leads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2220, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-has-new",
+              "leftValue": "={{ $json._all_exist }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notTrue"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000011",
+      "name": "Has New to Save?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [2460, 200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "mode": "url",
+          "value": "https://docs.google.com/spreadsheets/d/1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo/edit"
+        },
+        "sheetName": {
+          "mode": "name",
+          "value": "Electronics Leads"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000012",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [2700, 100],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:5678/webhook/new-electronics-lead",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"lead_id\": \"{{ $json.lead_id }}\",\n  \"device_type\": \"{{ $json.device_type }}\",\n  \"seller_name\": \"{{ $json.seller_name }}\",\n  \"listing_title\": {{ JSON.stringify($json.listing_title) }},\n  \"listing_price\": {{ $json.listing_price }},\n  \"source\": \"{{ $json.source }}\"\n}",
+        "options": {}
+      },
+      "id": "b1000001-0001-4000-8000-000000000013",
+      "name": "Trigger Outreach Workflow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2940, 100],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "id": "b1000001-0001-4000-8000-000000000014",
+      "name": "All Already Exist - Skip",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [2700, 340]
+    },
+    {
+      "parameters": {},
+      "id": "b1000001-0001-4000-8000-000000000015",
+      "name": "No New Leads",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1980, 440]
+    }
+  ],
+  "connections": {
+    "Run Every 4 Hours": {
+      "main": [
+        [
+          {
+            "node": "Search Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Config": {
+      "main": [
+        [
+          {
+            "node": "Scrape Marketplace (Apify)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Scrape Groups (Apify)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape Marketplace (Apify)": {
+      "main": [
+        [
+          {
+            "node": "Process Marketplace Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scrape Groups (Apify)": {
+      "main": [
+        [
+          {
+            "node": "Process Group Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Marketplace Results": {
+      "main": [
+        [
+          {
+            "node": "Merge All Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Group Results": {
+      "main": [
+        [
+          {
+            "node": "Merge All Leads",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge All Leads": {
+      "main": [
+        [
+          {
+            "node": "Deduplicate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Deduplicate": {
+      "main": [
+        [
+          {
+            "node": "Has New Leads?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has New Leads?": {
+      "main": [
+        [
+          {
+            "node": "Read Existing Leads",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No New Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Existing Leads": {
+      "main": [
+        [
+          {
+            "node": "Filter New Leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter New Leads": {
+      "main": [
+        [
+          {
+            "node": "Has New to Save?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has New to Save?": {
+      "main": [
+        [
+          {
+            "node": "Save to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "All Already Exist - Skip",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Trigger Outreach Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b1000001-0000-4000-8000-000000000000",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "00000000-0000-0000-0000-000000000000"
+  },
+  "tags": [
+    {
+      "name": "guardian-labs"
+    },
+    {
+      "name": "scraper"
+    }
+  ]
+}
