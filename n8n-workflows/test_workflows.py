@@ -6,7 +6,7 @@ import os
 import sys
 import unittest
 
-WORKFLOW_DIR = "/root/n8n-workflows"
+WORKFLOW_DIR = os.path.dirname(os.path.abspath(__file__))
 EXPECTED_SHEET_URL = "https://docs.google.com/spreadsheets/d/1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo/edit"
 EXPECTED_SPREADSHEET_ID = "1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo"
 SHEET_TABS = ["Electronics Leads", "Outreach Log", "Small Business Leads"]
@@ -361,17 +361,31 @@ class TestOutreachPipelineFlow(unittest.TestCase):
 
     def test_has_save_draft_nodes(self):
         self.assertIn("Save Repair Offer Draft", self.node_names)
-        self.assertIn("Save Buy Offer Draft", self.node_names)
+
+    def test_no_buy_offer_nodes(self):
+        """Buy offer flow was removed - verify it's gone."""
+        self.assertNotIn("Generate Buy Offer", self.node_names)
+        self.assertNotIn("Save Buy Offer Draft", self.node_names)
+        self.assertNotIn("Update Lead - Buy Offered", self.node_names)
+        self.assertNotIn("Respond Success (Buy)", self.node_names)
+        self.assertNotIn("Repair Declined?", self.node_names)
 
     def test_has_update_status_nodes(self):
         self.assertIn("Update Lead Status - Contacted", self.node_names)
-        self.assertIn("Update Lead - Buy Offered", self.node_names)
-        self.assertIn("Update Lead Status - Other", self.node_names)
+        self.assertIn("Update Lead Status", self.node_names)
 
     def test_has_response_nodes(self):
         self.assertIn("Respond Success (Repair)", self.node_names)
-        self.assertIn("Respond Success (Buy)", self.node_names)
-        self.assertIn("Respond Success (Other)", self.node_names)
+        self.assertIn("Respond Success (Response)", self.node_names)
+
+    def test_handle_response_covers_all_types(self):
+        """Handle Response node should handle accepted, declined, and no_response."""
+        for node in self.wf["nodes"]:
+            if node["name"] == "Handle Response":
+                code = node["parameters"]["jsCode"]
+                self.assertIn("accepted", code)
+                self.assertIn("declined", code)
+                self.assertIn("no_response", code)
 
     def test_find_lead_code_references_webhook(self):
         for node in self.wf["nodes"]:

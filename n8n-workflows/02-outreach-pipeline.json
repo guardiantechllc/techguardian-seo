@@ -210,139 +210,14 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict"
-          },
-          "conditions": [
-            {
-              "id": "check-declined",
-              "leftValue": "={{ $json.response_type }}",
-              "rightValue": "declined",
-              "operator": {
-                "type": "string",
-                "operation": "equals"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "c1000001-0001-4000-8000-000000000010",
-      "name": "Repair Declined?",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2,
-      "position": [1220, 700]
-    },
-    {
-      "parameters": {
         "mode": "runOnceForEachItem",
-        "jsCode": "// Generate buy offer message after repair was declined\nconst data = $input.item.json;\nconst lead = data.lead_data || {};\n\nconst deviceType = lead.device_type || 'device';\nconst sellerName = lead.seller_name || '';\nconst firstName = sellerName.split(' ')[0] || 'there';\nconst listingPrice = lead.listing_price || 0;\n\n// Calculate offer price (typically 40-60% of listing price for broken items)\nlet offerPrice = Math.round(listingPrice * 0.5);\nif (offerPrice < 10) offerPrice = 20; // Minimum offer\n\n// Price ranges by device for broken units\nconst priceRanges = {\n  'PS5': { min: 75, max: 200 },\n  'Xbox Series X': { min: 60, max: 175 },\n  'Xbox Series S': { min: 40, max: 120 },\n  'Nintendo Switch': { min: 40, max: 100 },\n  'MacBook': { min: 100, max: 400 },\n  'Laptop': { min: 30, max: 150 }\n};\n\nconst range = priceRanges[deviceType];\nif (range) {\n  if (offerPrice < range.min) offerPrice = range.min;\n  if (offerPrice > range.max) offerPrice = range.max;\n}\n\nconst message = `Hey ${firstName}, no worries at all about the repair! I totally understand.\n\nIf you're still looking to get rid of the ${deviceType}, I'd be happy to buy it from you as-is for $${offerPrice}. I use parts from broken units in my repair work, so it wouldn't go to waste.\n\nI'm local in Lee's Summit so I can pick it up whenever works for you. Let me know if that sounds fair!`;\n\nreturn {\n  json: {\n    lead_id: data.lead_id,\n    device_type: deviceType,\n    seller_name: sellerName,\n    offer_price: offerPrice,\n    outreach_type: 'buy_offer',\n    message_draft: message\n  }\n};"
-      },
-      "id": "c1000001-0001-4000-8000-000000000011",
-      "name": "Generate Buy Offer",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [1460, 600]
-    },
-    {
-      "parameters": {
-        "operation": "append",
-        "documentId": {
-          "mode": "url",
-          "value": "https://docs.google.com/spreadsheets/d/1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo/edit"
-        },
-        "sheetName": {
-          "mode": "name",
-          "value": "Outreach Log"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "lead_id": "={{ $json.lead_id }}",
-            "lead_type": "electronics",
-            "outreach_type": "buy_offer",
-            "message_draft": "={{ $json.message_draft }}",
-            "message_sent": "false",
-            "next_action": "send_message",
-            "created_at": "={{ new Date().toISOString() }}"
-          },
-          "matchingColumns": [],
-          "schema": []
-        },
-        "options": {}
-      },
-      "id": "c1000001-0001-4000-8000-000000000012",
-      "name": "Save Buy Offer Draft",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [1700, 600],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "documentId": {
-          "mode": "url",
-          "value": "https://docs.google.com/spreadsheets/d/1M4VlcIMm-YdWt8srrlNPcdg7Jx2CXXtHHsr8Avc_tfo/edit"
-        },
-        "sheetName": {
-          "mode": "name",
-          "value": "Electronics Leads"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "lead_id": "={{ $('Generate Buy Offer').item.json.lead_id }}",
-            "status": "buy_offered"
-          },
-          "matchingColumns": ["lead_id"],
-          "schema": []
-        },
-        "options": {}
-      },
-      "id": "c1000001-0001-4000-8000-000000000013",
-      "name": "Update Lead - Buy Offered",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4.5,
-      "position": [1940, 600],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "respondWith": "json",
-        "responseBody": "={\n  \"success\": true,\n  \"lead_id\": \"{{ $('Generate Buy Offer').item.json.lead_id }}\",\n  \"outreach_type\": \"buy_offer\",\n  \"offer_price\": {{ $('Generate Buy Offer').item.json.offer_price }},\n  \"message_preview\": {{ JSON.stringify($('Generate Buy Offer').item.json.message_draft.substring(0, 100) + '...') }}\n}",
-        "options": {}
-      },
-      "id": "c1000001-0001-4000-8000-000000000014",
-      "name": "Respond Success (Buy)",
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [2180, 600]
-    },
-    {
-      "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "// Handle accepted repair or no response\nconst data = $input.item.json;\nlet newStatus = 'repair_offered';\n\nif (data.response_type === 'accepted') {\n  newStatus = 'repair_accepted';\n} else if (data.response_type === 'no_response') {\n  newStatus = 'contacted';\n}\n\nreturn { json: { lead_id: data.lead_id, status: newStatus, response_type: data.response_type } };"
+        "jsCode": "// Handle all response types: accepted, declined, no_response\nconst data = $input.item.json;\nlet newStatus = 'contacted';\n\nif (data.response_type === 'accepted') {\n  newStatus = 'repair_accepted';\n} else if (data.response_type === 'declined') {\n  newStatus = 'repair_declined';\n} else if (data.response_type === 'no_response') {\n  newStatus = 'no_response';\n}\n\nreturn { json: { lead_id: data.lead_id, status: newStatus, response_type: data.response_type } };"
       },
       "id": "c1000001-0001-4000-8000-000000000015",
-      "name": "Handle Other Responses",
+      "name": "Handle Response",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [1460, 840]
+      "position": [1220, 700]
     },
     {
       "parameters": {
@@ -367,10 +242,10 @@
         "options": {}
       },
       "id": "c1000001-0001-4000-8000-000000000016",
-      "name": "Update Lead Status - Other",
+      "name": "Update Lead Status",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
-      "position": [1700, 840],
+      "position": [1460, 700],
       "credentials": {
         "googleSheetsOAuth2Api": {
           "id": "YOUR_GOOGLE_SHEETS_CREDENTIAL_ID",
@@ -381,14 +256,14 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={\n  \"success\": true,\n  \"lead_id\": \"{{ $json.lead_id }}\",\n  \"new_status\": \"{{ $('Handle Other Responses').item.json.status }}\"\n}",
+        "responseBody": "={\n  \"success\": true,\n  \"lead_id\": \"{{ $json.lead_id }}\",\n  \"new_status\": \"{{ $('Handle Response').item.json.status }}\"\n}",
         "options": {}
       },
       "id": "c1000001-0001-4000-8000-000000000017",
-      "name": "Respond Success (Other)",
+      "name": "Respond Success (Response)",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1940, 840]
+      "position": [1700, 700]
     }
   ],
   "connections": {
@@ -495,80 +370,29 @@
       "main": [
         [
           {
-            "node": "Repair Declined?",
+            "node": "Handle Response",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Repair Declined?": {
+    "Handle Response": {
       "main": [
         [
           {
-            "node": "Generate Buy Offer",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Handle Other Responses",
+            "node": "Update Lead Status",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Generate Buy Offer": {
+    "Update Lead Status": {
       "main": [
         [
           {
-            "node": "Save Buy Offer Draft",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Save Buy Offer Draft": {
-      "main": [
-        [
-          {
-            "node": "Update Lead - Buy Offered",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Update Lead - Buy Offered": {
-      "main": [
-        [
-          {
-            "node": "Respond Success (Buy)",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Handle Other Responses": {
-      "main": [
-        [
-          {
-            "node": "Update Lead Status - Other",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Update Lead Status - Other": {
-      "main": [
-        [
-          {
-            "node": "Respond Success (Other)",
+            "node": "Respond Success (Response)",
             "type": "main",
             "index": 0
           }
