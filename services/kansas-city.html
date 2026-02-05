@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone Screen Repair Kansas City | Tech Guardian</title>
-    <meta name="description" content="Professional iPhone screen repair in Kansas City MO. Cracked screen? We fix all iPhone models with OEM-quality parts. Same-day service. 45-day warranty. Call (816) 697-9268">
-    <meta name="keywords" content=" Kansas City,  near me, Kansas City device repair, Tech Guardian Kansas City, phone repair Kansas City, console repair Kansas City, macbook repair Kansas City">
+    <title>Screen Repair Kansas City | iPhone iPad Samsung MacBook | Tech Guardian</title>
+    <meta name="description" content="Screen repair specialists in Kansas City MO. We fix iPhone, iPad, Samsung, MacBook & gaming console screens. Same-day service, 45-day warranty. Starting at $59. Call (816) 697-9268">
+    <meta name="keywords" content="screen repair Kansas City, iPhone screen repair, iPad screen repair, Samsung screen repair, MacBook screen repair, cracked screen fix, phone repair Kansas City, Tech Guardian Kansas City, console repair Kansas City">
     <meta name="robots" content="index, follow">
     <meta name="geo.region" content="US-MO">
     <meta name="geo.placename" content="Kansas City">
@@ -16,7 +16,7 @@
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "Tech Guardian LLC",
-        "description": "Professional iPhone screen repair in Kansas City MO. Cracked screen? We fix all iPhone models with OEM-quality parts. Same-day service. 45-day warranty. Call (816) 697-9268",
+        "description": "Screen repair specialists in Kansas City MO. We fix iPhone, iPad, Samsung, MacBook & gaming console screens. Same-day service, 45-day warranty. Starting at $59. Call (816) 697-9268",
         "telephone": "+1-816-697-9268",
         "email": "tech@guardianlabs.digital",
         "url": "https://guardandrevive.com",
@@ -34,11 +34,13 @@
             "longitude": "-94.3777137"
         },
         "areaServed": [
-            {"@type": "City", "name": "Kansas City"},
-            {"@type": "City", "name": "Kansas City"},
+            {"@type": "City", "name": "Kansas City", "containedInPlace": {"@type": "State", "name": "Missouri"}},
+            {"@type": "City", "name": "Kansas City", "containedInPlace": {"@type": "State", "name": "Kansas"}},
             {"@type": "City", "name": "Lee's Summit"},
             {"@type": "City", "name": "Overland Park"},
-            {"@type": "City", "name": "Independence"}
+            {"@type": "City", "name": "Independence"},
+            {"@type": "City", "name": "Olathe"},
+            {"@type": "City", "name": "Blue Springs"}
         ],
         "priceRange": "$$",
         "openingHoursSpecification": {
@@ -57,16 +59,24 @@
     {
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "",
+        "serviceType": "Screen Repair",
+        "name": "Screen Repair Services",
         "provider": {
             "@type": "LocalBusiness",
-            "name": "Tech Guardian LLC"
+            "name": "Tech Guardian LLC",
+            "telephone": "+1-816-697-9268"
         },
         "areaServed": {
             "@type": "City",
             "name": "Kansas City"
         },
-        "description": "Professional iPhone screen repair in Kansas City MO. Cracked screen? We fix all iPhone models with OEM-quality parts. Same-day service. 45-day warranty. Call (816) 697-9268"
+        "description": "Professional screen repair for iPhone, iPad, Samsung, MacBook, Nintendo Switch, and Steam Deck. Same-day service, 45-day warranty. OEM and aftermarket options.",
+        "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "59",
+            "highPrice": "299",
+            "priceCurrency": "USD"
+        }
     }
     </script>
     
@@ -140,7 +150,21 @@
         .service-card img { height: 32px; margin-bottom: 12px; filter: invert(1); opacity: 0.7; }
         .service-card h3 { font-size: 15px; margin-bottom: 8px; }
         .service-card p { font-size: 13px; color: #777; }
-        
+
+        /* Screen Blowout Pricing Section */
+        .screen-blowout { background: linear-gradient(135deg, rgba(255,100,0,0.15), rgba(24,14,192,0.1)); border: 2px solid #ff6400; }
+        .screen-blowout h2 { font-size: 28px; color: #ff6400; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .price-card { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 25px; text-align: center; transition: all 0.3s ease; }
+        .price-card:hover { border-color: #ff6400; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,100,0,0.2); }
+        .price-card h3 { font-size: 18px; margin-bottom: 15px; color: #fff; }
+        .price-range { font-size: 14px; color: #aaa; margin-bottom: 15px; }
+        .price { font-size: 36px; font-weight: 900; color: #ff6400; }
+        .price-features { list-style: none; text-align: left; margin: 0; padding: 0; }
+        .price-features li { padding: 8px 0; color: #ccc; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-left: 20px; position: relative; }
+        .price-features li:last-child { border-bottom: none; }
+        .price-features li::before { content: "✓"; color: #00ff88; position: absolute; left: 0; }
+
         .tagline { text-align: center; padding: 40px 0; }
         .tagline p { font-size: 20px; color: #fff; font-weight: 700; }
         .tagline span { color: var(--blue); }
@@ -170,9 +194,9 @@
 
     <main class="container">
         <section class="hero">
-            <h1><br><span class="highlight">Kansas City, MO</span></h1>
-            <p>Professional iPhone screen repair in Kansas City MO. Cracked screen? We fix all iPhone models with OEM-quality parts. Same-day service. 45-day warranty. Call (816) 697-9268</p>
-            
+            <h1>Screen Repair Experts<br><span class="highlight">Kansas City, MO</span></h1>
+            <p>Cracked screen? Broken display? We fix iPhones, iPads, Samsung, MacBooks, and gaming consoles. Same-day service. 45-day warranty. OEM & aftermarket options available.</p>
+
             <div class="brand-icons">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/apple.svg" alt="Apple">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/playstation.svg" alt="PlayStation">
@@ -180,12 +204,87 @@
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/nintendo.svg" alt="Nintendo">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/steam.svg" alt="Steam">
             </div>
-            
+
             <div class="cta-row">
                 <a href="tel:+18166979268" class="btn btn-primary">Call Now</a>
                 <a href="https://book.squareup.com/appointments/sdwmox17o2n2pn/location/LK6SKW2KVFZ4C/services" class="btn btn-outline">Book Online</a>
             </div>
         </section>
+
+        <!-- SCREEN BLOWOUT SECTION - High visibility for homepage visitors -->
+        <div class="card screen-blowout">
+            <h2>🔥 Screen Blowout Pricing 🔥</h2>
+            <p style="margin-bottom: 25px;">Kansas City's most competitive screen repair prices. All repairs include a <strong>45-day warranty</strong> and free diagnostics.</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>iPhone Screen Repair</h3>
+                    <div class="price-range">Starting at <span class="price">$59</span></div>
+                    <ul class="price-features">
+                        <li>iPhone 8 - iPhone 15 Pro Max</li>
+                        <li>OLED & LCD options</li>
+                        <li>Same-day service</li>
+                        <li>OEM or aftermarket</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+                <div class="price-card">
+                    <h3>iPad Screen Repair</h3>
+                    <div class="price-range">Starting at <span class="price">$89</span></div>
+                    <ul class="price-features">
+                        <li>All iPad models</li>
+                        <li>iPad Pro, Air, Mini</li>
+                        <li>Glass & LCD repair</li>
+                        <li>Same-day available</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+                <div class="price-card">
+                    <h3>Samsung Screen Repair</h3>
+                    <div class="price-range">Starting at <span class="price">$79</span></div>
+                    <ul class="price-features">
+                        <li>Galaxy S & Note series</li>
+                        <li>Galaxy Z Flip & Fold</li>
+                        <li>Tab screen repair</li>
+                        <li>AMOLED specialist</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+                <div class="price-card">
+                    <h3>MacBook Screen Repair</h3>
+                    <div class="price-range">Starting at <span class="price">$199</span></div>
+                    <ul class="price-features">
+                        <li>MacBook Air & Pro</li>
+                        <li>Retina display repair</li>
+                        <li>Cracked glass & LCD</li>
+                        <li>Board-level repair</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+                <div class="price-card">
+                    <h3>Nintendo Switch</h3>
+                    <div class="price-range">Starting at <span class="price">$89</span></div>
+                    <ul class="price-features">
+                        <li>Switch & Switch OLED</li>
+                        <li>Screen replacement</li>
+                        <li>Joy-Con drift fix</li>
+                        <li>Charging port repair</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+                <div class="price-card">
+                    <h3>Steam Deck</h3>
+                    <div class="price-range">Starting at <span class="price">$129</span></div>
+                    <ul class="price-features">
+                        <li>LCD & OLED models</li>
+                        <li>Screen replacement</li>
+                        <li>Joystick repair</li>
+                        <li>SSD upgrades</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary" style="width:100%; margin-top: 15px;">Get Quote</a>
+                </div>
+            </div>
+            <p style="margin-top: 25px; color: #888; font-size: 14px;">* Prices vary by model and damage. Call for exact quote. We price match local competitors!</p>
+        </div>
 
         <div class="card parts-card">
             <h2>Your Parts, Your Choice</h2>
