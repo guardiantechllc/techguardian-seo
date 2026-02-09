@@ -127,6 +127,59 @@ Once macOS is set up and you're on the desktop:
 
 ## Troubleshooting
 
+### 🚫 Stop Sign (Prohibitory Symbol) When Booting USB
+
+This is the most common issue with the 2009 iMac. It means the Mac found a system but considers it incompatible. There are **three things** to check, in order:
+
+#### Fix 1: You're booting the wrong icon (MOST COMMON)
+
+When you hold Option (⌥) at startup, you'll see multiple drive icons:
+- ❌ **Do NOT click the orange/yellow "Install macOS" icon** — this boots the installer directly, skipping OpenCore. The hardware is unsupported, so you get the stop sign.
+- ✅ **Click "EFI Boot"** — this is a small gray drive icon, usually on the far left or right. THIS loads OpenCore first, which spoofs the hardware so macOS thinks it's supported.
+
+If you don't see "EFI Boot" at all, OpenCore was never installed to the USB. Go back to Step 4 — you created the macOS installer USB but skipped installing OpenCore to it. These are **two separate steps**.
+
+#### Fix 2: OpenCore wasn't built for the right model
+
+If you built OpenCore on the 2017 MacBook Pro without changing the target model, OCLP built it for the MacBook Pro — not the iMac. The config won't have the right patches.
+
+**Before building OpenCore:**
+1. Open OCLP on the 2017 MacBook Pro
+2. Go to **Settings** (gear icon or menu)
+3. Find **"Override Model"** or **"Target Model"**
+4. Set it to **`iMac9,1`** (Early 2009) or **`iMac10,1`** (Late 2009)
+5. Go back and click **"Build and Install OpenCore"**
+6. Install to the USB's EFI partition
+
+**How to find your exact model:** Look at the back of the iMac for the model number (A1225 = Early 2009 = iMac9,1, A1311/A1312 = Late 2009 = iMac10,1).
+
+#### Fix 3: 32-bit EFI firmware (iMac9,1 Early 2009 specifically)
+
+The Early 2009 iMac (iMac9,1) has **32-bit EFI firmware** with a 64-bit CPU. This is a notorious compatibility issue. OCLP should handle this automatically when the model is set correctly, but if it's still failing:
+
+1. Make sure you're on the **latest version of OCLP** (2.0.0 or newer)
+2. In OCLP Settings, confirm the model is set to **iMac9,1**
+3. Rebuild OpenCore — OCLP will include the `DuetPkg` 32-bit EFI bootloader automatically
+4. When installing to the USB, OCLP should create a **legacy boot** setup if needed
+
+If the stop sign persists with iMac9,1:
+- Try **macOS Big Sur 11** instead of Monterey — it has better 32-bit EFI compatibility
+- Make sure the USB drive is formatted as **Mac OS Extended (Journaled)** with **GUID Partition Map** before creating the installer (not APFS)
+
+#### Fix 4: Try a different macOS version
+
+If you tried Monterey and keep hitting the stop sign:
+1. Go back to OCLP on the 2017 MacBook Pro
+2. Download **macOS Big Sur 11** instead (Create macOS Installer → Download)
+3. Flash to USB
+4. Rebuild OpenCore with the correct model override
+5. Install OpenCore to the USB
+6. Try booting again
+
+Big Sur has the best compatibility with 2009 iMacs in OCLP.
+
+---
+
 ### Black screen after install
 The 2009 iMac has an Nvidia GeForce 9400M or GT 120/130. Root patches are **required** for graphics acceleration on Monterey. If you get a black screen:
 - Boot into Safe Mode: hold **Shift** at the OpenCore boot picker
