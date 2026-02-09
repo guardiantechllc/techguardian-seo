@@ -1,28 +1,26 @@
-# OpenCore Legacy Patcher: 2009 iMac Installation Guide
+# OpenCore Legacy Patcher: 2008 iMac (A1224 / iMac8,1) Installation Guide
 
 **Tech Guardian LLC — Internal Reference**
 
-This guide covers installing a modern macOS on a 2009 iMac (iMac9,1 / iMac10,1) using OpenCore Legacy Patcher (OCLP).
+This guide covers installing a modern macOS on a 2008 iMac (iMac8,1, model A1224) using OpenCore Legacy Patcher (OCLP).
 
 ---
 
 ## What You Need
 
-- **2009 iMac** (the target machine)
-- **A working Intel Mac** (e.g., 2017 MacBook Pro) to create the installer
-  - **Do NOT use an M4/Apple Silicon Mac** — it cannot create bootable USB installers for older Intel macOS versions
+- **2008 iMac A1224** (iMac8,1) — the target machine
+- **Any Mac** to build OpenCore (M4/Apple Silicon works for building OpenCore, but NOT for creating the macOS USB installer — use an Intel Mac or gibMacOS for that)
 - **16GB+ USB flash drive** (will be erased)
 - **OpenCore Legacy Patcher** (download from https://dortania.github.io/OpenCore-Legacy-Patcher/)
-- **Ethernet or compatible Wi-Fi** on the 2009 iMac (Wi-Fi may need post-install patching)
+- **Ethernet** on the iMac (Wi-Fi may not work until root patches are applied)
 
-## 2009 iMac: What macOS Can It Run?
+## iMac8,1: What macOS Can It Run?
 
-| Model | Max Official | Max with OCLP |
-|-------|-------------|---------------|
-| iMac9,1 (Early 2009) | El Capitan 10.11 | macOS Monterey 12 (recommended) |
-| iMac10,1 (Late 2009) | High Sierra 10.13 | macOS Monterey 12 (recommended) |
+| Model | Identifier | Max Official | Max with OCLP |
+|-------|-----------|-------------|---------------|
+| iMac 20" Early 2008 (A1224) | iMac8,1 | El Capitan 10.11 | **macOS Big Sur 11** |
 
-> **Note:** Ventura (13) and newer dropped support for these models even in OCLP. Monterey 12 is the sweet spot for a 2009 iMac — stable and well-supported by OCLP.
+> **IMPORTANT:** The iMac8,1 has **32-bit EFI firmware** and an **ATI Radeon HD 2400 XT / 2600 Pro** GPU. macOS Big Sur 11 is the max recommended version. Monterey 12 is NOT recommended — GPU support is extremely limited. **The model override in OCLP MUST be set to `iMac8,1`** — using the wrong model (e.g., iMac9,1) will cause a stop sign (prohibitory symbol) at boot.
 
 ---
 
@@ -230,13 +228,14 @@ If you don't need a newer macOS and just want El Capitan (the last officially su
 
 ---
 
-## Quick Reference: OCLP Settings for 2009 iMac
+## Quick Reference: OCLP Settings for iMac8,1
 
-If OCLP doesn't auto-detect your model (because you're building on the 2017 MBP):
+**CRITICAL** — If building on a different Mac (M4, 2017 MBP, etc.):
 
 1. In OCLP, go to **Settings**
-2. Set **Override Model** to `iMac9,1` or `iMac10,1`
+2. Set **Override Model** to **`iMac8,1`**
 3. Go back and build OpenCore
+4. If the model is wrong (e.g., iMac9,1 or the host Mac's model), you WILL get a stop sign at boot
 
 ---
 
