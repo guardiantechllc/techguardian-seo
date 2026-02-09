@@ -40,6 +40,9 @@ Always use an **Intel Mac** (your 2017 MacBook Pro works).
 ### Downloading macOS manually
 Don't bother hunting for macOS downloads. OCLP has a built-in downloader that grabs the correct installer directly from Apple's servers.
 
+### Using "unofficial" or "patched" macOS installers
+You do NOT need unofficial/patched macOS installers (e.g., "Patched Sur", "big-sur-micropatcher", or pre-modified DMGs from forums). Those are from the pre-OCLP era and can cause more problems than they solve. OCLP downloads the **stock, unmodified macOS installer** directly from Apple's CDN and handles all patching through OpenCore at boot time. The installer itself stays untouched — that's the whole point of OpenCore.
+
 ---
 
 ## Step-by-Step Installation
@@ -56,10 +59,12 @@ Don't bother hunting for macOS downloads. OCLP has a built-in downloader that gr
 
 1. In OCLP, click **"Create macOS Installer"**
 2. Click **"Download macOS Installer"**
-3. Select **macOS 12 Monterey** (recommended for 2009 iMac)
+3. Select your target macOS version:
+   - **macOS 11 Big Sur** — **safest choice for 2009 iMac**, especially iMac9,1 (Early 2009). Best compatibility, fewest boot issues.
+   - **macOS 12 Monterey** — works on most 2009 iMacs but can be finicky on iMac9,1 (32-bit EFI). Try this after Big Sur works if you want newer features.
 4. Wait for the download to complete (~12-13 GB)
 
-> This downloads the full installer directly from Apple. No App Store needed.
+> This downloads the **official, unmodified** macOS installer directly from Apple's servers. No App Store needed. No "patched" or "unofficial" versions — OCLP handles all patching through OpenCore at boot time.
 
 ### Step 3: Create the Bootable USB
 
