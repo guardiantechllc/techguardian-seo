@@ -1,0 +1,219 @@
+/* ============================================
+   TECH GUARDIAN - Electric Blue Color Override
+   Paste this into WordPress > Appearance > Customize > Additional CSS
+   Replaces all purple, gold, teal with clean electric blue
+   ============================================ */
+
+/* === CSS Variables Override === */
+:root {
+    --primary-color: #0066FF !important;
+    --primary-hover: #0052CC !important;
+    --primary-glow: rgba(0, 102, 255, 0.4) !important;
+    --primary-light: rgba(0, 102, 255, 0.15) !important;
+    --accent-color: #0066FF !important;
+    --secondary-color: #0066FF !important;
+}
+
+/* === Logo Text === */
+.site-title a,
+.logo a,
+.logo,
+.site-branding a,
+header .logo,
+.navbar-brand,
+.site-title {
+    color: #0066FF !important;
+}
+
+/* === Navigation CALL NOW Button === */
+header .btn,
+header .button,
+header a.btn,
+.header-cta,
+.nav-cta,
+nav .btn,
+nav .button,
+.call-now-btn,
+a[href^="tel"].btn,
+.menu-item .btn {
+    background: #0066FF !important;
+    border-color: #0066FF !important;
+    color: #fff !important;
+}
+
+header .btn:hover,
+header .button:hover,
+header a.btn:hover,
+.header-cta:hover,
+.nav-cta:hover {
+    background: #0052CC !important;
+    border-color: #0052CC !important;
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.4) !important;
+}
+
+/* === Primary / Gold Buttons (BOOK YOUR REPAIR) === */
+.btn-primary,
+.wp-block-button__link,
+input[type="submit"],
+button[type="submit"],
+.elementor-button,
+.book-btn,
+.cta-button,
+.btn-gold,
+.btn-accent,
+.btn-yellow {
+    background: #0066FF !important;
+    border-color: #0066FF !important;
+    color: #fff !important;
+}
+
+.btn-primary:hover,
+.wp-block-button__link:hover,
+.elementor-button:hover,
+.book-btn:hover,
+.cta-button:hover {
+    background: #0052CC !important;
+    border-color: #0052CC !important;
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.4) !important;
+}
+
+/* === Outline Buttons (CALL button with purple outline) === */
+.btn-outline,
+.btn-outline-primary,
+.btn-secondary,
+.btn-outline-purple,
+.elementor-button-outline {
+    background: transparent !important;
+    border-color: #0066FF !important;
+    color: #0066FF !important;
+}
+
+.btn-outline:hover,
+.btn-outline-primary:hover,
+.btn-secondary:hover {
+    background: #0066FF !important;
+    border-color: #0066FF !important;
+    color: #fff !important;
+}
+
+/* === Links === */
+a,
+.entry-content a,
+footer a,
+.widget a {
+    color: #0066FF !important;
+}
+
+a:hover,
+footer a:hover {
+    color: #0052CC !important;
+}
+
+/* === Footer Links === */
+footer a,
+.site-footer a,
+.footer-info a {
+    color: #0066FF !important;
+}
+
+/* === Headings with accent color === */
+.highlight,
+.accent-text,
+.text-primary,
+.text-accent {
+    color: #0066FF !important;
+}
+
+/* === Section headings like PROUDLY SERVING === */
+.section-title,
+.section-heading,
+h2.highlight {
+    color: #fff !important;
+}
+
+/* === Service area tags/pills === */
+.service-area-tag,
+.area-pill,
+.location-tag,
+.tag,
+.badge {
+    border-color: rgba(0, 102, 255, 0.3) !important;
+}
+
+.service-area-tag:hover,
+.area-pill:hover,
+.location-tag:hover {
+    border-color: #0066FF !important;
+    background: rgba(0, 102, 255, 0.1) !important;
+}
+
+/* === Decorative elements / borders === */
+.card,
+.service-card,
+.feature-card {
+    border-color: rgba(0, 102, 255, 0.2) !important;
+}
+
+.card:hover,
+.service-card:hover,
+.feature-card:hover {
+    border-color: #0066FF !important;
+}
+
+/* === Gradients that had purple === */
+.gradient-section,
+.cta-section,
+.hero-section {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.15), rgba(0, 0, 0, 0.8)) !important;
+}
+
+/* === SVG / Icon colors === */
+svg path,
+.icon,
+.fa,
+.fas,
+.fab {
+    fill: #0066FF !important;
+    color: #0066FF !important;
+}
+
+/* === Chat widget === */
+.chat-widget,
+.chat-button,
+.tawk-min-container .tawk-button,
+[class*="chat"] button {
+    background: #0066FF !important;
+}
+
+/* === Selection / highlight color === */
+::selection {
+    background: rgba(0, 102, 255, 0.3) !important;
+}
+
+/* === Scrollbar accent (Chromium browsers) === */
+::-webkit-scrollbar-thumb {
+    background: #0066FF !important;
+}
+
+/* === Box shadows that were purple-tinted === */
+.glow,
+.shadow-accent,
+[class*="shadow"] {
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.2) !important;
+}
+
+/* === Border accents === */
+.border-accent,
+.border-primary,
+hr.accent {
+    border-color: #0066FF !important;
+}
+
+/* === Form focus states === */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #0066FF !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2) !important;
+    outline: none !important;
+}
