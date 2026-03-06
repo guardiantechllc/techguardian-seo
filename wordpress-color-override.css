@@ -109,11 +109,11 @@ footer a:hover {
     color: #0052CC !important;
 }
 
-/* === Footer Links === */
-footer a,
-.site-footer a,
-.footer-info a {
-    color: #0066FF !important;
+/* === Hide Footer === */
+footer,
+.site-footer,
+#colophon {
+    display: none !important;
 }
 
 /* === Headings with accent color === */
