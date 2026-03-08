@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Command Center | Guardian Innovations — Automated Budget System for Small Business</title>
+    <meta name="description" content="Stop guessing where your money goes. Guardian Innovations builds automated budget systems for small businesses. One-time setup, real-time dashboard, zero accounting degree needed.">
+    <meta name="keywords" content="small business budget, automated budget system, Google Sheets budget, business finance automation, Guardian Innovations, cash flow tracker">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://guardiantechllc.github.io/techguardian-seo/budget-system/landing-page.html">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Budget Command Center",
+        "description": "Automated budget and cash flow system for small businesses. Built in Google Sheets with real-time dashboards, automatic profit splitting, debt tracking, and marketing ROI.",
+        "brand": {
+            "@type": "Brand",
+            "name": "Guardian Innovations"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Starter",
+                "price": "297",
+                "priceCurrency": "USD",
+                "description": "Pre-built Budget Command Center with training call and monthly support"
+            },
+            {
+                "@type": "Offer",
+                "name": "Pro",
+                "price": "597",
+                "priceCurrency": "USD",
+                "description": "Fully customized budget system with priority support and quarterly check-ins"
+            },
+            {
+                "@type": "Offer",
+                "name": "Premium",
+                "price": "997",
+                "priceCurrency": "USD",
+                "description": "Full custom system with email alerts, invoice integration, and annual rebuild"
+            }
+        ],
+        "provider": {
+            "@type": "Organization",
+            "name": "Guardian Innovations",
+            "parentOrganization": {
+                "@type": "Organization",
+                "name": "Tech Guardian LLC"
+            },
+            "telephone": "+1-816-697-9268",
+            "email": "tech@guardianlabs.digital"
+        }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; min-height: 100vh; }
+        :root { --blue: #180EC0; --blue-glow: rgba(24,14,192,0.4); --green: #00C853; --green-glow: rgba(0,200,83,0.3); }
+
+        .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header { background: #000; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: 1px; }
+        .logo span { color: var(--blue); }
+        .header-cta { background: var(--blue); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .header-cta:hover { box-shadow: 0 0 20px var(--blue-glow); }
+
+        /* Hero */
+        .hero { padding: 80px 0 60px; text-align: center; }
+        .hero .badge { display: inline-block; background: rgba(24,14,192,0.2); border: 1px solid rgba(24,14,192,0.5); color: var(--blue); padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
+        .hero h1 { font-size: clamp(28px, 5.5vw, 52px); font-weight: 900; line-height: 1.15; margin-bottom: 25px; text-transform: uppercase; }
+        .hero h1 .highlight { color: var(--blue); }
+        .hero h1 .highlight-green { color: var(--green); }
+        .hero p { font-size: 18px; color: #aaa; max-width: 620px; margin: 0 auto 20px; line-height: 1.7; }
+        .hero .subtext { font-size: 15px; color: #666; margin-bottom: 40px; }
+
+        .cta-row { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px; }
+        .btn { padding: 16px 36px; border-radius: 8px; font-weight: 700; font-size: 15px; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; display: inline-block; border: none; cursor: pointer; }
+        .btn-primary { background: var(--green); color: #000; }
+        .btn-primary:hover { box-shadow: 0 0 30px var(--green-glow); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: #fff; color: #000; }
+
+        /* Problem Section */
+        .problem { padding: 60px 0; }
+        .problem h2 { text-align: center; font-size: 28px; margin-bottom: 40px; text-transform: uppercase; }
+        .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .problem-card { background: rgba(255,50,50,0.05); border: 1px solid rgba(255,50,50,0.2); border-radius: 12px; padding: 30px; text-align: center; }
+        .problem-card .icon { font-size: 36px; margin-bottom: 15px; }
+        .problem-card h3 { font-size: 17px; margin-bottom: 10px; color: #ff6b6b; }
+        .problem-card p { font-size: 14px; color: #888; line-height: 1.7; }
+
+        /* Solution / Features */
+        .solution { padding: 60px 0; }
+        .solution h2 { text-align: center; font-size: 28px; margin-bottom: 15px; text-transform: uppercase; }
+        .solution .subtitle { text-align: center; font-size: 16px; color: #888; margin-bottom: 40px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .feature-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 30px; }
+        .feature-card:hover { border-color: var(--blue); }
+        .feature-card h3 { font-size: 17px; margin-bottom: 10px; color: var(--blue); }
+        .feature-card p { font-size: 14px; color: #aaa; line-height: 1.7; }
+
+        /* Dashboard Preview */
+        .preview { padding: 60px 0; text-align: center; }
+        .preview h2 { font-size: 28px; margin-bottom: 15px; text-transform: uppercase; }
+        .preview .subtitle { font-size: 16px; color: #888; margin-bottom: 40px; }
+        .dashboard-mockup { background: linear-gradient(135deg, rgba(24,14,192,0.1), rgba(0,0,0,0.8)); border: 1px solid rgba(24,14,192,0.3); border-radius: 16px; padding: 40px; max-width: 700px; margin: 0 auto; text-align: left; }
+        .mock-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .mock-row:last-child { border-bottom: none; }
+        .mock-label { font-size: 14px; color: #888; }
+        .mock-value { font-size: 18px; font-weight: 700; }
+        .mock-value.green { color: var(--green); }
+        .mock-value.blue { color: var(--blue); }
+        .mock-value.yellow { color: #FFD600; }
+        .mock-value.red { color: #ff6b6b; }
+        .mock-header { text-align: center; font-size: 13px; color: var(--blue); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 700; }
+
+        /* Pricing */
+        .pricing { padding: 60px 0; }
+        .pricing h2 { text-align: center; font-size: 28px; margin-bottom: 15px; text-transform: uppercase; }
+        .pricing .subtitle { text-align: center; font-size: 16px; color: #888; margin-bottom: 40px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+        .price-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 35px 25px; text-align: center; position: relative; }
+        .price-card:hover { border-color: var(--blue); }
+        .price-card.featured { border: 2px solid var(--green); background: rgba(0,200,83,0.03); }
+        .price-card.featured::before { content: "MOST POPULAR"; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--green); color: #000; font-size: 11px; font-weight: 900; padding: 4px 16px; border-radius: 20px; letter-spacing: 1px; }
+        .price-card h3 { font-size: 22px; margin-bottom: 5px; text-transform: uppercase; }
+        .price-card .price { font-size: 42px; font-weight: 900; margin: 15px 0 5px; }
+        .price-card .price span { font-size: 16px; font-weight: 400; color: #888; }
+        .price-card .monthly { font-size: 14px; color: var(--green); margin-bottom: 20px; }
+        .price-card ul { list-style: none; text-align: left; margin-bottom: 25px; }
+        .price-card li { padding: 8px 0; font-size: 14px; color: #aaa; padding-left: 20px; position: relative; }
+        .price-card li::before { content: "+"; color: var(--green); font-weight: 900; position: absolute; left: 0; }
+        .price-card .btn { width: 100%; text-align: center; padding: 14px; }
+
+        /* How It Works */
+        .how { padding: 60px 0; text-align: center; }
+        .how h2 { font-size: 28px; margin-bottom: 40px; text-transform: uppercase; }
+        .how-steps { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .how-step { flex: 1; min-width: 180px; max-width: 220px; }
+        .step-num { width: 60px; height: 60px; background: var(--blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; margin: 0 auto 15px; }
+        .how-step h3 { font-size: 16px; margin-bottom: 8px; }
+        .how-step p { font-size: 13px; color: #888; line-height: 1.6; }
+
+        /* Comparison */
+        .compare { padding: 60px 0; }
+        .compare h2 { text-align: center; font-size: 28px; margin-bottom: 40px; text-transform: uppercase; }
+        .compare-table { width: 100%; border-collapse: collapse; max-width: 700px; margin: 0 auto; }
+        .compare-table th, .compare-table td { padding: 14px 20px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        .compare-table th { color: #888; font-weight: 400; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .compare-table td:first-child { color: #ccc; }
+        .compare-table .them { color: #ff6b6b; text-align: center; }
+        .compare-table .us { color: var(--green); text-align: center; font-weight: 700; }
+        .compare-table th:not(:first-child) { text-align: center; }
+
+        /* Testimonial placeholder */
+        .social-proof { padding: 60px 0; text-align: center; }
+        .social-proof h2 { font-size: 28px; margin-bottom: 40px; text-transform: uppercase; }
+        .quote-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 40px; max-width: 600px; margin: 0 auto; }
+        .quote-card p { font-size: 17px; color: #ccc; line-height: 1.8; font-style: italic; margin-bottom: 15px; }
+        .quote-card .author { font-size: 14px; color: var(--blue); font-weight: 700; font-style: normal; }
+
+        /* Industries */
+        .industries { padding: 60px 0; text-align: center; }
+        .industries h2 { font-size: 28px; margin-bottom: 15px; text-transform: uppercase; }
+        .industries .subtitle { font-size: 16px; color: #888; margin-bottom: 40px; }
+        .industry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .industry-tag { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 15px; font-size: 14px; color: #ccc; font-weight: 600; }
+        .industry-tag:hover { border-color: var(--blue); color: #fff; }
+
+        /* Final CTA */
+        .final-cta { background: linear-gradient(135deg, rgba(24,14,192,0.15), rgba(24,14,192,0.05)); border: 2px solid var(--blue); border-radius: 16px; padding: 60px 30px; text-align: center; margin: 60px 0; }
+        .final-cta h2 { font-size: 32px; margin-bottom: 15px; text-transform: uppercase; }
+        .final-cta p { font-size: 17px; color: #aaa; margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto; margin-bottom: 30px; line-height: 1.7; }
+        .final-cta .phone { font-size: 28px; font-weight: 900; margin-bottom: 25px; }
+        .final-cta .phone a { color: #fff; text-decoration: none; }
+        .final-cta .phone a:hover { color: var(--green); }
+
+        /* FAQ */
+        .faq { padding: 60px 0; }
+        .faq h2 { text-align: center; font-size: 28px; margin-bottom: 40px; text-transform: uppercase; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 0; max-width: 700px; margin: 0 auto; }
+        .faq-item h3 { font-size: 16px; margin-bottom: 10px; color: #fff; }
+        .faq-item p { font-size: 14px; color: #888; line-height: 1.7; }
+
+        /* Footer */
+        footer { background: #000; padding: 40px 0; margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; }
+        footer p { color: #555; font-size: 13px; line-height: 2; }
+        footer a { color: var(--blue); text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 24px; }
+            .btn { padding: 14px 28px; font-size: 14px; width: 100%; text-align: center; }
+            .cta-row { flex-direction: column; align-items: stretch; }
+            .how-steps { flex-direction: column; align-items: center; }
+            .compare-table { font-size: 12px; }
+            .compare-table th, .compare-table td { padding: 10px 8px; }
+            .final-cta .phone { font-size: 22px; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="https://guardandrevive.com" class="logo">GUARDIAN <span>INNOVATIONS</span></a>
+            <a href="tel:+18166979268" class="header-cta">Get Started</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="badge">By the makers of Tech Guardian</div>
+            <h1>Stop guessing<br>where your money goes.<br><span class="highlight-green">Start knowing.</span></h1>
+            <p>We build automated budget systems for small businesses. One setup. Real-time dashboard. No accounting degree. No monthly software fees. You own it forever.</p>
+            <p class="subtext">Built on Google Sheets — free to run, impossible to outgrow.</p>
+
+            <div class="cta-row">
+                <a href="#pricing" class="btn btn-primary">See Pricing</a>
+                <a href="tel:+18166979268" class="btn btn-outline">Call (816) 697-9268</a>
+            </div>
+        </section>
+
+        <!-- PROBLEM -->
+        <section class="problem">
+            <h2>Sound Familiar?</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">&#128176;</div>
+                    <h3>"Where did all my money go?"</h3>
+                    <p>Revenue comes in, bills go out, and at the end of the month you're checking your bank balance and hoping it looks right. That's not a plan — that's a coin flip.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">&#128561;</div>
+                    <h3>"I hate QuickBooks"</h3>
+                    <p>You signed up. Maybe even paid for a few months. Then you never opened it again because it's built for accountants, not business owners who are actually busy running a business.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">&#128200;</div>
+                    <h3>"I need to see my numbers"</h3>
+                    <p>You know you should track expenses, set aside taxes, and know your real profit. But who has time to build a system from scratch? You need something that just works.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTION -->
+        <section class="solution">
+            <h2>The Budget Command Center</h2>
+            <p class="subtitle">Everything you need. Nothing you don't.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Auto Profit Splitting</h3>
+                    <p>Log a job, the system automatically splits revenue into profit, taxes, and reinvestment. Configurable percentages. Zero manual math.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Real-Time Dashboard</h3>
+                    <p>One screen shows total revenue, expenses, net profit, tax set-aside, and cash flow. Updated instantly as you log jobs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Expense Tracking</h3>
+                    <p>Parts, tools, subscriptions, rent, marketing — categorized and totaled automatically. Know exactly where every dollar goes.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Debt Payoff Tracker</h3>
+                    <p>See every debt, minimum payments, total owed, and projected payoff dates. Watch the balance shrink in real time.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Marketing ROI</h3>
+                    <p>Track what you spend on ads, social media, and promotions against the revenue they generate. Kill what doesn't work. Double down on what does.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Zero Software Fees</h3>
+                    <p>Built on Google Sheets. Free platform. No subscriptions. No per-user fees. No surprise price hikes. You own it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD MOCKUP -->
+        <section class="preview">
+            <h2>Your Dashboard at a Glance</h2>
+            <p class="subtitle">This is what clarity looks like.</p>
+            <div class="dashboard-mockup">
+                <div class="mock-header">Budget Command Center — March 2026</div>
+                <div class="mock-row">
+                    <span class="mock-label">Total Revenue (MTD)</span>
+                    <span class="mock-value green">$14,750</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Total Expenses</span>
+                    <span class="mock-value red">$6,320</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Net Profit</span>
+                    <span class="mock-value green">$8,430</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Tax Set-Aside (25%)</span>
+                    <span class="mock-value yellow">$3,687</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Reinvestment Fund</span>
+                    <span class="mock-value blue">$1,475</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Total Debt Remaining</span>
+                    <span class="mock-value red">$3,200</span>
+                </div>
+                <div class="mock-row">
+                    <span class="mock-label">Jobs Completed</span>
+                    <span class="mock-value">47</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON -->
+        <section class="compare">
+            <h2>Us vs. Everything Else</h2>
+            <table class="compare-table">
+                <tr>
+                    <th></th>
+                    <th>QuickBooks / Wave</th>
+                    <th>Budget Command Center</th>
+                </tr>
+                <tr>
+                    <td>Monthly software cost</td>
+                    <td class="them">$30-80/mo forever</td>
+                    <td class="us">$0/mo forever</td>
+                </tr>
+                <tr>
+                    <td>Setup time</td>
+                    <td class="them">Hours of tutorials</td>
+                    <td class="us">We do it for you</td>
+                </tr>
+                <tr>
+                    <td>Learning curve</td>
+                    <td class="them">Steep</td>
+                    <td class="us">30-min training</td>
+                </tr>
+                <tr>
+                    <td>Customization</td>
+                    <td class="them">Cookie-cutter</td>
+                    <td class="us">Built for YOUR biz</td>
+                </tr>
+                <tr>
+                    <td>Auto profit splitting</td>
+                    <td class="them">No</td>
+                    <td class="us">Yes</td>
+                </tr>
+                <tr>
+                    <td>Debt payoff tracker</td>
+                    <td class="them">No</td>
+                    <td class="us">Yes</td>
+                </tr>
+                <tr>
+                    <td>You own the data</td>
+                    <td class="them">Their servers</td>
+                    <td class="us">Your Google Drive</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="how">
+            <h2>How It Works</h2>
+            <div class="how-steps">
+                <div class="how-step">
+                    <div class="step-num">1</div>
+                    <h3>You Tell Us Your Biz</h3>
+                    <p>Fill out a quick onboarding form. Your expenses, revenue types, debts, and goals.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">2</div>
+                    <h3>We Build It</h3>
+                    <p>We set up your custom Budget Command Center in Google Sheets. Every formula, every category, tailored to you.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">3</div>
+                    <h3>30-Min Training</h3>
+                    <p>Quick Zoom call. We walk you through everything. You'll be running it solo in under an hour.</p>
+                </div>
+                <div class="how-step">
+                    <div class="step-num">4</div>
+                    <h3>You Run Your Money</h3>
+                    <p>Log jobs, track expenses, watch your dashboard. We handle support and updates monthly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="pricing" id="pricing">
+            <h2>Simple Pricing. No Surprises.</h2>
+            <p class="subtitle">One-time setup + optional monthly support. Cancel anytime.</p>
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">$297 <span>one-time</span></div>
+                    <div class="monthly">+ $29/month support</div>
+                    <ul>
+                        <li>Pre-built Budget Command Center</li>
+                        <li>Standard expense categories</li>
+                        <li>30-minute training call</li>
+                        <li>Email/text support</li>
+                        <li>Bug fixes & minor tweaks</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-outline">Get Started</a>
+                </div>
+                <!-- Pro -->
+                <div class="price-card featured">
+                    <h3>Pro</h3>
+                    <div class="price">$597 <span>one-time</span></div>
+                    <div class="monthly">+ $49/month support</div>
+                    <ul>
+                        <li>Fully customized to YOUR business</li>
+                        <li>Custom categories & revenue splits</li>
+                        <li>Debt payoff tracker configured</li>
+                        <li>Marketing ROI tracker</li>
+                        <li>45-min training + recorded walkthrough</li>
+                        <li>Priority support (24hr response)</li>
+                        <li>Quarterly check-in call</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-primary">Get Pro</a>
+                </div>
+                <!-- Premium -->
+                <div class="price-card">
+                    <h3>Premium</h3>
+                    <div class="price">$997 <span>one-time</span></div>
+                    <div class="monthly">+ $99/month support</div>
+                    <ul>
+                        <li>Everything in Pro</li>
+                        <li>Email alert automations</li>
+                        <li>Invoice/receipt auto-logging</li>
+                        <li>Quarterly strategy review call</li>
+                        <li>Annual full system rebuild</li>
+                        <li>Custom add-ons as needed</li>
+                    </ul>
+                    <a href="tel:+18166979268" class="btn btn-outline">Go Premium</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDUSTRIES -->
+        <section class="industries">
+            <h2>Built for Every Hustle</h2>
+            <p class="subtitle">We customize for your specific industry.</p>
+            <div class="industry-grid">
+                <div class="industry-tag">Phone Repair</div>
+                <div class="industry-tag">Restaurants</div>
+                <div class="industry-tag">Landscaping</div>
+                <div class="industry-tag">Salons & Barbers</div>
+                <div class="industry-tag">Contractors</div>
+                <div class="industry-tag">Auto Detailing</div>
+                <div class="industry-tag">Freelancers</div>
+                <div class="industry-tag">Food Trucks</div>
+                <div class="industry-tag">Cleaning Services</div>
+                <div class="industry-tag">Personal Trainers</div>
+                <div class="industry-tag">Photographers</div>
+                <div class="industry-tag">E-Commerce</div>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF -->
+        <section class="social-proof">
+            <h2>Real Talk</h2>
+            <div class="quote-card">
+                <p>"I was running my repair shop off vibes and a bank balance check. First month with the Budget Command Center, I found $800 in subscriptions I forgot I was paying for. This thing paid for itself before I even finished the training call."</p>
+                <span class="author">— Built for Tech Guardian's own repair business</span>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <h2>Questions? Answered.</h2>
+            <div class="faq-item">
+                <h3>Do I need to know spreadsheets?</h3>
+                <p>Nope. You type in a job or expense. The system does everything else. If you can type a number and hit Enter, you can use this.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What if something breaks?</h3>
+                <p>That's what the monthly support is for. Text or email us, we fix it. Usually within 24 hours.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I cancel the monthly support?</h3>
+                <p>Anytime. The system is yours forever. Monthly support just means we're on call for tweaks, fixes, and updates.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Is my data safe?</h3>
+                <p>It lives in YOUR Google Drive. Not our servers. Not some random cloud company. You control access, you own everything.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How long does setup take?</h3>
+                <p>We typically deliver your custom system within 48 hours of receiving your onboarding info. Training call gets scheduled the same week.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I add employees or partners later?</h3>
+                <p>It's Google Sheets — share it with anyone. Need multi-user tracking or role-based views? That's a Premium feature we can build.</p>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <div class="final-cta">
+            <h2>Ready to Know Your Numbers?</h2>
+            <p>Stop gambling with your finances. Let us build you a system that runs your money on autopilot.</p>
+            <div class="phone">
+                <a href="tel:+18166979268">(816) 697-9268</a>
+            </div>
+            <div class="cta-row">
+                <a href="tel:+18166979268" class="btn btn-primary">Call Now — Let's Build Yours</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>
+            <strong>Guardian Innovations</strong> — A division of Tech Guardian LLC<br>
+            <a href="tel:+18166979268">(816) 697-9268</a> &middot; <a href="mailto:tech@guardianlabs.digital">tech@guardianlabs.digital</a><br>
+            &copy; 2026 Guardian Innovations. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>
