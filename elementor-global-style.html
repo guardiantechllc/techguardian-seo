@@ -1,0 +1,492 @@
+<!--
+  TECH GUARDIAN — GLOBAL ELEMENTOR STYLE OVERRIDE
+  ================================================
+  Drop this into an HTML widget at the TOP of every Elementor page.
+  This forces all pages to match the home page's dark, modern design.
+
+  HOW TO USE:
+  1. Open any page in Elementor
+  2. Add an "HTML" widget at the very top of the page
+  3. Paste this entire code block
+  4. Publish/Update the page
+
+  Works on: iPhone Screen Repair, Services, FAQ, Contact, Specials, etc.
+-->
+
+<style>
+/* ============================================
+   TECH GUARDIAN — UNIVERSAL DESIGN SYSTEM
+   Matches home page: dark bg, Orbitron headers,
+   Inter body, glowing cards, modern pricing
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* === FORCE FULL-WIDTH DARK BACKGROUND === */
+.elementor-section,
+.elementor-top-section,
+.elementor-section-wrap,
+.elementor-section .elementor-container,
+.elementor-widget-wrap,
+.elementor-widget,
+.elementor-widget-container,
+.elementor-element,
+.e-con,
+.e-con-inner,
+.e-child {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+}
+
+.elementor-section > .elementor-container {
+    max-width: 100% !important;
+    padding: 0 !important;
+}
+
+/* === GLOBAL RESET === */
+.W {
+    font-family: 'Inter', sans-serif !important;
+    background: #05090f !important;
+    color: #fff !important;
+    overflow-x: hidden !important;
+    line-height: 1.6 !important;
+}
+
+.W *,
+.W *::before,
+.W *::after {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.W a {
+    color: #F5c518 !important;
+    text-decoration: none !important;
+}
+
+.W a:hover {
+    color: #fff !important;
+}
+
+/* === TYPOGRAPHY — ORBITRON HEADERS === */
+.W h1, .W h2, .W h3 {
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    color: #fff !important;
+}
+
+.W h1 {
+    font-size: clamp(28px, 5vw, 48px) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
+}
+
+.W h2 {
+    font-size: clamp(22px, 4vw, 36px) !important;
+    line-height: 1.3 !important;
+    margin-bottom: 16px !important;
+}
+
+.W h3 {
+    font-size: clamp(16px, 2.5vw, 22px) !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+}
+
+.W p, .W li, .W span, .W div {
+    font-family: 'Inter', sans-serif !important;
+    color: #ccc !important;
+    line-height: 1.8 !important;
+}
+
+/* === ACCENT COLORS === */
+:root {
+    --tg-blue: #180EC0;
+    --tg-blue-glow: rgba(24, 14, 192, 0.4);
+    --tg-blue-light: rgba(24, 14, 192, 0.15);
+    --tg-gold: #F5c518;
+    --tg-dark: #05090f;
+    --tg-card-bg: rgba(255, 255, 255, 0.03);
+    --tg-card-border: rgba(255, 255, 255, 0.1);
+    --tg-card-hover: rgba(24, 14, 192, 0.6);
+}
+
+/* === DARK CARDS WITH GLOW HOVER === */
+.W .elementor-widget-container,
+.W .service-card,
+.W .card,
+.W .repair-card,
+.W .pricing-card {
+    background: var(--tg-card-bg) !important;
+    border: 1px solid var(--tg-card-border) !important;
+    border-radius: 16px !important;
+    padding: 30px !important;
+    transition: all 0.3s ease !important;
+}
+
+.W .elementor-widget-container:hover,
+.W .service-card:hover,
+.W .card:hover,
+.W .repair-card:hover,
+.W .pricing-card:hover {
+    border-color: var(--tg-blue) !important;
+    box-shadow: 0 0 30px var(--tg-blue-glow) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* === STEP NUMBERS (1, 2, 3 circles) === */
+.W .step-number,
+.W .number-circle {
+    width: 60px !important;
+    height: 60px !important;
+    background: var(--tg-blue) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin: 0 auto 15px !important;
+    box-shadow: 0 0 20px var(--tg-blue-glow) !important;
+}
+
+/* === PRICING BADGES (IN STOCK, POPULAR, etc.) === */
+.W .badge,
+.W .tag,
+.W .label {
+    display: inline-block !important;
+    padding: 4px 14px !important;
+    border-radius: 20px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.W .badge-instock {
+    background: #00c853 !important;
+    color: #fff !important;
+}
+
+.W .badge-popular {
+    background: var(--tg-gold) !important;
+    color: #000 !important;
+}
+
+/* === PRICE DISPLAY === */
+.W .price {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: clamp(32px, 5vw, 48px) !important;
+    font-weight: 900 !important;
+    color: var(--tg-gold) !important;
+    margin: 15px 0 !important;
+}
+
+/* === BUTTONS — PRIMARY (BLUE GLOW) === */
+.W .elementor-button,
+.W .btn-primary,
+.W a.cta-button {
+    background: var(--tg-blue) !important;
+    color: #fff !important;
+    padding: 16px 36px !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+}
+
+.W .elementor-button:hover,
+.W .btn-primary:hover,
+.W a.cta-button:hover {
+    box-shadow: 0 0 30px var(--tg-blue-glow) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* === BUTTONS — OUTLINE === */
+.W .btn-outline {
+    background: transparent !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+    padding: 14px 34px !important;
+    border-radius: 8px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+}
+
+.W .btn-outline:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+/* === SECTION DIVIDERS === */
+.W hr,
+.W .divider {
+    border: none !important;
+    height: 1px !important;
+    background: var(--tg-card-border) !important;
+    margin: 40px 0 !important;
+}
+
+/* === HEADER BAR OVERRIDE === */
+.W header,
+.W .site-header,
+.W .elementor-location-header {
+    background: #05090f !important;
+    border-bottom: 1px solid var(--tg-card-border) !important;
+}
+
+/* === FOOTER OVERRIDE === */
+.W footer,
+.W .site-footer,
+.W .elementor-location-footer {
+    background: #05090f !important;
+    border-top: 1px solid var(--tg-card-border) !important;
+}
+
+.W footer p,
+.W .site-footer p {
+    color: #555 !important;
+    font-size: 13px !important;
+}
+
+/* === CALL NOW BUTTON (RED ACCENT) === */
+.W .call-now,
+.W .header-cta-red {
+    background: #e63946 !important;
+    color: #fff !important;
+    padding: 12px 28px !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    transition: all 0.3s ease !important;
+}
+
+.W .call-now:hover,
+.W .header-cta-red:hover {
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.4) !important;
+}
+
+/* === GRADIENT ACCENT CARDS (like Parts card) === */
+.W .accent-card,
+.W .highlight-card {
+    background: linear-gradient(135deg, var(--tg-blue-light), rgba(0,0,0,0.5)) !important;
+    border: 1px solid rgba(24, 14, 192, 0.3) !important;
+    border-radius: 16px !important;
+    padding: 40px !important;
+}
+
+/* === NAP / CONTACT CARD (bold blue border) === */
+.W .nap-card,
+.W .contact-card {
+    background: linear-gradient(135deg, var(--tg-blue-light), rgba(24,14,192,0.05)) !important;
+    border: 2px solid var(--tg-blue) !important;
+    border-radius: 16px !important;
+    padding: 50px 30px !important;
+    text-align: center !important;
+}
+
+.W .nap-card .phone,
+.W .contact-card .phone {
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    color: #fff !important;
+    margin: 20px 0 !important;
+}
+
+/* === GRID LAYOUTS === */
+.W .services-grid,
+.W .repair-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+    padding: 20px !important;
+}
+
+.W .three-col {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 25px !important;
+}
+
+/* === SMOOTH SCROLL-IN ANIMATIONS === */
+@keyframes tg-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.W .animate-in {
+    animation: tg-fadeInUp 0.6s ease forwards !important;
+}
+
+/* === SUBTLE GLOW PULSE ON ACCENT ELEMENTS === */
+@keyframes tg-glowPulse {
+    0%, 100% { box-shadow: 0 0 15px var(--tg-blue-glow); }
+    50% { box-shadow: 0 0 30px var(--tg-blue-glow); }
+}
+
+.W .glow-pulse {
+    animation: tg-glowPulse 3s ease-in-out infinite !important;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .W h1 { font-size: 26px !important; }
+    .W h2 { font-size: 22px !important; }
+    .W .services-grid,
+    .W .repair-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .W .elementor-button,
+    .W .btn-primary,
+    .W .btn-outline {
+        width: 100% !important;
+        text-align: center !important;
+    }
+    .W .nap-card .phone,
+    .W .contact-card .phone {
+        font-size: 24px !important;
+    }
+}
+
+/* === IMAGE OVERLAYS (dark tint on any images) === */
+.W .elementor-widget-image img {
+    border-radius: 12px !important;
+    filter: brightness(0.9) !important;
+}
+
+/* === LISTS — BLUE DOT STYLE === */
+.W ul {
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.W ul li {
+    padding: 12px 0 12px 20px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    position: relative !important;
+    color: #ccc !important;
+    font-size: 16px !important;
+}
+
+.W ul li:last-child {
+    border-bottom: none !important;
+}
+
+.W ul li::before {
+    content: "" !important;
+    width: 6px !important;
+    height: 6px !important;
+    background: var(--tg-blue) !important;
+    border-radius: 50% !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* === ELEMENTOR SPECIFIC OVERRIDES === */
+
+/* Kill default white backgrounds Elementor adds */
+.elementor-section[data-element_type="section"],
+.elementor-top-section {
+    background-color: transparent !important;
+}
+
+/* Override Elementor widget spacing */
+.elementor-widget:not(:last-child) {
+    margin-bottom: 20px !important;
+}
+
+/* Override Elementor heading widget */
+.elementor-heading-title {
+    font-family: 'Orbitron', sans-serif !important;
+    color: #fff !important;
+}
+
+/* Override Elementor text editor */
+.elementor-text-editor p {
+    color: #ccc !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Override Elementor icon boxes */
+.elementor-icon-box-title {
+    font-family: 'Orbitron', sans-serif !important;
+    color: #fff !important;
+}
+
+.elementor-icon-box-description {
+    color: #aaa !important;
+}
+
+.elementor-icon i {
+    color: var(--tg-blue) !important;
+}
+
+/* Override Elementor inner sections */
+.elementor-inner-section {
+    background: transparent !important;
+}
+</style>
+
+<!--
+  SCROLL ANIMATION SCRIPT
+  Adds smooth fade-in-up effect to cards as you scroll.
+  Elements with class "animate-in" will animate when they enter viewport.
+-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-add animation class to key elements
+    const animTargets = document.querySelectorAll(
+        '.card, .service-card, .repair-card, .pricing-card, ' +
+        '.elementor-widget-container, .accent-card, .nap-card'
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '0';
+                entry.target.style.transform = 'translateY(30px)';
+                entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, 100);
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    animTargets.forEach(el => observer.observe(el));
+});
+</script>
