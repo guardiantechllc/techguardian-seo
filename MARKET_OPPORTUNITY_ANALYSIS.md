@@ -137,7 +137,7 @@ The gap between AI-leading and AI-lagging sectors is widening fast. AI-exposed i
 #### 1. AI Automation Agency (HIGHEST RECOMMENDATION)
 - **What You Do:** Help businesses automate repetitive tasks using AI tools — email sequences, customer support chatbots, data entry, report generation, social media posting
 - **Why It's Lucrative:** Businesses will pay $1,000–$5,000/month for automations that save them $3,000–$15,000/month in labor costs. You're selling ROI, not hours
-- **How to Start:** Learn Make.com, Zapier, n8n, and AI APIs. Offer free audits to 10 local businesses. Convert 2–3 into paying clients. Scale from there
+- **How to Start:** Learn n8n (self-hosted, no platform fees) and AI APIs. Offer free audits to 10 local businesses. Convert 2–3 into paying clients. Scale from there
 - **Margin:** 70–85% profit margins after software costs
 
 #### 2. Micro-SaaS (HIGHEST CEILING)
@@ -420,6 +420,94 @@ Scale to 2,000 leads/month and you're at **$23,440/month**.
 - If you have a spare room or property, list it NOW — KC hotels will sell out
 - Rental arbitrage: lease a furnished apartment at standard rates, list on Airbnb at 3–5x during World Cup dates
 - **Revenue estimate:** $3K–$15K for the tournament period
+
+#### Play 6: TECH GUARDIAN WORLD CUP PHONE REPAIR TENT (THE KILLER PLAY)
+
+**Why this is the #1 play for TechGuardian specifically:**
+
+You already have the skills, tools, parts inventory, and brand. You're not starting a new business — you're putting your EXISTING business where the money is. 650,000 visitors. Alcohol flowing. Packed crowds. Phones getting dropped, cracked, water-damaged, and stolen. International visitors who have NO IDEA where to get a phone fixed in a city they've never been to. This is a goldmine.
+
+**The Setup:**
+
+Pop-up phone repair tent/booth positioned near high-traffic World Cup areas:
+- **Primary target:** Near the FIFA Fan Festival (WWI Museum grounds, June 11–July 13) — 65,000 people daily, free entry, maximum foot traffic
+- **Secondary target:** Along the shuttle/transit routes between downtown and Arrowhead Stadium
+- **Tertiary:** Power & Light District, Westport, and other bar/nightlife areas where fans gather after matches
+
+**What You Offer:**
+
+| Service | Normal Price | World Cup Price | Time | Why They'll Pay |
+|---|---|---|---|---|
+| Screen repair (iPhone) | $80–$180 | $120–$250 | 30–60 min | Their phone is their camera, GPS, translator, and ticket — they NEED it |
+| Screen repair (Samsung/Android) | $80–$200 | $120–$275 | 30–60 min | Same urgency, fewer repair options on-site |
+| Battery swap | $50–$80 | $75–$100 | 20 min | Phones dying from all-day use filming/navigating |
+| Water damage treatment | $50–$100 | $100–$150 | 60 min | Beer spills, rain, dropped in porta-potty — it happens |
+| Charging station rental | N/A | $5–$10/charge | While-you-wait | Passive income while they wait. Phone battery = lifeline |
+| Phone case + screen protector | N/A | $15–$40 | 2 min | Impulse buy after seeing 10 people with cracked screens |
+| Data backup / transfer | $30–$50 | $50–$75 | 15–30 min | Tourist's phone is dead — save their World Cup photos |
+
+**Premium pricing is justified because:**
+1. They're captive — there's no Apple Store at the Fan Festival
+2. It's urgent — they need their phone NOW, not in 3 days
+3. They're already spending — match tickets, food, drinks, merch. $150 for a screen fix is nothing
+4. International visitors have zero alternatives — they don't know KC
+5. Convenience premium — you're RIGHT THERE, on-site
+
+**Revenue Projections:**
+
+Conservative estimate (Fan Festival only, 28 days: June 11–July 13):
+
+| Metric | Low | Medium | High |
+|---|---|---|---|
+| Repairs per day | 8 | 15 | 25 |
+| Average repair price | $125 | $150 | $175 |
+| Daily repair revenue | $1,000 | $2,250 | $4,375 |
+| Accessories/charging per day | $150 | $300 | $500 |
+| **Daily total** | **$1,150** | **$2,550** | **$4,875** |
+| **28-day total** | **$32,200** | **$71,400** | **$136,500** |
+| Parts/supplies cost (~35%) | -$11,270 | -$24,990 | -$47,775 |
+| Permit/tent/setup cost | -$3,000 | -$5,000 | -$8,000 |
+| Staff (1–2 extra techs) | -$5,600 | -$8,400 | -$11,200 |
+| **NET PROFIT** | **$12,330** | **$33,010** | **$69,525** |
+
+On **match days** (6 total), volume will spike 2–3x. Argentina vs. Algeria alone could be a $5,000+ day.
+
+**Startup Costs:**
+
+| Item | Cost | Notes |
+|---|---|---|
+| 10x10 or 10x20 pop-up tent/canopy | $200–$800 | Heavy-duty with sidewalls for weather protection |
+| Folding tables + workstation setup | $100–$300 | Clean, professional look is important |
+| Signage & banner | $150–$400 | "PHONE BROKEN? FIXED IN 30 MIN" in English, Spanish, French, Arabic |
+| Extra parts inventory | $2,000–$5,000 | Stock up on iPhone 13–16 screens, Samsung S23/S24 screens, batteries |
+| Portable power/generator | $300–$500 | Need reliable power for tools and charging station |
+| Charging station (multi-port) | $50–$150 | 10–20 port station, charge $5–$10 per use |
+| Phone cases/screen protectors bulk | $500–$1,000 | Buy wholesale, sell at 3–5x markup |
+| Permits & licenses | $200–$500 | Temporary vendor permit from KC BizCare |
+| Insurance (temporary event) | $200–$500 | Liability coverage for the event period |
+| **TOTAL STARTUP** | **$3,700–$9,150** | |
+
+**Operational Details:**
+
+- **Hours:** Open 9am–10pm on match days, 10am–8pm on Fan Festival days
+- **Staffing:** You + 1–2 additional techs. Hire part-time for the tournament window. Pay $20–$30/hr
+- **Payment:** Square reader (you already use Square for booking), cash for international visitors
+- **Marketing on-site:** Big visible signage is 90% of the marketing. Also: hand out business cards/flyers at tailgates and fan zones
+- **Multilingual signage:** Critical. At minimum: English, Spanish, French, Arabic (covers Argentina, Algeria, Tunisia, Ecuador, Curaçao, Netherlands)
+- **Upsell play:** Every repair customer gets a TechGuardian business card + "10% off your next repair at our shop" — convert World Cup one-timers into repeat local customers
+
+**Permits & Logistics:**
+
+1. Visit [kansascityfwc26.com/business-opportunities](https://kansascityfwc26.com/business-opportunities/) and apply as a vendor
+2. Register with [KC BizCare](https://bizcare.kcmo.gov/businessresources) for temporary vendor permits
+3. Check with Jackson County for any additional event vendor licensing
+4. Get temporary event liability insurance (check with your existing provider first)
+5. **Important:** Only 4,000 of 22,000 Arrowhead parking spots are available on match days, and NO non-ticketed people are allowed on Arrowhead grounds. Focus your tent location on the **Fan Festival** and **transit corridors**, not the stadium itself
+6. **Trademark warning:** Do NOT use FIFA logos, "World Cup" in your business name, or official tournament branding. Use generic terms like "Game Day Phone Repair" or just "Tech Guardian — We Fix Phones"
+
+**The Bottom Line:**
+
+This is TechGuardian doing what TechGuardian already does — just in the right place at the right time. You're not learning a new skill. You're not building a new product. You're moving your repair bench to where 650,000 people with breakable phones are going to be for a month. The math works at every level. Even the conservative estimate clears $12K+ in profit. The aggressive scenario puts you near $70K for one month of work.
 
 ### Critical Timeline
 
