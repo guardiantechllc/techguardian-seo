@@ -455,7 +455,17 @@ Pop-up phone repair tent/booth positioned near high-traffic World Cup areas:
 
 **Revenue Projections:**
 
-Conservative estimate (Fan Festival only, 28 days: June 11–July 13):
+Conservative estimate (Fan Festival only, 33 days: June 11–July 13):
+
+**KC Match Schedule:**
+- June 16 (Tue) — Argentina vs. Algeria, 8pm CT
+- June 20 (Sat) — Ecuador vs. Curaçao, 7pm CT
+- June 25 (Thu) — Tunisia vs. Netherlands, 6pm CT
+- June 27 (Sat) — Algeria vs. Austria, 9pm CT
+- July 3 (Fri) — Round of 32, 8:30pm CT
+- July 11 (Sat) — Quarterfinal, 8pm CT
+
+**Fan Festival: June 11 – July 13 (33 days, open daily, 65,000 people/day)**
 
 | Metric | Low | Medium | High |
 |---|---|---|---|
@@ -464,11 +474,11 @@ Conservative estimate (Fan Festival only, 28 days: June 11–July 13):
 | Daily repair revenue | $1,000 | $2,250 | $4,375 |
 | Accessories/charging per day | $150 | $300 | $500 |
 | **Daily total** | **$1,150** | **$2,550** | **$4,875** |
-| **28-day total** | **$32,200** | **$71,400** | **$136,500** |
-| Parts/supplies cost (~35%) | -$11,270 | -$24,990 | -$47,775 |
+| **33-day total** | **$37,950** | **$84,150** | **$160,875** |
+| Parts/supplies cost (~35%) | -$13,283 | -$29,453 | -$56,306 |
 | Permit/tent/setup cost | -$3,000 | -$5,000 | -$8,000 |
-| Staff (1–2 extra techs) | -$5,600 | -$8,400 | -$11,200 |
-| **NET PROFIT** | **$12,330** | **$33,010** | **$69,525** |
+| Staff (1–2 extra techs) | -$6,600 | -$9,900 | -$13,200 |
+| **NET PROFIT** | **$15,067** | **$39,797** | **$83,369** |
 
 On **match days** (6 total), volume will spike 2–3x. Argentina vs. Algeria alone could be a $5,000+ day.
 
