@@ -398,26 +398,7 @@
     color: #180EC0 !important;
 }
 
-/* === NUKE GREEN FROM BACKGROUND IMAGES & OVERLAYS === */
-/* Force hue-rotate on any background decorative elements with green tones */
-.W .elementor-section > .elementor-background-overlay,
-.W .elementor-section::before,
-.W .elementor-section::after {
-    filter: hue-rotate(200deg) !important;
-}
-
-/* Kill green/teal from section background images */
-.W .elementor-section[style*="background-image"],
-.W .elementor-element[style*="background-image"],
-.W .e-con[style*="background-image"] {
-    filter: hue-rotate(200deg) saturate(1.2) !important;
-}
-
-/* Force dark blue on any section overlays */
-.W .elementor-background-overlay {
-    background-color: rgba(5, 9, 15, 0.7) !important;
-    mix-blend-mode: multiply !important;
-}
+/* Background images (lightning etc.) are fine — keep them as-is */
 
 /* === SHRINK STICKY HEADER — STOP IT FROM EATING THE PAGE === */
 .W header,
