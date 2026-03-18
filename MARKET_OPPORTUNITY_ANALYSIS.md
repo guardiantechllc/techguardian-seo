@@ -154,6 +154,294 @@ The gap between AI-leading and AI-lagging sectors is widening fast. AI-exposed i
 
 ---
 
+## 3A. DEEP DIVE: MICRO-SAAS PLAYBOOK
+
+### Why Micro-SaaS Is the Best Long-Term Play
+
+The micro-SaaS segment is growing at **30% annually** — from $15.7B in 2024 to a projected $59.6B by 2030. Solo founders are routinely hitting $5K–$50K/month with 70%+ profit margins and zero venture capital. The math is straightforward:
+
+| Customers | Price/Month | Monthly Revenue | Annual Revenue |
+|---|---|---|---|
+| 100 | $49 | $4,900 | $58,800 |
+| 250 | $99 | $24,750 | $297,000 |
+| 500 | $99 | $49,500 | $594,000 |
+| 1,000 | $149 | $149,000 | $1,788,000 |
+
+You don't need thousands of customers. You need a few hundred paying a fair price for something that saves them real time or money.
+
+### The Winning Formula: Vertical + Boring + Specific
+
+The biggest mistake first-time founders make is building something broad. The winners in 2026 are **vertical-specific** (built for one industry) and **boring** (solving mundane operational pain, not flashy consumer apps).
+
+**Why "boring" wins:**
+- Wealthy professionals (accountants, contractors, dentists) pay premium prices for tools that save time
+- These niches are ignored by big SaaS companies chasing enterprise deals
+- Lower competition = easier customer acquisition
+- Higher willingness to pay = better unit economics
+
+### 10 Micro-SaaS Ideas Ranked by Opportunity
+
+| # | Idea | Target Niche | Price Point | Build Difficulty | Revenue Potential |
+|---|---|---|---|---|---|
+| 1 | **Invoice & Payment Tracker for Contractors** | General contractors, subcontractors | $49–$149/mo | Low | $30K+/mo |
+| 2 | **Client Portal for Freelancers** | Designers, consultants, copywriters | $29–$49/mo | Low | $20K+/mo |
+| 3 | **AI Review Response Manager** | Restaurants, hotels, local services | $49–$99/mo | Medium | $25K+/mo |
+| 4 | **Failed Payment Recovery Tool** | Any subscription business (avg loses 9% MRR to failed payments) | $49–$199/mo | Medium | $50K+/mo |
+| 5 | **Appointment No-Show Reducer** | Salons, clinics, consultants | $29–$79/mo | Low | $15K+/mo |
+| 6 | **AI Content Repurposer** | Turn 1 blog post into 10 social posts, email, video script | $19–$49/mo | Medium | $20K+/mo |
+| 7 | **ESG Compliance Tracker for SMBs** | Small manufacturers, food producers | $200–$500/mo | High | $100K+/mo |
+| 8 | **E-Commerce Returns Manager** | Shopify/WooCommerce stores | $49–$199/mo | Medium | $40K+/mo |
+| 9 | **Rental Property Maintenance Tracker** | Landlords with 5–50 units | $29–$99/mo | Low | $15K+/mo |
+| 10 | **AI Meeting Notes for Specific Industries** | Legal depositions, medical consults, sales calls | $29–$99/mo | Medium | $30K+/mo |
+
+### How to Build and Launch in 30 Days
+
+**Week 1: Validate**
+- Pick ONE idea from the list above (or find your own niche pain point)
+- Find 10–20 people in that niche (Reddit, Facebook groups, LinkedIn, local businesses)
+- Ask them: "What's the most annoying repetitive task in your business?" and "Would you pay $X/month for a tool that does Y?"
+- If 5+ people say yes — you have validation. Move forward
+
+**Week 2: Build MVP**
+- Use no-code/low-code tools to build fast:
+  - **Bubble.io** — full web apps with database, auth, payments
+  - **Cursor + Supabase** — if you can code or want AI-assisted coding
+  - **Lovable.dev** — AI app builder, describe what you want and it builds it
+  - **Webflow + Memberstack** — for content/portal-based SaaS
+- MVP = the ONE core feature that solves the ONE core pain point. Nothing else
+- Integrate Stripe for payments from day one
+
+**Week 3: Get First 10 Users**
+- Go back to the people you validated with — offer lifetime discount for early access
+- Post in niche communities (subreddits, Facebook groups, Slack communities, Discord servers)
+- Cold DM 50 potential customers on LinkedIn with a personalized message
+- Offer a 14-day free trial with no credit card required
+
+**Week 4: Iterate and Monetize**
+- Talk to every user. What do they love? What's missing? What would make them pay?
+- Fix the top 3 complaints
+- Convert free users to paid
+- Set up basic email onboarding sequence (3–5 emails over 7 days)
+
+### Real Success Stories
+
+- **Senja.io** (testimonial collection tool) — hit $1M ARR by solving ONE pain point for service businesses
+- **LeaveMeAlone** (email unsubscribe tool) — profitable solo founder business
+- **Bannerbear** (automated image generation) — niche tool for content creators generating consistent MRR
+- **SimpleAnalytics** — launched first version in TWO WEEKS, now profitable with thousands of customers
+
+### Tools & Costs Breakdown
+
+| Tool | Purpose | Cost |
+|---|---|---|
+| Bubble.io or Lovable.dev | App builder | $0–$29/mo |
+| Supabase | Database & auth | Free tier |
+| Stripe | Payments | 2.9% + $0.30 per transaction |
+| Resend or Mailgun | Transactional email | Free tier |
+| Vercel or Railway | Hosting | Free tier |
+| Crisp or Intercom | Customer chat | Free–$29/mo |
+| **Total startup cost** | | **$0–$58/month** |
+
+---
+
+## 3B. DEEP DIVE: DIGITAL PRODUCT EMPIRE PLAYBOOK
+
+### The Digital Product Market in 2026
+
+The global digital products market is projected to reach **$920 billion by 2033**. Profit margins run **85–95%** because there's zero inventory, zero shipping, zero marginal cost per sale. You create it once, sell it forever.
+
+### The 7 Most Profitable Digital Product Categories
+
+#### 1. AI Prompt Packs ($17–$97 each)
+The fastest-growing digital product category in 2026. The key is **specificity** — generic "AI prompts" don't sell. Niche-specific prompt packs do.
+
+**Examples that sell:**
+- "150 ChatGPT Prompts for Real Estate Agents" — $27
+- "AI Prompts to Write Client Proposals in 5 Minutes" — $37
+- "Social Media Content Prompts for Fitness Coaches" — $19
+- "AI Prompts for Etsy Sellers to Write Listings That Convert" — $22
+
+**How to create:** Spend a day crafting and testing prompts in a specific niche. Package as a PDF or Notion template. List on Gumroad or Etsy. Cost to create: $0.
+
+#### 2. Notion / Airtable Templates ($9–$149 each)
+Notion templates are a proven money-maker on Etsy and Gumroad. People want pre-built systems they can plug into immediately.
+
+**Top sellers:**
+- Business financial trackers — $29–$49
+- Content calendars with built-in AI prompts — $19–$39
+- Client project management dashboards — $39–$79
+- Personal finance budgeting systems — $9–$29
+- Job application trackers — $12–$19
+- Wedding planners — $29–$49
+
+#### 3. Online Courses & Mini-Courses ($47–$997 each)
+Still the single highest-revenue digital product category. The shift in 2026: buyers expect **practical, outcome-driven** courses, not 40-hour lecture series. Mini-courses (1–3 hours) that teach ONE specific skill are outperforming mega-courses.
+
+**High-demand course topics:**
+- "How to Automate Your Small Business with AI in One Weekend"
+- "Build Your First Micro-SaaS in 30 Days (No Coding Required)"
+- "Social Media Marketing for Local KC Businesses"
+- "AI Tools Every Real Estate Agent Needs in 2026"
+
+**Platforms:** Teachable, Thinkific, Gumroad, Skool
+
+#### 4. Done-For-You Social Media Content Kits ($19–$79/pack)
+Small business owners, coaches, and creators pay for pre-designed content they can customize and post. This is a **recurring revenue** product — release monthly packs.
+
+**What's in a kit:**
+- 30 designed social media post templates (Canva)
+- 30 matching caption templates
+- 10 Reel/TikTok content scripts
+- Hashtag research for the niche
+- Monthly content calendar
+
+#### 5. eBooks & Guides ($9–$47 each)
+Lower price point but high volume. Best used as a **funnel** — cheap eBook leads to upsell on course or consulting.
+
+#### 6. Printables & Planners ($5–$29 each)
+Physical planners in digital form. Design in Canva, sell on Etsy. High volume, low price, low effort.
+
+#### 7. PLR (Private Label Rights) Products ($17–$197 each)
+Buy pre-made digital products, rebrand them as your own, resell at markup. Lowest effort path but also most competitive.
+
+### The Stacking Strategy: How to Hit $10K/Month
+
+Don't rely on one product. Build a **product ecosystem**:
+
+```
+TIER 1 — FREE (Lead Magnet)
+  "5 AI Prompts Every Small Business Owner Needs" (free PDF)
+  Purpose: Captures email addresses
+          |
+          v
+TIER 2 — LOW TICKET ($9–$29)
+  Notion templates, prompt packs, printables
+  Purpose: Converts free leads into paying customers
+          |
+          v
+TIER 3 — MID TICKET ($47–$197)
+  Mini-courses, comprehensive template bundles, content kits
+  Purpose: Core revenue driver
+          |
+          v
+TIER 4 — HIGH TICKET ($297–$997+)
+  Full courses, group coaching, done-for-you services
+  Purpose: Maximum revenue per customer
+```
+
+**Revenue math with this stack:**
+- 500 email subscribers/month (from free lead magnet)
+- 10% buy Tier 2 = 50 sales x $19 = **$950**
+- 5% buy Tier 3 = 25 sales x $97 = **$2,425**
+- 1% buy Tier 4 = 5 sales x $497 = **$2,485**
+- **Total: $5,860/month from 500 new leads**
+
+Scale to 2,000 leads/month and you're at **$23,440/month**.
+
+### Best Platforms to Sell Digital Products
+
+| Platform | Best For | Fees |
+|---|---|---|
+| **Gumroad** | Beginners, fast setup | 10% flat fee |
+| **Etsy** | Templates, printables, prompt packs | 6.5% + $0.20/listing |
+| **Shopify** | Full branded store | $39/mo + 2.9% |
+| **Teachable** | Courses | $39–$119/mo |
+| **Skool** | Communities + courses | $99/mo |
+| **Stan Store** | Creator-focused, link-in-bio sales | $29/mo |
+| **Whop** | Digital products + communities | 3% transaction fee |
+
+### Week 1 Action Plan
+
+| Day | Task |
+|---|---|
+| Mon | Pick your niche. Research what's selling on Etsy/Gumroad in that niche |
+| Tue | Create your first 2 products (1 free lead magnet + 1 paid template/prompt pack) |
+| Wed | Set up Gumroad or Etsy store. List products with SEO-optimized titles and descriptions |
+| Thu | Create a simple landing page. Set up email capture with ConvertKit or Mailchimp (free tier) |
+| Fri | Post about your products on 3 social platforms. Join 5 niche communities and provide value |
+| Sat | Create your third product (mini-course outline or content kit) |
+| Sun | Schedule 1 week of social media content promoting your products |
+
+---
+
+## 3C. DEEP DIVE: WORLD CUP KC — THE PLAY
+
+### The Numbers
+
+- **6 matches** at Arrowhead Stadium (June 16 – July 11, 2026)
+- **650,000+ estimated visitors** to Kansas City
+- **Argentina vs. Algeria** (June 16) — this alone will pack the city. Argentina is the defending champion with massive global fanbase
+- **Netherlands base camp** is in KC — Dutch fans will be there for weeks
+- **Quarterfinal match** on July 11 — the stakes will be enormous
+- **Official FIFA Fan Festival** at the National WWI Museum grounds — this is where the masses will gather on non-match days
+
+### Match-by-Match Opportunity Map
+
+| Date | Match | Fan Nationalities | Opportunity |
+|---|---|---|---|
+| June 16 | Argentina vs. Algeria | Argentine, Algerian, global neutrals | MASSIVE crowd. Argentine fans are famously passionate and spend heavily. Algerian community events. |
+| June 20 | Ecuador vs. Curaçao | Ecuadorian, Caribbean, Latin American | Latin food/culture pop-ups. Caribbean music events. |
+| June 25 | Tunisia vs. Netherlands | Dutch, Tunisian, North African | Dutch fans will be established in KC by now. Orange-themed events. Tunisian/North African food. |
+| June 27 | Algeria vs. Austria | Algerian, Austrian, European | European beer garden events. Second wave of Algerian fans. |
+| July 3 | Round of 32 | TBD | Knockout stage = higher intensity. Every bar/restaurant should be screening. |
+| July 11 | Quarterfinal | TBD | Peak event. Maximum visitor count. Premium pricing justified. |
+
+### Specific World Cup Business Plays
+
+#### Play 1: Pop-Up Food & Beverage ($2K–$15K startup)
+- Apply NOW for the **KC Storefront Revitalization Program** — free/reduced-cost leases on vacant downtown storefronts
+- Set up themed food experiences: Argentine asado/empanadas, Dutch stroopwafels, North African cuisine, Ecuadorian ceviche
+- Partner with existing KC restaurants to create "World Cup Menus" and take a commission
+- Mobile food cart/truck near Arrowhead and the Fan Festival grounds (check permit requirements with KC BizCare)
+- **Revenue estimate:** $500–$5,000/day during match days; $200–$1,000/day during Fan Festival days
+
+#### Play 2: Merchandise & Souvenirs ($1K–$10K startup)
+- Screen-print KC + World Cup themed t-shirts, hats, scarves
+- Country-specific fan scarves and flags (Argentina, Netherlands, Algeria — these will sell out)
+- "I Was There" commemorative items
+- Set up on Etsy NOW for pre-orders + physical booth near venues
+- **Important:** Do NOT use official FIFA logos without a license. Create original KC-themed soccer designs
+- **Revenue estimate:** $2K–$20K+ over the tournament window
+
+#### Play 3: Tourism & Experience Packages ($500–$5K startup)
+- **KC BBQ World Cup Trail** — curated guide + partnerships with 10–15 BBQ spots, take referral commission
+- **Jazz District Match-Day Packages** — pre-game jazz show + transport to Arrowhead
+- **VIP Watch Party hosting** — rent a rooftop or private venue, sell premium tickets ($50–$200/person) for big matches
+- List on Airbnb Experiences, Viator, and GetYourGuide
+- **Revenue estimate:** $5K–$50K over tournament
+
+#### Play 4: Digital Services for World Cup Visitors ($0–$2K startup)
+- **KC World Cup Guide** — digital product (PDF/app) with restaurant recommendations, transit maps, safety tips, phrase guides in Spanish, Arabic, Dutch, French
+- **Social media content packages** for KC businesses wanting to attract World Cup visitors
+- **Translation/interpretation services** — connect bilingual KC residents with businesses needing temporary multilingual staff
+- **Revenue estimate:** $2K–$15K
+
+#### Play 5: Airbnb / Short-Term Rental Arbitrage ($2K–$10K startup)
+- If you have a spare room or property, list it NOW — KC hotels will sell out
+- Rental arbitrage: lease a furnished apartment at standard rates, list on Airbnb at 3–5x during World Cup dates
+- **Revenue estimate:** $3K–$15K for the tournament period
+
+### Critical Timeline
+
+| When | Action |
+|---|---|
+| **THIS WEEK** | Apply for Storefront Revitalization Program. Register with KC BizCare. Complete the KC Game Plan Readiness Assessment at kansascityfwc26.com |
+| **April 2026** | Secure permits, finalize vendor locations, order initial merchandise inventory |
+| **May 2026** | Launch pre-sale marketing. List Airbnb Experiences. Begin social media promotion |
+| **June 1–15** | Final setup. Staff hired/confirmed. All digital products live |
+| **June 16** | GO TIME — Argentina vs. Algeria. First match day |
+| **July 11** | Quarterfinal — peak revenue day. Go all out |
+
+### Key Resources
+
+- [KC2026 Business Opportunities Page](https://kansascityfwc26.com/business-opportunities/)
+- [KC Game Plan Toolkit](https://kansascityfwc26.com/kc-game-plan-toolkit/)
+- [KC Chamber World Cup Resources](https://www.kcchamber.com/world-cup-2026/)
+- [FIFA Kansas City Host City Guide](https://www.fifa.com/en/articles/world-cup-2026-host-city-kansas-city-guide)
+- [ConnectKC26 Transportation](https://kansascityfwc26.com/) — motorcoach services for match days and Fan Festival
+
+---
+
 ## 4. KANSAS CITY LOCALIZED OPPORTUNITIES
 
 ### Market Context
@@ -264,3 +552,21 @@ Two underserved demographics in KC: (1) small business owners who know they need
 - [Remitly: Doing Business in Kansas City](https://www.remitly.com/blog/business/doing-business-in-kansas-city/)
 - [Missouri Labor Market 2026](https://www.californiademocrat.com/news/2025/dec/30/tight-workforce-slower-growth-expected-to-shape/)
 - [Escalent: Top Consumer Trends 2026](https://escalent.co/blog/top-consumer-trends-2026-market-research-insights-brands-need-to-build-winning-strategies/)
+- [Lovable: Micro SaaS Ideas for Solopreneurs 2026](https://lovable.dev/guides/micro-saas-ideas-for-solopreneurs-2026)
+- [Elementor: 20 Profitable SaaS & Micro-SaaS Ideas 2026](https://elementor.com/blog/profitable-saas-micro-saas-ideas/)
+- [Microns.io: Best Micro-SaaS Startup Ideas](https://www.microns.io/blog/best-micro-saas-ideas)
+- [Medium: 10 Boring Micro-SaaS Ideas That Earn $2K/Month](https://medium.com/the-money-guide/10-boring-micro-saas-ideas-that-earn-2-000-month-without-the-ai-hype-af1b6ef53109)
+- [Superframeworks: Best Micro SaaS Ideas for Solopreneurs](https://superframeworks.com/articles/best-micro-saas-ideas-solopreneurs)
+- [GenAI Labs: B2C Micro-SaaS Ideas for Solo Founders 2026](https://www.genailabs.agency/blog/b2c-micro-saas-ideas-solo-founders-2026)
+- [Amasty: 18 Best Digital Products to Sell 2026](https://amasty.com/blog/best-digital-products-to-sell/)
+- [Sellfy: 20 Best Digital Products to Sell 2026](https://sellfy.com/blog/digital-products/)
+- [WP Astra: 28 Digital Products to Sell 2026](https://wpastra.com/resources/digital-products-to-sell/)
+- [Resell Ready: Most Profitable Digital Products 2026](https://resellready.co/blogs/news/most-profitable-digital-products-for-passive-income-in-2026)
+- [Easy.tools: 8 Profitable Digital Products 2026](https://www.easy.tools/blog/profitable-digital-products)
+- [FIFA: Kansas City Host City](https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/usa/kansas-city)
+- [KC2026 Official Site](https://kansascityfwc26.com/)
+- [KC2026 Business Opportunities](https://kansascityfwc26.com/business-opportunities/)
+- [KC2026 Game Plan Toolkit](https://kansascityfwc26.com/kc-game-plan-toolkit/)
+- [KC Chamber World Cup 2026](https://www.kcchamber.com/world-cup-2026/)
+- [Visit KC World Cup Guide](https://www.visitkc.com/fifaworldcup26/)
+- [FOX Sports: 2026 World Cup KC Match Schedule](https://www.foxsports.com/stories/soccer/2026-world-cup-matches-kansas-city-start-times-dates-locations)
