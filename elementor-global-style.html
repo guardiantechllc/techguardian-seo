@@ -173,7 +173,7 @@
 }
 
 .W .badge-instock {
-    background: #00c853 !important;
+    background: var(--tg-blue) !important;
     color: #fff !important;
 }
 
@@ -374,6 +374,28 @@
     .W .contact-card .phone {
         font-size: 24px !important;
     }
+}
+
+/* === KILL ALL GREEN — FORCE BLUE === */
+.W [style*="color: #00c853"],
+.W [style*="color:#00c853"],
+.W [style*="color: green"],
+.W [style*="background-color: #00c853"],
+.W [style*="background-color:#00c853"],
+.W [style*="background: #00c853"],
+.W [style*="background:#00c853"] {
+    color: var(--tg-blue) !important;
+    background-color: var(--tg-blue) !important;
+}
+
+/* Override any Elementor green accent colors */
+.W .elementor-widget-container [style*="green"],
+.W .elementor-widget-container [style*="#00c853"],
+.W .elementor-widget-container [style*="#4caf50"],
+.W .elementor-widget-container [style*="#2e7d32"],
+.W .elementor-widget-container [style*="#00e676"],
+.W .elementor-widget-container [style*="#66bb6a"] {
+    color: #180EC0 !important;
 }
 
 /* === IMAGE OVERLAYS (dark tint on any images) === */
