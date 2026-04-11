@@ -46,15 +46,15 @@ Typos will silently drop fields. Airtable is case-sensitive here.
 > Pro tip: make the first field (primary) the `id` field, because
 > Airtable upserts use that for row identity in the mobile app too.
 
-## 3. Build the Jobs table
+## 3. Build the Repairs table
 
 Click the `+` at the top of the table tabs → **Create empty table** →
-name it **`Jobs`**. Add these fields:
+name it **`Repairs`**. Add these fields:
 
 | Field name         | Type             | Notes |
 | ------------------ | ---------------- | ----- |
 | `id`               | Single line text | Primary field |
-| `date`             | Single line text | YYYY-MM-DD |
+| `date`             | Date             | Format: ISO (2026-04-11). Turn ON "Include a time field" → OFF. |
 | `customer_name`    | Single line text | |
 | `customer_phone`   | Phone number     | |
 | `device`           | Single line text | `PS5`, `Xbox Series X`, ... |
@@ -62,23 +62,52 @@ name it **`Jobs`**. Add these fields:
 | `revenue`          | Currency ($)     | |
 | `parts_cost`       | Currency ($)     | |
 | `other_expenses`   | Currency ($)     | |
-| `profit`           | Currency ($)     | Can also be a Formula field: `{revenue} - {parts_cost} - {other_expenses}` — either works, we send it pre-computed. |
-| `lead_source`      | Single line text | `yelp`, `walkin`, etc. |
+| `profit`           | Currency ($)     | Pre-computed by the Python CLI. Can also be a Formula field: `{revenue} - {parts_cost} - {other_expenses}`. |
+| `status`           | Single select    | Options (in order): `New`, `In Progress`, `Completed`, `Cancelled`. **Critical — the automations trigger on this field.** |
+| `completed_date`   | Date             | Stamped automatically when status → Completed. Automation in `AIRTABLE_AUTOMATIONS.md` keeps it in sync. |
+| `lead_source`      | Single line text | `yelp`, `walkin`, `craigslist`, etc. |
 | `notes`            | Long text        | |
 | `created_at`       | Single line text | |
 
-## 4. (Optional but recommended) Create useful views
+## 4. Build the Lead Follow-Ups table
+
+This table is populated automatically by a 7-day follow-up automation
+(see `AIRTABLE_AUTOMATIONS.md`). Create it now so the automation has
+somewhere to write to.
+
+Click `+` → **Create empty table** → name it **`Lead Follow-Ups`**.
+
+| Field name         | Type               | Notes |
+| ------------------ | ------------------ | ----- |
+| `id`               | Formula            | `CONCATENATE("fu-", RECORD_ID())` — makes a stable primary |
+| `customer_name`    | Single line text   | Copied from the Repair |
+| `customer_phone`   | Phone number       | |
+| `device`           | Single line text   | |
+| `service`          | Single line text   | |
+| `repair`           | Link to another record → `Repairs` | The parent repair. |
+| `repair_date`      | Lookup             | Lookup `date` from linked Repair |
+| `scheduled_date`   | Date               | When to reach out — set by automation to completed + 7 days |
+| `status`           | Single select      | Options: `Scheduled`, `Sent`, `Done`, `Skipped` |
+| `notes`            | Long text          | |
+| `created_at`       | Created time       | Airtable auto-populates |
+
+## 5. (Optional but recommended) Create useful views
 
 In the Leads table:
-- **"New hot leads"** — filter `status = new` AND `intent_score >= 4`, sort by `intent_score` desc. This is your daily triage list.
+- **"New hot leads"** — filter `status = new` AND `intent_score >= 4`, sort by `intent_score` desc. Your daily triage list.
 - **"Booked"** — filter `status = booked`.
 
-In the Jobs table:
-- **"Today"** — filter `date = TODAY()`.
-- **"This week"** — filter `date IS WITHIN this week`.
+In the Repairs table:
+- **"Active"** — filter `status = New OR In Progress`, sort by `date` asc. Your workbench.
+- **"Completed today"** — filter `completed_date = TODAY()`.
+- **"This week"** — filter `completed_date IS WITHIN this week`.
 - **"By device"** — group by `device`, sort by `profit` desc. Tells you which repairs actually make money.
 
-## 5. Get your Personal Access Token (PAT)
+In the Lead Follow-Ups table:
+- **"Due today"** — filter `scheduled_date = TODAY() AND status = Scheduled`.
+- **"Overdue"** — filter `scheduled_date IS BEFORE TODAY() AND status = Scheduled`.
+
+## 6. Get your Personal Access Token (PAT)
 
 Airtable killed API keys in 2024 and replaced them with PATs.
 
@@ -90,20 +119,20 @@ Airtable killed API keys in 2024 and replaced them with PATs.
 6. Click **Create token** → copy the token (starts with `pat...`).
    You only see it once.
 
-## 6. Get your Base ID
+## 7. Get your Base ID
 
 1. Open your `Tech Guardian Ops` base in a browser
 2. Look at the URL: `https://airtable.com/appXXXXXXXXXXXXXX/...`
 3. The `appXXXXXXXXXXXXXX` part is your base ID.
 
-## 7. Paste into .env
+## 8. Paste into .env
 
 ```env
 AIRTABLE_API_KEY=pat_your_token_here
 AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
 ```
 
-## 8. Test it
+## 9. Test it
 
 ```bash
 cd lead_system

@@ -26,6 +26,8 @@ JOB_FIELDS: List[str] = [
     "parts_cost",
     "other_expenses",
     "profit",
+    "status",
+    "completed_date",
     "lead_source",
     "notes",
     "created_at",
@@ -44,6 +46,8 @@ class Job:
     customer_phone: str = ""
     lead_source: str = ""             # yelp | reddit | craigslist | walkin | ...
     notes: str = ""
+    status: str = "Completed"         # New | In Progress | Completed | Cancelled
+    completed_date: str = ""          # YYYY-MM-DD when status hit Completed
     id: str = ""
     created_at: str = ""
 
@@ -52,6 +56,11 @@ class Job:
             self.id = uuid.uuid4().hex[:16]
         if not self.created_at:
             self.created_at = datetime.now(timezone.utc).isoformat()
+        # Stamp completed_date automatically when logging a completed repair.
+        # The log_job CLI always logs completed jobs by default, so this makes
+        # the Airtable "Completed → daily revenue" automation Just Work.
+        if self.status == "Completed" and not self.completed_date:
+            self.completed_date = self.date
 
     @property
     def profit(self) -> float:

@@ -123,7 +123,9 @@ Each of these has a dedicated doc with screenshots-level detail:
 
 | Integration | Setup doc | What it gives you |
 | --- | --- | --- |
-| **Airtable** (recommended primary store) | `docs/AIRTABLE_SETUP.md` | Your main CRM — statuses, views, mobile app |
+| **Airtable base schema** | `docs/AIRTABLE_SETUP.md` | Leads + Repairs + Lead Follow-Ups tables |
+| **Airtable automations** | `docs/AIRTABLE_AUTOMATIONS.md` | Auto-stamp completed date, $400 quota notifications, 7-day follow-ups, lead→repair conversion |
+| **Airtable dashboard** | `docs/AIRTABLE_DASHBOARD.md` | Interface Designer build: big number + gauge + trend chart |
 | **Zoho IMAP** (Yelp + Voice emails) | `docs/ZOHO_SETUP.md` | Every Yelp lead email becomes a row |
 | **iPhone call logger** | `docs/IPHONE_SHORTCUT.md` | Tap after each call, 5 seconds to a new row |
 | **Reddit API** (optional) | See README "Reddit setup" below | Extra lead volume from public posts |
@@ -251,7 +253,10 @@ Every row in CSV, Sheets, and Airtable has the same columns:
 | `notes` | Free-form — phone number from email parser lives here |
 | `created_at` | When we first saved it |
 
-## Job schema
+## Repair (Job) schema
+
+Stored locally as `data/jobs.csv` and synced to the Airtable
+**Repairs** table.
 
 | column | meaning |
 | --- | --- |
@@ -262,6 +267,8 @@ Every row in CSV, Sheets, and Airtable has the same columns:
 | `service` | `HDMI port replacement`, etc. |
 | `revenue`, `parts_cost`, `other_expenses` | Currency |
 | `profit` | `revenue - parts_cost - other_expenses` |
+| `status` | `New`, `In Progress`, `Completed`, `Cancelled` — drives the automations |
+| `completed_date` | Stamped when status flips to Completed (or up-front via `log_job`) |
 | `lead_source` | `yelp`, `walkin`, `craigslist`, ... |
 | `notes`, `created_at` | |
 

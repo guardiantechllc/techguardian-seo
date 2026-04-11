@@ -197,10 +197,11 @@ storage:
   airtable_leads_table: "Leads"
 
 # Profit tracker. Where job rows live locally — they also sync to
-# Airtable's Jobs table if AIRTABLE_API_KEY + AIRTABLE_BASE_ID are set.
+# Airtable's Repairs table if AIRTABLE_API_KEY + AIRTABLE_BASE_ID are set.
 jobs:
   csv_file: "data/jobs.csv"
-  airtable_jobs_table: "Jobs"
+  airtable_jobs_table: "Repairs"
+  airtable_followups_table: "Lead Follow-Ups"
   daily_revenue_target: 400
 
 # Logging
