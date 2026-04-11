@@ -1,0 +1,159 @@
+# ============================================================
+# Tech Guardian — Lead Monitor configuration
+# Edit this file to tune keywords, sources, and search behavior.
+# ============================================================
+
+business:
+  name: "Tech Guardian"
+  city: "Lee's Summit"
+  state: "MO"
+  metro: "Kansas City"
+  phone: ""          # Optional — filled into drafts if set
+  website: "https://techguardiankc.com"
+  # Cities we will score as "local" for lead ranking.
+  local_cities:
+    - "Kansas City"
+    - "KCMO"
+    - "KCK"
+    - "Lee's Summit"
+    - "Lees Summit"
+    - "Independence"
+    - "Overland Park"
+    - "Olathe"
+    - "Blue Springs"
+    - "Raytown"
+    - "Liberty"
+    - "Gladstone"
+    - "Shawnee"
+    - "Lenexa"
+    - "Grandview"
+    - "Belton"
+    - "Raymore"
+
+# Keywords the matcher looks for in post text/title.
+# Case-insensitive. Multi-word phrases are matched as a whole.
+keywords:
+  primary:
+    - "PS5 HDMI"
+    - "PS4 HDMI"
+    - "Xbox HDMI"
+    - "Series X HDMI"
+    - "Series S HDMI"
+    - "HDMI port"
+    - "broken HDMI"
+    - "console repair"
+    - "game console repair"
+  symptom:
+    - "no signal"
+    - "black screen"
+    - "won't display"
+    - "wont display"
+    - "no display"
+    - "no picture"
+    - "no video"
+    - "bent HDMI"
+    - "loose HDMI"
+    - "HDMI loose"
+    - "HDMI broke"
+    - "HDMI not working"
+  console:
+    - "PS5"
+    - "PlayStation 5"
+    - "PS4"
+    - "PlayStation 4"
+    - "Xbox Series X"
+    - "Xbox Series S"
+    - "Xbox One"
+    - "Nintendo Switch"
+  intent:
+    - "need repair"
+    - "looking to fix"
+    - "anyone fix"
+    - "where to fix"
+    - "repair shop"
+    - "fix my"
+    - "help fix"
+    - "how much to fix"
+    - "for parts"
+    - "broken"
+    - "not working"
+
+# Sources. Set enabled: false to skip without deleting config.
+sources:
+  craigslist:
+    enabled: true
+    base_url: "https://kansascity.craigslist.org"
+    # Craigslist offers an RSS format on search URLs — we use it
+    # so we never scrape HTML behind pagination.
+    # Sections searched:
+    #   sss = for sale (catches "broken PS5 for parts" listings)
+    #   wan = wanted (catches "need console HDMI repair")
+    search_paths:
+      - "/search/sss?format=rss&query=ps5+broken"
+      - "/search/sss?format=rss&query=ps5+hdmi"
+      - "/search/sss?format=rss&query=xbox+broken"
+      - "/search/sss?format=rss&query=xbox+hdmi"
+      - "/search/sss?format=rss&query=console+repair"
+      - "/search/wan?format=rss&query=ps5"
+      - "/search/wan?format=rss&query=xbox"
+      - "/search/wan?format=rss&query=console+repair"
+    request_delay_seconds: 3.0
+    max_items_per_feed: 25
+
+  reddit:
+    enabled: true
+    # Subreddits to search. Each is queried with every query term.
+    subreddits:
+      - "kansascity"
+      - "kcmo"
+      - "leessummit"
+      - "playstation"
+      - "PS5"
+      - "PS4"
+      - "xboxone"
+      - "XboxSeriesX"
+      - "consoles"
+      - "gamingsuggestions"
+    queries:
+      - "HDMI broken"
+      - "HDMI port"
+      - "no signal"
+      - "black screen"
+      - "console repair"
+      - "won't display"
+    time_filter: "month"   # hour|day|week|month|year|all
+    limit_per_query: 15
+    request_delay_seconds: 2.0
+
+  forum_stub:
+    # Clearly stubbed — left in place so you can drop in your own
+    # public-forum RSS feeds without changing the main pipeline.
+    enabled: false
+    feeds: []
+
+# Scoring tunables. Final score is clamped to [1,5].
+scoring:
+  base: 1
+  primary_keyword: 2
+  symptom_keyword: 1
+  console_keyword: 1
+  intent_keyword: 1
+  local_city_bonus: 1
+  recency_bonus_days: 7
+  recency_bonus: 1
+
+# Deduper: where to persist the seen-hash ledger.
+deduper:
+  ledger_file: "data/seen_hashes.json"
+
+# Storage: CSV is always written. Google Sheets is attempted if
+# credentials are configured in .env.
+storage:
+  csv_file: "data/leads.csv"
+  write_sheets: true
+
+# Logging
+logging:
+  file: "logs/lead_monitor.log"
+  max_bytes: 1048576
+  backup_count: 5

@@ -1,0 +1,26 @@
+# Tech Guardian — Console HDMI Repair Lead Monitor
+# Python 3.10+ recommended
+
+# HTTP + parsing
+requests==2.32.3
+feedparser==6.0.11
+beautifulsoup4==4.12.3
+lxml==5.3.0
+
+# Config + env
+python-dotenv==1.0.1
+PyYAML==6.0.2
+
+# Reddit official API (optional — used if credentials present)
+praw==7.7.1
+
+# Google Sheets (optional — used if credentials present)
+gspread==6.1.4
+google-auth==2.35.0
+google-auth-oauthlib==1.2.1
+
+# Timezone handling
+python-dateutil==2.9.0.post0
+
+# Pretty CLI output
+rich==13.9.4
