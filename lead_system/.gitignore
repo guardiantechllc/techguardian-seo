@@ -7,6 +7,8 @@ __pycache__/
 .DS_Store
 logs/*.log
 data/leads.csv
+data/manual_leads.csv
+data/jobs.csv
 data/seen_hashes.json
 credentials/
 *.egg-info/

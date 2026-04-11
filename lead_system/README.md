@@ -1,34 +1,38 @@
-# Tech Guardian — Console HDMI Repair Lead Monitor
+# Tech Guardian — Ops System
 
-A compliant, modular Python pipeline that discovers **public** repair leads
-(PS5/PS4/Xbox HDMI, no-signal, black-screen posts and listings) across
-approved sources, scores them 1–5, drafts 3 outreach variants per lead, and
-saves everything to Google Sheets (with a CSV fallback).
+A modular Python pipeline for everything Tech Guardian needs to run:
+lead discovery, Yelp/Voice email parsing, manual ingest for leads you
+find by hand (Facebook groups, Nextdoor, phone calls), profit tracking
+against a $400/day goal, and CSV + Google Sheets + Airtable storage.
 
-> Built for **Tech Guardian** (Lee's Summit, MO / Kansas City metro).
+Every outreach message is saved as a **draft for manual review** —
+the system never sends anything on your behalf.
 
 ---
 
-## What it does — and does NOT do
+## What it does
 
-**Does:**
-- Searches **public** Craigslist RSS feeds and the **official Reddit API**.
-- Normalizes results into a single `Lead` schema.
-- Scores intent on a 1–5 scale using transparent, configurable rules.
-- Writes 3 human-reviewable outreach drafts per lead.
-- Persists to CSV + (optional) Google Sheets with upsert-by-id.
-- Deduplicates across runs via a local JSON ledger.
-- Logs everything to `logs/lead_monitor.log` (rotating) and to the console.
+| Feature | How |
+| --- | --- |
+| Web lead discovery | Public Craigslist RSS + official Reddit API |
+| Yelp lead email parsing | IMAP reader for your Zoho inbox |
+| Google Voice missed-call capture | Same IMAP reader (Voice emails you) |
+| Facebook groups / Nextdoor / etc. | Manual CSV ingest (you paste what you find by hand) |
+| Personal-cell call logging | iPhone Shortcut that writes to Airtable in 5 seconds |
+| Lead scoring 1–5 | Transparent rule scorer you can debug |
+| Outreach drafts | 3 variants per lead (soft / direct / urgency) |
+| Dedupe across runs | Persistent JSON ledger of URL+content hashes |
+| Storage | CSV (always) + Google Sheets + Airtable (both optional) |
+| Profit tracking | CLI to log repairs + daily report vs $400/day goal |
 
-**Does NOT:**
-- Send DMs, emails, or SMS. Every draft is manually reviewed by you.
-- Scrape anything behind a login, captcha, or paywall.
-- Touch Facebook, Instagram, or any private-platform API.
-- Ignore `robots.txt` — the HTTP client refuses disallowed URLs by default.
-- Run bulk auto-outreach of any kind.
+## What it does NOT do
 
-Compliance is enforced in code (see `utils/http.py`) and in config
-(`config/settings.yaml` only points at publicly documented endpoints).
+- Scrape Facebook, Instagram, Nextdoor, or anything behind a login.
+  (The manual ingest path is the compliant workaround for those.)
+- Bulk auto-message anyone, ever.
+- Ignore `robots.txt` — HTTP client refuses disallowed URLs.
+- Touch any private platform API that doesn't officially support
+  third-party read access.
 
 ---
 
@@ -36,297 +40,271 @@ Compliance is enforced in code (see `utils/http.py`) and in config
 
 ```
 lead_system/
-├── main.py                       # Entry point
-├── config.py                     # YAML + .env loader
-├── models.py                     # Lead dataclass + field schema
+├── main.py                          # Entry: run the lead pipeline
+├── config.py
+├── models.py
 ├── requirements.txt
 ├── .env.example
-├── .gitignore
 ├── README.md
 ├── config/
-│   └── settings.yaml             # Keywords, sources, scoring knobs
+│   └── settings.yaml
 ├── sources/
-│   ├── base.py
-│   ├── craigslist_source.py      # Public Craigslist RSS
-│   ├── reddit_source.py          # Official Reddit API (PRAW)
-│   └── forum_source.py           # Clean stub for future RSS feeds
+│   ├── craigslist_source.py         # Public RSS
+│   ├── reddit_source.py             # Official API via PRAW
+│   ├── zoho_email_source.py         # IMAP Yelp + Voice parser
+│   ├── manual_source.py             # data/manual_leads.csv ingest
+│   └── forum_source.py              # RSS stub for future forums
 ├── processors/
 │   ├── keyword_matcher.py
-│   ├── scorer.py                 # 1..5 intent scoring
-│   └── deduper.py                # Persistent seen-hash ledger
+│   ├── scorer.py
+│   └── deduper.py
 ├── messaging/
-│   └── draft_generator.py        # 3 variants + optional LLM polish
+│   └── draft_generator.py           # 3 variants + optional LLM polish
 ├── storage/
-│   ├── csv_store.py              # Always-on CSV upsert
-│   └── google_sheets_store.py    # Optional Sheets sync
+│   ├── csv_store.py                 # Always-on audit trail
+│   ├── google_sheets_store.py       # Optional
+│   └── airtable_store.py            # Optional — Airtable REST upsert
+├── jobs/
+│   ├── models.py                    # Job dataclass + profit calc
+│   ├── store.py                     # CSV + Airtable Jobs writer
+│   ├── log_job.py                   # Interactive CLI to log a repair
+│   └── report.py                    # Daily profit report vs $400/day
 ├── utils/
-│   ├── logger.py                 # Rich console + rotating file log
-│   └── http.py                   # Polite requests: robots.txt + rate limit
+│   ├── logger.py
+│   └── http.py                      # robots.txt + rate limited requests
+├── docs/
+│   ├── AIRTABLE_SETUP.md
+│   ├── ZOHO_SETUP.md
+│   └── IPHONE_SHORTCUT.md
 ├── data/
-│   ├── leads_sample.csv          # Example output (committed)
-│   ├── leads.csv                 # Created on first run (gitignored)
-│   └── seen_hashes.json          # Dedupe ledger (gitignored)
+│   ├── leads_sample.csv             # Example (committed)
+│   ├── leads.csv                    # Created on first run (gitignored)
+│   ├── jobs.csv                     # Created when you log first job
+│   ├── manual_leads.csv.template    # Copy to manual_leads.csv to use
+│   └── seen_hashes.json             # Dedupe ledger
 └── logs/
-    └── lead_monitor.log          # Rotating log (gitignored)
+    └── lead_monitor.log              # Rotating log
 ```
 
 ---
 
-## macOS setup — exact terminal commands
+## macOS setup — the "get it running" path
 
 ```bash
-# 1. Clone the repo (if you haven't already) and enter the project folder
-cd ~/Projects
+# 1. Pull the branch
+cd ~/Documents
 git clone https://github.com/guardiantechllc/techguardian-seo.git
-cd techguardian-seo/lead_system
+cd techguardian-seo
+git checkout claude/console-repair-lead-system-xXeY2
+cd lead_system
 
-# 2. Create and activate a Python 3.10+ virtualenv
+# 2. Virtualenv + install
 python3 -m venv .venv
 source .venv/bin/activate
-
-# 3. Install dependencies
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 4. Create your .env from the template and edit credentials
+# 3. Config
 cp .env.example .env
-open -e .env   # (or: nano .env)
+open -e .env            # fill in whatever you have ready
 
-# 5. (Optional) drop a Google service-account key for Sheets output
-mkdir -p credentials
-# move the downloaded JSON into credentials/google-sa.json
-# then make sure .env points GOOGLE_SHEETS_CREDENTIALS_FILE at it
-
-# 6. Run a one-off dry-run (no writes, just prints what it found)
+# 4. First dry run — no writes, just prints what it found
 python main.py --dry-run
+```
 
-# 7. Real run — writes to data/leads.csv and Sheets if configured
+The system runs even with a completely empty `.env`. Each integration
+turns on as you add credentials. Minimum viable = Airtable + Zoho.
+
+---
+
+## Setting up each integration
+
+Each of these has a dedicated doc with screenshots-level detail:
+
+| Integration | Setup doc | What it gives you |
+| --- | --- | --- |
+| **Airtable** (recommended primary store) | `docs/AIRTABLE_SETUP.md` | Your main CRM — statuses, views, mobile app |
+| **Zoho IMAP** (Yelp + Voice emails) | `docs/ZOHO_SETUP.md` | Every Yelp lead email becomes a row |
+| **iPhone call logger** | `docs/IPHONE_SHORTCUT.md` | Tap after each call, 5 seconds to a new row |
+| **Reddit API** (optional) | See README "Reddit setup" below | Extra lead volume from public posts |
+| **Google Sheets** (optional backup) | See README "Google Sheets setup" below | Backup of all Airtable data |
+
+---
+
+## Daily operations
+
+### Check for new leads
+```bash
+cd ~/Documents/techguardian-seo/lead_system
+source .venv/bin/activate
 python main.py
 ```
 
-### Running as a module (from the repo root)
+Runs every source, writes new leads to CSV + Sheets + Airtable. Safe
+to run as often as you want — the deduper keeps it idempotent.
 
+### Log a completed repair
 ```bash
-cd ~/Projects/techguardian-seo
-source lead_system/.venv/bin/activate
-python -m lead_system.main
+python -m lead_system.jobs.log_job
 ```
 
-### Scheduling on macOS (cron, every 2 hours)
+Interactive prompts. Writes to `data/jobs.csv` and your Airtable Jobs
+table.
+
+Or non-interactive (scripts, iPhone Shortcut, etc.):
+```bash
+python -m lead_system.jobs.log_job --customer "Jane Doe" \
+    --device "PS5" --service "HDMI port" --revenue 180 --parts 22 \
+    --source yelp
+```
+
+### See how today is tracking against the $400 goal
+```bash
+python -m lead_system.jobs.report
+```
+
+Shows today's revenue + profit + goal progress, plus a 7-day table.
+Use `--days 30` for a monthly view.
+
+### Add a manually-found lead (FB group, Nextdoor, word of mouth)
+```bash
+# First time only:
+cp data/manual_leads.csv.template data/manual_leads.csv
+
+# Then open it in any spreadsheet app and add rows
+open data/manual_leads.csv
+
+# Next pipeline run, they get ingested, scored, drafted, saved
+python main.py
+```
+
+---
+
+## Daily schedule with cron
+
+Every 2 hours, scan sources + sync storage:
 
 ```bash
 crontab -e
-# add:
-0 */2 * * * cd ~/Projects/techguardian-seo/lead_system && /bin/bash -lc 'source .venv/bin/activate && python main.py >> logs/cron.log 2>&1'
+# paste:
+0 */2 * * * cd ~/Documents/techguardian-seo/lead_system && /bin/bash -lc 'source .venv/bin/activate && python main.py >> logs/cron.log 2>&1'
+
+# every morning at 9am, print yesterday's report to a log
+0 9 * * * cd ~/Documents/techguardian-seo/lead_system && /bin/bash -lc 'source .venv/bin/activate && python -m lead_system.jobs.report >> logs/daily-report.log 2>&1'
 ```
 
 ---
 
-## Configuration
+## Reddit setup (optional — high volume, 5 minutes)
 
-Everything tunable lives in two files:
+1. Go to https://www.reddit.com/prefs/apps → **create app**
+2. Type = **script**, redirect URI = `http://localhost:8080`
+3. Copy the id + secret into `.env`:
+    ```env
+    REDDIT_CLIENT_ID=xxx
+    REDDIT_CLIENT_SECRET=xxx
+    REDDIT_USER_AGENT=techguardian-lead-monitor/0.1 by u/your_username
+    ```
 
-- **`config/settings.yaml`** — keywords, subreddits, search paths,
-  scoring weights, local city list, storage file paths.
-- **`.env`** — secrets only (Reddit API keys, Google Sheets path,
-  optional OpenAI key). Never committed.
+If these aren't set the Reddit source is just skipped with a warning.
 
-### Adding a new keyword
+## Google Sheets setup (optional backup)
 
-Edit `config/settings.yaml`:
+See `docs/AIRTABLE_SETUP.md` — Airtable is the recommended primary.
+If you want Sheets too:
 
-```yaml
-keywords:
-  symptom:
-    - "HDMI flicker"
-```
-
-No code changes required — the matcher compiles patterns at runtime.
-
-### Disabling a source temporarily
-
-```yaml
-sources:
-  reddit:
-    enabled: false
-```
-
-Or at run time:
-
-```bash
-RUN_SOURCES=craigslist python main.py
-```
-
----
-
-## Google Sheets setup (optional)
-
-1. Create a Google Cloud project and enable **Google Sheets API** and
-   **Google Drive API**.
-2. Create a **service account** under IAM → Service Accounts.
-3. Generate a JSON key for that service account and save it to
-   `lead_system/credentials/google-sa.json`.
-4. In your Google Sheet (create one called `Tech Guardian Leads`),
-   click **Share** and invite the service-account email
-   (`...iam.gserviceaccount.com`) as **Editor**.
-5. Fill in `.env`:
-
+1. Enable Google Sheets + Drive APIs in Google Cloud
+2. Create a service account, download its JSON key to
+   `credentials/google-sa.json`
+3. Create a sheet `Tech Guardian Leads`, share it with the service
+   account email as Editor
+4. Fill `.env`:
     ```env
     GOOGLE_SHEETS_CREDENTIALS_FILE=./credentials/google-sa.json
     GOOGLE_SHEETS_SPREADSHEET=Tech Guardian Leads
     GOOGLE_SHEETS_WORKSHEET=console_hdmi
     ```
 
-If any of those are missing, the pipeline quietly writes CSV only.
-
----
-
-## Reddit setup (optional but recommended)
-
-1. Go to https://www.reddit.com/prefs/apps → **create app**.
-2. Type = **script**. Redirect URI = `http://localhost:8080`.
-3. Put the client id, secret, and a descriptive user agent in `.env`.
-4. That's it — the source is read-only; no DMs, no votes.
-
-If `.env` has no Reddit creds, the Reddit source is skipped with a
-warning and the rest of the pipeline still runs.
-
 ---
 
 ## Lead schema
 
-Every row in `data/leads.csv` and Google Sheets has the same columns:
+Every row in CSV, Sheets, and Airtable has the same columns:
 
 | column | meaning |
 | --- | --- |
-| `id` | 16-char sha1 of `source|url` (or random fallback) — used for upsert |
-| `source` | `craigslist`, `reddit`, `forum_stub`, ... |
-| `platform` | Human label, e.g. `Reddit /r/kansascity` |
-| `title` | Post / listing title |
-| `author_or_listing_name` | Reddit username or Craigslist listing label |
-| `text_snippet` | First 500 chars of the body, HTML-stripped |
-| `url` | Canonical URL |
-| `timestamp` | ISO-8601 publish time from source |
-| `city_or_location` | Populated when the source provides one |
-| `matched_keywords` | Pipe-delimited list from keyword matcher |
+| `id` | sha1 of `source|url` (stable — used for upsert) |
+| `source` | `craigslist`, `reddit`, `zoho_email`, `manual` |
+| `platform` | Human label |
+| `title` | Post / listing / email subject |
+| `author_or_listing_name` | Customer / poster |
+| `text_snippet` | First 500 chars of the body |
+| `url` | Canonical URL (or `mail:<message-id>` for emails) |
+| `timestamp` | ISO-8601 publish time |
+| `city_or_location` | Populated when source provides |
+| `matched_keywords` | Pipe-delimited |
 | `lead_type` | `console_hdmi` (extensible) |
-| `intent_score` | Integer 1..5 |
-| `outreach_draft` | Best variant (default: the direct one) |
-| `outreach_variants` | All 3 variants, `---` separated |
+| `intent_score` | 1..5 |
+| `outreach_draft` | Best of 3 variants |
+| `outreach_variants` | All 3, `---` separated |
 | `status` | `new`, `reviewed`, `sent`, `skipped`, `booked` |
-| `notes` | Free-form notes you add during review |
-| `created_at` | UTC timestamp when the row was first saved |
+| `notes` | Free-form — phone number from email parser lives here |
+| `created_at` | When we first saved it |
 
-See `data/leads_sample.csv` for a fully-populated example.
+## Job schema
 
----
-
-## Safety + compliance notes (how we enforce the rules)
-
-| Rule | Where it's enforced |
+| column | meaning |
 | --- | --- |
-| No bulk auto-messaging | Only `draft_generator.py` writes drafts; no module sends. |
-| No scraping behind logins | Reddit goes through official API; Craigslist uses RSS. |
-| No captcha bypass | None attempted anywhere. |
-| Robots.txt respected | `utils/http.py` checks before every GET. |
-| Rate limiting | `utils/http.py` enforces per-host min interval + backoff. |
-| No private platforms | No Facebook / Instagram / TikTok modules exist. |
-| Transparent scoring | `scorer.py` rules are plain Python with config knobs. |
+| `id` | Random hex |
+| `date` | YYYY-MM-DD |
+| `customer_name`, `customer_phone` | |
+| `device` | `PS5`, `Xbox Series X`, ... |
+| `service` | `HDMI port replacement`, etc. |
+| `revenue`, `parts_cost`, `other_expenses` | Currency |
+| `profit` | `revenue - parts_cost - other_expenses` |
+| `lead_source` | `yelp`, `walkin`, `craigslist`, ... |
+| `notes`, `created_at` | |
 
 ---
 
-## Safest next upgrades
+## Safety + compliance (enforced in code)
 
-These are the upgrades that add the most lead quality **without** adding
-compliance risk:
-
-1. **Human-in-the-loop triage UI.** A tiny Flask or Streamlit page
-   that reads `data/leads.csv`, lets you flip `status` between
-   `new/reviewed/sent/skipped/booked`, and writes it back. Keeps all
-   messaging manual but speeds up review.
-2. **More RSS sources.** Add reliable Google Alerts RSS and any local
-   classifieds RSS you trust to `sources.forum_stub.feeds` — the code
-   already handles that path.
-3. **Geofence scoring.** Weight local city mentions more aggressively
-   (bump `scoring.local_city_bonus` from 1 to 2) and optionally require
-   that non-Craigslist leads mention a local city before being kept.
-4. **Per-lead screenshot.** Use `requests` + `playwright` (headless,
-   respecting robots) to save a PNG of each listing page so your
-   reviewer has context without leaving the spreadsheet.
-5. **Separate "repair history" sheet.** A second worksheet that logs
-   which leads you contacted, replied, and booked — so the scorer can
-   learn later (without ML, just heuristic feedback).
-6. **LLM polish gated behind a flag.** The `OPENAI_API_KEY` hook is
-   already in `draft_generator.py`. Add a CLI flag
-   `--polish-drafts` so you opt in per run.
-7. **Observability.** Pipe the rotating log to Papertrail or Better
-   Stack so cron jobs that fail silently stop being silent.
-
----
-
-## Plugging into n8n later
-
-This project is designed to be a headless "lead producer" that n8n can
-wrap for orchestration, notifications, and triage workflows.
-
-There are three clean integration points:
-
-### Option A — n8n runs the CLI directly (simplest)
-
-Use n8n's **Execute Command** node:
-
-```
-cd /home/user/techguardian-seo/lead_system && \
-  /home/user/techguardian-seo/lead_system/.venv/bin/python main.py
-```
-
-Trigger: a **Cron** node (e.g. every 2 hours). n8n captures stdout so
-you see the rich summary table in the execution log. Follow it with a
-**Read Binary File** or **Spreadsheet File** node pointed at
-`data/leads.csv` to feed the downstream workflow.
-
-### Option B — n8n reads Google Sheets
-
-If you've enabled Sheets sync, skip the command-run entirely:
-
-1. n8n **Cron** → **Google Sheets → Read** (the `console_hdmi` tab).
-2. Filter for `status == "new"` and `intent_score >= 4`.
-3. For each row → post to Slack / Telegram / email with the URL,
-   snippet, and `outreach_draft` so you can one-tap review.
-4. After you reply, update the row's `status` back in Sheets and n8n
-   stops re-notifying thanks to the filter.
-
-### Option C — expose as a tiny HTTP service
-
-Wrap `main.run()` in a 15-line FastAPI endpoint (`POST /run`) inside a
-new `lead_system/server.py`, then call it from an n8n **HTTP Request**
-node. Keeps n8n in charge of scheduling and lets you run the pipeline
-on demand from a chat message:
-
-```python
-# lead_system/server.py  (sketch)
-from fastapi import FastAPI
-from lead_system.main import run
-from lead_system.config import load_config
-
-app = FastAPI()
-
-@app.post("/run")
-def trigger():
-    leads = run(load_config())
-    return {"count": len(leads), "top": [l.to_row() for l in leads[:5]]}
-```
+| Rule | Where |
+| --- | --- |
+| Robots.txt respected | `utils/http.py` checks before every GET |
+| Rate limiting | `utils/http.py` per-host min interval + backoff |
+| No login scraping | Reddit = official API; Craigslist = RSS only |
+| No private platforms | No FB/IG/TikTok modules exist |
+| No auto-send | Only `draft_generator.py` writes text; no module sends |
 
 ---
 
 ## Troubleshooting
 
-- **"Reddit source: no credentials in .env — skipping"** → expected
-  until you add Reddit API keys. The rest of the pipeline still runs.
-- **Craigslist returns 0 entries** → try running the URL in your
-  browser with `&format=rss` appended. If empty there too, the search
-  just didn't match; try broader queries in `settings.yaml`.
-- **Google Sheets write failed** → verify the service-account email
-  has Editor access to the exact spreadsheet name in `.env`.
-- **Drafts look too templated** → add `OPENAI_API_KEY` to `.env` to
-  enable the LLM polish pass.
+- **`python main.py` says "No leads fetched from any source"**
+  → Check the yellow "What to do next" panel it prints. Most common
+  fix: turn on Reddit (5 min) or Zoho (3 min).
+- **Airtable 404** → Table name mismatch between
+  `config/settings.yaml` and the actual table name in Airtable.
+- **Zoho login failed** → You used your normal password. Generate an
+  app-specific password (see `docs/ZOHO_SETUP.md`).
+- **Yelp email parsed but customer name blank** → Yelp changed their
+  template. Add a regex case to `_parse_yelp` in
+  `sources/zoho_email_source.py`.
+- **Profit report shows $0** → You haven't logged any jobs yet. Run
+  `python -m lead_system.jobs.log_job` after your next repair.
+
+---
+
+## Plug into n8n later
+
+Three integration points, covered in detail in the original README
+section and still valid:
+
+1. **Execute Command** — n8n runs `python main.py` on cron, reads
+   the resulting CSV or Airtable rows
+2. **Google Sheets / Airtable read** — skip the Python entirely, n8n
+   polls the sheet/base directly and fires notifications when
+   `status = new AND intent_score >= 4`
+3. **FastAPI wrapper** — expose `main.run()` as `POST /run` so n8n
+   can trigger on-demand from a chat message

@@ -80,6 +80,24 @@ class Config:
     def write_sheets(self) -> bool:
         return bool((self.settings.get("storage") or {}).get("write_sheets"))
 
+    def write_airtable(self) -> bool:
+        return bool((self.settings.get("storage") or {}).get("write_airtable"))
+
+    def airtable_leads_table(self) -> str:
+        return (self.settings.get("storage") or {}).get(
+            "airtable_leads_table", "Leads"
+        )
+
+    def jobs_csv_file(self) -> Path:
+        rel = (self.settings.get("jobs") or {}).get("csv_file", "data/jobs.csv")
+        return self.root / rel
+
+    def airtable_jobs_table(self) -> str:
+        return (self.settings.get("jobs") or {}).get("airtable_jobs_table", "Jobs")
+
+    def daily_revenue_target(self) -> float:
+        return float((self.settings.get("jobs") or {}).get("daily_revenue_target", 400))
+
     def log_file(self) -> Path:
         rel = (self.settings.get("logging") or {}).get(
             "file", "logs/lead_monitor.log"
@@ -102,6 +120,20 @@ class Config:
             "username": self.env.get("REDDIT_USERNAME", ""),
             "password": self.env.get("REDDIT_PASSWORD", ""),
         }
+
+    def zoho_credentials(self) -> Optional[Dict[str, str]]:
+        user = self.env.get("ZOHO_EMAIL_USER", "")
+        pwd = self.env.get("ZOHO_APP_PASSWORD", "")
+        if not user or not pwd:
+            return None
+        return {"user": user, "password": pwd}
+
+    def airtable_credentials(self) -> Optional[Dict[str, str]]:
+        key = self.env.get("AIRTABLE_API_KEY", "")
+        base = self.env.get("AIRTABLE_BASE_ID", "")
+        if not key or not base:
+            return None
+        return {"api_key": key, "base_id": base}
 
     def google_sheets_config(self) -> Optional[Dict[str, str]]:
         creds_file = self.env.get("GOOGLE_SHEETS_CREDENTIALS_FILE", "")

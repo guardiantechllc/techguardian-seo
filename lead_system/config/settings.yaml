@@ -89,14 +89,21 @@ sources:
     #   sss = for sale (catches "broken PS5 for parts" listings)
     #   wan = wanted (catches "need console HDMI repair")
     search_paths:
-      - "/search/sss?format=rss&query=ps5+broken"
-      - "/search/sss?format=rss&query=ps5+hdmi"
-      - "/search/sss?format=rss&query=xbox+broken"
-      - "/search/sss?format=rss&query=xbox+hdmi"
+      # Broad queries first so the feed almost always has SOMETHING.
+      # The keyword matcher filters down aggressively later.
+      - "/search/sss?format=rss&query=ps5"
+      - "/search/sss?format=rss&query=ps4"
+      - "/search/sss?format=rss&query=xbox"
+      - "/search/sss?format=rss&query=xbox+series"
+      - "/search/sss?format=rss&query=playstation"
+      - "/search/sss?format=rss&query=console+broken"
+      - "/search/sss?format=rss&query=hdmi"
       - "/search/sss?format=rss&query=console+repair"
       - "/search/wan?format=rss&query=ps5"
       - "/search/wan?format=rss&query=xbox"
       - "/search/wan?format=rss&query=console+repair"
+      - "/search/wan?format=rss&query=console+fix"
+      - "/search/wan?format=rss&query=hdmi"
     request_delay_seconds: 3.0
     max_items_per_feed: 25
 
@@ -131,6 +138,39 @@ sources:
     enabled: false
     feeds: []
 
+  manual:
+    # Leads YOU found by hand (Facebook groups, Nextdoor, neighborhood
+    # apps, word of mouth). Copy data/manual_leads.csv.template to
+    # data/manual_leads.csv and add rows — this source picks them up.
+    enabled: true
+    file: "data/manual_leads.csv"
+
+  zoho_email:
+    # Reads unread Yelp lead emails + Google Voice missed-call emails
+    # out of your Zoho inbox via IMAP. Requires ZOHO_EMAIL_USER and
+    # ZOHO_APP_PASSWORD in .env (see docs/ZOHO_SETUP.md).
+    enabled: true
+    imap_host: "imappro.zoho.com"
+    imap_port: 993
+    folder: "INBOX"
+    # Gmail-style search strings (converted to IMAP criteria internally).
+    # Add/remove senders and subjects without touching code.
+    senders:
+      - "noreply@yelp.com"
+      - "messaging@yelp.com"
+      - "leads@yelp.com"
+      - "voice-noreply@google.com"
+    subject_includes:
+      - "New lead"
+      - "New message"
+      - "Missed call"
+      - "Voicemail"
+      - "New quote request"
+    max_messages_per_run: 50
+    # After processing, move to this folder (created if missing). Set
+    # to empty string to leave processed mail in INBOX marked read.
+    processed_folder: "Processed-Leads"
+
 # Scoring tunables. Final score is clamped to [1,5].
 scoring:
   base: 1
@@ -146,11 +186,22 @@ scoring:
 deduper:
   ledger_file: "data/seen_hashes.json"
 
-# Storage: CSV is always written. Google Sheets is attempted if
-# credentials are configured in .env.
+# Storage: CSV is ALWAYS written (it's the audit trail). Google Sheets
+# and Airtable are attempted if credentials are configured in .env.
 storage:
   csv_file: "data/leads.csv"
   write_sheets: true
+  write_airtable: true
+  # Airtable table name for leads (must match what you created — see
+  # docs/AIRTABLE_SETUP.md). Change here if you used a different name.
+  airtable_leads_table: "Leads"
+
+# Profit tracker. Where job rows live locally — they also sync to
+# Airtable's Jobs table if AIRTABLE_API_KEY + AIRTABLE_BASE_ID are set.
+jobs:
+  csv_file: "data/jobs.csv"
+  airtable_jobs_table: "Jobs"
+  daily_revenue_target: 400
 
 # Logging
 logging:

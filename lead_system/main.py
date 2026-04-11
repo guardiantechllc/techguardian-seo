@@ -41,18 +41,23 @@ from lead_system.sources.base import BaseSource
 from lead_system.sources.craigslist_source import CraigslistSource
 from lead_system.sources.reddit_source import RedditSource
 from lead_system.sources.forum_source import ForumStubSource
+from lead_system.sources.manual_source import ManualSource
+from lead_system.sources.zoho_email_source import ZohoEmailSource
 from lead_system.processors.keyword_matcher import KeywordMatcher
 from lead_system.processors.scorer import Scorer
 from lead_system.processors.deduper import Deduper
 from lead_system.messaging.draft_generator import DraftGenerator
 from lead_system.storage.csv_store import CsvStore
 from lead_system.storage.google_sheets_store import GoogleSheetsStore
+from lead_system.storage.airtable_store import AirtableStore
 
 
 SOURCE_REGISTRY = {
     "craigslist": CraigslistSource,
     "reddit": RedditSource,
     "forum_stub": ForumStubSource,
+    "manual": ManualSource,
+    "zoho_email": ZohoEmailSource,
 }
 
 
@@ -88,6 +93,7 @@ def run(config: Config, dry_run: bool = False) -> List[Lead]:
 
     if not all_leads:
         log.warning("No leads fetched from any source")
+        _print_zero_leads_hint(config)
         return []
 
     # ---------- 2. Keyword filter ----------
@@ -128,14 +134,69 @@ def run(config: Config, dry_run: bool = False) -> List[Lead]:
             if sheets.available:
                 sheets.write(fresh)
             else:
-                log.info(
-                    "Google Sheets not configured — CSV is the system of record"
-                )
+                log.info("Google Sheets not configured — skipping")
+
+        airtable = AirtableStore(config)
+        if airtable.available:
+            airtable.write(fresh)
+        else:
+            log.info("Airtable not configured — skipping")
 
         deduper.save()
 
     _print_summary(fresh)
     return fresh
+
+
+def _print_zero_leads_hint(config: Config) -> None:
+    """Tell the user WHY we got zero leads and how to fix it.
+
+    Zero leads is rarely an error — usually it means the configured
+    sources had nothing matching today. We print actionable next steps
+    so the user isn't left wondering whether the system is broken.
+    """
+    try:
+        from rich.console import Console
+        from rich.panel import Panel
+    except Exception:
+        print("No leads found. Check logs for details.")
+        return
+
+    console = Console()
+    enabled = config.enabled_sources()
+    reddit_on = bool(config.reddit_credentials())
+    zoho_on = bool((config.env or {}).get("ZOHO_EMAIL_USER"))
+    airtable_on = bool((config.env or {}).get("AIRTABLE_API_KEY"))
+
+    lines = [
+        "[bold]No leads fetched from any source.[/bold]",
+        "",
+        f"Enabled sources: {', '.join(enabled) or '(none)'}",
+        "",
+        "Most common reasons:",
+        "",
+        "  1. Craigslist KC had zero matching listings for your queries",
+        "     right now. Try broader queries in [cyan]config/settings.yaml[/cyan]",
+        "     under [cyan]sources.craigslist.search_paths[/cyan].",
+        "",
+        f"  2. Reddit credentials: [{'green]ON' if reddit_on else 'yellow]OFF'}[/].",
+        "     Add REDDIT_CLIENT_ID / SECRET / USER_AGENT to .env to enable",
+        "     the highest-volume source. 5 minutes at",
+        "     https://www.reddit.com/prefs/apps",
+        "",
+        f"  3. Zoho / Yelp email reader: [{'green]ON' if zoho_on else 'yellow]OFF'}[/].",
+        "     Add ZOHO_EMAIL_USER + ZOHO_APP_PASSWORD to .env — every Yelp",
+        "     lead email becomes a row automatically.",
+        "",
+        f"  4. Airtable sync: [{'green]ON' if airtable_on else 'yellow]OFF'}[/].",
+        "     Add AIRTABLE_API_KEY + AIRTABLE_BASE_ID to .env once you've",
+        "     created your base (see docs/AIRTABLE_SETUP.md).",
+        "",
+        "  5. Leads you found by hand (Facebook groups, Nextdoor, etc.):",
+        "     copy [cyan]data/manual_leads.csv.template[/cyan] →",
+        "     [cyan]data/manual_leads.csv[/cyan] and add rows. Next run ingests them.",
+    ]
+    console.print(Panel("\n".join(lines), title="What to do next", border_style="yellow"))
 
 
 def _print_summary(leads: List[Lead]) -> None:
