@@ -1,19 +1,115 @@
 # Airtable setup — Tech Guardian ops base
 
-You do this once. Takes about 5 minutes.
+You do this once. There are **two paths**:
 
-The Python code can't create an Airtable base on your behalf because
-it doesn't know your account — so you build the schema manually and
-the code connects to it via API.
+- **Fast path (2 minutes):** Create an empty base, generate a token,
+  run one Python script, done. See "Fast path" below.
+- **Manual path (10 minutes):** Click every field into existence
+  yourself. Good if you want to see every decision. See further down.
+
+Either way, you have to create the empty base yourself — the Airtable
+API can create tables inside a base but not the base itself.
 
 ---
 
-## 1. Create the base
+## Fast path (recommended)
+
+### 1. Create the empty base
 
 1. Log in at https://airtable.com
 2. "Add a base" → **Start from scratch** → call it **`Tech Guardian Ops`**
-3. You'll land on an empty base with one table called `Table 1`. Rename
-   that table to **`Leads`** (click the name → Rename).
+3. Leave the default `Table 1` alone. The script will create real
+   tables alongside it, and you can delete `Table 1` when it's done.
+
+### 2. Get your Personal Access Token (PAT) with write scope
+
+1. Go to https://airtable.com/create/tokens → **Create new token**
+2. Name: `TechGuardian Lead Monitor`
+3. **Scopes** (all four are required for the bootstrap script):
+   - `data.records:read`
+   - `data.records:write`
+   - `schema.bases:read`
+   - `schema.bases:write`  ← this one is the critical one for setup
+4. **Access**: add the `Tech Guardian Ops` base
+5. Click **Create token** → copy the token (starts with `pat`).
+   You only see it once.
+
+### 3. Get your Base ID
+
+1. Open your `Tech Guardian Ops` base in a browser
+2. URL looks like `https://airtable.com/appXXXXXXXXXXXXXX/...`
+3. The `appXXXXXXXXXXXXXX` part is your base ID.
+
+### 4. Put both into `.env`
+
+```env
+AIRTABLE_API_KEY=pat_your_token_here
+AIRTABLE_BASE_ID=appXXXXXXXXXXXXXX
+```
+
+### 5. Run the bootstrap script
+
+```bash
+cd lead_system
+source .venv/bin/activate
+python -m lead_system.scripts.airtable_bootstrap
+```
+
+Output should look like:
+
+```
+Creating Leads table with 18 fields...
+  done (tableId=tblXXX)
+Creating Repairs table with 16 fields...
+  done (tableId=tblYYY)
+Creating Lead Follow-Ups table with 11 fields...
+  done (tableId=tblZZZ)
+Reconciling repair_date lookup on Lead Follow-Ups
+  adding repair_date lookup
+Adding dashboard helper formulas to Repairs
+  adding revenue_today
+  adding revenue_this_week
+  adding quota_met
+Done.
+```
+
+The script is **idempotent** — safe to re-run at any time. If a field
+already exists it's left alone; only missing pieces are added. Useful
+if you later add new fields to the schema definitions in
+`scripts/airtable_bootstrap.py` and want to push them to your base.
+
+### 6. Clean up and verify
+
+1. Go back to your Airtable base in the browser
+2. Delete the default `Table 1` that was there when you created the base
+3. You should see three real tables: **Leads**, **Repairs**, **Lead Follow-Ups**
+4. Open Repairs → you should see all fields including `status`
+   (with 4 options), `completed_date`, and three formula fields:
+   `revenue_today`, `revenue_this_week`, `quota_met`
+
+### 7. Next: automations and dashboard
+
+Now read:
+- `docs/AIRTABLE_AUTOMATIONS.md` — build the four automations
+- `docs/AIRTABLE_DASHBOARD.md` — build the Daily Revenue Tracker dashboard
+
+These two steps can't be scripted — Airtable's API doesn't expose
+automations or Interface Designer to any tool, so clicks are the
+only option. Each doc has step-by-step instructions.
+
+---
+
+## Manual path (fallback — if the bootstrap script doesn't work)
+
+If you can't run the bootstrap (no access to the script, no
+`schema.bases:write` scope, or you just prefer clicking), here's the
+full schema you need to build by hand.
+
+### 1. Create the base
+
+1. Log in at https://airtable.com
+2. "Add a base" → **Start from scratch** → call it **`Tech Guardian Ops`**
+3. Rename `Table 1` to **`Leads`**.
 
 ## 2. Build the Leads table
 

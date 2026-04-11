@@ -123,9 +123,9 @@ Each of these has a dedicated doc with screenshots-level detail:
 
 | Integration | Setup doc | What it gives you |
 | --- | --- | --- |
-| **Airtable base schema** | `docs/AIRTABLE_SETUP.md` | Leads + Repairs + Lead Follow-Ups tables |
-| **Airtable automations** | `docs/AIRTABLE_AUTOMATIONS.md` | Auto-stamp completed date, $400 quota notifications, 7-day follow-ups, lead→repair conversion |
-| **Airtable dashboard** | `docs/AIRTABLE_DASHBOARD.md` | Interface Designer build: big number + gauge + trend chart |
+| **Airtable base schema (one-shot script)** | `docs/AIRTABLE_SETUP.md` + `python -m lead_system.scripts.airtable_bootstrap` | Creates Leads + Repairs + Lead Follow-Ups tables with every field, select option, link, lookup, and dashboard helper formula in ~15 seconds. Idempotent. |
+| **Airtable automations** | `docs/AIRTABLE_AUTOMATIONS.md` | Auto-stamp completed date, $400 quota notifications, 7-day follow-ups, lead→repair conversion. Manual build — Airtable's API doesn't expose automations. |
+| **Airtable dashboard** | `docs/AIRTABLE_DASHBOARD.md` | Interface Designer: big number + gauge + trend chart. Manual build — Airtable's API doesn't expose interfaces. |
 | **Zoho IMAP** (Yelp + Voice emails) | `docs/ZOHO_SETUP.md` | Every Yelp lead email becomes a row |
 | **iPhone call logger** | `docs/IPHONE_SHORTCUT.md` | Tap after each call, 5 seconds to a new row |
 | **Reddit API** (optional) | See README "Reddit setup" below | Extra lead volume from public posts |
