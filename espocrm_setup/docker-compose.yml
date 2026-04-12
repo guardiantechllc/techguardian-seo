@@ -1,0 +1,70 @@
+# Tech Guardian — EspoCRM Docker stack
+# Run: docker compose up -d
+# Then open http://localhost:8080
+
+services:
+  espocrm:
+    image: espocrm/espocrm:8-apache
+    container_name: techguardian-crm
+    restart: unless-stopped
+    environment:
+      ESPOCRM_DATABASE_HOST: mysql
+      ESPOCRM_DATABASE_USER: ${MYSQL_USER:-espocrm}
+      ESPOCRM_DATABASE_PASSWORD: ${MYSQL_PASSWORD:-espo_db_pw_change_me}
+      ESPOCRM_DATABASE_NAME: ${MYSQL_DATABASE:-espocrm}
+      ESPOCRM_ADMIN_USERNAME: ${ESPOCRM_ADMIN_USERNAME:-admin}
+      ESPOCRM_ADMIN_PASSWORD: ${ESPOCRM_ADMIN_PASSWORD:-ChangeMeNow123!}
+      ESPOCRM_SITE_URL: ${ESPOCRM_SITE_URL:-http://localhost:8080}
+    volumes:
+      - espocrm_data:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.0
+    container_name: techguardian-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-espo_root_pw_change_me}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-espocrm}
+      MYSQL_USER: ${MYSQL_USER:-espocrm}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-espo_db_pw_change_me}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # EspoCRM daemon — runs scheduled jobs (cron, workflows, cleanup).
+  # REQUIRED for the 48-hour stale flag and scheduled automations.
+  espocrm-daemon:
+    image: espocrm/espocrm:8-apache
+    container_name: techguardian-daemon
+    restart: unless-stopped
+    entrypoint: docker-daemon.sh
+    volumes:
+      - espocrm_data:/var/www/html
+    depends_on:
+      - espocrm
+
+  # Optional: websocket for real-time updates in the UI
+  espocrm-websocket:
+    image: espocrm/espocrm:8-apache
+    container_name: techguardian-websocket
+    restart: unless-stopped
+    entrypoint: docker-websocket.sh
+    volumes:
+      - espocrm_data:/var/www/html
+    ports:
+      - "8443:8443"
+    depends_on:
+      - espocrm
+
+volumes:
+  espocrm_data:
+  mysql_data:

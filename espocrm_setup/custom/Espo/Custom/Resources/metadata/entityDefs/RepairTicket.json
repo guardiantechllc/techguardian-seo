@@ -1,0 +1,194 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "maxLength": 200,
+            "required": true,
+            "trim": true,
+            "tooltip": "Short summary, e.g. 'PS5 HDMI port — no display'"
+        },
+        "ticketId": {
+            "type": "varchar",
+            "maxLength": 20,
+            "readOnly": true,
+            "unique": true,
+            "index": true,
+            "tooltip": "Auto-generated TG-#### — do not edit"
+        },
+        "status": {
+            "type": "enum",
+            "options": [
+                "New Lead",
+                "Diagnosed",
+                "Awaiting Parts",
+                "In Progress",
+                "Ready for Pickup",
+                "Completed",
+                "No Fix"
+            ],
+            "default": "New Lead",
+            "style": {
+                "New Lead": "primary",
+                "Diagnosed": "info",
+                "Awaiting Parts": "warning",
+                "In Progress": "info",
+                "Ready for Pickup": "success",
+                "Completed": "success",
+                "No Fix": "danger"
+            },
+            "audited": true
+        },
+        "customerName": {
+            "type": "varchar",
+            "maxLength": 200,
+            "required": true,
+            "trim": true
+        },
+        "phoneNumber": {
+            "type": "phone"
+        },
+        "email": {
+            "type": "email"
+        },
+        "deviceType": {
+            "type": "enum",
+            "options": [
+                "",
+                "PS5",
+                "PS4",
+                "Xbox Series X",
+                "Xbox Series S",
+                "Xbox One",
+                "Nintendo Switch",
+                "iPhone",
+                "iPad",
+                "MacBook",
+                "PC / Laptop",
+                "Android Phone",
+                "Android Tablet",
+                "Other"
+            ],
+            "isSorted": false
+        },
+        "issueDescription": {
+            "type": "text",
+            "required": true,
+            "rowsMin": 3,
+            "tooltip": "Describe the issue in detail"
+        },
+        "quotedPrice": {
+            "type": "currency",
+            "tooltip": "What you quoted the customer"
+        },
+        "partsCost": {
+            "type": "currency",
+            "tooltip": "Your cost for parts"
+        },
+        "laborCost": {
+            "type": "currency",
+            "tooltip": "Labor charge"
+        },
+        "totalCost": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Auto-calculated: parts + labor"
+        },
+        "profit": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Auto-calculated: quoted price - total cost"
+        },
+        "flagged": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Set automatically when ticket is stale (48h without status update)"
+        },
+        "flagReason": {
+            "type": "varchar",
+            "maxLength": 200,
+            "readOnly": true
+        },
+        "completedAt": {
+            "type": "datetime",
+            "readOnly": true,
+            "tooltip": "Timestamp when status was set to Completed"
+        },
+        "notes": {
+            "type": "text",
+            "rowsMin": 2
+        },
+        "leadSource": {
+            "type": "enum",
+            "options": [
+                "",
+                "Yelp",
+                "Google",
+                "Facebook",
+                "Craigslist",
+                "Reddit",
+                "Walk-in",
+                "Referral",
+                "Phone Call",
+                "Website",
+                "Other"
+            ]
+        },
+        "assignedUser": {
+            "type": "link"
+        },
+        "teams": {
+            "type": "linkMultiple"
+        },
+        "contact": {
+            "type": "link"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        }
+    },
+    "links": {
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "relationName": "entityTeam",
+            "layoutRelationshipsDisabled": true
+        },
+        "contact": {
+            "type": "belongsTo",
+            "entity": "Contact",
+            "foreign": "repairTickets"
+        }
+    },
+    "collection": {
+        "orderBy": "createdAt",
+        "order": "desc",
+        "textFilterFields": [
+            "name",
+            "ticketId",
+            "customerName"
+        ]
+    },
+    "indexes": {
+        "ticketId": {
+            "columns": ["ticketId"],
+            "unique": true
+        },
+        "status": {
+            "columns": ["status"]
+        },
+        "createdAt": {
+            "columns": ["createdAt"]
+        }
+    },
+    "optimisticConcurrencyControl": true,
+    "beforeSaveCustomScript": "$parts = ifThenElse(partsCost == null, 0, partsCost);\n$labor = ifThenElse(laborCost == null, 0, laborCost);\n$quoted = ifThenElse(quotedPrice == null, 0, quotedPrice);\ntotalCost = $parts + $labor;\nprofit = $quoted - totalCost;\n\nifThen(\n    status == 'Completed' && completedAt == null,\n    completedAt = datetime\\now()\n);"
+}

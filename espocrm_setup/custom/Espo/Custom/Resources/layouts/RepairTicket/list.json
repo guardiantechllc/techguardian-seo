@@ -1,0 +1,10 @@
+[
+    {"name": "ticketId", "width": 10, "link": true},
+    {"name": "name", "width": 22, "link": true},
+    {"name": "status", "width": 12},
+    {"name": "customerName", "width": 15},
+    {"name": "deviceType", "width": 10},
+    {"name": "quotedPrice", "width": 10},
+    {"name": "profit", "width": 10},
+    {"name": "createdAt", "width": 11}
+]

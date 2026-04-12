@@ -1,0 +1,29 @@
+[
+    {
+        "label": "Ticket Info",
+        "rows": [
+            [{"name": "ticketId"}, {"name": "status"}],
+            [{"name": "name", "fullWidth": true}],
+            [{"name": "customerName"}, {"name": "phoneNumber"}],
+            [{"name": "email"}, {"name": "deviceType"}],
+            [{"name": "issueDescription", "fullWidth": true}]
+        ]
+    },
+    {
+        "label": "Pricing",
+        "rows": [
+            [{"name": "quotedPrice"}, {"name": "partsCost"}],
+            [{"name": "laborCost"}, {"name": "totalCost"}],
+            [{"name": "profit"}, false]
+        ]
+    },
+    {
+        "label": "Tracking",
+        "rows": [
+            [{"name": "leadSource"}, {"name": "assignedUser"}],
+            [{"name": "flagged"}, {"name": "flagReason"}],
+            [{"name": "completedAt"}, {"name": "contact"}],
+            [{"name": "notes", "fullWidth": true}]
+        ]
+    }
+]

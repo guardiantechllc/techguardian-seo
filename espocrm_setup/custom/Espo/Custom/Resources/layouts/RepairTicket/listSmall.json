@@ -1,0 +1,6 @@
+[
+    {"name": "ticketId", "link": true},
+    {"name": "name", "link": true},
+    {"name": "status"},
+    {"name": "customerName"}
+]

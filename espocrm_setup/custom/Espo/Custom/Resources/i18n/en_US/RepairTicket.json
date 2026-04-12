@@ -1,0 +1,79 @@
+{
+    "labels": {
+        "Create RepairTicket": "New Repair Ticket",
+        "Repair Ticket": "Repair Ticket"
+    },
+    "fields": {
+        "name": "Summary",
+        "ticketId": "Ticket ID",
+        "status": "Status",
+        "customerName": "Customer Name",
+        "phoneNumber": "Phone Number",
+        "email": "Email",
+        "deviceType": "Device Type",
+        "issueDescription": "Issue Description",
+        "quotedPrice": "Quoted Price",
+        "partsCost": "Parts Cost",
+        "laborCost": "Labor Cost",
+        "totalCost": "Total Cost",
+        "profit": "Profit",
+        "flagged": "Flagged",
+        "flagReason": "Flag Reason",
+        "completedAt": "Completed At",
+        "notes": "Internal Notes",
+        "leadSource": "Lead Source",
+        "assignedUser": "Assigned User",
+        "teams": "Teams",
+        "contact": "Contact"
+    },
+    "links": {
+        "contact": "Contact",
+        "assignedUser": "Assigned User"
+    },
+    "tooltips": {
+        "ticketId": "Auto-generated. Format: TG-0001, TG-0002, etc.",
+        "totalCost": "Parts Cost + Labor Cost. Calculated automatically.",
+        "profit": "Quoted Price minus Total Cost. Calculated automatically.",
+        "flagged": "Turns on when a ticket hasn't been updated in 48 hours."
+    },
+    "options": {
+        "status": {
+            "New Lead": "New Lead",
+            "Diagnosed": "Diagnosed",
+            "Awaiting Parts": "Awaiting Parts",
+            "In Progress": "In Progress",
+            "Ready for Pickup": "Ready for Pickup",
+            "Completed": "Completed",
+            "No Fix": "No Fix"
+        },
+        "deviceType": {
+            "": "",
+            "PS5": "PS5",
+            "PS4": "PS4",
+            "Xbox Series X": "Xbox Series X",
+            "Xbox Series S": "Xbox Series S",
+            "Xbox One": "Xbox One",
+            "Nintendo Switch": "Nintendo Switch",
+            "iPhone": "iPhone",
+            "iPad": "iPad",
+            "MacBook": "MacBook",
+            "PC / Laptop": "PC / Laptop",
+            "Android Phone": "Android Phone",
+            "Android Tablet": "Android Tablet",
+            "Other": "Other"
+        },
+        "leadSource": {
+            "": "",
+            "Yelp": "Yelp",
+            "Google": "Google",
+            "Facebook": "Facebook",
+            "Craigslist": "Craigslist",
+            "Reddit": "Reddit",
+            "Walk-in": "Walk-in",
+            "Referral": "Referral",
+            "Phone Call": "Phone Call",
+            "Website": "Website",
+            "Other": "Other"
+        }
+    }
+}

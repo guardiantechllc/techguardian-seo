@@ -1,0 +1,30 @@
+{
+    "controller": "controllers/record",
+    "boolFilterList": ["onlyMy"],
+    "statusField": "status",
+    "kanbanViewMode": true,
+    "filterList": [
+        "status",
+        "deviceType",
+        "leadSource",
+        "flagged",
+        "assignedUser"
+    ],
+    "iconClass": "fas fa-tools",
+    "color": "#4CAF50",
+    "kanbanViewOrderDisabled": false,
+    "relationshipPanels": {
+        "activities": {
+            "name": "activities",
+            "label": "Activities",
+            "view": "views/record/panels/activities",
+            "aclScopesList": ["Meeting", "Call", "Task", "Email"]
+        },
+        "history": {
+            "name": "history",
+            "label": "History",
+            "view": "views/record/panels/history",
+            "aclScopesList": ["Meeting", "Call", "Task", "Email"]
+        }
+    }
+}
