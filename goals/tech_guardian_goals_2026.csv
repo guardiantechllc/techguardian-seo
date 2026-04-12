@@ -1,0 +1,34 @@
+Category,Goal Type,Goal,Key Result 1,Key Result 2,Key Result 3,Target Date,Owner,Status,Priority,Notes
+===== REVENUE GOALS =====,,,,,,,,,,
+Revenue,Team,Increase monthly revenue by 25%,Hit $X baseline + 25% monthly average,Increase average ticket value to $150+,Achieve 15% repeat customer rate,Q2 2026,Owner,Not Started,High,Track via Square POS
+Revenue,Team,Add 2 new high-margin service lines,Launch premium data recovery tier ($200+),Add B2B/business device support contracts,Create trade-in/refurb resale program,Q3 2026,Owner,Not Started,High,Research competitors first
+Revenue,Team,Reduce parts cost by 15%,Negotiate bulk pricing with 2+ suppliers,Decrease aftermarket defect rate to <2%,Build 30-day inventory buffer,Q2 2026,Lead Tech,Not Started,Medium,Current supplier review needed
+Revenue,Personal,Improve profit margins to 40%+,Review pricing on top 10 services,Eliminate low-margin services or reprice,Reduce waste/failed repairs to <5%,Q4 2026,Owner,Not Started,High,Analyze Square data monthly
+===== MARKETING GOALS =====,,,,,,,,,,
+Marketing,Team,Rank #1 for "iPhone repair Kansas City",Publish 8 location-specific landing pages,Get 20+ new Google reviews (4.8+ avg),Build 10 quality backlinks,Q3 2026,Owner/Marketing,Not Started,High,SEO is already started
+Marketing,Team,Generate 50 new leads/month via digital,Launch Google Ads campaign ($500/mo budget),Grow Instagram to 1000 followers,Create TikTok repair videos (2/week),Q2 2026,Marketing,Not Started,High,Focus on local targeting
+Marketing,Team,Increase walk-in traffic by 30%,Partner with 3 local businesses for referrals,Distribute 500 flyers in Lee's Summit,Host 1 community tech event/quarter,Q3 2026,Team,Not Started,Medium,Track source of each customer
+Marketing,Personal,Build personal brand as "KC Tech Expert",Appear on 2 local podcasts/news segments,Write 4 guest articles for local publications,Speak at 1 local business event,Q4 2026,Owner,Not Started,Medium,Network at Chamber events
+===== TEAM GOALS =====,,,,,,,,,,
+Team,Team,Hire and train 1 additional technician,Post job listing and screen 10+ candidates,Complete 2-week onboarding program,Achieve independent repair capability,Q2 2026,Owner,Not Started,High,Focus on console/PC skills
+Team,Team,Reduce average repair time by 20%,Document top 20 repair procedures,Implement repair tracking system,Create parts organization system,Q3 2026,Lead Tech,Not Started,Medium,Time studies first
+Team,Team,Achieve 95%+ customer satisfaction,Implement post-repair survey system,Respond to all reviews within 24 hours,Resolve complaints within 48 hours,Q2 2026,Team,Not Started,High,Use Square for surveys
+Team,Personal,Improve leadership skills,Complete 1 management course/book monthly,Hold weekly 1:1s with each team member,Get 360 feedback quarterly,Ongoing,Owner,Not Started,Medium,Document learnings
+===== OPERATIONS GOALS =====,,,,,,,,,,
+Operations,Team,Implement inventory management system,Set up digital inventory tracking,Establish reorder points for top 50 parts,Reduce stockouts to <2/month,Q2 2026,Lead Tech,Not Started,High,Evaluate RepairDesk or similar
+Operations,Team,Achieve same-day completion on 90% of repairs,Track current completion rates,Identify bottleneck repairs,Pre-stage common parts kits,Q3 2026,Team,Not Started,Medium,Currently estimate ~70%
+Operations,Team,Create Standard Operating Procedures,Document intake/checkout process,Create repair quality checklist,Build customer communication templates,Q2 2026,Owner,Not Started,Medium,Start with highest volume repairs
+Operations,Personal,Reduce owner time on repairs to 25%,Train team on advanced repairs,Delegate board-level work,Focus on business development,Q4 2026,Owner,Not Started,High,Track time weekly
+===== CUSTOMER EXPERIENCE =====,,,,,,,,,,
+Customer Experience,Team,Implement appointment booking system,Set up online booking (Square Appointments),Add text reminders for appointments,Create walk-in vs appointment tracking,Q2 2026,Owner,Not Started,High,Already have Square
+Customer Experience,Team,Create customer loyalty program,Design punch card or points system,Offer referral bonus ($10 off),Send quarterly "check your device" reminders,Q3 2026,Owner,Not Started,Medium,Simple is better
+Customer Experience,Team,Improve communication during repairs,Send automated "repair started" texts,Provide real-time status updates,Call for any delays >1 hour,Q2 2026,Team,Not Started,High,Use Square or Twilio
+===== PERSONAL DEVELOPMENT =====,,,,,,,,,,
+Personal,Personal,Achieve work-life balance,Limit work to 50 hours/week max,Take 1 full day off weekly,Plan 2-week vacation,Q3 2026,Owner,Not Started,High,Currently overworking?
+Personal,Personal,Financial planning,Set up business emergency fund (3 mo expenses),Review and adjust owner salary quarterly,Meet with accountant monthly,Q2 2026,Owner,Not Started,High,
+Personal,Personal,Health and wellness,Exercise 3x/week minimum,Annual health checkup,Daily stress management practice,Ongoing,Owner,Not Started,Medium,
+Personal,Personal,Continuous learning,Complete 1 certification (Apple/Samsung),Attend 1 industry conference,Read 12 business books,Q4 2026,Owner,Not Started,Medium,List specific certs
+===== GROWTH & EXPANSION =====,,,,,,,,,,
+Growth,Team,Explore second location feasibility,Research KC area demographics,Create financial model for expansion,Identify 3 potential locations,Q4 2026,Owner,Not Started,Low,Long-term planning
+Growth,Team,Launch mobile repair service,Purchase equipped van/vehicle,Define service radius (15 mi),Create mobile-specific pricing,Q4 2026,Owner,Not Started,Medium,High-margin opportunity
+Growth,Personal,Build business exit/succession plan,Document all business processes,Identify potential successors/buyers,Get business valuation,Q4 2026,Owner,Not Started,Low,5-year planning

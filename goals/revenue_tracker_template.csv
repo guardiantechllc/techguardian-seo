@@ -1,0 +1,18 @@
+Month,Total Revenue,Phone Repairs,Console Repairs,MacBook/Laptop,PC Repair,Data Recovery,Other,Avg Ticket,Total Repairs,New Customers,Repeat Customers,Parts Cost,Labor Cost,Gross Profit,Profit Margin %,Notes
+Jan 2026,,,,,,,,,,,,,,,,"Enter baseline"
+Feb 2026,,,,,,,,,,,,,,,,
+Mar 2026,,,,,,,,,,,,,,,,
+Apr 2026,,,,,,,,,,,,,,,,
+May 2026,,,,,,,,,,,,,,,,
+Jun 2026,,,,,,,,,,,,,,,,
+Jul 2026,,,,,,,,,,,,,,,,
+Aug 2026,,,,,,,,,,,,,,,,
+Sep 2026,,,,,,,,,,,,,,,,
+Oct 2026,,,,,,,,,,,,,,,,
+Nov 2026,,,,,,,,,,,,,,,,
+Dec 2026,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,"Formula: Gross Profit / Total Revenue"
+FORMULAS (Add in Google Sheets):,,,,,,,,,,,,,,,
+"Avg Ticket = Total Revenue / Total Repairs",,,,,,,,,,,,,,,
+"Gross Profit = Total Revenue - Parts Cost - Labor Cost",,,,,,,,,,,,,,,
+"Profit Margin = Gross Profit / Total Revenue * 100",,,,,,,,,,,,,,,
