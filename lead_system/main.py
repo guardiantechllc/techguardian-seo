@@ -50,6 +50,7 @@ from lead_system.messaging.draft_generator import DraftGenerator
 from lead_system.storage.csv_store import CsvStore
 from lead_system.storage.google_sheets_store import GoogleSheetsStore
 from lead_system.storage.airtable_store import AirtableStore
+from lead_system.storage.attio_store import AttioStore
 
 
 SOURCE_REGISTRY = {
@@ -141,6 +142,12 @@ def run(config: Config, dry_run: bool = False) -> List[Lead]:
             airtable.write(fresh)
         else:
             log.info("Airtable not configured — skipping")
+
+        attio = AttioStore(config)
+        if attio.available:
+            attio.write(fresh)
+        else:
+            log.info("Attio not configured — skipping")
 
         deduper.save()
 
