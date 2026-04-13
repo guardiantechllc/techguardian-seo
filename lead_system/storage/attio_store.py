@@ -3,22 +3,26 @@ storage/attio_store.py
 ----------------------
 Writes leads to Attio CRM via the REST API (v2).
 
-Targets:
-  - Your "Leads" list (list entries linked to People records)
-  - Upserts by matching on the lead's email or source URL
+Field mappings verified against attio_discover output:
 
-Setup:
-  1. Attio → Settings → Developers → API keys → Generate (full access)
-  2. Add to .env: ATTIO_API_KEY=your_key_here
-  3. Run the discovery script first to map your attribute slugs:
-     python -m lead_system.scripts.attio_discover
+  Leads list (parent: people):
+    lead_source_list, lead_notes, device_interest,
+    follow_up_due, lead_stage, converted
 
-Attio API docs: https://developers.attio.com/reference
+  People object:
+    name, email_addresses, phone_numbers, lead_source,
+    customer_notes, lifecycle_stage
+
+  Repairs object:
+    customer, device_type, issue, repair_stage, quote_amount,
+    final_invoice_amount, lead_source_repair, repair_notes,
+    intake_date, waiting_on_parts, actual_completion_date
 """
 
 from __future__ import annotations
 
 import time
+from datetime import datetime, timezone
 from typing import Dict, Iterable, List, Optional
 
 import requests
@@ -53,14 +57,10 @@ class AttioStore:
         written = 0
         for lead in leads:
             try:
-                # Step 1: Upsert a Person record for the lead contact
                 person_id = self._upsert_person(lead)
-
-                # Step 2: Add an entry to the Leads list
                 self._add_to_leads_list(lead, person_id)
-
                 written += 1
-                time.sleep(0.3)  # Attio rate limit: ~150 req/min
+                time.sleep(0.3)
             except Exception as exc:
                 log.warning("Attio write failed for %s: %s", lead.id, exc)
                 continue
@@ -68,47 +68,54 @@ class AttioStore:
         log.info("Attio: wrote %d leads", written)
         return written
 
+    # ---------- People ----------
+
     def _upsert_person(self, lead: Lead) -> Optional[str]:
-        """Create or update a Person record in Attio.
-
-        Attio's People object has built-in attributes:
-          - name (text)
-          - email_addresses (email)
-          - phone_numbers (phone)
-
-        We match on email if available, otherwise create fresh.
-        """
-        # Build the values dict using Attio's attribute format
-        values: Dict[str, list] = {}
-
-        # Name
+        """Create or match a Person record."""
         name = lead.author_or_listing_name
-        if name and name not in ("unknown", "Craigslist listing", "manual entry"):
-            values["name"] = [{"first_name": name.split()[0] if name else "",
-                              "last_name": " ".join(name.split()[1:]) if len(name.split()) > 1 else ""}]
+        if not name or name in ("unknown", "Craigslist listing", "manual entry"):
+            name = "Unknown Lead"
 
-        # Notes field gets the snippet
-        if lead.text_snippet:
-            values["description"] = [{"value": lead.text_snippet[:1000]}]
+        parts = name.strip().split(None, 1)
+        first = parts[0] if parts else "Unknown"
+        last = parts[1] if len(parts) > 1 else ""
 
-        data = {"data": {"values": values}}
+        values: Dict[str, list] = {
+            "name": [{"first_name": first, "last_name": last}],
+        }
 
-        # Use assert_record (upsert) endpoint
+        # Only add customer_notes — don't overwrite existing notes on match
+        snippet = lead.text_snippet[:500] if lead.text_snippet else ""
+        if snippet:
+            values["customer_notes"] = [{"value": snippet}]
+
+        # Lead source on the Person
+        source_map = {
+            "craigslist": "Craigslist",
+            "reddit": "Reddit",
+            "zoho_email": "Yelp",
+            "manual": "Other",
+            "phone": "Phone Call",
+        }
+        source_label = source_map.get(lead.source, "Other")
+        values["lead_source"] = [{"option": source_label}]
+
+        values["lifecycle_stage"] = [{"option": "Lead"}]
+
+        # Try upsert by name match
         resp = requests.put(
             f"{API}/objects/people/records",
             headers=self._headers,
             json={
-                "data": {
-                    "values": values
-                },
+                "data": {"values": values},
                 "matching_attribute": "name",
             },
             timeout=20,
         )
 
         if resp.status_code >= 400:
-            log.warning("Attio person upsert %d: %s", resp.status_code, resp.text[:200])
-            # Fall back to creating without match
+            log.debug("Attio person upsert %d: %s", resp.status_code, resp.text[:200])
+            # Fall back to create
             resp = requests.post(
                 f"{API}/objects/people/records",
                 headers=self._headers,
@@ -116,51 +123,73 @@ class AttioStore:
                 timeout=20,
             )
             if resp.status_code >= 400:
-                log.warning("Attio person create failed: %d", resp.status_code)
+                log.warning("Attio person create failed %d: %s", resp.status_code, resp.text[:200])
                 return None
 
         record = resp.json().get("data", {})
-        return record.get("id", {}).get("record_id")
+        record_id = record.get("id", {}).get("record_id")
+        if record_id:
+            log.debug("Attio person: %s (%s)", name, record_id)
+        return record_id
+
+    # ---------- Leads list ----------
 
     def _add_to_leads_list(self, lead: Lead, person_id: Optional[str]) -> None:
-        """Add an entry to the Leads list in Attio.
+        """Add an entry to the Leads list.
 
-        List entries have:
-          - A parent record reference (the Person)
-          - Entry-level attributes (custom fields on the list)
-
-        We write as much data as we can into entry attributes.
-        The attribute slugs depend on how you named them in Attio —
-        run `attio_discover` to map them. Below we use common names
-        that match what you likely set up.
+        Attio Leads list attributes (from discover):
+          lead_source_list  (select)
+          lead_notes        (text)
+          device_interest   (text)
+          follow_up_due     (date)
+          lead_stage        (select)
+          converted         (checkbox)
         """
         entry_values: Dict[str, list] = {}
 
-        # Map lead fields to likely Attio list attribute slugs.
-        # These will silently be ignored if the slug doesn't exist
-        # in your Leads list — no crash, just missing data. Run
-        # attio_discover to get exact slugs and adjust below.
-        field_map = {
-            "source": lead.source,
-            "platform": lead.platform,
-            "title": lead.title,
-            "status": "New",
-            "intent_score": lead.intent_score,
-            "url": lead.url,
-            "city": lead.city_or_location,
-            "matched_keywords": ", ".join(lead.matched_keywords) if lead.matched_keywords else "",
-            "outreach_draft": lead.outreach_draft,
-            "notes": lead.notes,
-            "lead_type": lead.lead_type,
+        # Lead source
+        source_map = {
+            "craigslist": "Craigslist",
+            "reddit": "Reddit",
+            "zoho_email": "Yelp",
+            "manual": "Manual",
+            "phone": "Phone",
         }
+        source_label = source_map.get(lead.source, lead.source or "Other")
+        entry_values["lead_source_list"] = [{"option": source_label}]
 
-        for slug, value in field_map.items():
-            if value:
-                entry_values[slug] = [{"value": str(value) if not isinstance(value, int) else value}]
+        # Lead stage
+        entry_values["lead_stage"] = [{"option": "New"}]
+
+        # Device / Issue — pack the useful info here
+        device_info = lead.title or ""
+        if lead.matched_keywords:
+            device_info += f" [{', '.join(lead.matched_keywords[:5])}]"
+        if device_info:
+            entry_values["device_interest"] = [{"value": device_info[:1000]}]
+
+        # Lead notes — outreach draft + source URL + score
+        notes_parts = []
+        if lead.outreach_draft:
+            notes_parts.append(f"DRAFT: {lead.outreach_draft}")
+        if lead.url and not lead.url.startswith("mail:"):
+            notes_parts.append(f"URL: {lead.url}")
+        if lead.intent_score:
+            notes_parts.append(f"Score: {lead.intent_score}/5")
+        if lead.city_or_location:
+            notes_parts.append(f"Location: {lead.city_or_location}")
+        if lead.platform:
+            notes_parts.append(f"Platform: {lead.platform}")
+        if lead.notes:
+            notes_parts.append(f"Notes: {lead.notes}")
+        if notes_parts:
+            entry_values["lead_notes"] = [{"value": "\n".join(notes_parts)}]
+
+        # Not converted yet
+        entry_values["converted"] = [{"value": False}]
 
         body: dict = {"data": {"entry_values": entry_values}}
 
-        # Link to the Person record if we have one
         if person_id:
             body["data"]["parent_record_id"] = person_id
             body["data"]["parent_object"] = "people"
@@ -174,41 +203,75 @@ class AttioStore:
 
         if resp.status_code == 404:
             log.warning(
-                "Attio Leads list not found. Check that your list slug is "
-                "'leads' (lowercase). Run: python -m lead_system.scripts.attio_discover"
+                "Attio 404: Leads list slug might be wrong. "
+                "Run: python -m lead_system.scripts.attio_discover"
             )
         elif resp.status_code >= 400:
-            log.debug("Attio list entry %d: %s", resp.status_code, resp.text[:200])
+            log.debug("Attio leads entry %d: %s", resp.status_code, resp.text[:300])
+        else:
+            log.debug("Attio: lead added to Leads list")
 
-    # ---------- Repair/Job writer ----------
+    # ---------- Repairs ----------
 
     def write_repair(self, job_data: dict) -> bool:
         """Write a completed repair to the Attio Repairs object.
 
-        This is called by the jobs/log_job CLI when Attio is configured.
+        Repairs required fields (from discover):
+          customer        (record-reference) — person record id
+          device_type     (text)
+          issue           (text)
+          repair_stage    (select)
+          quote_amount    (currency)
+          final_invoice_amount (currency)
         """
         if not self.available:
             return False
 
-        values: Dict[str, list] = {}
-        field_map = {
-            "name": job_data.get("customer_name", ""),
-            "device": job_data.get("device", ""),
-            "service": job_data.get("service", ""),
-            "revenue": job_data.get("revenue"),
-            "parts_cost": job_data.get("parts_cost"),
-            "profit": job_data.get("profit"),
-            "status": "Completed",
-            "lead_source": job_data.get("lead_source", ""),
-            "notes": job_data.get("notes", ""),
+        # First upsert the customer as a Person
+        customer_name = job_data.get("customer_name", "Walk-in")
+        parts = customer_name.strip().split(None, 1)
+        person_values = {
+            "name": [{"first_name": parts[0], "last_name": parts[1] if len(parts) > 1 else ""}],
+        }
+        if job_data.get("customer_phone"):
+            person_values["phone_numbers"] = [{"phone_number": job_data["customer_phone"]}]
+
+        person_resp = requests.put(
+            f"{API}/objects/people/records",
+            headers=self._headers,
+            json={"data": {"values": person_values}, "matching_attribute": "name"},
+            timeout=20,
+        )
+        person_id = None
+        if person_resp.status_code < 400:
+            person_id = person_resp.json().get("data", {}).get("id", {}).get("record_id")
+
+        # Build repair record
+        values: Dict[str, list] = {
+            "device_type": [{"value": job_data.get("device", "Other")}],
+            "issue": [{"value": job_data.get("service", "Repair")}],
+            "repair_stage": [{"option": "Completed"}],
+            "quote_amount": [{"currency_value": float(job_data.get("revenue", 0))}],
+            "final_invoice_amount": [{"currency_value": float(job_data.get("revenue", 0))}],
         }
 
-        for slug, value in field_map.items():
-            if value is not None and value != "":
-                if isinstance(value, (int, float)):
-                    values[slug] = [{"value": value}]
-                else:
-                    values[slug] = [{"value": str(value)}]
+        if person_id:
+            values["customer"] = [{"target_record_id": person_id, "target_object": "people"}]
+
+        if job_data.get("date"):
+            values["intake_date"] = [{"value": job_data["date"]}]
+            values["actual_completion_date"] = [{"value": job_data["date"]}]
+
+        source_map = {
+            "yelp": "Yelp", "google": "Google", "walkin": "Walk-in",
+            "craigslist": "Craigslist", "reddit": "Reddit",
+            "referral": "Referral", "phone": "Phone",
+        }
+        src = source_map.get(job_data.get("lead_source", ""), "Other")
+        values["lead_source_repair"] = [{"option": src}]
+
+        if job_data.get("notes"):
+            values["repair_notes"] = [{"value": job_data["notes"]}]
 
         resp = requests.post(
             f"{API}/objects/repairs/records",
@@ -218,7 +281,7 @@ class AttioStore:
         )
 
         if resp.status_code >= 400:
-            log.warning("Attio repair write %d: %s", resp.status_code, resp.text[:200])
+            log.warning("Attio repair %d: %s", resp.status_code, resp.text[:300])
             return False
 
         log.info("Attio: repair record created")
