@@ -300,6 +300,78 @@
         .toast.show { transform: translateY(0); opacity: 1; }
         .toast.success { background: var(--green); }
         .toast.error { background: var(--red); }
+
+        .sync-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sync-bar .sync-status {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .sync-bar .sync-status.connected { color: var(--green); }
+        .sync-bar .sync-status.disconnected { color: var(--gray-500); }
+
+        .sync-bar .sync-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-sync {
+            background: var(--blue);
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            width: auto;
+        }
+
+        .btn-setup {
+            background: var(--gray-200);
+            color: var(--gray-700);
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            width: auto;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal h2 { font-size: 1.2rem; margin-bottom: 1rem; }
+        .modal p { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 0.75rem; line-height: 1.6; }
+        .modal ol { font-size: 0.85rem; color: var(--gray-700); padding-left: 1.25rem; margin-bottom: 1rem; }
+        .modal ol li { margin-bottom: 0.4rem; }
+        .modal input { margin-bottom: 1rem; }
+        .modal .btn-row { display: flex; gap: 0.5rem; justify-content: flex-end; }
     </style>
 </head>
 <body>
@@ -308,7 +380,44 @@
         <a href="services/kansas-city.html">Back to Site</a>
     </header>
 
+    <!-- Setup Modal -->
+    <div class="modal-overlay" id="setupModal">
+        <div class="modal">
+            <h2>Connect to Google Sheets</h2>
+            <p>One-time setup (takes 2 minutes):</p>
+            <ol>
+                <li>Open your Google Sheet</li>
+                <li>Go to <strong>Extensions > Apps Script</strong></li>
+                <li>Delete everything in there</li>
+                <li>Paste the code from <strong>google-apps-script.js</strong> (in this repo)</li>
+                <li>Click <strong>Deploy > New Deployment</strong></li>
+                <li>Type = <strong>Web app</strong></li>
+                <li>Execute as = <strong>Me</strong></li>
+                <li>Who has access = <strong>Anyone</strong></li>
+                <li>Click Deploy, authorize when prompted</li>
+                <li>Copy the URL it gives you and paste it below</li>
+            </ol>
+            <div class="form-group">
+                <label>Google Apps Script Web App URL</label>
+                <input type="url" id="sheetUrl" placeholder="https://script.google.com/macros/s/...../exec">
+            </div>
+            <div class="btn-row">
+                <button class="btn btn-setup" onclick="closeSetup()">Cancel</button>
+                <button class="btn btn-sync" onclick="saveSheetUrl()">Connect</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
+        <!-- Sync Bar -->
+        <div class="sync-bar">
+            <div class="sync-status disconnected" id="syncStatus">Google Sheets: Not connected</div>
+            <div class="sync-actions">
+                <button class="btn btn-sync" id="syncBtn" onclick="syncToSheet()" style="display:none;">Sync Now</button>
+                <button class="btn btn-setup" onclick="openSetup()">Connect Google Sheet</button>
+            </div>
+        </div>
+
         <!-- Summary Cards -->
         <div class="summary-cards">
             <div class="card">
@@ -492,6 +601,7 @@
 
             transactions.push(transaction);
             save();
+            pushToSheet(transaction);
 
             // Reset form
             amountEl.value = '';
@@ -506,6 +616,7 @@
         function deleteTransaction(id) {
             transactions = transactions.filter(t => t.id !== id);
             save();
+            deleteFromSheet(id);
             showToast('Transaction deleted');
             updateAll();
         }
@@ -713,7 +824,81 @@
             updateCharts();
         }
 
+        // Google Sheets sync
+        const SHEET_URL_KEY = 'techguardian_sheet_url';
+        let sheetUrl = localStorage.getItem(SHEET_URL_KEY) || '';
+
+        function updateSyncUI() {
+            const status = document.getElementById('syncStatus');
+            const syncBtn = document.getElementById('syncBtn');
+            if (sheetUrl) {
+                status.textContent = 'Google Sheets: Connected';
+                status.className = 'sync-status connected';
+                syncBtn.style.display = 'inline-block';
+            } else {
+                status.textContent = 'Google Sheets: Not connected';
+                status.className = 'sync-status disconnected';
+                syncBtn.style.display = 'none';
+            }
+        }
+
+        function openSetup() {
+            document.getElementById('sheetUrl').value = sheetUrl;
+            document.getElementById('setupModal').classList.add('show');
+        }
+
+        function closeSetup() {
+            document.getElementById('setupModal').classList.remove('show');
+        }
+
+        function saveSheetUrl() {
+            const url = document.getElementById('sheetUrl').value.trim();
+            if (!url) { showToast('Enter the URL', 'error'); return; }
+            sheetUrl = url;
+            localStorage.setItem(SHEET_URL_KEY, url);
+            closeSetup();
+            updateSyncUI();
+            showToast('Google Sheet connected!');
+            syncToSheet();
+        }
+
+        function pushToSheet(transaction) {
+            if (!sheetUrl) return;
+            fetch(sheetUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'add', transaction: transaction })
+            }).catch(() => {});
+        }
+
+        function deleteFromSheet(id) {
+            if (!sheetUrl) return;
+            fetch(sheetUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'delete', id: id })
+            }).catch(() => {});
+        }
+
+        function syncToSheet() {
+            if (!sheetUrl) { showToast('Connect a sheet first', 'error'); return; }
+            showToast('Syncing to Google Sheet...');
+            fetch(sheetUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'sync', transactions: transactions })
+            }).then(() => {
+                showToast('Synced to Google Sheet!');
+            }).catch(() => {
+                showToast('Sync failed - check your URL', 'error');
+            });
+        }
+
         // Initial render
+        updateSyncUI();
         updateAll();
     </script>
 </body>
